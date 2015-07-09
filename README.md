@@ -9,7 +9,7 @@ date: 2014-08-13 16:44:36
 
 Author: Tracy Teal  
 Original contributors:
-Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://http://software-carpentry.org/)
+Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://software-carpentry.org/)
 
 ## Objectives
 - What is the shell?
@@ -75,12 +75,12 @@ Go ahead and drag the Terminal application to your Dock for easy access.
 Windows
 -------
 For Windows, we're going to be using gitbash.  
-Download and install [gitbash](http://msysgit.github.io)
+Download and install [gitbash](http://msysgit.github.io);
 Open up the program.
 
 Linux  
 -----
-Well, you should be set.
+You should be set.
 
 
 
