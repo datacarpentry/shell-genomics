@@ -575,7 +575,6 @@ head -n 1 SRR098026.fastq
 tail -n 1 SRR098026.fastq
 
 
-BREAK
 ## Creating, moving, copying, and removing
 
 Now we can move around in the file structure, look at files, search files,
