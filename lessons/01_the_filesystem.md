@@ -6,8 +6,8 @@ date: 2014-07-30
 ---
 
 # The Shell
-
 Author: Sheldon McKay  
+
 Adapted from the lesson by Tracy Teal.
 Original contributors:
 Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://software-carpentry.org/)
@@ -585,16 +585,18 @@ without the command line, but what fun would that be?! Besides it's often
 faster to do it at the command line, or you'll be on a remote server
 like Amazon where you won't have another option.
 
-The stability.files file is one that tells us what sample name
-goes with what sequences. This is a really important file, so
-we want to make a copy so we don't lose it.
+
+Our raw data in this case is fastq files.  We don't want to change the original files,
+so let's make a copy to work with.
 
 Lets copy the file using the `cp` command. The `cp`
 command backs up the file. Navigate to the `data` directory and enter:
 
-    cp stability.files stability.files_backup
+    cp SRR098026.fastq SRR098026-copy.fastq
+    ls -F
+    SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq 
 
-Now `stability.files_backup` has been created as a copy of `stability.files`.
+Now SRR098026-copy.fastq has been created as a copy of SRR098026.fastq
 
 Let's make a `backup` directory where we can put this file.
 
@@ -606,22 +608,26 @@ followed by a space, then the directory name.
 We can now move our backed up file in to this directory. We can
 move files around using the command `mv`. Enter this command:
 
-    mv stability.files_backup backup/
-
-This moves `stability.files_backup` into the directory `backup/` or
-the full path would be `~/edamame-data/shell/MiSeq/backup`
+    mv *-copy.fastq backup
+    ls -al backup
+    total 52
+    drwxrwxr-x 2 dcuser dcuser  4096 Jul 30 15:31 .
+    drwxr-xr-x 3 dcuser dcuser  4096 Jul 30 15:31 ..
+    -rw-r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-copy.fastq
 
 The `mv` command is also how you rename files. Since this file is so
 important, let's rename it:
 
-    mv stability.files stability.files_IMPORTANT
+    cd backup
+    mv SRR098026-copy.fastq SRR098026-copy.fastq_DO_NOT_TOUCH!
+    ls 
+    SRR098026-copy.fastq_DO_NOT_TOUCH!
 
-Now the file name has been changed to stability.files_IMPORTANT. Let's delete
-the backup file now:
+    Finally, we decided this was silly and want to start over.
 
-    rm backup/stability.files_backup
+    rm backup/SRR*
 
-The `rm` file removes the file. Be careful with this command. It doesn't
+The `rm` file permanently removes the file. Be careful with this command. It doesn't
 just nicely put the files in the Trash. They're really gone.
 
 
@@ -631,9 +637,9 @@ just nicely put the files in the Trash. They're really gone.
 
 Do the following:
 
-1.  Rename the `stability.files_IMPORTANT` file to `stability.files`.
-2.  Create a directory in the `MiSeq` directory called `new`
-3.  Then, copy the `stability.files` file into `new`
+1.  Create a backup of your fastq files
+2.  Create a backup directory 
+3.  Copr your backup files there
 
 * * * *
 
@@ -641,7 +647,7 @@ By default, `rm`, will NOT delete directories. You can tell `rm` to
 delete a directory using the `-r` option. Let's delete that `new` directory
 we just made. Enter the following command:
 
-    rm -r new
+    rm -r backup
 
 ## Writing files
 
