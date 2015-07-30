@@ -176,17 +176,17 @@ count the different categories.
    We can use if '-k' option for sort to specify which column to sort on.  Note that this does something
    similar to cut's '-f'.
 
-   sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
+    sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
 
 4) Extract only paired end records into a new file
    Do we know PAIRED only occurs in column 4?  WE know there are only two in the file, so let's check.
 
-   grep PAIRED SraRunTable.txt | wc -l
-   2
+    grep PAIRED SraRunTable.txt | wc -l
+    2
 
 OK, we are good to go.
 
-   grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
+    grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
     
 
 ****
