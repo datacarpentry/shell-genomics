@@ -42,7 +42,7 @@ for example:
 With nice symmetry, the `-A` flag stands for "after match" will return the specified
 number of lines after the match.
 
-***
+****
 ** Exercise **
 
 1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
@@ -50,7 +50,7 @@ In addition to finding the sequence, have your search also return
 the name of the sequence.
 
 2) Search for that sequence in both fastq files.
-***
+****
 
 ## Redirection
 
@@ -117,12 +117,87 @@ learn to become proficient with the pipe and redirection operators:
 
 
 
+Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
 
+    cd 
+    cd dc_sample_data/
 
+Let's ask a few questions about the data
 
+1) How many of the read libraries are paired end?
 
+First, what are the column headers?
 
+    head -n 1 SraRunTable.txt
+    BioSample_s	InsertSize_l	LibraryLayout_s	Library_Name_s	LoadDate_s	MBases_l	MBytes_l	ReleaseDate_s Run_s SRA_Sample_s Sample_Name_s Assay_Type_s AssemblyName_s BioProject_s Center_Name_s Consent_s Organism_Platform_s SRA_Study_s g1k_analysis_group_s g1k_pop_code_s source_s strain_s
 
+That's only the first line but it is a lot to take in.  'cut' is a program that will extract columns in tab-delimited
+files.  It is a very good command to know.  Lets look at just the first four columns in the header using the '|' readirect
+and 'cut'
+
+    head -n 1 SraRunTable.txt | cut -f1-4
+    BioSample_s InsertSize_l      LibraryLayout_s	Library_Name_s    
+
+'-f1-4' means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let's look at some data for just that column.
+
+    cut -f3 SraRunTable.txt | head -n 10
+    LibraryLayout_s
+    SINGLE
+    SINGLE
+    SINGLE
+    SINGLE
+    SINGLE
+    SINGLE
+    SINGLE
+    SINGLE
+    PAIRED
+    
+We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
+for just PAIRED and count the number of hits.
+
+    cut -f3 SraRunTable.txt | grep PAIRED | wc -l
+    2
+
+2) How many of each class of library layout are there?
+
+We can use some new tools 'sort' and 'uniq' to extract more information.  For example, cut the third column, remove the
+header and sort the values.  The '-v' option for greap means return all lines that DO NOT match.
+
+    cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
+    
+This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use 'uniq' with the '-c' flag to
+count the different categories.
+
+    cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
+      2 PAIRED
+     35 SINGLE 
+
+3) Sort the metadata file by PAIRED/SINGLE and save to a new file
+   We can use if '-k' option for sort to specify which column to sort on.  Note that this does something
+   similar to cut's '-f'.
+
+   sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
+
+4) Extract only paired end records into a new file
+   Do we know PAIRED only occurs in column 4?  WE know there are only two in the file, so let's check.
+
+   grep PAIRED SraRunTable.txt | wc -l
+   2
+
+OK, we are good to go.
+
+   grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
+    
+
+****
+**Final Exercise**
+
+1) How many sample load dates are there?
+2) How many samples were loaded on each date
+3) Filter subsets into new files bases on load date
+****
+
+ 
 
 
 ## Where can I learn more about the shell?
