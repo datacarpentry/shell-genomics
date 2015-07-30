@@ -231,14 +231,14 @@ Type
 Now do `ls` and `pwd`. See now that we went back up in to the 'dc_sample_data'
 directory. `..` means go back up a level.
 
-***
+* * * *
 **Exercise**
 
 Now we're going to try a hunt.  Find a hidden directory in dc_sample_data list its contents
 and file the text file in there.  What is the name of the file?
 
 Hint: hidden files and folders in unix start with '.', for example .my_hidden_directory
-***
+* * * *
 
 
 ## Examining the contents of other directories
@@ -438,7 +438,7 @@ We can use the command 'echo' to see wilcards are they are intepreted by the she
 The '*' is expanded to include any file that ends with '.fastq'
 
 
-***
+****
 **Exercise**
 
 Do each of the following using a single `ls` command without
@@ -450,7 +450,7 @@ navigating to a different directory.
 
 BONUS: List all of the files in '/bin' that contain the letter 'a' or 'c'
 
-***
+****
 
 
 ## Command History
@@ -484,13 +484,13 @@ then you could repeat command #260 by simply entering:
 
 (that's an exclamation mark).  You will be glad you learned this when you try to re-run very complicated commands.
 
-***
+****
 **Exercise**
 
 1. Find the line number in your history for the last exercise (listing
 files in /bin) and reissue that command.
 
-***
+****
 
 
 
