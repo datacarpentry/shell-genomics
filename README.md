@@ -92,33 +92,29 @@ by manipulating some experimental data.
 Now we're going to download the data for the tutorial. For this you'll need
 internet access, because you're going to get it off the web.  
 
-We're going to be working with data from
+We're going to be working with data on our remote server.
 
 
+After loggin on, let's check out the example data.
 
+Let's go into the sample data  directory
 
-Now let's go in to that directory
+   cd dc_sample data
 
-    cd shell-genomics
+<pre>cd</pre> stands for 'change directory'
 
-This stands for 'change directory'
-
-In this directory, there should be some things we just downloaded.
-
-Let's check. Type:
+Let's see what is in here. Type
     ls
+
+You will see
+    sra_metadata  untrimmed_fastq
 
 ls stands for 'list' and it lists the contents of a directory.
 
-There's a few directories there, but not too many. Let's go look in the data directory.
+There are two items listed.  What are they? We can use a command line argumant with <pre>ls</pre> to get more information.
 
-    cd data
-    ls
-
-In there, all mixed up together are files and directories/folders. If we want to
-know which is which, we can type:
-
-    ls -F
+     ls -F
+     sra_metadata/  untrimmed_fastq/
 
 Anything with a "/" after it is a directory.  
 Things with a "*" after them are programs.  
@@ -127,12 +123,20 @@ It there's nothing there it's a file.
 You can also use the command
 
     ls -l
+    drwxr-x--- 2 dcuser sudo 4096 Jul 30 11:37 sra_metadata
+    drwxr-xr-x 2 dcuser sudo 4096 Jul 30 11:38 untrimmed_fastq
 
-to see whether items in a
-directory are files or directories. `ls -l` gives a lot more
-information too, such as the size of the file
+to see whether items in a directory are files or directories. `ls -l` gives a lot more
+information too.
 
-So, we can see that we have several files, directories and a program. Great!
+Let's go into the untrimmed_fastq directory and see what is in there.
+
+    cd untrimmed_fastq
+    ls -F
+    SRR097977.fastq
+
+There is a single item in this directory and it has no trailing slash, so it is a file.
+
 
 ## Arguments
 
