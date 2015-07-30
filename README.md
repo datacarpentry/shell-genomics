@@ -99,12 +99,12 @@ After loggin on, let's check out the example data.
 
 Let's go into the sample data  directory
 
-   cd dc_sample data
+      cd dc_sample data
 
 <pre>cd</pre> stands for 'change directory'
 
 Let's see what is in here. Type
-    ls
+      ls
 
 You will see
     sra_metadata  untrimmed_fastq
@@ -113,8 +113,8 @@ ls stands for 'list' and it lists the contents of a directory.
 
 There are two items listed.  What are they? We can use a command line argumant with <pre>ls</pre> to get more information.
 
-     ls -F
-     sra_metadata/  untrimmed_fastq/
+      ls -F
+      sra_metadata/  untrimmed_fastq/
 
 Anything with a "/" after it is a directory.  
 Things with a "*" after them are programs.  
