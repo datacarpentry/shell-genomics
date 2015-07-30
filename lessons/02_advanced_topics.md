@@ -1,4 +1,4 @@
----
+--
 layout: page
 title: "The Shell"
 comments: true
@@ -43,7 +43,7 @@ With nice symmetry, the `-A` flag stands for "after match" will return the speci
 number of lines after the match.
 
 ****
-** Exercise **
+**Exercise**
 
 1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
 In addition to finding the sequence, have your search also return
@@ -193,7 +193,9 @@ OK, we are good to go.
 **Final Exercise**
 
 1) How many sample load dates are there?
+
 2) How many samples were loaded on each date
+
 3) Filter subsets into new files bases on load date
 ****
 
