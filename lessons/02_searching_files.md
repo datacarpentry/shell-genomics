@@ -26,21 +26,18 @@ Let's search for the string NNNNNNNNNN in file
      grep NNNNNNNNNN SRR098026.fastq
 
 We get back a lot of lines.  What is we want to see the whole fastq record for each of these read.
-We can use the '-B' argument for grep to return the matched line plus the three lines before it.
-Since each record is four lines and the last line is the sequence, this should give the whole record.
+We can use the '-B' argument for grep to return the matched line plus one before (-B 1) and two
+lines after (-A 2). Since each record is four lines and the last second is the sequence, this should
+give the whole record.
 
-    grep -B3 NNNNNNNNNN SRR098026.fastq
+    grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
 
 for example:
 
-    +SRR098026.24 HWUSI-EAS1599_1:2:1:0:1009 length=35
-    !!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-    @SRR098026.25 HWUSI-EAS1599_1:2:1:0:1027 length=35
-    NNNNNNNNNNNNNNNNGNNNNNNNNNNNNNNNNNN
-
-
-With nice symmetry, the `-A` flag stands for "after match" will return the specified
-number of lines after the match.
+    @SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+    CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+    +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ****
 **Exercise**
