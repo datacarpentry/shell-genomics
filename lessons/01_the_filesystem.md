@@ -6,7 +6,7 @@ date: 2014-07-30
 ---
 
 # The Shell
-Author: Sheldon McKay  
+Author: Sheldon  McKay  
 
 Adapted from the lesson by Tracy Teal.
 Original contributors:
