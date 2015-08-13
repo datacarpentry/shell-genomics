@@ -66,7 +66,7 @@ The redirection command for putting something in a file is `>`
 Let's try it out and put all the sequences that contain 'TTATCCGGATTTATTGGGTTTAAAGGGT'
 from all the files in to another file called 'good-data.txt'
 
-    grep -B3 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+    grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 
 The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should have a new file called good-data.txt. Take
@@ -75,8 +75,8 @@ a look at it and see if it has what you think it should.
 If we use '>>', it will append to rather tha overwrite a file.  This can be useful for
 saving more than one search, for example:
 
-    grep -B3 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-    grep -B3 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+    grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+    grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
 
 There's one more useful redirection command that we're going to show, and that's
 called the pipe command, and it is `|`. It's probably not a key on
@@ -86,7 +86,7 @@ When it was all whizzing by before, we wished we could just slow it down and
 look at it, like we can with `less`. Well it turns out that we can! We pipe
 the `grep` command through `less`
 
-    grep -B3 NNNNNNNNNN SRR098026.fastq | less
+    grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
 
 Now we can use the arrows to scroll up and down and use `q` to get out.
 
@@ -95,12 +95,12 @@ We can also do something tricky and use the command `wc`. `wc` stands for
 it to count the number of lines we're getting back from our `grep` command.
 And that will magically tell us how many sequences we're finding. We're
 
-    grep -B3 NNNNNNNNNN SRR098026.fastq | wc
+    grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc
 
 That tells us the number of lines, words and characters in the file. If we
 just want the number of lines, we can use the `-l` flag for `lines`.
 
-    grep -B3 NNNNNNNNNN SRR098026.fastq | wc -l
+    grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
 
 Redirecting is not super intuitive, but it's really powerful for stringing
 together these different commands, so you can do whatever you need to do.
