@@ -3,6 +3,7 @@
 
 * Download files form FTP repositories
 * Working with compressed files
+* Working with FASTA files
 
 ## Lesson
 
@@ -12,13 +13,13 @@ We will use as sample data set the human [non-coding RNAs](https://en.wikipedia.
 ## Exercises
 ### 1 - Downloading data
 
-The data we need are deposited on the [Ensembl](http://www.ensembl.org/index.html) FTP site, a repository of all files from the project that are publicly available. We need to navigate the repository and find the one containing all the sequences of human ncRNA.
+The data we need are on the [Ensembl](http://www.ensembl.org/index.html) FTP site, a repository of all publicly available files from the project.
 
-There is an [html interface](http://www.ensembl.org/info/data/ftp/index.html) relative of the last release where it should be easy to locate the link to the FASTA file of the ncRNA
+There is an [html interface](http://www.ensembl.org/info/data/ftp/index.html) of the last release where it should be easy to locate the link to the FASTA file of the ncRNA
 
 *or*
-
-You can navigate the public [FTP](ftp://ftp.ensembl.org/pub/) site trough the last release>FASTA>homo_sapiens>ncrna  
+ We need to navigate the repository .
+You can navigate the public [FTP](ftp://ftp.ensembl.org/pub/) repository to find the file with all the sequences of human ncRNA (a little help: follow  last\_release>FASTA>homo_sapiens>ncrna)   
 
 *in both cases*
 
@@ -28,20 +29,15 @@ we need to copy the full address that will look like this one:
 ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz
 ```
 
-We will use this address as an argument to the command [wget](http://www.gnu.org/software/wget/manual/wget.html#Overview) to retrieve the data.
-
-Type in your command line:
+We will use this address as an argument to the command [wget](http://www.gnu.org/software/wget/manual/wget.html#Overview) to retrieve the data. Type in your terminal the command line below to download the file on your local machine.
 
 ```
 $ wget <web address of the fasta file>
 ```
 
-this will download the file on your local machine.
-
-
 ### 2 - Looking at the data
 
-The file we just downloaded is compressed to the [gzip](https://www.gnu.org/software/gzip/manual/gzip.html) format. To see how big it is  use the *-l* and *-h* option of *ls*:
+The file we just downloaded is compressed and in the [gzip](https://www.gnu.org/software/gzip/manual/gzip.html) format. To see how big it is  use the *-l* and *-h* option of *ls*:
 
 ```
 $ ls -lh
@@ -58,22 +54,32 @@ $ zcat filename.gz | more
 $ zcat filename.gz | less
 
 ```
-or combine them as:
+or combine them using [pipe](https://en.wikipedia.org/wiki/Pipeline_%28Unix%29)(|):
 
 ```
 $ zless filename.gz
 $ zmore filename.gz
 ```
 
-For any further analysis we might want to understand how the file is structured and to do so it is probably worth reading a bit of it.
-
-Can you identify how a single ncRNA is described?
+For any further analysis we might want to understand how the file is structured and to do so it is probably worth reading a bit of it. Can you identify how a single ncRNA is described?
 
 ```
 
 >ENST00000517275 ncrna:known chromosome:GRCh38:2:231757887:231757950:1 gene:ENSG00000253084 gene_biotype:snRNA transcript_biotype:snRNA
 GTGCTTGCTTCGGCAGCACATATACTAAAATTGGAATGATACAGAGAAGATGAGCATGGC
 CCCT
+
+```
+
+It is probably worth downloading and reading the [README companion file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) located in the same ftp directory of the fasta file we just downloaded. As you will see any ncRNA is bescribed by at least two lines: a header and one (or more) line of DNA sequence.  The README file also contains information on how the header is structured. 
+
+```
+
+>ENST00000347977 ncrna:miRNA chromosome:NCBI35:1:217347790:217347874:-1 gene:ENSG00000195671 gene_biotype:ncRNA transcript_biotype:ncRNA
+   ^             ^     ^     ^                                          ^                    ^                           ^
+   ID            |     |  LOCATION                            GENE: gene stable ID       GENE: gene biotype           TRANSCRIPT: transcript biotype
+                 |   STATUS
+              SEQTYPE
 
 ```
 
@@ -93,8 +99,7 @@ Let's answer these questions!
 
 #### *Question a.*
 
-We will take advantage of the file structure. We know that each ncRNA has a heading line that starts with a ">".  We can search for ">" inside the compressed using [zgrep / zegrep](http://www.gnu.org/software/grep/manual/grep.html) and  count how many there are using the option *-c* of grep or piping the grep to the command [wc](https://en.wikipedia.org/wiki/Wc_%28Unix%29) with the *-l* option.
-
+We will take advantage of the file structure. We know that each ncRNA has a heading line that starts with a ">".  We can search for ">" inside the compressed file using [zgrep / zegrep](http://www.gnu.org/software/grep/manual/grep.html) to count how many ">" there are using the option *-c*. WE can also combine grep with the command [wc](https://en.wikipedia.org/wiki/Wc_%28Unix%29) and the *-l* option.
 ```
 $ zgrep -c ">" Homo_sapiens.GRCh38.ncrna.fa.gz
 37197
@@ -108,7 +113,7 @@ $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz   | wc -l
 
 #### *Question b.*
 
-To answer this question we might want to give a closer look to the heading structure. Let's visualize some of them and let's see what they have in common or different. Let's use the command [head](https://en.wikipedia.org/wiki/Head_%28Unix%29) that shows only the first ten lines.
+To answer this question we might want to give a closer look to the heading structure. Let's visualize some headings to see what they have in common/different. We will use the command [head](https://en.wikipedia.org/wiki/Head_%28Unix%29) that shows only the first ten lines.
 
 ```
 
@@ -125,18 +130,8 @@ $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz    | head
 
 ```
 
-Even better we can read the [README file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) in the ftp directory that will show this information
-```
 
->ENST00000347977 ncrna:miRNA chromosome:NCBI35:1:217347790:217347874:-1 gene:ENSG00000195671 gene_biotype:ncRNA transcript_biotype:ncRNA
-   ^             ^     ^     ^                                          ^                    ^                           ^
-   ID            |     |  LOCATION                            GENE: gene stable ID       GENE: gene biotype           TRANSCRIPT: transcript biotype
-                 |   STATUS
-              SEQTYPE
-
-```
-
-The header indeed contains the information of the chromosome in the "location" and we can use it to grep and count ncRNA of chromosome 18:
+The header contains the information of the chromosome in the "location" and we can use it to grep and count ncRNA of chromosome 18:
 
 
 ```
@@ -159,7 +154,7 @@ $ zgrep -c  miRNA Homo_sapiens.GRCh38.ncrna.fa.gz
 
 ```
 
-If we visualize part of our search we will see that the information on miRNA is in two fields of the header, the gene_biotype and the transcript_biotype:
+If we visualize part of our search we will see that the information on miRNA is in two fields: the gene_biotype and the transcript_biotype.
 
 ```
 $ zgrep -c  miRNA Homo_sapiens.GRCh38.ncrna.fa.gz | less
@@ -168,7 +163,7 @@ $ zgrep -c  miRNA Homo_sapiens.GRCh38.ncrna.fa.gz | less
 
 #### *Question d.*
 
-To answer this question we want to extract from the headings the filed #5   containing the "gene\_biotype" information using the [cut](https://en.wikipedia.org/wiki/Cut_%28Unix%29) command, specifying that fields are delimited by spaces with the option *-d* and the field number with the option *-f*:
+To answer this question we want to extract from the headings the filed #5 containing the "gene\_biotype" information using the [cut](https://en.wikipedia.org/wiki/Cut_%28Unix%29) command, specifying that fields are delimited by spaces with the option *-d* and that the field number is 5 with the option *-f*:
 
 ```
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5 | more
@@ -213,12 +208,12 @@ Or we can apply cut twice:
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5  | cut -d ":" -f2 |  uniq -c
 
 ```
-Try the commands on your terminal, what do you notice?
+Try the commands i your terminal, what do you notice?
 
 
 #### *Question e.*
 
-How to find something in the file is not a secret anymore but what we want to show here is that sometime we need to visualize  some more lines around what we search for. If we only grep the sequence we will obtain something that is not informative:
+How to find something in the file is not a secret anymore but here we want to show that sometime we need to visualize few more lines around what we search for. Grep only for the sequence will not be informative:
 
 ```
 $ zcat Homo_sapiens.GRCh38.ncrna.fa.gz  |  grep  CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT
