@@ -7,19 +7,19 @@
 
 ## Lesson
 
-In this lesson we will learn how to download data in [fasta format](https://en.wikipedia.org/wiki/FASTA_format) form the web and how to manipulate them using basic shell commands.
-We will use as sample data set the human [non-coding RNAs](https://en.wikipedia.org/wiki/Non-coding_RNA) (ncRNA).
+In this lesson, we will learn how to download data in [fasta format](https://en.wikipedia.org/wiki/FASTA_format) from the web and how to manipulate them using basic shell commands.
+We will use human [non-coding RNAs](https://en.wikipedia.org/wiki/Non-coding_RNA) (ncRNA) as a sample dataset.
 
 ## Exercises
 ### 1 - Downloading data
 
 The data we need are on the [Ensembl](http://www.ensembl.org/index.html) FTP site, a repository of all publicly available files from the project.
 
-There is an [html interface](http://www.ensembl.org/info/data/ftp/index.html) of the last release where it should be easy to locate the link to the FASTA file of the ncRNA
+There is an [html interface](http://www.ensembl.org/info/data/ftp/index.html) of the last release.  In this interface, we need to locate the link to the FAST file of human ncRNA on the page where it should be easy to locate the link to the FASTA file of the ncRNA
 
 *or*
  We need to navigate the repository .
-You can navigate the public [FTP](ftp://ftp.ensembl.org/pub/) repository to find the file with all the sequences of human ncRNA (a little help: follow  last\_release>FASTA>homo_sapiens>ncrna)   
+You can navigate the public [FTP](ftp://ftp.ensembl.org/pub/) repository to find the file with all the sequences of human ncRNA (a little help: follow  last\_release>FASTA>homo_sapiens>ncrna)
 
 *in both cases*
 
@@ -71,7 +71,7 @@ CCCT
 
 ```
 
-It is probably worth downloading and reading the [README companion file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) located in the same ftp directory of the fasta file we just downloaded. As you will see any ncRNA is bescribed by at least two lines: a header and one (or more) line of DNA sequence.  The README file also contains information on how the header is structured. 
+It is probably worth downloading and reading the [README companion file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) located in the same ftp directory of the fasta file we just downloaded. As you will see any ncRNA is bescribed by at least two lines: a header and one (or more) line of DNA sequence.  The README file also contains information on how the header is structured.
 
 ```
 
