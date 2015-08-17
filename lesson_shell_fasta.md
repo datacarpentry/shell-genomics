@@ -87,24 +87,26 @@ As you can see each ncRNA is described by at least two lines, a header (starting
 
 We want to ask the following questions:
 
-* a. How many ncRNA there are in humans?
+* a. How many ncRNA are there in humans?
 * b. How many ncRNA are located on chromosome 18?
 * c. How many ncRNA are micro-RNA (miRNA)?
-* d. How many different gene_biotype there are and what is the abundance of each type?
-* e. To which ncRNA belongs the sequence: "CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT"?
+* d. How many different gene_biotype tags there are? How many are there of each tag?
+* e. To which ncRNA does the the sequence "CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT" belong?
 
 
 Let's answer these questions!
 
 #### *Question a.*
 
-We will take advantage of the file structure. We know that each ncRNA has a heading line that starts with a ">".  We can search for ">" inside the compressed file using [zgrep / zegrep](http://www.gnu.org/software/grep/manual/grep.html) to count how many ">" there are using the option *-c*. WE can also combine grep with the command [wc](https://en.wikipedia.org/wiki/Wc_%28Unix%29) and the *-l* option.
+**How many ncRNA are there in humans?**
+
+We will take advantage of the file structure. We know that each ncRNA has a heading line that starts with a ">".  We can search for ">" inside the compressed file using [zgrep / zegrep](http://www.gnu.org/software/grep/manual/grep.html) to count how many ">" there are using the option *-c*. Alternatively, we can also combine grep with the command [wc](https://en.wikipedia.org/wiki/Wc_%28Unix%29) and the *-l* option to count the number of lines.
 ```
 $ zgrep -c ">" Homo_sapiens.GRCh38.ncrna.fa.gz
 37197
-
+```
 OR
-
+```
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz   | wc -l
 37197
 
@@ -112,7 +114,9 @@ $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz   | wc -l
 
 #### *Question b.*
 
-To answer this question we might want to give a closer look to the heading structure. Let's visualize some headings to see what they have in common/different. We will use the command [head](https://en.wikipedia.org/wiki/Head_%28Unix%29) that shows only the first ten lines.
+**How many ncRNA are located on chromosome 18**
+
+To answer this question need to look closely at the heading structure. Let's visualize some headings to see what they have in common/different. We will use the command [head](https://en.wikipedia.org/wiki/Head_%28Unix%29) that shows only the first ten lines.
 
 ```
 
@@ -136,16 +140,18 @@ The header contains the information of the chromosome in the "location" and we c
 ```
 $ zgrep -c chromosome:GRCh38:18 Homo_sapiens.GRCh38.ncrna.fa.gz
 843
-
+```
 OR (longer but equivalent)
-
+```
 $ zcat Homo_sapiens.GRCh38.ncrna.fa.gz  | grep ">" |  grep chromosome:GRCh38:18 |  wc -l
 843
 
 ```
 #### *Question c.*
 
-If any information exists on miRNA we can certainly  grep and count it:
+**How many ncRNA are micro-RNA (miRNA)?**
+
+If any information exists on miRNA we can certainly use grep and count it:
 
 ```
 $ zgrep -c  miRNA Homo_sapiens.GRCh38.ncrna.fa.gz
@@ -162,14 +168,16 @@ $ zgrep -c  miRNA Homo_sapiens.GRCh38.ncrna.fa.gz | less
 
 #### *Question d.*
 
-To answer this question we want to extract from the headings the filed #5 containing the "gene\_biotype" information using the [cut](https://en.wikipedia.org/wiki/Cut_%28Unix%29) command, specifying that fields are delimited by spaces with the option *-d* and that the field number is 5 with the option *-f*:
+**d. How many different gene_biotype tags there are? How many are there of each tag?**
+
+To answer this question we want to extract the field which contains the "gene\_biotype" information from the heading using the [cut](https://en.wikipedia.org/wiki/Cut_%28Unix%29) command. This is the fifth field in the heading. We can specify the fields are delimited by spaces with the option *-d* and the field number as 5 with the option *-f*:
 
 ```
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5 | more
 
 ```
 
-Now we want to know how many [uniq](https://en.wikipedia.org/wiki/Uniq) biotypes are there and count how many ncRNA  belong to each uniqe type using the option *-c*:
+Now we want to know how many [uniq](https://en.wikipedia.org/wiki/Uniq) biotypes are there and count how many ncRNA belong to each unique type using the option *-c*:
 
 ```
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5 | uniq -c
@@ -193,7 +201,7 @@ $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5 | uniq -c
 
 ```
 
-To be more elegant we can get rid of the "gene\_biotype:" word in several ways. We can use the substitute command (s) of the [sed](http://www.gnu.org/software/sed/manual/sed.html) editor:  
+To be more elegant we can get rid of the "gene\_biotype:" word. We can use the substitute command (s) of the [sed](http://www.gnu.org/software/sed/manual/sed.html) editor:  
 
 ```
 zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5  | uniq -c  | sed 's/gene_biotype://'
@@ -207,19 +215,21 @@ Or we can apply cut twice:
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5  | cut -d ":" -f2 |  uniq -c
 
 ```
-Try the commands i your terminal, what do you notice?
+Try the commands in your terminal, what do you notice?
 
 
 #### *Question e.*
 
-How to find something in the file is not a secret anymore but here we want to show that sometime we need to visualize few more lines around what we search for. Grep only for the sequence will not be informative:
+**To which ncRNA does the the sequence "CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT" belong?**
+
+We have already learned to use `grep` to search for text in a file.  However, in this case we want to see a few more lines around what we are searching for and using `grep` as we did before will not be informative:
 
 ```
 $ zcat Homo_sapiens.GRCh38.ncrna.fa.gz  |  grep  CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT
 CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT
 
 ```
-Beside the line containing the sequence we  might want to see few lines before using the *-B* option followed by the number of lines to catch the heading:
+We can see few lines before the match using the *-B* option followed by the number of lines to catch the heading:
 
 ```
 
