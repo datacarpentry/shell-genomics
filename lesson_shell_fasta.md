@@ -50,18 +50,17 @@ We can either work with the gzipped file or unzip it before, however because dat
 We can perform many operations on the compressed file like we do on uncompressed files using "z" commands. We can view the file content using:
 
 ```
-$ zcat filename.gz | more
-$ zcat filename.gz | less
-
+$ zless filename.gz
+$ zmore filename.gz
 ```
 or combine them using [pipe](https://en.wikipedia.org/wiki/Pipeline_%28Unix%29)(|):
 
 ```
-$ zless filename.gz
-$ zmore filename.gz
+$ zcat filename.gz | more
+$ zcat filename.gz | less
 ```
 
-For any further analysis we might want to understand how the file is structured and to do so it is probably worth reading a bit of it. Can you identify how a single ncRNA is described?
+For any further analysis, we need to understand how the file is structured. We can take a peak at a bit of it.  Can you identify how a single ncRNA is described using the example below?
 
 ```
 
@@ -71,7 +70,7 @@ CCCT
 
 ```
 
-It is probably worth downloading and reading the [README companion file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) located in the same ftp directory of the fasta file we just downloaded. As you will see any ncRNA is bescribed by at least two lines: a header and one (or more) line of DNA sequence.  The README file also contains information on how the header is structured.
+As you can see each ncRNA is described by at least two lines, a header (starting with '>') and at least one line of DNA sequence.  To learn what information is included in the header, we can download and read the [README companion file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) located in the same ftp directory of the fasta file we just downloaded.
 
 ```
 
