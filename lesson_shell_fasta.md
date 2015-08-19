@@ -7,19 +7,19 @@
 
 ## Lesson
 
-In this lesson we will learn how to download data in [fasta format](https://en.wikipedia.org/wiki/FASTA_format) form the web and how to manipulate them using basic shell commands.
-We will use as sample data set the human [non-coding RNAs](https://en.wikipedia.org/wiki/Non-coding_RNA) (ncRNA).
+In this lesson, we will learn how to download data in [fasta format](https://en.wikipedia.org/wiki/FASTA_format) from the web and how to manipulate them using basic shell commands.
+We will use human [non-coding RNAs](https://en.wikipedia.org/wiki/Non-coding_RNA) (ncRNA) as a sample dataset.
 
 ## Exercises
 ### 1 - Downloading data
 
 The data we need are on the [Ensembl](http://www.ensembl.org/index.html) FTP site, a repository of all publicly available files from the project.
 
-There is an [html interface](http://www.ensembl.org/info/data/ftp/index.html) of the last release where it should be easy to locate the link to the FASTA file of the ncRNA
+There is an [html interface](http://www.ensembl.org/info/data/ftp/index.html) of the last release.  In this interface, we need to locate the link to the FAST file of human ncRNA on the page where it should be easy to locate the link to the FASTA file of the ncRNA
 
 *or*
  We need to navigate the repository .
-You can navigate the public [FTP](ftp://ftp.ensembl.org/pub/) repository to find the file with all the sequences of human ncRNA (a little help: follow  last\_release>FASTA>homo_sapiens>ncrna)   
+You can navigate the public [FTP](ftp://ftp.ensembl.org/pub/) repository to find the file with all the sequences of human ncRNA (a little help: follow  last\_release>FASTA>homo_sapiens>ncrna)
 
 *in both cases*
 
@@ -50,18 +50,17 @@ We can either work with the gzipped file or unzip it before, however because dat
 We can perform many operations on the compressed file like we do on uncompressed files using "z" commands. We can view the file content using:
 
 ```
-$ zcat filename.gz | more
-$ zcat filename.gz | less
-
+$ zless filename.gz
+$ zmore filename.gz
 ```
 or combine them using [pipe](https://en.wikipedia.org/wiki/Pipeline_%28Unix%29)(|):
 
 ```
-$ zless filename.gz
-$ zmore filename.gz
+$ zcat filename.gz | more
+$ zcat filename.gz | less
 ```
 
-For any further analysis we might want to understand how the file is structured and to do so it is probably worth reading a bit of it. Can you identify how a single ncRNA is described?
+For any further analysis, we need to understand how the file is structured. We can take a peak at a bit of it.  Can you identify how a single ncRNA is described using the example below?
 
 ```
 
@@ -71,7 +70,7 @@ CCCT
 
 ```
 
-It is probably worth downloading and reading the [README companion file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) located in the same ftp directory of the fasta file we just downloaded. As you will see any ncRNA is bescribed by at least two lines: a header and one (or more) line of DNA sequence.  The README file also contains information on how the header is structured. 
+As you can see each ncRNA is described by at least two lines, a header (starting with '>') and at least one line of DNA sequence.  To learn what information is included in the header, we can download and read the [README companion file](ftp://ftp.ensembl.org/pub/release-81/fasta/homo_sapiens/ncrna/README) located in the same ftp directory of the fasta file we just downloaded.
 
 ```
 
@@ -88,24 +87,26 @@ It is probably worth downloading and reading the [README companion file](ftp://f
 
 We want to ask the following questions:
 
-* a. How many ncRNA there are in humans?
+* a. How many ncRNA are there in humans?
 * b. How many ncRNA are located on chromosome 18?
 * c. How many ncRNA are micro-RNA (miRNA)?
-* d. How many different gene_biotype there are and what is the abundance of each type?
-* e. To which ncRNA belongs the sequence: "CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT"?
+* d. How many different gene_biotype tags there are? How many are there of each tag?
+* e. To which ncRNA does the the sequence "CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT" belong?
 
 
 Let's answer these questions!
 
 #### *Question a.*
 
-We will take advantage of the file structure. We know that each ncRNA has a heading line that starts with a ">".  We can search for ">" inside the compressed file using [zgrep / zegrep](http://www.gnu.org/software/grep/manual/grep.html) to count how many ">" there are using the option *-c*. WE can also combine grep with the command [wc](https://en.wikipedia.org/wiki/Wc_%28Unix%29) and the *-l* option.
+**How many ncRNA are there in humans?**
+
+We will take advantage of the file structure. We know that each ncRNA has a heading line that starts with a ">".  We can search for ">" inside the compressed file using [zgrep / zegrep](http://www.gnu.org/software/grep/manual/grep.html) to count how many ">" there are using the option *-c*. Alternatively, we can also combine grep with the command [wc](https://en.wikipedia.org/wiki/Wc_%28Unix%29) and the *-l* option to count the number of lines.
 ```
 $ zgrep -c ">" Homo_sapiens.GRCh38.ncrna.fa.gz
 37197
-
+```
 OR
-
+```
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz   | wc -l
 37197
 
@@ -113,7 +114,9 @@ $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz   | wc -l
 
 #### *Question b.*
 
-To answer this question we might want to give a closer look to the heading structure. Let's visualize some headings to see what they have in common/different. We will use the command [head](https://en.wikipedia.org/wiki/Head_%28Unix%29) that shows only the first ten lines.
+**How many ncRNA are located on chromosome 18**
+
+To answer this question need to look closely at the heading structure. Let's visualize some headings to see what they have in common/different. We will use the command [head](https://en.wikipedia.org/wiki/Head_%28Unix%29) that shows only the first ten lines.
 
 ```
 
@@ -137,16 +140,18 @@ The header contains the information of the chromosome in the "location" and we c
 ```
 $ zgrep -c chromosome:GRCh38:18 Homo_sapiens.GRCh38.ncrna.fa.gz
 843
-
+```
 OR (longer but equivalent)
-
+```
 $ zcat Homo_sapiens.GRCh38.ncrna.fa.gz  | grep ">" |  grep chromosome:GRCh38:18 |  wc -l
 843
 
 ```
 #### *Question c.*
 
-If any information exists on miRNA we can certainly  grep and count it:
+**How many ncRNA are micro-RNA (miRNA)?**
+
+If any information exists on miRNA we can certainly use grep and count it:
 
 ```
 $ zgrep -c  miRNA Homo_sapiens.GRCh38.ncrna.fa.gz
@@ -163,14 +168,16 @@ $ zgrep -c  miRNA Homo_sapiens.GRCh38.ncrna.fa.gz | less
 
 #### *Question d.*
 
-To answer this question we want to extract from the headings the filed #5 containing the "gene\_biotype" information using the [cut](https://en.wikipedia.org/wiki/Cut_%28Unix%29) command, specifying that fields are delimited by spaces with the option *-d* and that the field number is 5 with the option *-f*:
+**d. How many different gene_biotype tags there are? How many are there of each tag?**
+
+To answer this question we want to extract the field which contains the "gene\_biotype" information from the heading using the [cut](https://en.wikipedia.org/wiki/Cut_%28Unix%29) command. This is the fifth field in the heading. We can specify the fields are delimited by spaces with the option *-d* and the field number as 5 with the option *-f*:
 
 ```
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5 | more
 
 ```
 
-Now we want to know how many [uniq](https://en.wikipedia.org/wiki/Uniq) biotypes are there and count how many ncRNA  belong to each uniqe type using the option *-c*:
+Now we want to know how many [uniq](https://en.wikipedia.org/wiki/Uniq) biotypes are there and count how many ncRNA belong to each unique type using the option *-c*:
 
 ```
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5 | uniq -c
@@ -194,7 +201,7 @@ $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5 | uniq -c
 
 ```
 
-To be more elegant we can get rid of the "gene\_biotype:" word in several ways. We can use the substitute command (s) of the [sed](http://www.gnu.org/software/sed/manual/sed.html) editor:  
+To be more elegant we can get rid of the "gene\_biotype:" word. We can use the substitute command (s) of the [sed](http://www.gnu.org/software/sed/manual/sed.html) editor:  
 
 ```
 zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5  | uniq -c  | sed 's/gene_biotype://'
@@ -208,19 +215,21 @@ Or we can apply cut twice:
 $ zgrep ">" Homo_sapiens.GRCh38.ncrna.fa.gz | cut -d " " -f5  | cut -d ":" -f2 |  uniq -c
 
 ```
-Try the commands i your terminal, what do you notice?
+Try the commands in your terminal, what do you notice?
 
 
 #### *Question e.*
 
-How to find something in the file is not a secret anymore but here we want to show that sometime we need to visualize few more lines around what we search for. Grep only for the sequence will not be informative:
+**To which ncRNA does the the sequence "CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT" belong?**
+
+We have already learned to use `grep` to search for text in a file.  However, in this case we want to see a few more lines around what we are searching for and using `grep` as we did before will not be informative:
 
 ```
 $ zcat Homo_sapiens.GRCh38.ncrna.fa.gz  |  grep  CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT
 CCCTGCACGAGATGCACACAAACTCCTGGAGTGTTCTGTATTTTT
 
 ```
-Beside the line containing the sequence we  might want to see few lines before using the *-B* option followed by the number of lines to catch the heading:
+We can see few lines before the match using the *-B* option followed by the number of lines to catch the heading:
 
 ```
 
