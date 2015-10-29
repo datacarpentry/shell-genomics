@@ -132,6 +132,10 @@ to see whether items in a
 directory are files or directories. `ls -l` gives a lot more
 information too, such as the size of the file
 
+Often, we may have several files, adding `-lrt` would sort them, such that latest would at the bottom.
+
+    ls -lrt
+
 So, we can see that we have several files, directories and a program. Great!
 
 ## Arguments
