@@ -65,7 +65,7 @@ Open up the program.
 
 Linux  
 -----
-You should be set.
+The shell is available by default when you connect to your AWS instance.  You should be set.
 
 
 
