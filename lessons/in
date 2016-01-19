@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+      <title>Data Organization</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+<link href="./css/bootstrap/bootstrap.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="./css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="./css/swc.css" />
+<link rel="stylesheet" type="text/css" href="./css/swc-bootstrap.css" />
+<meta charset="UTF-8" />
+<meta http-equiv="last-modified" content="" />
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="./css/lesson.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="banner">
+  <a href="http://datacarpentry.org" title="Data Carpentry">
+    <img alt="Data Carpentry banner" src="./img/DC1_logo_small.png" height="50px" />
+  </a>
+</div>
+
+
+      <div class="row-fluid">
+        <div class="span10 offset1">
+	  <!-- start content -->
+          
+          <h1>Data Organization</h1>
+          
+          <h2 id="learning-objectives">Learning Objectives</h2>
+
+<ul>
+  <li>Gain a general understanding of data organization</li>
+  <li>Be able to identify data organization challenges and solutions</li>
+</ul>
+
+<h2 id="lesson-overview">Lesson Overview</h2>
+
+<p>You have taken on the data analysis role for your project and you are READY and WILLING!  Your sequencing facility has let you know your data is ready, and you are dreaming of your Nature publication in the works.  What should you be doing as a first step?</p>
+
+<p><em>“Creativity is a gift, it doesn’t come through if the air is cluttered.”</em></p>
+
+<p>This lesson will be a discussion of data organization using an example of project.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Good morning, Mr/Mrs. Scientist.  Your mission, should you choose to accept it, will be to organize the initial files in a large sequencing project.  Should you or any of your force be caught with messy data, we will disavow any knowledge of your actions.  Good luck.</p>
+
+<h3 id="background">Background:</h3>
+
+<p><strong>The Experiment</strong>  </p>
+
+<p>You have two groups of mice (3 mice in each group as biolgoical triplicates).  These mice are grouped as being fed two different diet treatments (Propietary Diet #77: <em>a Fritos-only</em> diet and Propietary Diet #50:a <em>carrots-only</em> diet).  You have sampled DNA at intermittent time periods over the course of an eight week study.  This DNA has been experimentally separated into three unique size fractions based on previous experimental methods (XL, AVG, and TINY).</p>
+
+<p><strong>The players</strong>  </p>
+
+<p>Rarely is a man/woman an island in these experiments.</p>
+
+<h2 id="exercise">Exercise</h2>
+
+<p>Identify who is involved in the data of this sequencing experiment?  </p>
+
+<p>Think about the steps of this experiment and which ones generate data, what type, and who is likely to contribute to it?  Data comes from not only bioinformatics but also wet-lab techniques.</p>
+
+<h2 id="data-type-1-dna-extraction-and-the-value-of-data-standards">Data Type 1, DNA extraction and the value of data standards</h2>
+
+<p>Imagine that you have come onto this project last week and luckily the data is ready but you have to work with a team that has already influenced your data organization.  A past graduate student in your lab had extracted DNA and sent it to The Sequencing Facility.  Her name was Diane Rockstar.  As she is a rockstar, she had labelled her samples with her initials and a number (in order of how she extracted the DNA).</p>
+
+<p>Here’s what her samples looked like when she submitted them to the DNA facility.</p>
+
+<p><a href="https://github.com/datacarpentry/2015-08-24-ISU/blob/master/img/00-lesson-spreadsheet.xlsx?raw=true">Data sheet from DR</a></p>
+
+<h2 id="exercise-1">Exercise:</h2>
+
+<p>Take a couple minutes to look at this data, can you identify some problems with this datasheet?</p>
+
+<h3 id="a-note-on-file-formats">A note on file formats</h3>
+
+<p>What does an excel sheet look like to my computer?</p>
+
+<p>Some data requires a program to read it tractably.  Excel is one of these special programs that reads excel worksheets.  Here’s what the spreadsheet (part of it) you worked withlooks like to your computer without Excel:</p>
+
+<pre><code>�%#����T�)���)�eFa���Bɶ�l6
+���,�0�l %kc�w�cՂX8�"�&gt;�ē��/y���=�"
+T�T�Ċ�s�kƓ���l �Z���ht�+g#ؘ�N
+�M'P����ㆶw$�β�ݹΪd�{�*	�wQޛ@�@������
+</code></pre>
+
+<p>Gross!!!! </p>
+
+<p>Many of you may know that you can save excel into other formats that would not require excel to read them.   Go into Excel and save the file as a text format, this includes csv (comma separated values file format) or tsv (which Excel saves as a file name ending in .txt and stands for tab separated values.).  To your computer this file will look something like this:</p>
+
+<pre><code>Sample Name     Diet    Replicate       Date of Sample      
+Fraction        DNA Extracted (ug)^MDR1 50      A       12-Feb  
+XL      50^MDR2 50      B       12-Feb  XL      553^MDR03       
+50      C       12-Feb  XL      1003^MDR4       50      A       6-
+Mar   XL      2000^MDR5       50      B       6-Mar   XL      
+</code></pre>
+
+<p>Still, pretty scary looking but better than the first right?  </p>
+
+<p>We’ll talk about how to deal with these formats going forward but its important to know the difference of the formats and who will be using these files.  </p>
+
+<p>For example, will these downstream users (including yourself) be using Excel when they analyze the datasets?   In sequencing, the answer is often <em>no!</em>  </p>
+
+<p>It is often worth thinking about what standards are important in your analyses prior to sharing data with others.</p>
+
+<h2 id="data-type-ii-from-the-sequencing-facility">Data Type II, from the sequencing facility</h2>
+
+<p>Your DNA sequencing data is ready and the data onslaught is now ready to begin.  </p>
+
+<p>You receive link to an FTP site (one way to transfer data between your computer and the sequencing facilities computing).  </p>
+
+<p>The typical sequencing project will have either all your sequencing files in one folder or separate folders for each sample.  The data you will get will likely include your sequencing files and run-specific metadata (e.g., lane, date, operator).</p>
+
+<h2 id="exercise-2">Exercise.</h2>
+
+<p>Discuss:  To keep or not keep Raw data?  What are the advantages?  Disadvantages?</p>
+
+<p>Here’s what the data organization of the sequencing facility looks like:</p>
+
+<p><img src="https://raw.githubusercontent.com/datacarpentry/2015-08-24-ISU/master/img/00-seq-facility-data-structure.jpg" alt="" /></p>
+
+<h2 id="exercise-3">Exercise.</h2>
+
+<p>You want to test a hypothesis that each day, fraction, and diet will contain genes that are signicantly different under varying treatments.  How does the sequencing facility organization and the organization of files for your analysis differ?  What about the naming of the files?  Are they useful to you?  Draw a data organization structure that you would recommend.</p>
+
+<h2 id="concluding-notes">Concluding notes</h2>
+
+<p>This lesson is a bit challenging as there is no “right” answer that can be universally applied for everyone’s data organization.  For different questions, you might have data organized in multiple, equally, effective ways.  </p>
+
+<p>As we go through the next couple days, you are going to learn ways to automate data access and analysis.  Try to think of why standard names and organization structures will impact these activities.</p>
+
+
+        <!-- end content -->
+	</div>
+      </div>
+
+      <div class="footer">
+  <a class="label swc-blue-bg" href="">Facebook</a>
+  <a class="label swc-blue-bg" href="">Google+</a>
+  <a class="label swc-blue-bg" href="">Twitter</a>
+  <a class="label swc-blue-bg" href="">GitHub</a>
+  <a class="label swc-blue-bg" href="./LICENSE.html">License</a>
+  <a class="bugreport label swc-blue-bg" href="mailto:?subject=bug%20in%20lessons/00-intro-to-data-tidy.md">Bug Report</a>
+</div>
+
+    </div>
+    <!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./js/jquery-1.9.1.min.js"></script>
+<script src="./js/bootstrap/bootstrap.min.js"></script>
+
+  </body>
+</html>
