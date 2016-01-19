@@ -1,0 +1,129 @@
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">layout: page</td>
+</tr>
+<tr class="even">
+<td align="left">title: &quot;The Shell&quot;</td>
+</tr>
+<tr class="odd">
+<td align="left">comments: true</td>
+</tr>
+<tr class="even">
+<td align="left">date: 2015-07-30</td>
+</tr>
+</tbody>
+</table>
+<h1 id="the-shell">The Shell</h1>
+<p>Author: Sheldon McKay</p>
+<p>Adapted from the lesson by Tracy Teal. Original contributors: Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://software-carpentry.org/)</p>
+<h2 id="searching-files">Searching files</h2>
+<p>We showed a little how to search within a file using <code>less</code>. We can also search within files without even opening them, using <code>grep</code>. Grep is a command-line utility for searching plain-text data sets for lines matching a string or regular expression. Let's give it a try!</p>
+<p>Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns<br />
+Let's search for the string NNNNNNNNNN in file</p>
+<pre><code> grep NNNNNNNNNN SRR098026.fastq</code></pre>
+<p>We get back a lot of lines. What is we want to see the whole fastq record for each of these read. We can use the '-B' argument for grep to return the matched line plus one before (-B 1) and two lines after (-A 2). Since each record is four lines and the last second is the sequence, this should give the whole record.</p>
+<pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq</code></pre>
+<p>for example:</p>
+<pre><code>@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
++SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</code></pre>
+<hr />
+<p><strong>Exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Search for the sequence GNATNACCACTTCC in SRR098026.fastq. In addition to finding the sequence, have your search also return the name of the sequence.</p></li>
+<li><p>Search for that sequence in both fastq files. ****</p></li>
+</ol>
+<h2 id="redirection">Redirection</h2>
+<p>We're excited we have all these sequences that we care about that we just got from the FASTQ files. That is a really important motif that is going to help us answer our important question. But all those sequences just went whizzing by with grep. How can we capture them?</p>
+<p>We can do that with something called &quot;redirection&quot;. The idea is that we're redirecting the output to the terminal (all the stuff that went whizzing by) to something else. In this case, we want to print it to a file, so that we can look at it later.</p>
+<p>The redirection command for putting something in a file is <code>&gt;</code></p>
+<p>Let's try it out and put all the sequences that contain 'TTATCCGGATTTATTGGGTTTAAAGGGT' from all the files in to another file called 'good-data.txt'</p>
+<pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq &gt; bad_reads.txt</code></pre>
+<p>The prompt should sit there a little bit, and then it should look like nothing happened. But type <code>ls</code>. You should have a new file called good-data.txt. Take a look at it and see if it has what you think it should.</p>
+<p>If we use '&gt;&gt;', it will append to rather tha overwrite a file. This can be useful for saving more than one search, for example:</p>
+<pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq &gt; bad_reads.txt
+grep -B1 -A2 NNNNNNNNNN SRR097977.fastq &gt;&gt; bad_reads.txt</code></pre>
+<p>There's one more useful redirection command that we're going to show, and that's called the pipe command, and it is <code>|</code>. It's probably not a key on your keyboard you use very much. What <code>|</code> does is take the output that scrolling by on the terminal and then can run it through another command. When it was all whizzing by before, we wished we could just slow it down and look at it, like we can with <code>less</code>. Well it turns out that we can! We pipe the <code>grep</code> command through <code>less</code></p>
+<pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less</code></pre>
+<p>Now we can use the arrows to scroll up and down and use <code>q</code> to get out.</p>
+<p>We can also do something tricky and use the command <code>wc</code>. <code>wc</code> stands for <code>word count</code>. It counts the number of lines or characters. So, we can use it to count the number of lines we're getting back from our <code>grep</code> command. And that will magically tell us how many sequences we're finding. We're</p>
+<pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc</code></pre>
+<p>That tells us the number of lines, words and characters in the file. If we just want the number of lines, we can use the <code>-l</code> flag for <code>lines</code>.</p>
+<pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l</code></pre>
+<p>Redirecting is not super intuitive, but it's really powerful for stringing together these different commands, so you can do whatever you need to do.</p>
+<p>The philosophy behind these command line programs is that none of them really do anything all that impressive. BUT when you start chaining them together, you can do some really powerful things really efficiently. If you want to be proficient at using the shell, you must learn to become proficient with the pipe and redirection operators: <code>|</code>, <code>&gt;</code>, <code>&gt;&gt;</code>.</p>
+<p>Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.</p>
+<pre><code>cd 
+cd dc_sample_data/</code></pre>
+<p>Let's ask a few questions about the data</p>
+<ol style="list-style-type: decimal">
+<li>How many of the read libraries are paired end?</li>
+</ol>
+<p>First, what are the column headers?</p>
+<pre><code>head -n 1 SraRunTable.txt
+BioSample_s InsertSize_l    LibraryLayout_s Library_Name_s  LoadDate_s  MBases_l    MBytes_l    ReleaseDate_s Run_s SRA_Sample_s Sample_Name_s Assay_Type_s AssemblyName_s BioProject_s Center_Name_s Consent_s Organism_Platform_s SRA_Study_s g1k_analysis_group_s g1k_pop_code_s source_s strain_s</code></pre>
+<p>That's only the first line but it is a lot to take in. 'cut' is a program that will extract columns in tab-delimited files. It is a very good command to know. Lets look at just the first four columns in the header using the '|' readirect and 'cut'</p>
+<pre><code>head -n 1 SraRunTable.txt | cut -f1-4
+BioSample_s InsertSize_l      LibraryLayout_s   Library_Name_s    </code></pre>
+<p>'-f1-4' means to cut the first four fields (columns). The LibraryLayout_s column looks promising. Let's look at some data for just that column.</p>
+<pre><code>cut -f3 SraRunTable.txt | head -n 10
+LibraryLayout_s
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+PAIRED</code></pre>
+<p>We can see that there are (at least) two categories, SINGLE and PAIRED. We want to search all entries in this column for just PAIRED and count the number of hits.</p>
+<pre><code>cut -f3 SraRunTable.txt | grep PAIRED | wc -l
+2</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>How many of each class of library layout are there?</li>
+</ol>
+<p>We can use some new tools 'sort' and 'uniq' to extract more information. For example, cut the third column, remove the header and sort the values. The '-v' option for greap means return all lines that DO NOT match.</p>
+<pre><code>cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort</code></pre>
+<p>This returns a sorted list (too long to show here) of PAIRED and SINGLE values. Now we can use 'uniq' with the '-c' flag to count the different categories.</p>
+<pre><code>cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
+  2 PAIRED
+ 35 SINGLE </code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Sort the metadata file by PAIRED/SINGLE and save to a new file We can use if '-k' option for sort to specify which column to sort on. Note that this does something similar to cut's '-f'.</p>
+<p>sort -k3 SraRunTable.txt &gt; SraRunTable_sorted_by_layout.txt</p></li>
+<li><p>Extract only paired end records into a new file Do we know PAIRED only occurs in column 4? WE know there are only two in the file, so let's check.</p>
+<p>grep PAIRED SraRunTable.txt | wc -l 2</p></li>
+</ol>
+<p>OK, we are good to go.</p>
+<pre><code>grep PAIRED SraRunTable.txt &gt; SraRunTable_only_paired_end.txt</code></pre>
+<hr />
+<p><strong>Final Exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>How many sample load dates are there?</p></li>
+<li><p>How many samples were loaded on each date</p></li>
+<li><p>Filter subsets into new files bases on load date ****</p></li>
+</ol>
+<h2 id="where-can-i-learn-more-about-the-shell">Where can I learn more about the shell?</h2>
+<ul>
+<li>Software Carpentry tutorial - <a href="http://software-carpentry.org/v4/shell/index.html">The Unix shell</a></li>
+<li>The shell handout - <a href="http://files.fosswire.com/2007/08/fwunixref.pdf">Command Reference</a></li>
+<li><a href="http://explainshell.com">explainshell.com</a></li>
+<li>http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html</li>
+<li>man bash</li>
+<li>Google - if you don't know how to do something, try Googling it. Other people have probably had the same question.</li>
+<li>Learn by doing. There's no real other way to learn this than by trying it out. Write your next paper in nano (really emacs or vi), open pdfs from the command line, automate something you don't really need to automate.</li>
+</ul>
+<h2 id="bonus">Bonus:</h2>
+<p><strong>backtick, xargs</strong>: Example find all files with certain text</p>
+<p><strong>alias</strong> -&gt; rm -i</p>
+<p><strong>variables</strong> -&gt; use a path example</p>
+<p><strong>.bashrc</strong></p>
+<p><strong>du</strong></p>
+<p><strong>ln</strong></p>
+<p><strong>ssh and scp</strong></p>
+<p><strong>Regular Expressions</strong></p>
+<p><strong>Permissions</strong></p>
+<p><strong>Chaining commands together</strong></p>
