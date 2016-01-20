@@ -50,7 +50,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 <p>We're excited we have all these sequences that we care about that we just got from the FASTQ files. That is a really important motif that is going to help us answer our important question. But all those sequences just went whizzing by with grep. How can we capture them?</p>
 <p>We can do that with something called &quot;redirection&quot;. The idea is that we're redirecting the output to the terminal (all the stuff that went whizzing by) to something else. In this case, we want to print it to a file, so that we can look at it later.</p>
 <p>The redirection command for putting something in a file is <code>&gt;</code></p>
-<p>Let's try it out and put all the sequences that contain 'TTATCCGGATTTATTGGGTTTAAAGGGT' from all the files in to another file called 'good-data.txt'</p>
+<p>Let's try it out and put all the sequences that contain 'NNNNNNNNNN' from all the files in to another file called 'bad-reads.txt'</p>
 <pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq &gt; bad_reads.txt</code></pre>
 <p>The prompt should sit there a little bit, and then it should look like nothing happened. But type <code>ls</code>. You should have a new file called good-data.txt. Take a look at it and see if it has what you think it should.</p>
 <p>If we use '&gt;&gt;', it will append to rather tha overwrite a file. This can be useful for saving more than one search, for example:</p>
