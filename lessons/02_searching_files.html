@@ -52,7 +52,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 <p>The redirection command for putting something in a file is <code>&gt;</code></p>
 <p>Let's try it out and put all the sequences that contain 'NNNNNNNNNN' from all the files in to another file called 'bad-reads.txt'</p>
 <pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq &gt; bad_reads.txt</code></pre>
-<p>The prompt should sit there a little bit, and then it should look like nothing happened. But type <code>ls</code>. You should have a new file called good-data.txt. Take a look at it and see if it has what you think it should.</p>
+<p>The prompt should sit there a little bit, and then it should look like nothing happened. But type <code>ls</code>. You should have a new file called bad_reads.txt. Take a look at it and see if it has what you think it should.</p>
 <p>If we use '&gt;&gt;', it will append to rather tha overwrite a file. This can be useful for saving more than one search, for example:</p>
 <pre><code>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq &gt; bad_reads.txt
 grep -B1 -A2 NNNNNNNNNN SRR097977.fastq &gt;&gt; bad_reads.txt</code></pre>
