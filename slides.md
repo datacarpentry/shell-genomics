@@ -46,7 +46,7 @@ shell cheat sheets:<br>
 * [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
 
 Explain shell - a web site where you can see what the different components of
-a shell command are doing.  
+a shell command are doing.
 * [http://explainshell.com](http://explainshell.com)
 * [http://www.commandlinefu.com](http://www.commandlinefu.com)
 
@@ -58,15 +58,15 @@ The shell is already available on Mac and Linux. For Windows, you'll
 have to download a separate program.
 
 
-Mac
----  
-On Mac the shell is available through Terminal  
-Applications -> Utilities -> Terminal  
+## Mac
+
+On Mac the shell is available through Terminal
+Applications -> Utilities -> Terminal
 Go ahead and drag the Terminal application to your Dock for easy access.
 
-Windows
--------
-For Windows, we're going to be using gitbash.  
+## Windows
+
+For Windows, we're going to be using gitbash.
 Download and install [gitbash](http://msysgit.github.io) on your computer.
 Open up the program.
 
@@ -79,13 +79,13 @@ We will spend most of our time learning about the basics of the shell
 by manipulating some experimental data.
 
 Now we're going to download the data for the tutorial. For this you'll need
-internet access, because you're going to get it off the web.  
+internet access, because you're going to get it off the web.
 
 Open the shell
 
 Enter the command:
 
-    git clone https://github.com/tracykteal/tutorials/
+    git clone https://github.com/datacarpentry/shell-genomics/
 
 This command will grab all of the data needed for this workshop from
 the internet.  (We're not going to talk about git right now, but it's a tool for
@@ -94,24 +94,33 @@ doing version control.)
 ---
 
 Now let's go in to that directory
+
     cd tutorial-shell-genomics
+
 This stands for 'change directory'
 
 In this directory, there should be some things we just downloaded.
 Let's check. Type:
+
     ls
-ls stands for 'list' and it lists the contents of a directory.
+
+`ls` stands for 'list' and it lists the contents of a directory.
+
+---
 
 There's a few directories there, but not too many. Let's go look in the data
 directory.
+
     cd data
     ls
 
 In there, all mixed up together are files and directories/folders. If we want to
 know which is which, we can type:
+
     ls -F
-Anything with a "/" after it is a directory.  
-Things with a "*" after them are programs.  
+
+Anything with a "/" after it is a directory.
+Things with a "*" after them are programs.
 It there's nothing there it's a file.
 
 You can also use the command `ls -l` to see whether items in a
@@ -119,6 +128,8 @@ directory are files or directories. `ls -l` gives a lot more
 information too, such as the size of the file
 
 So, we can see that we have several files, directories and a program. Great!
+
+---
 
 ## Arguments
 
@@ -143,6 +154,8 @@ these arguments, of course. So you will probably find yourself
 referring back to the manual page frequently.
 
 
+---
+
 ## The Unix directory file structure (a.k.a. where am I?)
 
 As you've already just seen, you can move around in different directories
@@ -155,6 +168,8 @@ and make sure the program has access to the data. Many of the problems
 people run in to with command line bioinformatics programs is not having the
 data in the place the program expects it to be.
 
+
+---
 
 ## Moving around the file system
 
@@ -171,13 +186,14 @@ Let's draw out how that went.
 
 Now let's draw some of the other files and folders we could have clicked on.
 
-This is called a hierarchical file system structure, like an upside down tree
-with root (/) at the base that looks like this.
 
+---
+This is called a hierarchical file system structure, like an upside down tree
+with root (/) at the base that looks like this. That (/) at the base is often also called the 'top' level.
 
 ![Unix](img/Slide1.jpg)
 
-That (/) at the base is often also called the 'top' level.
+---
 
 When you are working at your computer or log in to a remote computer,
 you are on one of the branches of that tree, your home directory (/home/username)
@@ -185,7 +201,9 @@ you are on one of the branches of that tree, your home directory (/home/username
 Now let's go do that same navigation at the command line.
 
 Type
+
     cd
+
 This puts you in your home directory. This folder here.
 
 Now using `cd` and `ls`, go in to the 'tutorial-shell-genomics' directory and list its contents.
@@ -198,12 +216,15 @@ If you want to know what directory you're currently in, type
 This stands for 'print working directory'. The directory you're currently
 working in.
 
+---
+
 What if we want to move back up and out of the 'data' directory? Can we just
 type 'tutorial-shell-genomics'? Try it and see what happens.
 
 To go 'back up a level' we need to use `..`
 
 Type
+
     cd ..
 
 Now do `ls` and `pwd`. See now that we went back up in to the 'tutorial-shell-genomics'
@@ -212,12 +233,14 @@ directory. `..` just means go back up a level.
 ***
 **Exercise**
 
-Now we're going to try a hunt.  
+Now we're going to try a hunt.
 Move around in the 'hidden' directory and try to find the file 'youfoundit.txt'
 ***
 
 
 
+
+---
 
 ## Examining the contents of other directories
 
@@ -233,16 +256,18 @@ Type:
 
 Then enter the command:
 
-    ls edamame-data
+    ls shell-genomics
 
-This will list the contents of the `edamame-data` directory without
+This will list the contents of the `shell-genomics` directory without
 you having to navigate there.
 
+
+---
 
 The `cd` command works in a similar way. Try entering:
 
     cd
-    cd edamame-data/shell/hidden
+    cd shell-genomics/data/hidden
 
 and you will jump directly to `hidden` without having to go through
 the intermediate directory.
@@ -252,6 +277,8 @@ the intermediate directory.
 
 Try finding the 'anotherfile.txt' file without changing directories.
 ****
+
+---
 
 ### Shortcut: Tab Completion
 
@@ -263,7 +290,7 @@ directory name. For example, enter:
     cd e<tab>
 
 The shell will fill in the rest of the directory name for
-`edamame-data`. Now go to edamame-data/shell/MiSeq
+`shell-genomics`. Now go to shell-genomics/data/MiSeq
 
     ls F3D<tab><tab>
 
@@ -278,6 +305,8 @@ starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
 will see that tab completion works.
 
 
+
+---
 
 ## Full vs. Relative Paths
 
@@ -297,18 +326,20 @@ very top of the hierarchy is a directory called `/` which is usually
 referred to as the *root directory*. So, to summarize: `username` is a
 directory in `home` which is a directory in `/`.
 
+---
+
 Now enter the following command:
 
-    cd /home/username/edamame-data/shell/hidden
+    cd /home/username/shell-genomics/data/hidden
 
 This jumps to `hidden`. Now go back to the home directory (cd). We saw
 earlier that the command:
 
-    cd edamame-data/shell/hidden
+    cd shell-genomics/data/hidden
 
 had the same effect - it took us to the `hidden` directory. But,
 instead of specifying the full path
-(`/home/username/edamame-data/shell`), we specified a *relative path*. In
+(`/home/username/shell-genomics/data`), we specified a *relative path*. In
 other words, we specified the path relative to our current
 directory. A full path always starts with a `/`. A relative path does
 not.
@@ -320,6 +351,8 @@ together, but not so well if you're trying to tell someone how to get there
 from another country. A full path is like GPS coordinates.
 It tells you exactly where something
 is no matter where you are right now.
+
+---
 
 You can usually use either a full path or a relative path
 depending on what is most convenient. If we are in the home directory,
@@ -338,6 +371,8 @@ familiar in there?
 
 * * * *
 
+---
+
 ## Saving time with shortcuts, wild cards, and tab completion
 
 ### Shortcuts
@@ -348,8 +383,10 @@ home directory is very common. So, in the shell the tilde character,
 directory:
 
     cd
-    cd edamame-data
+    cd shell-genomics
     cd shell
+
+---
 
 Then enter the command:
 
@@ -361,7 +398,7 @@ above your current directory. Thus:
 
     ls ..
 
-prints the contents of the `/home/username/edamame-data`. You can chain
+prints the contents of the `/home/username/shell-genomics`. You can chain
 these together, so:
 
     ls ../../
@@ -373,10 +410,14 @@ same thing, they print the contents of the current directory. This may
 seem like a useless shortcut right now, but we'll see when it is
 needed in a little while.
 
+---
+
 To summarize, while you are in the `shell` directory, the commands
 `ls ~`, `ls ~/.`, `ls ../../`, and `ls /home/username` all do exactly the
 same thing. These shortcuts are not necessary, they are provided for
 your convenience.
+
+---
 
 ### Our data set: FASTQ files
 
@@ -394,9 +435,11 @@ and it's data generated by Pat Schloss.
 We want to be able to look at these files and do some things with them.
 
 
+---
+
 ### Wild cards
 
-Navigate to the `~/edamame-data/shell/MiSeq` directory. This
+Navigate to the `~/shell-genomics/data/MiSeq` directory. This
 directory contains our FASTQ files and some other ones
 we'll need for analyses. If we type `ls`,
 we will see that there are a bunch of files with long file names.
@@ -413,6 +456,8 @@ This lists every file that ends with a `fastq`. This command:
     ls /usr/bin/*.sh
 
 Lists every file in `/usr/bin` that ends in the characters `.sh`.
+
+---
 
 We have paired end sequencing, so for every sample we have two files. If we
 want to just see the list of the files for the forward direction sequencing
@@ -432,7 +477,7 @@ by spaces.
 
 What happens if you do `R1*fastq`?
 
-
+---
 * * * *
 **Short Exercise**
 
@@ -447,6 +492,8 @@ BONUS: List all of the files in '/bin' that contain the letter 'a' or 'c'
 
 * * * *
 
+
+---
 
 ## Command History
 
@@ -467,6 +514,7 @@ to see a numbered list of recent commands, including this just issues
 `history` command.  You can reuse one of these commands directly by
 referring to the number of that command.
 
+---
 If your history looked like this:
 
     259  ls *
@@ -489,6 +537,8 @@ files in /bin) and reissue that command.
 
 
 
+---
+
 ## Examining Files
 
 We now know how to switch directories, run programs, and look at the
@@ -504,20 +554,22 @@ This prints out the contents of the `F3D0_S188_L001_R1_001.fastq` file.
 * * * *
 **Short Exercises**
 
-1.  Print out the contents of the `~/edamame-data/shell/MiSeq/stability.files`
+1.  Print out the contents of the `~/shell-genomics/data/MiSeq/stability.files`
     file. What does this file contain?
 
-2.  Without changing directories, (you should still be in `edamame-data`),
+2.  Without changing directories, (you should still be in `shell-genomics`),
     use one short command to print the contents of all of the files in
-    the `/home/username/edamame-data/shell/MiSeq` directory.
+    the `/home/username/shell-genomics/data/MiSeq` directory.
 
 * * * *
+
+---
 
 Make sure we're in the right place for the next set of the lessons. We
 want to be in the `shell` directory. Check if you're there with `pwd`
 and if not navigate there. One way to do that would be
 
-    cd ~/edamame-data/shell/MiSeq
+    cd ~/shell-genomics/data/MiSeq
 
 `cat` is a terrific program, but when the file is really big, it can
 be annoying to use. The program, `less`, is useful for this
@@ -528,6 +580,7 @@ case. Enter the following command:
 `less` opens the file, and lets you navigate through it. The commands
 are identical to the `man` program.
 
+---
 **Some commands in `less`**
 
 | key     | action |
@@ -556,6 +609,8 @@ Remember, the `man` program actually uses `less` internally and
 therefore uses the same commands, so you can search documentation
 using "/" as well!
 
+---
+
 There's another way that we can look at files, and in this case, just
 look at part of them. This can be particularly useful if we just want
 to see the beginning or end of the file, or see how it's formatted.
@@ -563,16 +618,18 @@ to see the beginning or end of the file, or see how it's formatted.
 The commands are `head` and `tail` and they just let you look at
 the beginning and end of a file respectively.
 
-head F3D0_S188_L001_R1_001.fastq
-tail F3D0_S188_L001_R1_001.fastq
+    head F3D0_S188_L001_R1_001.fastq
+    tail F3D0_S188_L001_R1_001.fastq
 
 The `-n` option to either of these commands can be used to print the
 first or last `n` lines of a file. To print the first/last line of the
 file use:
 
-head -n 1 F3D0_S188_L001_R1_001.fastq
-tail -n 1 F3D0_S188_L001_R1_001.fastq
+    head -n 1 F3D0_S188_L001_R1_001.fastq
+    tail -n 1 F3D0_S188_L001_R1_001.fastq
 
+
+---
 
 ## Searching files
 
@@ -594,15 +651,20 @@ The `-A` flag stands for "after match" so it's returning the line that
 matches plus the three after it. The `-B` flag returns that number of lines
 before the match.
 
+---
+
 ** Exercise **
 
 Search for the sequence 'TTATCCGGATTTATTGGGTTTAAAGGGT' in the
 F3D0_S188_L001_R1_001.fastq file and in the output have the
-sequence name and the sequence. e.g.  
-@M00967:43:000000000-A3JHG:1:2114:11799:28499 1:N:0:188  
+sequence name and the sequence. e.g.
+
+@M00967:43:000000000-A3JHG:1:2114:11799:28499 1:N:0:188
 TACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGTGCGTAGGCGGGATGCAG
 
 Search for that sequence in all the FASTQ files.
+
+---
 
 ## Redirection
 
@@ -626,6 +688,8 @@ from all the files in to another file called 'good-data.txt'
 The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should have a new file called good-data.txt. Take
 a look at it and see if it has what you think it should.
+
+---
 
 There's one more useful redirection command that we're going to show, and that's
 called the pipe command, and it is `|`. It's probably not a key on
@@ -651,6 +715,8 @@ just want the number of lines, we can use the `-l` flag for `lines`.
 
     grep TTATCCGGATTTATTGGGTTTAAAGGGT * | wc -l
 
+---
+
 Redirecting is not super intuitive, but it's really powerful for stringing
 together these different commands, so you can do whatever you need to do.
 
@@ -660,6 +726,8 @@ them together, you can do some really powerful things really
 efficiently. If you want to be proficient at using the shell, you must
 learn to become proficient with the pipe and redirection operators:
 `|`, `>`, `>>`.
+
+---
 
 ## Creating, moving, copying, and removing
 
@@ -681,6 +749,8 @@ command backs up the file. Navigate to the `data` directory and enter:
 
 Now `stability.files_backup` has been created as a copy of `stability.files`.
 
+---
+
 Let's make a `backup` directory where we can put this file.
 
 The `mkdir` command is used to make a directory. Just enter `mkdir`
@@ -694,14 +764,18 @@ move files around using the command `mv`. Enter this command:
     mv stability.files_backup backup/
 
 This moves `stability.files_backup` into the directory `backup/` or
-the full path would be `~/edamame-data/shell/MiSeq/backup`
+the full path would be `~/shell-genomics/data/MiSeq/backup`
 
 The `mv` command is also how you rename files. Since this file is so
 important, let's rename it:
 
     mv stability.files stability.files_IMPORTANT
 
-Now the file name has been changed to stability.files_IMPORTANT. Let's delete
+Now the file name has been changed to stability.files_IMPORTANT.
+
+---
+
+Let's delete
 the backup file now:
 
     rm backup/stability.files_backup
@@ -728,6 +802,8 @@ we just made. Enter the following command:
 
     rm -r new
 
+---
+
 ## Writing files
 
 We've been able to do a lot of work with files that already exist, but what
@@ -741,19 +817,25 @@ a file that contains the favorite grep command so you can remember it for later.
 
     nano awesome.sh
 
+---
+
 Now you have something that looks like
 
-![nano1.png](img/shell/nano1.png)
+![nano1.png](img/nano1.png)
+
+---
 
 Type in your command, so it looks like
 
-![nano2.png](img/shell/nano2.png)
+![nano2.png](img/nano2.png)
 
 Now we want to save the file and exit. At the bottom of nano, you see the "^X Exit". That
 means that we use Ctrl-X to exit. Type `Ctrl-X`. It will ask if you want to save it. Type `y` for yes.
 Then it asks if you want that file name. Hit 'Enter'.
 
 Now you've written a file. You can take a look at it with less or cat, or open it up again and edit it.
+
+---
 
 ***
 **Exercise**
@@ -764,6 +846,8 @@ We're going to come back and use this file in just a bit.
 
 ***
 
+
+---
 
 ## Running programs
 
@@ -781,6 +865,8 @@ sits inside of the `/bin` directory. Now enter:
 
 You will see that `find` is a program that sits inside of the
 `/usr/bin` directory.
+
+---
 
 So ... when we enter a program name, like `ls`, and hit enter, how
 does the shell know where to look for that program? How does it know
@@ -805,8 +891,10 @@ this directory. Now, try to run the program by entering:
 
     hello.sh
 
+---
+
 You should get an error saying that hello.sh cannot be found. That is
-because the directory `/home/username/edamame-data/shell` is not in the
+because the directory `/home/username/shell-genomics/data` is not in the
 `PATH`. You can run the `hello.sh` program by entering:
 
     ./hello.sh
@@ -816,14 +904,16 @@ directory. This tells the shell to run the `hello.sh` program which is
 located right here. So, you can run any program by entering the path
 to that program. You can run `hello.sh` equally well by specifying:
 
-    /home/username/edamame-data/shell/hello.sh
+    /home/username/shell-genomics/data/hello.sh
 
 Or by entering:
 
-    ~/edamame-data/shell/hello.sh
+    ~/shell-genomics/data/hello.sh
 
 When there are no `/` characters, the shell assumes you want to look
 in one of the default places for the program.
+
+---
 
 ## Writing scripts
 
@@ -846,6 +936,9 @@ of this file, so that it's executable and the computer knows it's OK to run it a
 
     chmod +x awesome.sh
 
+
+---
+
 Now let's try running it again
 
     ./awesome.sh
@@ -854,6 +947,8 @@ Now you should have seen some output, and of course, it's AWESOME!
 Congratulations, you just created your first shell script! You're set to rule the world.
 
 
+
+---
 
 # For Future Reference
 
@@ -875,6 +970,8 @@ This tells `find` to locate only files. Now try these commands:
     find . -type f -name "*1*"
     find . -type f -name "*1*" -or -name "*2*" -print
     find . -type f -name "*1*" -and -name "*2*" -print
+
+---
 
 The `find` command can acquire a list of files and perform some
 operation on each file. Try this command out:
@@ -898,6 +995,8 @@ a single instance of `grep` (or whatever program it is running).
 
 
 
+---
+
 ## Where can I learn more about the shell?
 
 - Software Carpentry tutorial - [The Unix shell](http://software-carpentry.org/v4/shell/index.html)
@@ -911,6 +1010,8 @@ have probably had the same question.
 out.  Write your next paper in nano (really emacs or vi), open pdfs from
 the command line, automate something you don't really need to automate.
 
+
+---
 
 ## Bonus:
 
