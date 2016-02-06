@@ -85,7 +85,7 @@ Open the shell
 
 Enter the command:
 
-    git clone https://github.com/datacarpentry/shell-genomics/
+    git clone https://github.com/tracykteal/shell-genomics/
 
 This command will grab all of the data needed for this workshop from
 the internet.  (We're not going to talk about git right now, but it's a tool for
@@ -95,7 +95,7 @@ doing version control.)
 
 Now let's go in to that directory
 
-    cd tutorial-shell-genomics
+    cd shell-genomics
 
 This stands for 'change directory'
 
@@ -175,12 +175,12 @@ data in the place the program expects it to be.
 
 Let's practice moving around a bit.
 
-We're going to work in that `tutorial-shell-genomics` directory we just downloaded.
+We're going to work in that `shell-genomics` directory we just downloaded.
 
 First let's navigate there using the regular way by clicking on the different folders.
 
 First we did something like go to the folder of our username. Then we opened
-'tutorial-shell-genomics' then 'data'
+'shell-genomics' then 'data'
 
 Let's draw out how that went.
 
@@ -206,7 +206,7 @@ Type
 
 This puts you in your home directory. This folder here.
 
-Now using `cd` and `ls`, go in to the 'tutorial-shell-genomics' directory and list its contents.
+Now using `cd` and `ls`, go in to the 'shell-genomics' directory and list its contents.
 
 Let's also check to see where we are. Sometimes when we're wandering around
 in the file system, it's easy to lose track of where we are and get lost.
@@ -219,7 +219,7 @@ working in.
 ---
 
 What if we want to move back up and out of the 'data' directory? Can we just
-type 'tutorial-shell-genomics'? Try it and see what happens.
+type 'shell-genomics'? Try it and see what happens.
 
 To go 'back up a level' we need to use `..`
 
@@ -227,7 +227,7 @@ Type
 
     cd ..
 
-Now do `ls` and `pwd`. See now that we went back up in to the 'tutorial-shell-genomics'
+Now do `ls` and `pwd`. See now that we went back up in to the 'shell-genomics'
 directory. `..` just means go back up a level.
 
 ***
