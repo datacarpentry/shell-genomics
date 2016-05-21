@@ -1,0 +1,945 @@
+<h1>The Shell</h1>
+
+<p>Author: Tracy Teal<br>
+Original contributors:
+Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://software-carpentry.org/)</p>
+
+<h2>Objectives</h2>
+
+<ul>
+<li>What is the shell?</li>
+<li>How do you access it?</li>
+<li>How do you use it?
+
+<ul>
+<li>Getting around the Unix file system</li>
+<li>looking at files</li>
+<li>manipulating files</li>
+<li>automating tasks</li>
+</ul></li>
+<li>What is it good for?</li>
+<li>Where are resources where I can learn more? (because the shell is awesome)</li>
+</ul>
+
+<h2>What is the shell?</h2>
+
+<p>The <em>shell</em> is a program that presents a command line interface
+which allows you to control your computer using commands entered
+with a keyboard instead of controlling graphical user interfaces
+(GUIs) with a mouse/keyboard combination.</p>
+
+<p>There are many reasons to learn about the shell.</p>
+
+<ul>
+<li>For most bioinformatics tools, you have to use the shell. There is no
+graphical interface. If you want to work in metagenomics or genomics you&#39;re
+going to need to use the shell.</li>
+<li>The shell gives you <em>power</em>. The command line gives you the power to do your work more efficiently and
+more quickly.  When you need to do things tens to hundreds of times,
+knowing how to use the shell is transformative.</li>
+<li>To use remote computers or cloud computing, you need to use the shell.</li>
+</ul>
+
+<p><img src="img/gvng.jpg" alt="Automation"></p>
+
+<p>Unix is user-friendly. It&#39;s just very selective about who its friends are.</p>
+
+<p>Today we&#39;re going to go through how to access Unix/Linux and some of the basic
+shell commands.</p>
+
+<h2>Information on the shell</h2>
+
+<p>shell cheat sheets:<br>
+* <a href="http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/">http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/</a>
+* <a href="https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md">https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md</a></p>
+
+<p>Explain shell - a web site where you can see what the different components of
+a shell command are doing.<br>
+* <a href="http://explainshell.com">http://explainshell.com</a>
+* <a href="http://www.commandlinefu.com">http://www.commandlinefu.com</a></p>
+
+<h2>How to access the shell</h2>
+
+<p>The shell is already available on Mac and Linux. For Windows, you&#39;ll
+have to download a separate program.</p>
+
+<h2>Mac</h2>
+
+<p>On Mac the shell is available through Terminal<br>
+Applications -&gt; Utilities -&gt; Terminal<br>
+Go ahead and drag the Terminal application to your Dock for easy access.</p>
+
+<h2>Windows</h2>
+
+<p>For Windows, we&#39;re going to be using gitbash.<br>
+Download and install <a href="http://msysgit.github.io">gitbash</a>;
+Open up the program.</p>
+
+<h2>Linux  </h2>
+
+<p>You should be set.</p>
+
+<h2>Starting with the shell</h2>
+
+<p>We will spend most of our time learning about the basics of the shell
+by manipulating some experimental data.</p>
+
+<p>Now we&#39;re going to download the data for the tutorial. For this you&#39;ll need
+internet access, because you&#39;re going to get it off the web.  </p>
+
+<p>We&#39;re going to be working with data from</p>
+
+<p>Now let&#39;s go in to that directory</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd shell-genomics
+</code></pre></div>
+<p>This stands for &#39;change directory&#39;</p>
+
+<p>In this directory, there should be some things we just downloaded.</p>
+
+<p>Let&#39;s check. Type:
+    ls</p>
+
+<p>ls stands for &#39;list&#39; and it lists the contents of a directory.</p>
+
+<p>There&#39;s a few directories there, but not too many. Let&#39;s go look in the data directory.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd data
+ls
+</code></pre></div>
+<p>In there, all mixed up together are files and directories/folders. If we want to
+know which is which, we can type:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls -F
+</code></pre></div>
+<p>Anything with a &quot;/&quot; after it is a directory.<br>
+Things with a &quot;*&quot; after them are programs.<br>
+It there&#39;s nothing there it&#39;s a file.</p>
+
+<p>You can also use the command</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls -l
+</code></pre></div>
+<p>to see whether items in a
+directory are files or directories. <code>ls -l</code> gives a lot more
+information too, such as the size of the file</p>
+
+<p>So, we can see that we have several files, directories and a program. Great!</p>
+
+<h2>Arguments</h2>
+
+<p>Most programs take additional arguments that control their exact
+behavior. For example, <code>-F</code> and <code>-l</code> are arguments to <code>ls</code>.  The <code>ls</code>
+program, like many programs, take a lot of arguments. But how do we
+know what the options are to particular commands?</p>
+
+<p>Most commonly used shell programs have a manual. You can access the
+manual using the <code>man</code> program. Try entering:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">man ls
+</code></pre></div>
+<p>This will open the manual page for <code>ls</code>. Use the space key to go
+forward and b to go backwards. When you are done reading, just hit <code>q</code>
+to quit.</p>
+
+<p>Programs that are run from the shell can get extremely complicated. To
+see an example, open up the manual page for the <code>find</code> program.
+No one can possibly learn all of
+these arguments, of course. So you will probably find yourself
+referring back to the manual page frequently.</p>
+
+<h2>The Unix directory file structure (a.k.a. where am I?)</h2>
+
+<p>As you&#39;ve already just seen, you can move around in different directories
+or folders at the command line. Why would you want to do this, rather
+than just navigating around the normal way.</p>
+
+<p>When you&#39;re working with bioinformatics programs, you&#39;re working with
+your data and it&#39;s key to be able to have that data in the right place
+and make sure the program has access to the data. Many of the problems
+people run in to with command line bioinformatics programs is not having the
+data in the place the program expects it to be.</p>
+
+<h2>Moving around the file system</h2>
+
+<p>Let&#39;s practice moving around a bit.</p>
+
+<p>We&#39;re going to work in that <code>shell-genomics</code> directory we just downloaded.</p>
+
+<p>First let&#39;s navigate there using the regular way by clicking on the different folders.</p>
+
+<p>First we did something like go to the folder of our username. Then we opened
+&#39;shell-genomics&#39; then &#39;data&#39;</p>
+
+<p>Let&#39;s draw out how that went.</p>
+
+<p>Now let&#39;s draw some of the other files and folders we could have clicked on.</p>
+
+<p>This is called a hierarchical file system structure, like an upside down tree
+with root (/) at the base that looks like this.</p>
+
+<p><img src="img/Slide1.jpg" alt="Unix"></p>
+
+<p>That (/) at the base is often also called the &#39;top&#39; level.</p>
+
+<p>When you are working at your computer or log in to a remote computer,
+you are on one of the branches of that tree, your home directory (/home/username)</p>
+
+<p>Now let&#39;s go do that same navigation at the command line.</p>
+
+<p>Type</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd
+</code></pre></div>
+<p>This puts you in your home directory. This folder here.</p>
+
+<p>Now using <code>cd</code> and <code>ls</code>, go in to the &#39;shell-genomics&#39; directory and list its contents.</p>
+
+<p>Let&#39;s also check to see where we are. Sometimes when we&#39;re wandering around
+in the file system, it&#39;s easy to lose track of where we are and get lost.</p>
+
+<p>If you want to know what directory you&#39;re currently in, type</p>
+<div class="highlight"><pre><code class="language-" data-lang="">pwd
+</code></pre></div>
+<p>This stands for &#39;print working directory&#39;. The directory you&#39;re currently working in.</p>
+
+<p>What if we want to move back up and out of the &#39;data&#39; directory? Can we just
+type <code>cd shell-genomics</code>? Try it and see what happens.</p>
+
+<p>To go &#39;back up a level&#39; we need to use <code>..</code></p>
+
+<p>Type</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd ..
+</code></pre></div>
+<p>Now do <code>ls</code> and <code>pwd</code>. See now that we went back up in to the &#39;shell-genomics&#39;
+directory. <code>..</code> means go back up a level.</p>
+
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<p>Now we&#39;re going to try a hunt.<br>
+Move around in the &#39;hidden&#39; directory and try to find the file &#39;youfoundit.txt&#39;</p>
+
+<hr>
+
+<h2>Examining the contents of other directories</h2>
+
+<p>By default, the <code>ls</code> commands lists the contents of the working
+directory (i.e. the directory you are in). You can always find the
+directory you are in using the <code>pwd</code> command. However, you can also
+give <code>ls</code> the names of other directories to view. Navigate to the
+home directory if you are not already there.</p>
+
+<p>Type:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd
+</code></pre></div>
+<p>Then enter the command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls shell-genomics
+</code></pre></div>
+<p>This will list the contents of the <code>shell-genomics</code> directory without
+you having to navigate there.</p>
+
+<p>The <code>cd</code> command works in a similar way. Try entering:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd
+cd shell-genomics/data/hidden
+</code></pre></div>
+<p>and you will jump directly to <code>hidden</code> without having to go through
+the intermediate directory.</p>
+
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<p>Try finding the &#39;anotherfile.txt&#39; file without changing directories.</p>
+
+<hr>
+
+<h3>Shortcut: Tab Completion</h3>
+
+<p>Navigate to the home directory. Typing out directory names can waste a
+lot of time. When you start typing out the name of a directory, then
+hit the tab key, the shell will try to fill in the rest of the
+directory name. For example, type <code>cd</code> to get back to your home directy, then enter:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd sh&lt;tab&gt;
+</code></pre></div>
+<p>The shell will fill in the rest of the directory name for
+<code>shell-genomics</code>. Now go to shell-genomics/data/MiSeq</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls F3D&lt;tab&gt;&lt;tab&gt;
+</code></pre></div>
+<p>When you hit the first tab, nothing happens. The reason is that there
+are multiple directories in the home directory which start with
+<code>F3D</code>. Thus, the shell does not know which one to fill in. When you hit
+tab again, the shell will list the possible choices.</p>
+
+<p>Tab completion can also fill in the names of programs. For example,
+enter <code>e&lt;tab&gt;&lt;tab&gt;</code>. You will see the name of every program that
+starts with an <code>e</code>. One of those is <code>echo</code>. If you enter <code>ec&lt;tab&gt;</code> you
+will see that tab completion works.</p>
+
+<h2>Full vs. Relative Paths</h2>
+
+<p>The <code>cd</code> command takes an argument which is the directory
+name. Directories can be specified using either a <em>relative</em> path or a
+full <em>path</em>. The directories on the computer are arranged into a
+hierarchy. The full path tells you where a directory is in that
+hierarchy. Navigate to the home directory. Now, enter the <code>pwd</code>
+command and you should see:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">/home/username
+</code></pre></div>
+<p>which is the full name of your home directory. This tells you that you
+are in a directory called <code>username</code>, which sits inside a directory called
+<code>home</code> which sits inside the very top directory in the hierarchy. The
+very top of the hierarchy is a directory called <code>/</code> which is usually
+referred to as the <em>root directory</em>. So, to summarize: <code>username</code> is a
+directory in <code>home</code> which is a directory in <code>/</code>.</p>
+
+<p>Now enter the following command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd /home/username/shell-genomics/data/hidden
+</code></pre></div>
+<p>This jumps to <code>hidden</code>. Now go back to the home directory (cd). We saw
+earlier that the command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd shell-genomics/data/hidden
+</code></pre></div>
+<p>had the same effect - it took us to the <code>hidden</code> directory. But,
+instead of specifying the full path
+(<code>/home/username/shell-genomics/data</code>), we specified a <em>relative path</em>. In
+other words, we specified the path relative to our current
+directory. A full path always starts with a <code>/</code>. A relative path does
+not.</p>
+
+<p>A relative path is like getting directions
+from someone on the street. They tell you to &quot;go right at the Stop sign, and
+then turn left on Main Street&quot;. That works great if you&#39;re standing there
+together, but not so well if you&#39;re trying to tell someone how to get there
+from another country. A full path is like GPS coordinates.
+It tells you exactly where something
+is no matter where you are right now.</p>
+
+<p>You can usually use either a full path or a relative path
+depending on what is most convenient. If we are in the home directory,
+it is more convenient to just enter the relative path since it
+involves less typing.</p>
+
+<p>Over time, it will become easier for you to keep a mental note of the
+structure of the directories that you are using and how to quickly
+navigate amongst them.</p>
+
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<p>Now, list the contents of the /bin directory. Do you see anything
+familiar in there?</p>
+
+<hr>
+
+<h2>Saving time with shortcuts, wild cards, and tab completion</h2>
+
+<h3>Shortcuts</h3>
+
+<p>There are some shortcuts which you should know about. Dealing with the
+home directory is very common. So, in the shell the tilde character,
+&quot;&quot;~&quot;&quot;, is a shortcut for your home directory. Navigate to the <code>edamame</code>
+directory:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd
+cd shell-genomics
+cd data
+</code></pre></div>
+<p>Then enter the command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls ~
+</code></pre></div>
+<p>This prints the contents of your home directory, without you having to
+type the full path. The shortcut <code>..</code> always refers to the directory
+above your current directory. Thus:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls ..
+</code></pre></div>
+<p>prints the contents of the <code>/home/username/shell-genomics</code>. You can chain
+these together, so:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls ../../
+</code></pre></div>
+<p>prints the contents of <code>/home/username</code> which is your home
+directory. Finally, the special directory <code>.</code> always refers to your
+current directory. So, <code>ls</code>, <code>ls .</code>, and <code>ls ././././.</code> all do the
+same thing, they print the contents of the current directory. This may
+seem like a useless shortcut right now, but we&#39;ll see when it is
+needed in a little while.</p>
+
+<p>To summarize, while you are in the <code>shell</code> directory, the commands
+<code>ls ~</code>, <code>ls ~/.</code>, <code>ls ../../</code>, and <code>ls /home/username</code> all do exactly the
+same thing. These shortcuts are not necessary, they are provided for
+your convenience.</p>
+
+<h3>Our data set: FASTQ files</h3>
+
+<p>We did an experiment and want to look at the bacterial communities
+of mice in two treatments using 16S sequencing. We have 10 mice in
+one treatment and 9 in another.each treatment. We also sequenced a Mock community, so we can
+check the quality of our data. So, we have 20 samples all together and
+we&#39;ve done paired-end MiSeq sequencing.</p>
+
+<p>We get our data back from the sequencing center as FASTQ files, and
+we stick them all in a folder called MiSeq. This data is actually
+data generated by Pat Schloss and used in mothur tutorials.</p>
+
+<p>We want to be able to look at these files and do some things with them.</p>
+
+<h3>Wild cards</h3>
+
+<p>Navigate to the <code>~/shell-genomics/data/MiSeq</code> directory. This
+directory contains our FASTQ files and some other ones
+we&#39;ll need for analyses. If we type <code>ls</code>,
+we will see that there are a bunch of files with long file names.
+Some of the end with .fastq</p>
+
+<p>The <code>*</code> character is a shortcut for &quot;everything&quot;. Thus, if
+you enter <code>ls *</code>, you will see all of the contents of a given
+directory. Now try this command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls *fastq
+</code></pre></div>
+<p>This lists every file that ends with a <code>fastq</code>. This command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls /usr/bin/*.sh
+</code></pre></div>
+<p>Lists every file in <code>/usr/bin</code> that ends in the characters <code>.sh</code>.</p>
+
+<p>We have paired end sequencing, so for every sample we have two files. If we
+want to just see the list of the files for the forward direction sequencing
+we can use:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">ls *R1*fastq
+</code></pre></div>
+<p>lists every file in the current directory whose name contains the
+number <code>R1</code>, and ends with <code>fastq</code>. There are twenty such files which
+we would expect because we have 20 samples.</p>
+
+<p>So how does this actually work? Well...when the shell (bash) sees a
+word that contains the <code>*</code> character, it automatically looks for filenames
+that match the given pattern. In this case, it identified four such
+files. Then, it replaced the <code>*R1*fastq</code> with the list of files, separated
+by spaces.</p>
+
+<p>What happens if you do <code>R1*fastq</code>?</p>
+
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<p>Do each of the following using a single <code>ls</code> command without
+navigating to a different directory.</p>
+
+<ol>
+<li> List all of the files in <code>/bin</code> that start with the letter &#39;c</li>
+<li> List all of the files in <code>/bin</code> that contain the letter &#39;a&#39;</li>
+<li> List all of the files in <code>/bin</code> that end with the letter &#39;o&#39;</li>
+</ol>
+
+<p>BONUS: List all of the files in &#39;/bin&#39; that contain the letter &#39;a&#39; or &#39;c&#39;</p>
+
+<hr>
+
+<h2>Command History</h2>
+
+<p>You can easily access previous commands.  Hit the up arrow.
+Hit it again.  You can step backwards through your command history.
+The down arrow takes your forwards in the command history.</p>
+
+<p>^-C will cancel the command you are writing, and give you a fresh prompt.</p>
+
+<p>^-R will do a reverse-search through your command history.  This
+is very useful.</p>
+
+<p>You can also review your recent commands with the <code>history</code> command.  Just enter:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">history
+</code></pre></div>
+<p>to see a numbered list of recent commands, including this just issues
+<code>history</code> command.  You can reuse one of these commands directly by
+referring to the number of that command.</p>
+
+<p>If your history looked like this:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">259  ls *
+260  ls /usr/bin/*.sh
+261  ls *R1*fastq
+</code></pre></div>
+<p>then you could repeat command #260 by simply entering:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">!260
+</code></pre></div>
+<p>(that&#39;s an exclamation mark).</p>
+
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<ol>
+<li>Find the line number in your history for the last exercise (listing
+files in /bin) and reissue that command.</li>
+</ol>
+
+<hr>
+
+<h2>Examining Files</h2>
+
+<p>We now know how to switch directories, run programs, and look at the
+contents of directories, but how do we look at the contents of files?</p>
+
+<p>The easiest way to examine a file is to just print out all of the
+contents using the program <code>cat</code>. Enter the following command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cat F3D0_S188_L001_R1_001.fastq
+</code></pre></div>
+<p>This prints out the contents of the <code>F3D0_S188_L001_R1_001.fastq</code> file.</p>
+
+<hr>
+
+<p><strong>Exercises</strong></p>
+
+<ol>
+<li><p>Print out the contents of the <code>~/shell-genomics/data/MiSeq/stability.files</code>
+file. What does this file contain?</p></li>
+<li><p>Without changing directories, (you should still be in <code>shell-genomics</code>),
+use one short command to print the contents of all of the files in
+the <code>/home/username/shell-genomics/data/MiSeq</code> directory.</p></li>
+</ol>
+
+<hr>
+
+<p>Make sure we&#39;re in the right place for the next set of the lessons. We
+want to be in the <code>shell</code> directory. Check if you&#39;re there with <code>pwd</code>
+and if not navigate there. One way to do that would be</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd ~/shell-genomics/data/MiSeq
+</code></pre></div>
+<p><code>cat</code> is a terrific program, but when the file is really big, it can
+be annoying to use. The program, <code>less</code>, is useful for this
+case. Enter the following command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">less F3D0_S188_L001_R1_001.fastq
+</code></pre></div>
+<p><code>less</code> opens the file, and lets you navigate through it. The commands
+are identical to the <code>man</code> program.</p>
+
+<p><strong>Some commands in <code>less</code></strong></p>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>action</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&quot;space&quot;</td>
+<td>to go forward</td>
+</tr>
+<tr>
+<td>&quot;b&quot;</td>
+<td>to go backwarsd</td>
+</tr>
+<tr>
+<td>&quot;g&quot;</td>
+<td>to go to the beginning</td>
+</tr>
+<tr>
+<td>&quot;G&quot;</td>
+<td>to go to the end</td>
+</tr>
+<tr>
+<td>&quot;q&quot;</td>
+<td>to quit</td>
+</tr>
+</tbody></table>
+
+<p><code>less</code> also gives you a way of searching through files. Just hit the
+&quot;/&quot; key to begin a search. Enter the name of the word you would like
+to search for and hit enter. It will jump to the next location where
+that word is found. Try searching the <code>dictionary.txt</code> file for the
+word &quot;cat&quot;. If you hit &quot;/&quot; then &quot;enter&quot;, <code>less</code> will just repeat
+the previous search. <code>less</code> searches from the current location and
+works its way forward. If you are at the end of the file and search
+for the word &quot;cat&quot;, <code>less</code> will not find it. You need to go to the
+beginning of the file and search.</p>
+
+<p>For instance, let&#39;s search for the sequence <code>1101:14341</code> in our file.
+You can see that we go right to that sequence and can see
+what it looks like.</p>
+
+<p>Remember, the <code>man</code> program actually uses <code>less</code> internally and
+therefore uses the same commands, so you can search documentation
+using &quot;/&quot; as well!</p>
+
+<p>There&#39;s another way that we can look at files, and in this case, just
+look at part of them. This can be particularly useful if we just want
+to see the beginning or end of the file, or see how it&#39;s formatted.</p>
+
+<p>The commands are <code>head</code> and <code>tail</code> and they just let you look at
+the beginning and end of a file respectively.</p>
+
+<p>head F3D0<em>S188</em>L001<em>R1</em>001.fastq
+tail F3D0<em>S188</em>L001<em>R1</em>001.fastq</p>
+
+<p>The <code>-n</code> option to either of these commands can be used to print the
+first or last <code>n</code> lines of a file. To print the first/last line of the
+file use:</p>
+
+<p>head -n 1 F3D0<em>S188</em>L001<em>R1</em>001.fastq
+tail -n 1 F3D0<em>S188</em>L001<em>R1</em>001.fastq</p>
+
+<h2>Searching files</h2>
+
+<p>We showed a little how to search within a file using <code>less</code>. We can also
+search within files without even opening them, using <code>grep</code>. Grep is a command-line
+utility for searching plain-text data sets for lines matching a string or regular expression.
+Let&#39;s give it a try!</p>
+
+<p>Let&#39;s search for that sequence 1101:14341 in the F3D0<em>S188</em>L001<em>R1</em>001.fastq file.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">grep 1101:14341 F3D0_S188_L001_R1_001.fastq
+</code></pre></div>
+<p>We get back the whole line that had &#39;1101:14341&#39; in it. What if we wanted all
+four lines, the whole part of that FASTQ sequence, back instead.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">grep -A 3 1101:14341 F3D0_S188_L001_R1_001.fastq
+</code></pre></div>
+<p>The <code>-A</code> flag stands for &quot;after match&quot; so it&#39;s returning the line that
+matches plus the three after it. The <code>-B</code> flag returns that number of lines
+before the match.</p>
+
+<p>** Exercise **</p>
+
+<p>Search for the sequence &#39;TTATCCGGATTTATTGGGTTTAAAGGGT&#39; in the
+F3D0<em>S188</em>L001<em>R1</em>001.fastq file and in the output have the
+sequence name and the sequence. e.g.<br>
+@M00967:43:000000000-A3JHG:1:2114:11799:28499 1:N:0:188<br>
+TACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGTGCGTAGGCGGGATGCAG</p>
+
+<p>Search for that sequence in all the FASTQ files.</p>
+
+<h2>Redirection</h2>
+
+<p>We&#39;re excited we have all these sequences that we care about that we
+just got from the FASTQ files. That is a really important motif
+that is going to help us answer our important question. But all those
+sequences just went whizzing by with grep. How can we capture them?</p>
+
+<p>We can do that with something called &quot;redirection&quot;. The idea is that
+we&#39;re redirecting the output to the terminal (all the stuff that went
+whizzing by) to something else. In this case, we want to print it
+to a file, so that we can look at it later.</p>
+
+<p>The redirection command for putting something in a file is <code>&gt;</code></p>
+
+<p>Let&#39;s try it out and put all the sequences that contain &#39;TTATCCGGATTTATTGGGTTTAAAGGGT&#39;
+from all the files in to another file called &#39;good-data.txt&#39;</p>
+<div class="highlight"><pre><code class="language-" data-lang="">grep -B 2 TTATCCGGATTTATTGGGTTTAAAGGGT * &gt; good-data.txt
+</code></pre></div>
+<p>The prompt should sit there a little bit, and then it should look like nothing
+happened. But type <code>ls</code>. You should have a new file called good-data.txt. Take
+a look at it and see if it has what you think it should.</p>
+
+<p>There&#39;s one more useful redirection command that we&#39;re going to show, and that&#39;s
+called the pipe command, and it is <code>|</code>. It&#39;s probably not a key on
+your keyboard you use very much. What <code>|</code> does is take the output that
+scrolling by on the terminal and then can run it through another command.
+When it was all whizzing by before, we wished we could just slow it down and
+look at it, like we can with <code>less</code>. Well it turns out that we can! We pipe
+the <code>grep</code> command through <code>less</code></p>
+<div class="highlight"><pre><code class="language-" data-lang="">grep TTATCCGGATTTATTGGGTTTAAAGGGT * | less
+</code></pre></div>
+<p>Now we can use the arrows to scroll up and down and use <code>q</code> to get out.</p>
+
+<p>We can also do something tricky and use the command <code>wc</code>. <code>wc</code> stands for
+<code>word count</code>. It counts the number of lines or characters. So, we can use
+it to count the number of lines we&#39;re getting back from our <code>grep</code> command.
+And that will magically tell us how many sequences we&#39;re finding. We&#39;re</p>
+<div class="highlight"><pre><code class="language-" data-lang="">grep TTATCCGGATTTATTGGGTTTAAAGGGT * | wc
+</code></pre></div>
+<p>That tells us the number of lines, words and characters in the file. If we
+just want the number of lines, we can use the <code>-l</code> flag for <code>lines</code>.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">grep TTATCCGGATTTATTGGGTTTAAAGGGT * | wc -l
+</code></pre></div>
+<p>Redirecting is not super intuitive, but it&#39;s really powerful for stringing
+together these different commands, so you can do whatever you need to do.</p>
+
+<p>The philosophy behind these command line programs is that none of them
+really do anything all that impressive. BUT when you start chaining
+them together, you can do some really powerful things really
+efficiently. If you want to be proficient at using the shell, you must
+learn to become proficient with the pipe and redirection operators:
+<code>|</code>, <code>&gt;</code>, <code>&gt;&gt;</code>.</p>
+
+<h2>Creating, moving, copying, and removing</h2>
+
+<p>Now we can move around in the file structure, look at files, search files,
+redirect. But what if we want to do normal things like copy files or move
+them around or get rid of them. Sure we could do most of these things
+without the command line, but what fun would that be?! Besides it&#39;s often
+faster to do it at the command line, or you&#39;ll be on a remote server
+like Amazon where you won&#39;t have another option.</p>
+
+<p>The stability.files file is one that tells us what sample name
+goes with what sequences. This is a really important file, so
+we want to make a copy so we don&#39;t lose it.</p>
+
+<p>Lets copy the file using the <code>cp</code> command. The <code>cp</code>
+command backs up the file. Navigate to the <code>data</code> directory and enter:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cp stability.files stability.files_backup
+</code></pre></div>
+<p>Now <code>stability.files_backup</code> has been created as a copy of <code>stability.files</code>.</p>
+
+<p>Let&#39;s make a <code>backup</code> directory where we can put this file.</p>
+
+<p>The <code>mkdir</code> command is used to make a directory. Just enter <code>mkdir</code>
+followed by a space, then the directory name.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">mkdir backup
+</code></pre></div>
+<p>We can now move our backed up file in to this directory. We can
+move files around using the command <code>mv</code>. Enter this command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">mv stability.files_backup backup/
+</code></pre></div>
+<p>This moves <code>stability.files_backup</code> into the directory <code>backup/</code> or
+the full path would be <code>~/edamame-data/shell/MiSeq/backup</code></p>
+
+<p>The <code>mv</code> command is also how you rename files. Since this file is so
+important, let&#39;s rename it:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">mv stability.files stability.files_IMPORTANT
+</code></pre></div>
+<p>Now the file name has been changed to stability.files_IMPORTANT. Let&#39;s delete
+the backup file now:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">rm backup/stability.files_backup
+</code></pre></div>
+<p>The <code>rm</code> file removes the file. Be careful with this command. It doesn&#39;t
+just nicely put the files in the Trash. They&#39;re really gone.</p>
+
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<p>Do the following:</p>
+
+<ol>
+<li> Rename the <code>stability.files_IMPORTANT</code> file to <code>stability.files</code>.</li>
+<li> Create a directory in the <code>MiSeq</code> directory called <code>new</code></li>
+<li> Then, copy the <code>stability.files</code> file into <code>new</code></li>
+</ol>
+
+<hr>
+
+<p>By default, <code>rm</code>, will NOT delete directories. You can tell <code>rm</code> to
+delete a directory using the <code>-r</code> option. Let&#39;s delete that <code>new</code> directory
+we just made. Enter the following command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">rm -r new
+</code></pre></div>
+<h2>Writing files</h2>
+
+<p>We&#39;ve been able to do a lot of work with files that already exist, but what
+if we want to write our own files. Obviously, we&#39;re not going to type in
+a FASTA file, but you&#39;ll see as we go through other tutorials, there are
+a lot of reasons we&#39;ll want to write a file, or edit an existing file.</p>
+
+<p>To write in files, we&#39;re going to use the program <code>nano</code>. We&#39;re going to create
+a file that contains the favorite grep command so you can remember it for later. We&#39;ll name this file
+&#39;awesome.sh&#39;.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">nano awesome.sh
+</code></pre></div>
+<p>Now you have something that looks like</p>
+
+<p><img src="img/nano1.png" alt="nano1.png"></p>
+
+<p>Type in your command, so it looks like</p>
+
+<p><img src="img/nano2.png" alt="nano2.png"></p>
+
+<p>Now we want to save the file and exit. At the bottom of nano, you see the &quot;^X Exit&quot;. That
+means that we use Ctrl-X to exit. Type <code>Ctrl-X</code>. It will ask if you want to save it. Type <code>y</code> for yes.
+Then it asks if you want that file name. Hit &#39;Enter&#39;.</p>
+
+<p>Now you&#39;ve written a file. You can take a look at it with less or cat, or open it up again and edit it.</p>
+
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<p>Open &#39;awesome.sh&#39; and add &quot;echo AWESOME!&quot; after the grep command and save the file.</p>
+
+<p>We&#39;re going to come back and use this file in just a bit.</p>
+
+<hr>
+
+<h2>Running programs</h2>
+
+<p>Commands like <code>ls</code>, <code>rm</code>, <code>echo</code>, and <code>cd</code> are just ordinary programs
+on the computer. A program is just a file that you can <em>execute</em>. The
+program <code>which</code> tells you the location of a particular program. For
+example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">which ls
+</code></pre></div>
+<p>Will return &quot;/bin/ls&quot;. Thus, we can see that <code>ls</code> is a program that
+sits inside of the <code>/bin</code> directory. Now enter:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">which find
+</code></pre></div>
+<p>You will see that <code>find</code> is a program that sits inside of the
+<code>/usr/bin</code> directory.</p>
+
+<p>So ... when we enter a program name, like <code>ls</code>, and hit enter, how
+does the shell know where to look for that program? How does it know
+to run <code>/bin/ls</code> when we enter <code>ls</code>. The answer is that when we enter
+a program name and hit enter, there are a few standard places that the
+shell automatically looks. If it can&#39;t find the program in any of
+those places, it will print an error saying &quot;command not found&quot;. Enter
+the command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">echo $PATH
+</code></pre></div>
+<p>This will print out the value of the <code>PATH</code> environment variable. More
+on environment variables later. Notice that a list of directories,
+separated by colon characters, is listed. These are the places the
+shell looks for programs to run. If your program is not in this list,
+then an error is printed. The shell ONLY checks in the places listed
+in the <code>PATH</code> environment variable.</p>
+
+<p>Navigate to the <code>shell</code> directory and list the contents. You will
+notice that there is a program (executable file) called <code>hello.sh</code> in
+this directory. Now, try to run the program by entering:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">hello.sh
+</code></pre></div>
+<p>You should get an error saying that hello.sh cannot be found. That is
+because the directory <code>/home/username/shell-genomics/data</code> is not in the
+<code>PATH</code>. You can run the <code>hello.sh</code> program by entering:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">./hello.sh
+</code></pre></div>
+<p>Remember that <code>.</code> is a shortcut for the current working
+directory. This tells the shell to run the <code>hello.sh</code> program which is
+located right here. So, you can run any program by entering the path
+to that program. You can run <code>hello.sh</code> equally well by specifying:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">/home/username/shell-genomics/data/hello.sh
+</code></pre></div>
+<p>Or by entering:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">~/shell-genomics/data/hello.sh
+</code></pre></div>
+<p>When there are no <code>/</code> characters, the shell assumes you want to look
+in one of the default places for the program.</p>
+
+<h2>Writing scripts</h2>
+
+<p>We know how to write files and run scripts, so I bet you can guess where
+this is headed. We&#39;re going to run our own script!</p>
+
+<p>Go in to the &#39;MiSeq&#39; directory where we created &#39;awesome.sh&#39; before. Remember we wrote our
+favorite grep command in there. Since we like it so much, we might want to run it
+again, or even all the time. Instead of writing it out every time, we can just run it as
+a script.</p>
+
+<p>It&#39;s a command, so we should just be able to run it. Give it try.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">./awesome.sh
+</code></pre></div>
+<p>Alas, we get <code>-bash: ./awesome.sh: Permission denied</code>. This is because we haven&#39;t told
+the computer that it&#39;s a program. To do that we have to make it &#39;executable&#39;. We do this
+by changing its mode. The command for that is <code>chmod</code> - change mode. We&#39;re going to change the mode
+of this file, so that it&#39;s executable and the computer knows it&#39;s OK to run it as a program.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">chmod +x awesome.sh
+</code></pre></div>
+<p>Now let&#39;s try running it again</p>
+<div class="highlight"><pre><code class="language-" data-lang="">./awesome.sh
+</code></pre></div>
+<p>Now you should have seen some output, and of course, it&#39;s AWESOME!
+Congratulations, you just created your first shell script! You&#39;re set to rule the world.</p>
+
+<h2>Bonus materials: Automation</h2>
+
+<p>Looping at the command line</p>
+
+<p>Example: Something you might want to do fairly often is to change the name of a lot of files.
+You can do that with a &#39;for&#39; loop.</p>
+
+<p>The syntax for that is in the shell is</p>
+
+<p>for variable in set-of-things;
+       do something on $variable;
+       done</p>
+
+<p>A standard variable people use is <code>i</code>, but you can use any letter or word you want</p>
+
+<p>So, for instance, let&#39;s list all the FASTQ files</p>
+<div class="highlight"><pre><code class="language-" data-lang="">  for i in *.fastq;
+    do echo $i;
+    done
+</code></pre></div>
+<p>Or if we just wanted to look at the first 20 lines of each of the .fastq files, we could do</p>
+<div class="highlight"><pre><code class="language-" data-lang=""> for i in *.fastq;
+    head -n 40 $i;
+    done
+</code></pre></div>
+<p>If we wanted to output these first 40 lines to a new file, we could do</p>
+<div class="highlight"><pre><code class="language-" data-lang=""> for i in #.fastq;
+     head -n 40 $i &gt; new_$i;
+     done
+</code></pre></div>
+<hr>
+
+<p><strong>Bonus exercise</strong>
+Rename the stability files to have a .txt extension</p>
+
+<hr>
+
+<p>Example of renaming files with a different extension. Changing <code>fastq</code> to <code>fq</code></p>
+<div class="highlight"><pre><code class="language-" data-lang="">for i in *.fastq;
+     do mv "$i" "${i/%.fastq/.fq}";
+     done
+</code></pre></div>
+<h1>For Future Reference</h1>
+
+<h1>Finding files</h1>
+
+<p>The <code>find</code> program can be used to find files based on arbitrary
+criteria. Navigate to the <code>data</code> directory and enter the following
+command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">find . -print
+</code></pre></div>
+<p>This prints the name of every file or directory, recursively, starting
+from the current directory. Let&#39;s exclude all of the directories:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">find . -type f -print
+</code></pre></div>
+<p>This tells <code>find</code> to locate only files. Now try these commands:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">find . -type f -name "*1*"
+find . -type f -name "*1*" -or -name "*2*" -print
+find . -type f -name "*1*" -and -name "*2*" -print
+</code></pre></div>
+<p>The <code>find</code> command can acquire a list of files and perform some
+operation on each file. Try this command out:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">find . -type f -exec grep Volume {} \;
+</code></pre></div>
+<p>This command finds every file starting from <code>.</code>. Then it searches each
+file for a line which contains the word &quot;Volume&quot;. The <code>{}</code> refers to
+the name of each file. The trailing <code>\;</code> is used to terminate the
+command.  This command is slow, because it is calling a new instance
+of <code>grep</code> for each item the <code>find</code> returns.</p>
+
+<p>A faster way to do this is to use the <code>xargs</code> command:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">find . -type f -print | xargs grep Volume
+</code></pre></div>
+<p><code>find</code> generates a list of all the files we are interested in,
+then we pipe them to <code>xargs</code>.  <code>xargs</code> takes the items given to it
+and passes them as arguments to <code>grep</code>.  <code>xargs</code> generally only creates
+a single instance of <code>grep</code> (or whatever program it is running).</p>
+
+<h2>Where can I learn more about the shell?</h2>
+
+<ul>
+<li>Software Carpentry tutorial - <a href="http://software-carpentry.org/v4/shell/index.html">The Unix shell</a></li>
+<li>The shell handout - <a href="http://files.fosswire.com/2007/08/fwunixref.pdf">Command Reference</a></li>
+<li><a href="http://explainshell.com">explainshell.com</a></li>
+<li>http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html</li>
+<li>man bash</li>
+<li>Google - if you don&#39;t know how to do something, try Googling it. Other people
+have probably had the same question.</li>
+<li>Learn by doing. There&#39;s no real other way to learn this than by trying it
+out.  Write your next paper in nano (really emacs or vi), open pdfs from
+the command line, automate something you don&#39;t really need to automate.</li>
+</ul>
+
+<h2>Bonus:</h2>
+
+<p><strong>backtick, xargs</strong>: Example find all files with certain text</p>
+
+<p><strong>alias</strong> -&gt; rm -i</p>
+
+<p><strong>variables</strong> -&gt; use a path example</p>
+
+<p><strong>.bashrc</strong></p>
+
+<p><strong>du</strong></p>
+
+<p><strong>ln</strong></p>
+
+<p><strong>ssh and scp</strong></p>
+
+<p><strong>Regular Expressions</strong></p>
+
+<p><strong>Permissions</strong></p>
+
+<p><strong>Chaining commands together</strong></p>
