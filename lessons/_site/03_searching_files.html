@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+      <title>Searching files in the Shell</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+<link href="./css/bootstrap/bootstrap.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="./css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="./css/swc.css" />
+<link rel="stylesheet" type="text/css" href="./css/swc-bootstrap.css" />
+<meta charset="UTF-8" />
+<meta http-equiv="last-modified" content="" />
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="./css/lesson.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="banner">
+  <a href="http://datacarpentry.org" title="Data Carpentry">
+    <img alt="Data Carpentry banner" src="./img/DC1_logo_small.png" height="50px" />
+  </a>
+</div>
+
+
+      <div class="row-fluid">
+        <div class="span10 offset1">
+	  <!-- start content -->
+          
+          <h1>Searching files in the Shell</h1>
+          
+          <h2>Learning objectives</h2>
+
+<ul>
+<li>Practice searching for characters or patterns in a text file using the <code>grep</code> command</li>
+<li>Learn about output redirection</li>
+<li>Explore how to use the pipe (<code>|</code>) character to chain together commands</li>
+</ul>
+
+<h2>Searching files</h2>
+
+<p>We showed a little how to search within a file using <code>less</code>. We can also
+search within files without even opening them, using <code>grep</code>. Grep is a command-line
+utility for searching plain-text data sets for lines matching a string or regular expression.
+Let&#39;s give it a try!</p>
+
+<p>Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns<br>
+Let&#39;s search for the string NNNNNNNNNN in file <code>SRR098026.fastq</code> in the <code>untrimmed_fastq</code> folder:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span><span class="nb">cd</span> ~/dc_sample_data/untrimmed_fastq/
+<span class="gp">$ </span>grep NNNNNNNNNN SRR098026.fastq
+</code></pre></div>
+<p>We get back a lot of lines.  What is we want to see the whole fastq record for each of these read.
+We can use the &#39;-B&#39; argument for grep to return the matched line plus one before (-B 1) and two
+lines after (-A 2). Since each record is four lines and the last second is the sequence, this should
+give the whole record.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
+</code></pre></div>
+<p>for example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
++SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+</code></pre></div>
+<hr>
+
+<p><strong>Exercise</strong></p>
+
+<p>1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
+In addition to finding the sequence, have your search also return
+the name of the sequence.</p>
+
+<p>2) Search for that sequence in both fastq files.</p>
+
+<hr>
+
+<h2>Redirection</h2>
+
+<p>We&#39;re excited we have all these sequences that we care about that we
+just got from the FASTQ files. That is a really important motif
+that is going to help us answer our important question. But all those
+sequences just went whizzing by with grep. How can we capture them?</p>
+
+<p>We can do that with something called &quot;redirection&quot;. The idea is that
+we&#39;re redirecting the output to the terminal (all the stuff that went
+whizzing by) to something else. In this case, we want to print it
+to a file, so that we can look at it later.</p>
+
+<p>The redirection command for putting something in a file is <code>&gt;</code></p>
+
+<p>Let&#39;s try it out and put all the sequences that contain &#39;NNNNNNNNNN&#39;
+from all the files in to another file called &#39;bad_reads.txt&#39;</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq &gt; bad_reads.txt
+</code></pre></div>
+<p>The prompt should sit there a little bit, and then it should look like nothing
+happened. But type <code>ls</code>. You should have a new file called bad_reads.txt. Take
+a look at it and see if it has what you think it should.</p>
+
+<p>If we use &#39;&gt;&gt;&#39;, it will append to rather than overwrite a file.  This can be useful for
+saving more than one search, for example:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep -B1 -A2 NNNNNNNNNN SRR097977.fastq &gt;&gt; bad_reads.txt
+</code></pre></div>
+<p>There&#39;s one more useful redirection command that we&#39;re going to show, and that&#39;s
+called the pipe command, and it is <code>|</code>. It&#39;s probably not a key on
+your keyboard you use very much. What <code>|</code> does is take the output that
+scrolling by on the terminal and then can run it through another command.
+When it was all whizzing by before, we wished we could just slow it down and
+look at it, like we can with <code>less</code>. Well it turns out that we can! We pipe
+the <code>grep</code> command through <code>less</code></p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
+</code></pre></div>
+<p>Now we can use the arrows to scroll up and down and use <code>q</code> to get out.</p>
+
+<p>We can also do something tricky and use the command <code>wc</code>. <code>wc</code> stands for
+<code>word count</code>. It counts the number of lines or characters. So, we can use
+it to count the number of lines we&#39;re getting back from our <code>grep</code> command.
+And that will magically tell us how many sequences we&#39;re finding. We&#39;re</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc
+</code></pre></div>
+<p>That tells us the number of lines, words and characters in the file. If we
+just want the number of lines, we can use the <code>-l</code> flag for <code>lines</code>.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
+</code></pre></div>
+<p>Redirecting is not super intuitive, but it&#39;s really powerful for stringing
+together these different commands, so you can do whatever you need to do.</p>
+
+<p>The philosophy behind these command line programs is that none of them
+really do anything all that impressive. BUT when you start chaining
+them together, you can do some really powerful things really
+efficiently. If you want to be proficient at using the shell, you must
+learn to become proficient with the pipe and redirection operators:
+<code>|</code>, <code>&gt;</code>, <code>&gt;&gt;</code>.</p>
+
+<h2>Practicing searching and redirection</h2>
+
+<p>Finally, let&#39;s use the new tools in our kit and a few new ones to example our SRA metadata file.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span><span class="nb">cd</span> ../sra_metadata/
+<span class="gp">$ </span>ls
+</code></pre></div>
+<p>Take a look at the metadata file, <code>SraRunTable.txt</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>less SraRunTable.txt
+</code></pre></div>
+<p>Let&#39;s ask a few questions about the data</p>
+
+<p>1) How many of the read libraries are paired end?</p>
+
+<p>First, what are the column headers?</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>head -n 1 SraRunTable.txt
+</code></pre></div><div class="highlight"><pre><code class="language-" data-lang="">BioSample_s InsertSize_l    LibraryLayout_s Library_Name_s  LoadDate_s  MBases_l    MBytes_l    ReleaseDate_s Run_s SRA_Sample_s Sample_Name_s Assay_Type_s AssemblyName_s BioProject_s Center_Name_s Consent_s Organism_Platform_s SRA_Study_s g1k_analysis_group_s g1k_pop_code_s source_s strain_s
+</code></pre></div>
+<p>That&#39;s only the first line but it is a lot to take in.  &#39;cut&#39; is a program that will extract columns in tab-delimited
+files.  It is a very good command to know.  Lets look at just the first four columns in the header using the &#39;|&#39; redirect
+and &#39;cut&#39;</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>head -n 1 SraRunTable.txt | cut -f1-4
+</code></pre></div><div class="highlight"><pre><code class="language-" data-lang="">BioSample_s InsertSize_l      LibraryLayout_s   Library_Name_s    
+</code></pre></div>
+<p>&#39;-f1-4&#39; means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let&#39;s look at some data for just that column.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>cut -f3 SraRunTable.txt | head -n 10
+</code></pre></div><div class="highlight"><pre><code class="language-" data-lang="">LibraryLayout_s
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+SINGLE
+PAIRED
+</code></pre></div>
+<p>We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
+for just PAIRED and count the number of hits.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>cut -f3 SraRunTable.txt | grep PAIRED | wc -l
+</code></pre></div><div class="highlight"><pre><code class="language-" data-lang="">2
+</code></pre></div>
+<p>2) How many of each class of library layout are there?</p>
+
+<p>We can use some new tools &#39;sort&#39; and &#39;uniq&#39; to extract more information.  For example, cut the third column, remove the
+header and sort the values.  The &#39;-v&#39; option for greap means return all lines that DO NOT match.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
+</code></pre></div>
+<p>This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use &#39;uniq&#39; with the &#39;-c&#39; flag to
+count the different categories.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |   sort | uniq -c
+</code></pre></div><div class="highlight"><pre><code class="language-" data-lang="">  2 PAIRED
+ 35 SINGLE 
+</code></pre></div>
+<p>3) Sort the metadata file by PAIRED/SINGLE and save to a new file
+   We can use if &#39;-k&#39; option for sort to specify which column to sort on.  Note that this does something
+   similar to cut&#39;s &#39;-f&#39;.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>sort -k3 SraRunTable.txt &gt; SraRunTable_sorted_by_layout.txt
+</code></pre></div>
+<p>4) Extract only paired end records into a new file
+   Do we know PAIRED only occurs in column 4?  WE know there are only two in the file, so let&#39;s check.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep PAIRED SraRunTable.txt | wc -l
+</code></pre></div><div class="highlight"><pre><code class="language-" data-lang="">2
+</code></pre></div>
+<p>OK, we are good to go.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>grep PAIRED SraRunTable.txt &gt; SraRunTable_only_paired_end.txt
+</code></pre></div>
+<hr>
+
+<p><strong>Final Exercise</strong></p>
+
+<p>1) How many sample load dates are there?</p>
+
+<p>2) How many samples were loaded on each date</p>
+
+<p>3) Filter subsets into new files bases on load date</p>
+
+<hr>
+
+<h2>Where can I learn more about the shell?</h2>
+
+<ul>
+<li>Software Carpentry tutorial - <a href="http://software-carpentry.org/v4/shell/index.html">The Unix shell</a></li>
+<li>The shell handout - <a href="http://files.fosswire.com/2007/08/fwunixref.pdf">Command Reference</a></li>
+<li><a href="http://explainshell.com">explainshell.com</a></li>
+<li>http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html</li>
+<li>man bash</li>
+<li>Google - if you don&#39;t know how to do something, try Googling it. Other people
+have probably had the same question.</li>
+<li>Learn by doing. There&#39;s no real other way to learn this than by trying it
+out.  Write your next paper in nano (really emacs or vi), open pdfs from
+the command line, automate something you don&#39;t really need to automate.</li>
+</ul>
+
+<h2>Bonus:</h2>
+
+<p><strong>alias</strong> </p>
+
+<p><strong>.bashrc</strong></p>
+
+<p><strong>ssh and scp</strong></p>
+
+<p><strong>Regular Expressions</strong></p>
+
+<p><strong>Permissions</strong></p>
+
+<p><strong>Chaining commands together</strong></p>
+
+<p><strong>md5sum</strong></p>
+
+	  <!-- end content -->
+	</div>
+      </div>
+
+      <div class="footer">
+  <a class="label swc-blue-bg" href="">Facebook</a>
+  <a class="label swc-blue-bg" href="">Google+</a>
+  <a class="label swc-blue-bg" href="">Twitter</a>
+  <a class="label swc-blue-bg" href="">GitHub</a>
+  <a class="label swc-blue-bg" href="./LICENSE.html">License</a>
+  <a class="bugreport label swc-blue-bg" href="mailto:?subject=bug%20in%2003_searching_files.md">Bug Report</a>
+</div>
+
+    </div>
+    <!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./js/jquery-1.9.1.min.js"></script>
+<script src="./js/bootstrap/bootstrap.min.js"></script>
+
+  </body>
+</html>
