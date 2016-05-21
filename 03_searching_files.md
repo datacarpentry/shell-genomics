@@ -1,11 +1,8 @@
-
 ---
 layout: lesson
-root . 
+root: .
 title: Searching files in the Shell
-authors: "Sheldon McKay, Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani"
-comments: true
-date: 2015-07-30
+minutes: 15
 ---
 
 ## Learning objectives
