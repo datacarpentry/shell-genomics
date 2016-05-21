@@ -22,7 +22,7 @@ There are many reasons to learn about the shell.
 * To use remote computers or cloud computing, you need to use the shell.
 
 
-![Automation](./images/gvng.jpg)
+![Automation](./img/gvng.jpg)
 
 Unix is user-friendly, it's just very selective about who its friends are.
 
