@@ -255,6 +255,17 @@ have probably had the same question.
 out.  Write your next paper in nano (really emacs or vi), open pdfs from
 the command line, automate something you don't really need to automate.
 
+## More on working with tabular data in the shell
+
+If you want to learn more about searching on and manipulating tabular data, consider learning about two common tools:
+
+**awk**
+- [Intro to Awk](http://www.grymoire.com/Unix/Awk.html)
+- A very comprehensive guide: [GNU awk or 'gawk'](https://www.gnu.org/software/gawk/manual/gawk.html)
+
+**sed**
+- Sed [Tips and Tricks](http://www.thegeekstuff.com/tag/sed-tips-and-tricks/)
+- Comprehensive [sed manual](https://www.gnu.org/software/sed/manual/sed.html)
 
 ## Bonus:
 
