@@ -69,7 +69,7 @@ have to download a separate program.
 Mac
 ---  
 On Mac the shell is available through Terminal  
-Applications -> Utilities -> Terminal  
+Applications -> Utilities -> Terminal (A shortcut would be to press CMD+ spacebar for spotlight search then type terminal and press enter.) 
 Go ahead and drag the Terminal application to your Dock for easy access.
 
 Windows
@@ -138,11 +138,11 @@ So, we can see that we have several files, directories and a program. Great!
 
 Most programs take additional arguments that control their exact
 behavior. For example, `-F` and `-l` are arguments to `ls`.  The `ls`
-program, like many programs, take a lot of arguments. But how do we
+program, like many programs, takes a lot of arguments. But how do we
 know what the options are to particular commands?
 
 Most commonly used shell programs have a manual. You can access the
-manual using the `man` program. Try entering:
+manual using the `man` program. The man program will display the manual pages of the ls command page by page; use the spacebar to get tot the next page. Try entering:
 
     man ls
 
