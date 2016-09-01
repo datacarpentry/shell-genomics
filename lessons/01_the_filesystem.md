@@ -65,7 +65,7 @@ Open up the program.
 
 Linux  
 -----
-The shell is available by default when you connect to your AWS instance.  You should be set.
+The shell is available by default, you can access it using ctrl+alt+t. Then, go ahead and drag the Terminal application to your menu for easy access.
 
 
 
@@ -96,14 +96,14 @@ You will see
 
 ls stands for 'list' and it lists the contents of a directory.
 
-There are two items listed.  What are they? We can use a command line argumant with 'ls' to get more information.
+There are two items listed.  What are they? We can use a command line argument with 'ls' to get more information.
 
       ls -F
       sra_metadata/  untrimmed_fastq/
 
 Anything with a "/" after it is a directory.  
 Things with a "*" after them are programs.  
-It there are nodecorations, it's a file.
+It there are no decorations, it's a file.
 
 You can also use the command
 
@@ -127,8 +127,8 @@ There are two items in this directory with no trailing slash, so they are files.
 
 Most programs take additional arguments that control their exact
 behavior. For example, `-F` and `-l` are arguments to `ls`.  The `ls`
-program, like many programs, take a lot of arguments. Another useful one is '-a',
-which show everything, including hidden files.  How do we
+program, like many programs, take a lot of arguments. Another useful argument is `-a`,
+which shows everything, including hidden files.  How do we
 know what the options are to particular commands?
 
 Most commonly used shell programs have a manual. You can access the
@@ -156,7 +156,7 @@ than just navigating around the normal way.
 When you're working with bioinformatics programs, you're working with
 your data and it's key to be able to have that data in the right place
 and make sure the program has access to the data. Many of the problems
-people run in to with command line bioinformatics programs is not having the
+people run into with command line bioinformatics programs is not having the
 data in the place the program expects it to be.
 
 
@@ -227,7 +227,7 @@ Hint: hidden files and folders in unix start with '.', for example .my_hidden_di
 
 ## Examining the contents of other directories
 
-By default, the `ls` commands lists the contents of the working
+By default, the `ls` command lists the contents of the working
 directory (i.e. the directory you are in). You can always find the
 directory you are in using the `pwd` command. However, you can also
 give `ls` the names of other directories to view. Navigate to the
@@ -311,7 +311,7 @@ earlier that the command:
 
     cd dc_sample_data/.hidden
 
-had the same effect - it took us to the `hidden` directory. But,
+had the same effect - it took us to the `.hidden` directory. But,
 instead of specifying the full path
 (`/home/dcuser/dc_sample_data/data`), we specified a *relative path*. In
 other words, we specified the path relative to our current
@@ -324,7 +324,7 @@ then turn left on Main Street". That works great if you're standing there
 together, but not so well if you're trying to tell someone how to get there
 from another country. A full path is like GPS coordinates.
 It tells you exactly where something
-is no matter where you are right now.
+is, no matter where you are right now.
 
 You can usually use either a full path or a relative path
 depending on what is most convenient. If we are in the home directory,
@@ -350,7 +350,7 @@ How can you tell these are programs rather than plain files?
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. So, in the shell the tilde character,
-""~"", is a shortcut for your home directory. Navigate to the `dc_sample_data`
+`~`, is a shortcut for your home directory. Navigate to the `dc_sample_data`
 directory:
 
     cd
@@ -416,10 +416,10 @@ that match the given pattern.
 
 We can use the command 'echo' to see wilcards are they are intepreted by the shell.
 
-   echo *.fastq
-   SRR097977.fastq SRR098026.fastq
+    echo *.fastq
+    SRR097977.fastq SRR098026.fastq
 
-The '*' is expanded to include any file that ends with '.fastq'
+The `*` is expanded to include any file that ends with '.fastq'
 
 
 ****
@@ -452,7 +452,7 @@ You can also review your recent commands with the `history` command.  Just enter
 
     history
 
-to see a numbered list of recent commands, including this just issues
+to see a numbered list of recent commands, including this type
 `history` command.  You can reuse one of these commands directly by
 referring to the number of that command.
 
@@ -523,6 +523,7 @@ are identical to the `man` program.
 |  "g"    | to go to the beginning |
 |  "G"    | to go to the end |
 |  "q"    | to quit |
+
 
 `less` also gives you a way of searching through files. Just hit the
 "/" key to begin a search. Enter the name of the word you would like
@@ -623,13 +624,14 @@ Do the following:
 
 1.  Create a backup of your fastq files
 2.  Create a backup directory 
-3.  Copr your backup files there
+3.  Copy your backup files there
 
 * * * *
 
 By default, `rm`, will NOT delete directories. You can tell `rm` to
-delete a directory using the `-r` option. Let's delete that `new` directory
-we just made. Enter the following command:
+delete a directory using the `-r` option. `r` stands for recursive, which means all inside the directory.
+Use this command option with care. Let's delete that `new` directory
+we just made entering the following command:
 
     rm -r backup
 
@@ -641,7 +643,7 @@ a FASTA file, but you'll see as we go through other tutorials, there are
 a lot of reasons we'll want to write a file, or edit an existing file.
 
 To write in files, we're going to use the program `nano`. We're going to create
-a file that contains the favorite grep command so you can remember it for later. We'll name this file
+a file that contains the favorite `grep` command so you can remember it for later. We'll name this file
 'awesome.sh'.
 
     nano awesome.sh
