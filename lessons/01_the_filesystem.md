@@ -103,7 +103,7 @@ There are two items listed.  What are they? We can use a command line argumant w
 
 Anything with a "/" after it is a directory.  
 Things with a "*" after them are programs.  
-It there are nodecorations, it's a file.
+If there are no decorations, it's a file.
 
 You can also use the command
 
