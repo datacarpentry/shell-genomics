@@ -44,30 +44,6 @@ a shell command are doing.
 * [http://explainshell.com](http://explainshell.com)
 * [http://www.commandlinefu.com](http://www.commandlinefu.com)
 
-
-## How to access the shell
-
-The shell is already available as an application on Mac and Linux. For Windows, you'll
-need to download a separate program.
-
-
-Mac
----  
-On Mac the shell is available through Terminal  
-Applications -> Utilities -> Terminal  
-Go ahead and drag the Terminal application to your Dock for easy access.
-
-Windows
--------
-For Windows, we're going to be using the command line application gitbash.  
-Download and install [gitbash](http://msysgit.github.io);
-Open up the program.
-
-Linux  
------
-The shell is available by default when you connect to your Amazon Web Service (AWS) instance.  You should be set.
-
-
 ## Starting with the shell
 
 We will spend most of our time learning about the basics of the shell
