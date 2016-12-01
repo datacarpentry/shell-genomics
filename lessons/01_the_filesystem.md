@@ -5,7 +5,7 @@ comments: true
 date: 2014-07-30
 ---
 
-# The Shell
+# The Command Line (aka "the shell")
 
 ## What is the shell?
 
@@ -44,31 +44,6 @@ a shell command are doing.
 * [http://explainshell.com](http://explainshell.com)
 * [http://www.commandlinefu.com](http://www.commandlinefu.com)
 
-
-## How to access the shell
-
-The shell is already available on Mac and Linux. For Windows, you'll
-have to download a separate program.
-
-
-Mac
----  
-On Mac the shell is available through Terminal  
-Applications -> Utilities -> Terminal  
-Go ahead and drag the Terminal application to your Dock for easy access.
-
-Windows
--------
-For Windows, we're going to be using gitbash.  
-Download and install [gitbash](http://msysgit.github.io);
-Open up the program.
-
-Linux  
------
-The shell is available by default when you connect to your AWS instance.  You should be set.
-
-
-
 ## Starting with the shell
 
 We will spend most of our time learning about the basics of the shell
@@ -79,16 +54,15 @@ internet access, because you're going to get it off the web.
 
 We're going to be working with data on our remote server.
 
+After logging on, let's check out the example data.
 
-After loggin on, let's check out the example data.
-
-Let's go into the sample data  directory
+Let's go into the sample data directory
 
       cd dc_sample data
 
 'cd' stands for 'change directory'
 
-Let's see what is in here. Type
+Let's see what the contents of this directory are. Type
       ls
 
 You will see
@@ -101,35 +75,30 @@ There are two items listed.  What are they? We can use a command line argumant w
       ls -F
       sra_metadata/  untrimmed_fastq/
 
-Anything with a "/" after it is a directory.  
-Things with a "*" after them are programs.  
-If there are no decorations, it's a file.
+The `-F` argument adds decorations to distinguish between directories, programs and files. Anything with a "/" after it is a directory. Things with a "*" after them are programs. If there are no decorations, it's a file.
 
-You can also use the command
+You can also use the `-l` argument. The 'l' stands for "long". This argument displays additional information about each item in a directory.
 
     ls -l
     drwxr-x--- 2 dcuser sudo 4096 Jul 30 11:37 sra_metadata
     drwxr-xr-x 2 dcuser sudo 4096 Jul 30 11:38 untrimmed_fastq
 
-to see whether items in a directory are files or directories. `ls -l` gives a lot more
-information too.
-
-Let's go into the untrimmed_fastq directory and see what is in there.
+Let's navigate into the untrimmed_fastq directory and see what is in there.
 
     cd untrimmed_fastq
     ls -F
     SRR097977.fastq  SRR098026.fastq
 
-There are two items in this directory with no trailing slash, so they are files.
+The `-F` argument shows that there are two items in this directory with no trailing slash or other decorations. These are files.
 
 
 ## Arguments
 
 Most programs take additional arguments that control their exact
 behavior. For example, `-F` and `-l` are arguments to `ls`.  The `ls`
-program, like many programs, take a lot of arguments. Another useful one is '-a',
-which show everything, including hidden files.  How do we
-know what the options are to particular commands?
+program, like many programs, take a lot of arguments. Another useful one is `-a`,
+which shows everything (`a` stands for "all"), including hidden files.  How can you find out
+what arguments exist for different programs and what those arguments do?
 
 Most commonly used shell programs have a manual. You can access the
 manual using the `man` program. Try entering:
@@ -137,28 +106,27 @@ manual using the `man` program. Try entering:
     man ls
 
 This will open the manual page for `ls`. Use the space key to go
-forward and b to go backwards. When you are done reading, just hit `q`
+forward and `b` to go backwards. When you are done reading, hit `q`
 to quit.
 
 Programs that are run from the shell can get extremely complicated. To
 see an example, open up the manual page for the `find` program.
 No one can possibly learn all of
-these arguments, of course. So you will probably find yourself
-referring back to the manual page frequently.
+these arguments. So you will probably find yourself
+referring back to the manual page frequently. The manual pages are your friends!
 
 
-## The Unix directory file structure (a.k.a. where am I?)
+## The Unix directory file structure (a.k.a. Where am I?)
 
-As you've already just seen, you can move around in different directories
+As you've already seen, you can move around in different directories
 or folders at the command line. Why would you want to do this, rather
-than just navigating around the normal way.
+than just navigating around the normal way (i.e. pointing and clicking)?
 
 When you're working with bioinformatics programs, you're working with
 your data and it's key to be able to have that data in the right place
 and make sure the program has access to the data. Many of the problems
 people run in to with command line bioinformatics programs is not having the
 data in the place the program expects it to be.
-
 
 ## Moving around the file system
 
