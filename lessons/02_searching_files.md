@@ -13,6 +13,11 @@ Adapted from the lesson by Tracy Teal.
 Original contributors:
 Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://software-carpentry.org/)
 
+# Learning Objectives
+* Employ the grep command to search for information within files.
+* Print the results of a command to a file.
+* Access resources to learn more information about the shell.
+
 ## Searching files
 
 We showed a little how to search within a file using `less`. We can also
