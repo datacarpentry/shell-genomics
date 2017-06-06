@@ -1,22 +1,16 @@
---
-layout: page
-title: "The Shell"
-comments: true
-date: 2015-07-30
 ---
-
-# The Shell
-
-Author: Sheldon McKay
-
-Adapted from the lesson by Tracy Teal.
-Original contributors:
-Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://software-carpentry.org/)
-
-# Learning Objectives
-* Employ the grep command to search for information within files.
-* Print the results of a command to a file.
-* Access resources to learn more information about the shell.
+title: "Introduction"
+teaching: 0
+exercises: 0
+questions:
+- "Key question"
+objectives:
+- Employ the grep command to search for information within files.
+- Print the results of a command to a file.
+- Access resources to learn more information about the shell.
+keypoints:
+- "First key point."
+---
 
 ## Searching files
 
