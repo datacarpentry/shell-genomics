@@ -14,151 +14,12 @@ keypoints:
 - "First key point."
 ---
 
-## What is the shell?
-
-The *shell* is a program that presents a command line interface
-which allows you to control your computer using commands entered
-with a keyboard instead of controlling graphical user interfaces
-(GUIs) with a mouse/keyboard combination.
-
-There are many reasons to learn about the shell.
-
-* For most bioinformatics tools, you have to use the shell. There is no
-graphical interface. If you want to work in metagenomics or genomics you're
-going to need to use the shell.
-* The shell gives you *power*. The command line gives you the power to do your work more efficiently and
-more quickly.  When you need to do things tens to hundreds of times,
-knowing how to use the shell is transformative.
-* To use remote computers or cloud computing, you need to use the shell.
-
-
-![Automation](../img/gvng.jpg)
-
-  Unix is user-friendly. It's just very selective about who its friends are.
-
-
-Today we're going to go through how to access Unix/Linux and some of the basic
-shell commands.
-
-## Information on the shell
-
-shell cheat sheets:<br>
-* [http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/](http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/)
-* [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
-
-Explain shell - a web site where you can see what the different components of
-a shell command are doing.  
-* [http://explainshell.com](http://explainshell.com)
-* [http://www.commandlinefu.com](http://www.commandlinefu.com)
-
-
-## How to access the shell
-
-The shell is already available on Mac and Linux. For Windows, you'll
-have to download a separate program.
-
-
-Mac
----  
-On Mac the shell is available through Terminal  
-Applications -> Utilities -> Terminal  
-Go ahead and drag the Terminal application to your Dock for easy access.
-
-Windows
--------
-For Windows, we're going to be using gitbash.  
-Download and install [gitbash](http://msysgit.github.io);
-Open up the program.
-
-Linux  
------
-The shell is available by default when you connect to your AWS instance.  You should be set.
-
-
-
-## Starting with the shell
-
-We will spend most of our time learning about the basics of the shell
-by manipulating some experimental data.
-
-Now we're going to download the data for the tutorial. For this you'll need
-internet access, because you're going to get it off the web.  
-
-We're going to be working with data on our remote server.
-
-
-After loggin on, let's check out the example data.
-
-Let's go into the sample data  directory
-
-      cd dc_sample data
-
-'cd' stands for 'change directory'
-
-Let's see what is in here. Type
-      ls
-
-You will see
-    sra_metadata  untrimmed_fastq
-
-ls stands for 'list' and it lists the contents of a directory.
-
-There are two items listed.  What are they? We can use a command line argumant with 'ls' to get more information.
-
-      ls -F
-      sra_metadata/  untrimmed_fastq/
-
-Anything with a "/" after it is a directory.  
-Things with a "*" after them are programs.  
-If there are no decorations, it's a file.
-
-You can also use the command
-
-    ls -l
-    drwxr-x--- 2 dcuser sudo 4096 Jul 30 11:37 sra_metadata
-    drwxr-xr-x 2 dcuser sudo 4096 Jul 30 11:38 untrimmed_fastq
-
-to see whether items in a directory are files or directories. `ls -l` gives a lot more
-information too.
-
-Let's go into the untrimmed_fastq directory and see what is in there.
-
-    cd untrimmed_fastq
-    ls -F
-    SRR097977.fastq  SRR098026.fastq
-
-There are two items in this directory with no trailing slash, so they are files.
-
-
-## Arguments
-
-Most programs take additional arguments that control their exact
-behavior. For example, `-F` and `-l` are arguments to `ls`.  The `ls`
-program, like many programs, take a lot of arguments. Another useful one is '-a',
-which show everything, including hidden files.  How do we
-know what the options are to particular commands?
-
-Most commonly used shell programs have a manual. You can access the
-manual using the `man` program. Try entering:
-
-    man ls
-
-This will open the manual page for `ls`. Use the space key to go
-forward and b to go backwards. When you are done reading, just hit `q`
-to quit.
-
-Programs that are run from the shell can get extremely complicated. To
-see an example, open up the manual page for the `find` program.
-No one can possibly learn all of
-these arguments, of course. So you will probably find yourself
-referring back to the manual page frequently.
-
 
 ## The Unix directory file structure (a.k.a. where am I?)
 
 As you've already just seen, you can move around in different directories
 or folders at the command line. Why would you want to do this, rather
-than just navigating around the normal way.
+than just navigating around by clicking on folders as you might usually do.
 
 When you're working with bioinformatics programs, you're working with
 your data and it's key to be able to have that data in the right place
@@ -265,32 +126,6 @@ the intermediate directory.
 List the 'SRR097977.fastq' file from your home directory without changing directories
 ****
 
-### Shortcut: Tab Completion
-
-Navigate to the home directory. Typing out directory names can waste a
-lot of time. When you start typing out the name of a directory, then
-hit the tab key, the shell will try to fill in the rest of the
-directory name. For example, type `cd` to get back to your home directy, then enter:
-
-    cd dc_<tab>
-
-The shell will fill in the rest of the directory name for
-`dc_sample_data`. Now go to dc_sample_data/untrimmed_fastq
-
-    ls SR<tab><tab>
-
-When you hit the first tab, nothing happens. The reason is that there
-are multiple directories in the home directory which start with
-`SR`. Thus, the shell does not know which one to fill in. When you hit
-tab again, the shell will list the possible choices.
-
-Tab completion can also fill in the names of programs. For example,
-enter `e<tab><tab>`. You will see the name of every program that
-starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
-will see that tab completion works.
-
-
-
 ## Full vs. Relative Paths
 
 The `cd` command takes an argument which is the directory
@@ -346,7 +181,7 @@ navigate amongst them.
 **Exercise**
 
 Now, list the contents of the /bin directory. Do you see anything
-familiar in there? 
+familiar in there?
 How can you tell these are programs rather than plain files?
 
 ***
@@ -419,7 +254,7 @@ lists only the file that ends with '977.fastq'
 
 So how does this actually work? Well...when the shell (bash) sees a
 word that contains the `*` character, it automatically looks for filenames
-that match the given pattern. 
+that match the given pattern.
 
 We can use the command 'echo' to see wilcards are they are intepreted by the shell.
 
@@ -585,7 +420,7 @@ command backs up the file. Navigate to the `data` directory and enter:
 
     cp SRR098026.fastq SRR098026-copy.fastq
     ls -F
-    SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq 
+    SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
 
 Now SRR098026-copy.fastq has been created as a copy of SRR098026.fastq
 
@@ -611,7 +446,7 @@ important, let's rename it:
 
     cd backup
     mv SRR098026-copy.fastq SRR098026-copy.fastq_DO_NOT_TOUCH!
-    ls 
+    ls
     SRR098026-copy.fastq_DO_NOT_TOUCH!
 
     Finally, we decided this was silly and want to start over.
@@ -629,7 +464,7 @@ just nicely put the files in the Trash. They're really gone.
 Do the following:
 
 1.  Create a backup of your fastq files
-2.  Create a backup directory 
+2.  Create a backup directory
 3.  Copr your backup files there
 
 * * * *
@@ -675,5 +510,3 @@ Open 'awesome.sh' and add "echo AWESOME!" after the grep command and save the fi
 We're going to come back and use this file in just a bit.
 
 ***
-
-
