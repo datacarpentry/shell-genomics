@@ -10,7 +10,7 @@ date: 2014-07-30
 ## Learning Objectives
 * Navigate the Unix file system
 * Use arguments to modify the behavior of commands at the command line
-* Use tab completion to code efficiently
+* Use tab completion to work more efficiently at the command line
 
 
 ## What is the shell?
