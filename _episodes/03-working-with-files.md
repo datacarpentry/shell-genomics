@@ -254,7 +254,7 @@ Enter this command:
 The `mv` command is also how you rename files. Since this file is so
 important, let's rename it! 
 
-Type
+Type:
 
     cd backup
     mv SRR098026-copy.fastq SRR098026-copy.fastq_DO_NOT_TOUCH!
@@ -266,6 +266,8 @@ Type
 
 Finally, we decided this was silly and want to start over.
 
+Type:
+
     rm backup/SRR*
 
 The `rm` file permanently removes the file. Be careful with this command. It doesn't
@@ -273,7 +275,9 @@ just nicely put the files in the Trash. They're really gone.
 
 By default, `rm`, will NOT delete directories. You can tell `rm` to
 delete a directory using the `-r` option. Let's delete that `new` directory
-we just made. Enter the following command:
+we just made. 
+
+Enter the following command:
 
     rm -r backup
 
