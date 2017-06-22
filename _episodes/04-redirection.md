@@ -20,7 +20,7 @@ utility for searching plain-text data sets for lines matching a string or regula
 Let's give it a try!
 
 Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns  
-Let's search for the string NNNNNNNNNN in file 
+Let's search for the string NNNNNNNNNN in file
 
      grep NNNNNNNNNN SRR098026.fastq
 
@@ -115,7 +115,7 @@ learn to become proficient with the pipe and redirection operators:
 
 Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
 
-    cd 
+    cd
     cd dc_sample_data/
 
 Let's ask a few questions about the data
@@ -147,7 +147,7 @@ and 'cut'
     SINGLE
     SINGLE
     PAIRED
-    
+
 We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
 for just PAIRED and count the number of hits.
 
@@ -160,13 +160,13 @@ We can use some new tools 'sort' and 'uniq' to extract more information.  For ex
 header and sort the values.  The '-v' option for greap means return all lines that DO NOT match.
 
     cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
-    
+
 This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use 'uniq' with the '-c' flag to
 count the different categories.
 
     cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
       2 PAIRED
-     35 SINGLE 
+     35 SINGLE
 
 3) Sort the metadata file by PAIRED/SINGLE and save to a new file
    We can use if '-k' option for sort to specify which column to sort on.  Note that this does something
@@ -183,7 +183,7 @@ count the different categories.
 OK, we are good to go.
 
     grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
-    
+
 
 ****
 **Final Exercise**
@@ -194,42 +194,3 @@ OK, we are good to go.
 
 3) Filter subsets into new files bases on load date
 ****
-
- 
-
-
-## Where can I learn more about the shell?
-
-- Software Carpentry tutorial - [The Unix shell](http://software-carpentry.org/v4/shell/index.html)
-- The shell handout - [Command Reference](http://files.fosswire.com/2007/08/fwunixref.pdf)
-- [explainshell.com](http://explainshell.com)
-- http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
-- man bash
-- Google - if you don't know how to do something, try Googling it. Other people
-have probably had the same question.
-- Learn by doing. There's no real other way to learn this than by trying it
-out.  Write your next paper in nano (really emacs or vi), open pdfs from
-the command line, automate something you don't really need to automate.
-
-
-## Bonus:
-
-**backtick, xargs**: Example find all files with certain text
-
-**alias** -> rm -i
-
-**variables** -> use a path example
-
-**.bashrc**
-
-**du**
-
-**ln**
-
-**ssh and scp**
-
-**Regular Expressions**
-
-**Permissions**
-
-**Chaining commands together**
