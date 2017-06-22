@@ -154,15 +154,22 @@ referring back to the manual page frequently.
 
 ### Shortcut: Tab Completion
 
-Navigate to the home directory. Typing out directory names can waste a
-lot of time. When you start typing out the name of a directory, then
+Typing out file or directory names can waste a
+lot of time and it's easy to make typing mistakes. Instead we can use tab complete as a shortcut. When you start typing out the name of a directory, then
 hit the tab key, the shell will try to fill in the rest of the
-directory name. For example, type `cd` to get back to your home directy, then enter:
+directory name.
+
+For example, type `cd` to get back to your home directly, then enter:
 
     cd dc_<tab>
 
 The shell will fill in the rest of the directory name for
-`dc_sample_data`. Now go to dc_sample_data/untrimmed_fastq
+`dc_sample_data`.
+
+Now change directories to **untrimmed_fastq** in **dc_sample_data**
+
+    cd dc_sample_data
+    cd untrimmed_fastq
 
     ls SR<tab><tab>
 
@@ -175,4 +182,3 @@ Tab completion can also fill in the names of programs. For example,
 enter `e<tab><tab>`. You will see the name of every program that
 starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
 will see that tab completion works.
-
