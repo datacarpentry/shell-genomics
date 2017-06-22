@@ -71,7 +71,7 @@ The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should have a new file called bad_reads.txt. Take
 a look at it and see if it has what you think it should.
 
-If we use '>>', it will append to rather tha overwrite a file.  This can be useful for
+If we use '>>', it will append to rather than overwrite a file.  This can be useful for
 saving more than one search, for example:
 
     grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
