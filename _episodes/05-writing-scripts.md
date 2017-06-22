@@ -3,13 +3,14 @@ title: "Writing Scripts"
 teaching: 0
 exercises: 0
 questions:
-- How can we execute a commonly used set of commands
+- How can we easily execute a commonly used set of commands.
 objectives:
 - Use the nano text editor to modify text files.
-- Use the history command to review recent commands for use in a script
-- Use the bash command to execute a shell script
+- Write a basic shell script
+- Use the bash command to execute a shell script.
+- Use chmod to make a script an executable program.
 keypoints:
-- "First key point."
+- Scripts are a collection of commands executed together
 ---
 
 ## Writing files
