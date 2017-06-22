@@ -216,7 +216,7 @@ Thus:
 
     ls ..
 
-prints the contents of the `/home/dcuser/dc_sample_data`.
+prints the contents of the `/home/dcuser/dc_sample_data` directory.
 
 You can chain these together like so:
 
