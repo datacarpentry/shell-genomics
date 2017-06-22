@@ -14,18 +14,6 @@ date: 2014-07-30
 * Use the nano text editor to modify text files.
 * Use arguments to modify the behavior of command line commands.
 
----
-title: "Introduction"
-teaching: 0
-exercises: 0
-questions:
-- "Key question"
-objectives:
-- Understand what the command line is
-- Understand why the command line is useful
-keypoints:
-- "First key point."
----
 
 ## What is the shell?
 
