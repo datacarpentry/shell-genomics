@@ -5,11 +5,10 @@ exercises: 0
 questions:
 - "Key question"
 objectives:
-- Navigate the Unix file system.
-- Copy and move files.
-- Use the history command to review recent commands in the shell.
-- Use the nano text editor to modify text files.
-- Use arguments to modify the behavior of command line commands.
+- Navigate the Unix file system
+- Understand and use file paths and relative paths
+- Keyboard shortcuts to make work more efficiently at the command line
+- 
 keypoints:
 - "First key point."
 ---
