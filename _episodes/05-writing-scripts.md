@@ -3,13 +3,11 @@ title: "Writing Scripts"
 teaching: 0
 exercises: 0
 questions:
-- "Key question"
+- How can we execute a commonly used set of commands
 objectives:
-- Navigate the Unix file system.
-- Copy and move files.
-- Use the history command to review recent commands in the shell.
 - Use the nano text editor to modify text files.
-- Use arguments to modify the behavior of command line commands.
+- Use the history command to review recent commands for use in a script
+- Use the bash command to execute a shell script
 keypoints:
 - "First key point."
 ---
