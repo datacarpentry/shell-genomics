@@ -19,8 +19,8 @@ search within files without even opening them, using `grep`. Grep is a command-l
 utility for searching plain-text data sets for lines matching a string or regular expression.
 Let's give it a try!
 
-Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns  
-Let's search for the string NNNNNNNNNN in file
+Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns.  
+Let's search for the string NNNNNNNNNN in file.
 
      grep NNNNNNNNNN SRR098026.fastq
 
