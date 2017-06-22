@@ -190,9 +190,9 @@ How can you tell these are programs rather than plain files?
 
 ***
 
-## Saving time with shortcuts, wild cards, and tab completion
+## Saving time with navigation shortcuts and tab completion
 
-### Shortcuts
+### Navigational Shortcuts
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. So, in the shell the tilde character,
@@ -210,17 +210,20 @@ This prints the contents of your home directory, without you having to
 type the full path. 
 
 The shortcut `..` always refers to the directory
-above your current directory. Thus:
+above your current directory. 
+
+Thus:
 
     ls ..
 
-prints the contents of the `/home/dcuser/dc_sample_data`. You can chain
-these together, so:
+prints the contents of the `/home/dcuser/dc_sample_data`.
+
+You can chain these together like so:
 
     ls ../../
 
-prints the contents of `/home/dcuser` which is your home
-directory. Finally, the special directory `.` always refers to your
+prints the contents of `/home/dcuser` which is your home directory. 
+Finally, the special directory `.` always refers to your
 current directory. So, `ls`, `ls .`, and `ls ././././.` all do the
 same thing, they print the contents of the current directory. This may
 seem like a useless shortcut right now, but we'll see when it is
@@ -230,3 +233,35 @@ To summarize, while you are in the `shell` directory, the commands
 `ls ~`, `ls ~/.`, `ls ../../`, and `ls /home/dcuser` all do exactly the
 same thing. These shortcuts are not necessary, they are provided for
 your convenience.
+
+### Tab Completion
+
+Navigate to the home directory. Typing out directory names can waste a
+lot of time. When you start typing out the name of a directory, then
+hit the tab key, the shell will try to fill in the rest of the
+directory name.
+
+For example, type:
+
+`cd` 
+
+to get back to your home directy, then enter:
+
+    cd dc_<tab>
+
+The shell will fill in the rest of the directory name for
+`dc_sample_data`. Now go to dc_sample_data/untrimmed_fastq.
+
+Type:
+
+    ls SR<tab><tab>
+
+When you hit the first tab, nothing happens. The reason is that there
+are multiple directories in the home directory which start with
+`SR`. Thus, the shell does not know which one to fill in. When you hit
+tab again, the shell will list the possible choices.
+
+Tab completion can also fill in the names of programs. For example,
+enter `e<tab><tab>`. You will see the name of every program that
+starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
+will see that tab completion works.
