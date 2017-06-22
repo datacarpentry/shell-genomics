@@ -4,21 +4,15 @@ title: "The Shell"
 comments: true
 date: 2014-07-30
 ---
+
+# The Shell
+
 ## Learning Objectives
 * Navigate the Unix file system
 * View, copy, and move files
 * Use the history command to review recently used commands
 * Use Nano, a built-in text editor, to modify a file 
 * Use arguments to modify the behavior of commands at the command line
-
-# The Shell
-
-# Learning Objectives
-* Navigate the Unix file system.
-* Copy and move files.
-* Use the history command to review recent commands in the shell.
-* Use the nano text editor to modify text files.
-* Use arguments to modify the behavior of command line commands.
 
 
 ## What is the shell?
