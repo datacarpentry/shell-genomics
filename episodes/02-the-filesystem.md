@@ -86,8 +86,7 @@ directory. `..` means go back up a level.
 * * * *
 **Exercise**
 
-Now we're going to try a hunt.  Find a hidden directory in dc_sample_data list its contents
-and file the text file in there.  What is the name of the file?
+Now we're going to try a hunt.  Find the hidden directory in dc_sample_data, list its contents, and identify the name of the text file in that directory.
 
 Hint: hidden files and folders in unix start with '.', for example .my_hidden_directory
 * * * *
@@ -110,7 +109,7 @@ Then enter the command:
     ls dc_sample_data
 
 This will list the contents of the `dc_sample_data` directory without
-you having to navigate there.
+your having to navigate there.
 
 The `cd` command works in a similar way. Try entering:
 
@@ -123,7 +122,7 @@ the intermediate directory.
 ****
 **Exercise**
 
-List the 'SRR097977.fastq' file from your home directory without changing directories
+List the contents of the directory containing the 'SRR097977.fastq' file. Do this from your home directory without leaving that directory.
 ****
 
 ## Full vs. Relative Paths
@@ -176,6 +175,30 @@ involves less typing.
 Over time, it will become easier for you to keep a mental note of the
 structure of the directories that you are using and how to quickly
 navigate amongst them.
+
+***
+## Relative Path Resolution
+
+Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
+what will `ls ../backup` display?
+
+1.  `../backup: No such file or directory`
+2.  `2012-12-01 2013-01-08 2013-01-27`
+3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
+4.  `original pnas_final pnas_sub`
+
+![File System for Challenge Questions](../fig/filesystem-challenge.svg)
+
+> ## Solution
+> 1. No: there *is* a directory `backup` in `/Users`.
+> 2. No: this is the content of `Users/thing/backup`,
+>    but with `..` we asked for one level further up.
+> 3. No: see previous explanation.
+>    Also, we did not specify `-F` to display `/` at the end of the directory names.
+> 4. Yes: `../backup` refers to `/Users/backup`.
+{: .solution}
+{: .challenge}
+***
 
 ***
 **Exercise**
