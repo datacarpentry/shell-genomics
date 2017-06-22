@@ -9,10 +9,8 @@ date: 2014-07-30
 
 ## Learning Objectives
 * Navigate the Unix file system
-* View, copy, and move files
-* Use the history command to review recently used commands
-* Use Nano, a built-in text editor, to modify a file 
 * Use arguments to modify the behavior of commands at the command line
+* Use tab completion to code efficiently
 
 
 ## What is the shell?
