@@ -1,17 +1,16 @@
 ---
-layout: page
 title: "The Shell"
-comments: true
-date: 2014-07-30
+teaching: 0
+exercises: 0
+questions:
+- "Key question"
+objectives:
+- Navigate the Unix file system
+- Use arguments to modify the behavior of commands at the command line
+- Use tab completion to work more efficiently at the command line
+keypoints:
+- "First key point."
 ---
-
-# The Shell
-
-## Learning Objectives
-* Navigate the Unix file system
-* Use arguments to modify the behavior of commands at the command line
-* Use tab completion to work more efficiently at the command line
-
 
 ## What is the shell?
 
