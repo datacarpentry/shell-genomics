@@ -5,11 +5,9 @@ exercises: 0
 questions:
 - "Key question"
 objectives:
-- Navigate the Unix file system.
-- Copy and move files.
-- Use the history command to review recent commands in the shell.
-- Use the nano text editor to modify text files.
-- Use arguments to modify the behavior of command line commands.
+- Use the wild card shortcut
+- Use the history command to view recently used commands
+- View, copy, move, and create files
 keypoints:
 - "First key point."
 ---
