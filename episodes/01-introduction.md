@@ -7,12 +7,10 @@ date: 2014-07-30
 
 # The Shell
 
-# Learning Objectives
-* Navigate the Unix file system.
-* Copy and move files.
-* Use the history command to review recent commands in the shell.
-* Use the nano text editor to modify text files.
-* Use arguments to modify the behavior of command line commands.
+## Learning Objectives
+* Navigate the Unix file system
+* Use arguments to modify the behavior of commands at the command line
+* Use tab completion to work more efficiently at the command line
 
 
 ## What is the shell?
