@@ -1,15 +1,19 @@
 ---
-title: "Introduction"
-teaching: 0
-exercises: 0
-questions:
-- "Key question"
-objectives:
-- Understand what the command line is
-- Understand why the command line is useful
-keypoints:
-- "First key point."
+layout: page
+title: "The Shell"
+comments: true
+date: 2014-07-30
 ---
+
+# The Shell
+
+# Learning Objectives
+* Navigate the Unix file system.
+* Copy and move files.
+* Use the history command to review recent commands in the shell.
+* Use the nano text editor to modify text files.
+* Use arguments to modify the behavior of command line commands.
+
 
 ## What is the shell?
 
