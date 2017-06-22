@@ -119,11 +119,11 @@ The `cd` command works in a similar way. Try entering:
 and you will jump directly to `untrimmed_fastq` without having to go through
 the intermediate directory.
 
-****
+* * * *
 **Exercise**
 
 List the contents of the directory containing the 'SRR097977.fastq' file. Do this from your home directory without leaving that directory.
-****
+* * * *
 
 ## Full vs. Relative Paths
 
