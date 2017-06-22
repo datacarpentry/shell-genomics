@@ -52,9 +52,9 @@ That (/) at the base is often also called the 'top' level.
 When you are working at your computer or log in to a remote computer,
 you are on one of the branches of that tree, your home directory (/home/dcuser)
 
-Now let's go do that same navigation at the command line.
+Now let's go do that same navigation at the command line. 
 
-Type
+Type:
 
      cd
 
@@ -65,7 +65,9 @@ Now using `cd` and `ls`, go in to the 'dc_sample_data' directory and list its co
 Let's also check to see where we are. Sometimes when we're wandering around
 in the file system, it's easy to lose track of where we are and get lost.
 
-If you want to know what directory you're currently in, type
+Now let's see what directory you're currently in.
+
+Type:
 
      pwd
 
@@ -76,7 +78,7 @@ type `cd dc_sample_data`? Try it and see what happens.
 
 To go 'back up a level' we need to use `..`
 
-Type
+Type:
 
      cd ..
 
@@ -112,7 +114,9 @@ Then enter the command:
 This will list the contents of the `dc_sample_data` directory without
 you having to navigate there.
 
-The `cd` command works in a similar way. Try entering:
+The `cd` command works in a similar way.
+
+Try entering:
 
     cd
     cd dc_sample_data/untrimmed_fastq
@@ -203,7 +207,9 @@ Then enter the command:
     ls ~
 
 This prints the contents of your home directory, without you having to
-type the full path. The shortcut `..` always refers to the directory
+type the full path. 
+
+The shortcut `..` always refers to the directory
 above your current directory. Thus:
 
     ls ..
