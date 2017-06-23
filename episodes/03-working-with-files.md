@@ -105,7 +105,7 @@ then you could repeat command #260 by simply entering:
 ****
 **Exercise**
 
-1. Find the line number in your history for the command that listed all the
+Find the line number in your history for the command that listed all the
 files in /bin.
 
 ****
