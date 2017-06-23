@@ -58,14 +58,15 @@ The '*' is expanded to include any file that ends with '.fastq'
 ****
 **Exercise**
 
-Do each of the following using a single `ls` command without
-navigating to a different directory.
+Do each of the following tasks from your current directory using a single `ls` command.
 
 1.  List all of the files in `/bin` that start with the letter 'c
 2.  List all of the files in `/bin` that contain the letter 'a'
 3.  List all of the files in `/bin` that end with the letter 'o'
 
-BONUS: List all of the files in '/bin' that contain the letter 'a' or 'c'
+BONUS: List all of the files in '/bin' that contain the letter 'a' or the letter 'c'
+
+HINT: This requires a Unix wildcard that we haven't talked about yet. Trying searching the internet for information about Unix wildcards to find what you need to solve the bonus problem.
 
 ****
 
@@ -104,8 +105,8 @@ then you could repeat command #260 by simply entering:
 ****
 **Exercise**
 
-1. Find the line number in your history for the last exercise (listing
-files in /bin) and reissue that command.
+1. Find the line number in your history for the command that listed all the
+files in /bin.
 
 ****
 
@@ -167,7 +168,7 @@ works its way forward. If you are at the end of the file and search
 for the word "cat", `less` will not find it. You need to go to the
 beginning of the file and search.
 
-For instance, let's search for the sequence `GTGCGGGCAATTAACAGGGGTTCAC` in our file.
+For instance, let's search the file we have open for the sequence `GTGCGGGCAATTAACAGGGGTTCAC`.
 You can see that we go right to that sequence and can see
 what it looks like.
 
@@ -254,9 +255,9 @@ just nicely put the files in the Trash. They're really gone.
 
 Do the following:
 
-1.  Create a backup of your fastq files
-2.  Create a backup directory
-3.  Copy your backup files there
+1.  Create a backup of your SRR097977.fastq file in the directory containing the original file.
+2.  Move the backup copy to the backup directory.
+3.  Rename the backup copy of your file.
 
 * * * *
 
