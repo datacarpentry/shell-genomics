@@ -36,7 +36,7 @@ for example:
     +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-****
+* * * *
 **Exercise**
 
 1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
@@ -44,7 +44,7 @@ In addition to identifying the line containing the sequence, have your search al
 the line containing the name of the sequence (tip: the name of the sequence is listed after the '@' sign).
 
 2) Search for the sequence AAGTT in both fastq files. Get the lines containing the name of the sequence and the sequence itself.
-****
+* * * *
 
 ## Redirection
 
@@ -116,7 +116,7 @@ Finally, let's use the new tools in our kit and a few new ones to example our SR
 
 Let's ask a few questions about the data.
 
-### How many of the read libraries are paired end?
+#### How many of the read libraries are paired end?
 
 We know this information is somewhere in our SraRunTable.txt file, we just need to find it. First, let's look at the column headers.
 
@@ -150,7 +150,7 @@ for just PAIRED and count the number of hits.
     cut -f3 SraRunTable.txt | grep PAIRED | wc -l
     2
 
-### How many of each class of library layout are there?  
+#### How many of each class of library layout are there?  
 
 We can use some new tools 'sort' and 'uniq' to extract more information.  For example, cut the third column, remove the
 header and sort the values.  The '-v' option for greap means return all lines that DO NOT match.
@@ -164,14 +164,14 @@ count the different categories.
       2 PAIRED
      35 SINGLE
 
-### Can we sort the file by PAIRED/SINGLE and save it to a new file?  
+#### Can we sort the file by PAIRED/SINGLE and save it to a new file?  
 
    We can use the '-k' option for sort to specify which column to sort on.  Note that this does something
    similar to cut's '-f'.
 
     sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
     
-### Can we extract only paired end records into a new file?  
+#### Can we extract only paired end records into a new file?  
 
    Do we know PAIRED only occurs in column 4?  We know there are only two in the file, so let's check.
 
@@ -183,7 +183,7 @@ OK, we are good to go.
     grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 
 
-****
+* * * *
 **Final Exercise**
 
 1) How many sample load dates are there?
@@ -191,4 +191,4 @@ OK, we are good to go.
 2) How many samples were loaded on each date?
 
 3) Filter subsets into new files based on load date.
-****
+* * * *
