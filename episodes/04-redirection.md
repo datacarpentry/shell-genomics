@@ -24,8 +24,7 @@ Let's search for the string NNNNNNNNNN in the SRR098026 file.
 
      grep NNNNNNNNNN SRR098026.fastq
 
-We get back a lot of lines. What we want to see is the whole fastq record for each of these reads. The fastq record consists of one line before the sequence information as well as two lines after. We can use the '-B' argument for grep to return the matched line plus one before (-B 1) and two lines after (-A 2). Since each record is four lines and the second line is the sequence, this should
-give the whole record.
+We get back a lot of lines. What we want to see is the whole fastq record for each of these reads. The fastq record consists of one line before the sequence information as well as two lines after. We can use the '-B' argument for grep to return the matched line plus one before: '-B 1'. With the '-A argument', we can have grep list the two lines after also: '-A 2'.
 
     grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
 
