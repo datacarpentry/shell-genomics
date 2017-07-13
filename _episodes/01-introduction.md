@@ -1,14 +1,19 @@
 ---
-title: "Introduction"
-teaching: 0
+title: "The Shell"
+teaching: 20
 exercises: 0
 questions:
-- "Key question"
+- "What is the shell?"
+- "How do I move into another directory?"
+- "How do I see what is in a directory?"
 objectives:
-- Understand what the command line is
-- Understand why the command line is useful
+- "Navigate the Unix file system"
+- "Use arguments to modify the behavior of commands in the shell"
+- "Use tab completion to work more efficiently at the command line"
 keypoints:
-- "First key point."
+- "The shell gives you the ability to work more efficiently by using keyboard commands rather than a GUI."
+- "cd and ls are useful commands to navigate a file system."
+- "Tab completion can reduce errors from mistyping and make work more efficient in the shell."
 ---
 
 ## What is the shell?

@@ -5,11 +5,10 @@ exercises: 0
 questions:
 - "Key question"
 objectives:
-- Navigate the Unix file system.
-- Copy and move files.
-- Use the history command to review recent commands in the shell.
-- Use the nano text editor to modify text files.
-- Use arguments to modify the behavior of command line commands.
+- Navigate the Unix file system
+- Understand and use file paths and relative paths
+- Keyboard shortcuts to make work more efficiently at the command line
+- 
 keypoints:
 - "First key point."
 ---
@@ -52,9 +51,9 @@ That (/) at the base is often also called the 'top' level.
 When you are working at your computer or log in to a remote computer,
 you are on one of the branches of that tree, your home directory (/home/dcuser)
 
-Now let's go do that same navigation at the command line.
+Now let's go do that same navigation at the command line. 
 
-Type
+Type:
 
      cd
 
@@ -65,7 +64,9 @@ Now using `cd` and `ls`, go in to the 'dc_sample_data' directory and list its co
 Let's also check to see where we are. Sometimes when we're wandering around
 in the file system, it's easy to lose track of where we are and get lost.
 
-If you want to know what directory you're currently in, type
+Now let's see what directory you're currently in.
+
+Type:
 
      pwd
 
@@ -76,7 +77,7 @@ type `cd dc_sample_data`? Try it and see what happens.
 
 To go 'back up a level' we need to use `..`
 
-Type
+Type:
 
      cd ..
 
@@ -111,7 +112,9 @@ Then enter the command:
 This will list the contents of the `dc_sample_data` directory without
 your having to navigate there.
 
-The `cd` command works in a similar way. Try entering:
+The `cd` command works in a similar way.
+
+Try entering:
 
     cd
     cd dc_sample_data/untrimmed_fastq
@@ -209,9 +212,9 @@ How can you tell these are programs rather than plain files?
 
 ***
 
-## Saving time with shortcuts, wild cards, and tab completion
+## Saving time with navigation shortcuts and tab completion
 
-### Shortcuts
+### Navigational Shortcuts
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. So, in the shell the tilde character,
@@ -226,18 +229,23 @@ Then enter the command:
     ls ~
 
 This prints the contents of your home directory, without you having to
-type the full path. The shortcut `..` always refers to the directory
-above your current directory. Thus:
+type the full path. 
+
+The shortcut `..` always refers to the directory
+above your current directory. 
+
+Thus:
 
     ls ..
 
-prints the contents of the `/home/dcuser/dc_sample_data`. You can chain
-these together, so:
+prints the contents of the `/home/dcuser/dc_sample_data` directory.
+
+You can chain these together like so:
 
     ls ../../
 
-prints the contents of `/home/dcuser` which is your home
-directory. Finally, the special directory `.` always refers to your
+prints the contents of `/home/dcuser` which is your home directory. 
+Finally, the special directory `.` always refers to your
 current directory. So, `ls`, `ls .`, and `ls ././././.` all do the
 same thing, they print the contents of the current directory. This may
 seem like a useless shortcut right now, but we'll see when it is
@@ -247,3 +255,35 @@ To summarize, while you are in the `shell` directory, the commands
 `ls ~`, `ls ~/.`, `ls ../../`, and `ls /home/dcuser` all do exactly the
 same thing. These shortcuts are not necessary, they are provided for
 your convenience.
+
+### Tab Completion
+
+Navigate to the home directory. Typing out directory names can waste a
+lot of time. When you start typing out the name of a directory, then
+hit the tab key, the shell will try to fill in the rest of the
+directory name.
+
+For example, type:
+
+`cd` 
+
+to get back to your home directy, then enter:
+
+    cd dc_<tab>
+
+The shell will fill in the rest of the directory name for
+`dc_sample_data`. Now go to dc_sample_data/untrimmed_fastq.
+
+Type:
+
+    ls SR<tab><tab>
+
+When you hit the first tab, nothing happens. The reason is that there
+are multiple directories in the home directory which start with
+`SR`. Thus, the shell does not know which one to fill in. When you hit
+tab again, the shell will list the possible choices.
+
+Tab completion can also fill in the names of programs. For example,
+enter `e<tab><tab>`. You will see the name of every program that
+starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
+will see that tab completion works.
