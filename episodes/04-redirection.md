@@ -1,22 +1,16 @@
---
-layout: page
-title: "The Shell"
-comments: true
-date: 2015-07-30
 ---
-
-# The Shell
-
-Author: Sheldon McKay
-
-Adapted from the lesson by Tracy Teal.
-Original contributors:
-Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://software-carpentry.org/)
-
-# Learning Objectives
-* Employ the grep command to search for information within files.
-* Print the results of a command to a file.
-* Access resources to learn more information about the shell.
+title: "Redirection"
+teaching: 0
+exercises: 0
+questions:
+- "Key question"
+objectives:
+- Employ the grep command to search for information within files.
+- Print the results of a command to a file.
+- Access resources to learn more information about the shell.
+keypoints:
+- "First key point."
+---
 
 ## Searching files
 
@@ -25,15 +19,12 @@ search within files without even opening them, using `grep`. Grep is a command-l
 utility for searching plain-text data sets for lines matching a string or regular expression.
 Let's give it a try!
 
-Suppose we want to see how many reads in our file have really bad, with 10 consecutive Ns  
-Let's search for the string NNNNNNNNNN in file 
+Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive Ns.  
+Let's search for the string NNNNNNNNNN in the SRR098026 file.
 
      grep NNNNNNNNNN SRR098026.fastq
 
-We get back a lot of lines.  What is we want to see the whole fastq record for each of these read.
-We can use the '-B' argument for grep to return the matched line plus one before (-B 1) and two
-lines after (-A 2). Since each record is four lines and the last second is the sequence, this should
-give the whole record.
+We get back a lot of lines. What we want to see is the whole fastq record for each of these reads. The fastq record consists of one line before the sequence information as well as two lines after. We can use the '-B' argument for grep to return the matched line plus one before: '-B 1'. With the '-A argument', we can have grep list the two lines after also: '-A 2'.
 
     grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
 
@@ -44,15 +35,15 @@ for example:
     +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-****
+* * * *
 **Exercise**
 
 1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
-In addition to finding the sequence, have your search also return
-the name of the sequence.
+In addition to identifying the line containing the sequence, have your search also return
+the line containing the name of the sequence (tip: the name of the sequence is listed after the '@' sign).
 
-2) Search for that sequence in both fastq files.
-****
+2) Search for the sequence AAGTT in both fastq files. Get the lines containing the name of the sequence and the sequence itself.
+* * * *
 
 ## Redirection
 
@@ -77,7 +68,7 @@ The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should have a new file called bad_reads.txt. Take
 a look at it and see if it has what you think it should.
 
-If we use '>>', it will append to rather tha overwrite a file.  This can be useful for
+If we use '>>', it will append to rather than overwrite a file.  This can be useful for
 saving more than one search, for example:
 
     grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
@@ -117,25 +108,23 @@ efficiently. If you want to be proficient at using the shell, you must
 learn to become proficient with the pipe and redirection operators:
 `|`, `>`, `>>`.
 
-
-
 Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
 
-    cd 
-    cd dc_sample_data/
+    cd
+    cd dc_sample_data/sra_metadata
 
-Let's ask a few questions about the data
+Let's ask a few questions about the data.
 
-1) How many of the read libraries are paired end?
+#### How many of the read libraries are paired end?
 
-First, what are the column headers?
+We know this information is somewhere in our SraRunTable.txt file, we just need to find it. First, let's look at the column headers.
 
     head -n 1 SraRunTable.txt
     BioSample_s	InsertSize_l	LibraryLayout_s	Library_Name_s	LoadDate_s	MBases_l	MBytes_l	ReleaseDate_s Run_s SRA_Sample_s Sample_Name_s Assay_Type_s AssemblyName_s BioProject_s Center_Name_s Consent_s Organism_Platform_s SRA_Study_s g1k_analysis_group_s g1k_pop_code_s source_s strain_s
 
 That's only the first line but it is a lot to take in.  'cut' is a program that will extract columns in tab-delimited
-files.  It is a very good command to know.  Lets look at just the first four columns in the header using the '|' readirect
-and 'cut'
+files.  It is a very good command to know.  Lets look at just the first four columns in the header using the '|' redirect
+and 'cut'.
 
     head -n 1 SraRunTable.txt | cut -f1-4
     BioSample_s InsertSize_l      LibraryLayout_s	Library_Name_s    
@@ -153,35 +142,37 @@ and 'cut'
     SINGLE
     SINGLE
     PAIRED
-    
+
 We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
 for just PAIRED and count the number of hits.
 
     cut -f3 SraRunTable.txt | grep PAIRED | wc -l
     2
 
-2) How many of each class of library layout are there?
+#### How many of each class of library layout are there?  
 
 We can use some new tools 'sort' and 'uniq' to extract more information.  For example, cut the third column, remove the
 header and sort the values.  The '-v' option for greap means return all lines that DO NOT match.
 
     cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
-    
+
 This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use 'uniq' with the '-c' flag to
 count the different categories.
 
     cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
       2 PAIRED
-     35 SINGLE 
+     35 SINGLE
 
-3) Sort the metadata file by PAIRED/SINGLE and save to a new file
-   We can use if '-k' option for sort to specify which column to sort on.  Note that this does something
+#### Can we sort the file by PAIRED/SINGLE and save it to a new file?  
+
+   We can use the '-k' option for sort to specify which column to sort on.  Note that this does something
    similar to cut's '-f'.
 
     sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
+    
+#### Can we extract only paired end records into a new file?  
 
-4) Extract only paired end records into a new file
-   Do we know PAIRED only occurs in column 4?  WE know there are only two in the file, so let's check.
+   Do we know PAIRED only occurs in column 4?  We know there are only two in the file, so let's check.
 
     grep PAIRED SraRunTable.txt | wc -l
     2
@@ -189,53 +180,14 @@ count the different categories.
 OK, we are good to go.
 
     grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
-    
 
-****
+
+* * * *
 **Final Exercise**
 
 1) How many sample load dates are there?
 
-2) How many samples were loaded on each date
+2) How many samples were loaded on each date?
 
-3) Filter subsets into new files bases on load date
-****
-
- 
-
-
-## Where can I learn more about the shell?
-
-- Software Carpentry tutorial - [The Unix shell](http://software-carpentry.org/v4/shell/index.html)
-- The shell handout - [Command Reference](http://files.fosswire.com/2007/08/fwunixref.pdf)
-- [explainshell.com](http://explainshell.com)
-- http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
-- man bash
-- Google - if you don't know how to do something, try Googling it. Other people
-have probably had the same question.
-- Learn by doing. There's no real other way to learn this than by trying it
-out.  Write your next paper in nano (really emacs or vi), open pdfs from
-the command line, automate something you don't really need to automate.
-
-
-## Bonus:
-
-**backtick, xargs**: Example find all files with certain text
-
-**alias** -> rm -i
-
-**variables** -> use a path example
-
-**.bashrc**
-
-**du**
-
-**ln**
-
-**ssh and scp**
-
-**Regular Expressions**
-
-**Permissions**
-
-**Chaining commands together**
+3) Filter subsets into new files based on load date.
+* * * *
