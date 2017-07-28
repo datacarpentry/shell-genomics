@@ -338,24 +338,24 @@ of our sample files
 ~~~
 $ cd dc_sample_data/untrimmed_fastq
 $ ls SR<tab>
-~~
+~~~
 {: .bash}
 
 Nothing happens because there are multiple files which start with
 `SR`. The shell does not know which one to fill in. When you hit
 tab again, the shell will list the possible choices.
 
-~~
+~~~
 $ ls SR<tab><tab>
-~~
+~~~
 {: .bash}
 
 Tab completion can also fill in the names of programs, which can be useful if you
 remember the begining of a program name. 
 
-~~
+~~~
 $ pw<tab><tab>
-~~
+~~~
 {: .bash}
 
 ~~~
