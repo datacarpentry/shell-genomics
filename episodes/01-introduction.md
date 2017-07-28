@@ -1,81 +1,76 @@
 ---
-title: "The Shell"
+title: "Introducing the Shell"
 teaching: 20
 exercises: 0
 questions:
-- "What is the shell?"
-- "How do I move into another directory?"
-- "How do I see what is in a directory?"
+- "What is a command shell and why would I use one?"
+- "How can I move around on my computer?"
+- "How can I see what files and directories I have?"
+- "How can I specify the location of a file or directory on my computer?"
 objectives:
-- "Navigate the Unix file system"
-- "Use arguments to modify the behavior of commands in the shell"
-- "Use tab completion to work more efficiently at the command line"
+- "Describe key reasons for learning shell."
+- "Navigate your file system using the command line."
+- "Demonstrate the use of tab completion, and explain its advantages."
 keypoints:
 - "The shell gives you the ability to work more efficiently by using keyboard commands rather than a GUI."
-- "cd and ls are useful commands to navigate a file system."
+- "pwd, ls, and cd are useful commands to navigate a file system."
 - "Tab completion can reduce errors from mistyping and make work more efficient in the shell."
 ---
 
-## What is the shell?
+## What is a shell and why should I care?
 
-The *shell* is a program that presents a command line interface
+A *shell* is a computer program that presents a command line interface
 which allows you to control your computer using commands entered
 with a keyboard instead of controlling graphical user interfaces
 (GUIs) with a mouse/keyboard combination.
 
 There are many reasons to learn about the shell.
 
-* For most bioinformatics tools, you have to use the shell. There is no
-graphical interface. If you want to work in metagenomics or genomics you're
-going to need to use the shell.
-* The shell gives you *power*. The command line gives you the power to do your work more efficiently and
-more quickly.  When you need to do things tens to hundreds of times,
-knowing how to use the shell is transformative.
-* To use remote computers or cloud computing, you need to use the shell.
-
+* Many bioinformatics tools can only be used through a command line interface, or 
+have extra capabilities in the command line version that are not available in the GUI.
+This is true, for example, of BLAST, which offers many advanced functions only accessible
+to users who know how to use a shell.  
+* The shell makes your work less boring. In bioinformatics you often need to do
+the same set of tasks with a large number of files. Learning the shell will allow you to
+automate those repetitive tasks and leave you free to do more exciting things.  
+* The shell makes your work less error-prone. When humans do the same thing a hundred different times
+(or even ten times), they're likely to make a mistake. Your computer can do the same thing a thousand times
+with no mistakes.  
+* The shell makes your work more reproducible. When you carry out your work in the command-line 
+(rather than a GUI), your computer keeps a record of every step that you've carried out, which you can use 
+to re-do your work when you need to. It also gives you a way to communicate unambiguously what you've done, 
+so that others can check your work or apply your process to new data.  
+* Many bioinformatic tasks require large amounts of computing power and can't reallistically be run on your
+own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed
+through a shell.
 
 ![Automation](../img/gvng.jpg)
 
-  Unix is user-friendly. It's just very selective about who its friends are.
-
-
-Today we're going to go through how to access Unix/Linux and some of the basic
-shell commands.
-
-## Information on the shell
-
-shell cheat sheets:<br>
-* [http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/](http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/)
-* [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
-
-Explain shell - a web site where you can see what the different components of
-a shell command are doing.  
-* [http://explainshell.com](http://explainshell.com)
-* [http://www.commandlinefu.com](http://www.commandlinefu.com)
-
+In this lesson you will learn how to use the command line interface to move around in your file system. 
 
 ## How to access the shell
 
-The shell is already available on Mac and Linux. For Windows, you'll
-have to download a separate program.
+On a Mac or Linux machine, you can access a shell through a program called Terminal, which is already available
+on your computer. If you're using Windows, you'll need to download a separate program to access the shell.
 
 
-Mac
----  
-On Mac the shell is available through Terminal  
-Applications -> Utilities -> Terminal  
-Go ahead and drag the Terminal application to your Dock for easy access.
-
-Windows
--------
-For Windows, we're going to be using gitbash.  
-Download and install [gitbash](http://msysgit.github.io);
-Open up the program.
-
-Linux  
------
-The shell is available by default when you connect to your AWS instance.  You should be set.
-
+> ## Accessing the shell
+> Mac
+> ---  
+> On Mac the shell is available through Terminal  
+> Applications -> Utilities -> Terminal  
+> Go ahead and drag the Terminal application to your Dock for easy access.
+> 
+> Windows
+> -------
+> For Windows, we're going to be using gitbash.  
+> Download and install [gitbash](http://msysgit.github.io);
+> Open up the program.
+> 
+> Linux  
+> -----
+> The shell is available by default when you connect to your AWS instance.  You should be set.
+{: .callout}
 
 
 ## Starting with the shell
@@ -187,3 +182,15 @@ Tab completion can also fill in the names of programs. For example,
 enter `e<tab><tab>`. You will see the name of every program that
 starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
 will see that tab completion works.
+
+## More information on the shell
+
+shell cheat sheets:<br>
+* [http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/](http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/)
+* [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
+
+Explain shell - a web site where you can see what the different components of
+a shell command are doing.  
+* [http://explainshell.com](http://explainshell.com)
+* [http://www.commandlinefu.com](http://www.commandlinefu.com)
+
