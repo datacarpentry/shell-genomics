@@ -308,9 +308,9 @@ The shell will fill in the rest of the directory name for
 
 Now change directories to `untrimmed_fastq` in `dc_sample_data`
 
-~~
+~~~
 $ cd dc_sample_data/untrimmed_fastq
-~~
+~~~
 {: .bash}
 
 Notice that we can move two (or more) directory levels at a time by placing a `\` 
@@ -320,12 +320,12 @@ You can also navigate backwards by using `..` or `../` to go back one directory.
 example, we can go from the `untrimmed_fastq` directory to our home directory by
 typing
 
-~~
+~~~
 $ cd ../..
-~~
+~~~
 {: .bash}
 
-!--- insert a challenge here ---!
+---! insert a challenge here ---!
 
 
 Using tab complete can be very helpful. However, it will only autocomplete
@@ -335,7 +335,7 @@ a unique identifier for the file or directory you are trying to access.
 If we navigate back to our `untrimmed_fastq` directory and try to access one
 of our sample files
 
-~~
+~~~
 $ cd dc_sample_data/untrimmed_fastq
 $ ls SR<tab>
 ~~
