@@ -7,8 +7,7 @@ questions:
 objectives:
 - Navigate the Unix file system
 - Understand and use file paths and relative paths
-- Keyboard shortcuts to make work more efficiently at the command line
-- 
+- Keyboard shortcuts to make work more efficiently at the command line 
 keypoints:
 - "First key point."
 ---
