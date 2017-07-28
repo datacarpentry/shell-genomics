@@ -54,21 +54,18 @@ On a Mac or Linux machine, you can access a shell through a program called Termi
 on your computer. If you're using Windows, you'll need to download a separate program to access the shell.
 
 
-> ## Accessing the shell
-> Mac
-> ---  
+> ## Accessing the shell  
+> **Mac**  
 > On Mac the shell is available through Terminal  
 > Applications -> Utilities -> Terminal  
 > Go ahead and drag the Terminal application to your Dock for easy access.
 > 
-> Windows
-> -------
+> **Windows**  
 > For Windows, we're going to be using gitbash.  
 > Download and install [gitbash](http://msysgit.github.io);
 > Open up the program.
 > 
-> Linux  
-> -----
+> **Linux**    
 > The shell is available by default when you connect to your AWS instance.  You should be set.
 {: .callout}
 
@@ -78,110 +75,296 @@ on your computer. If you're using Windows, you'll need to download a separate pr
 We will spend most of our time learning about the basics of the shell
 by manipulating some experimental data.
 
-Now we're going to download the data for the tutorial. For this you'll need
-internet access, because you're going to get it off the web.  
+First, we're going to download the data we will be working with. 
+For this you'll need internet access, because you're going to get it off the web.  
 
 We're going to be working with data on our remote server.
 
+The part of the operating system responsible for managing files and directories
+is called the **file system**.
+It organizes our data into files,
+which hold information,
+and directories (also called "folders"),
+which hold files or other directories.
 
-After logging on, let's check out the example data.
+Several commands are frequently used to create, inspect, rename, and delete files and directories.
+To start exploring them,
+let's open a shell window:
 
-Let's go into the sample data directory
+> ## Preparation Magic
+>
+> If you type the command:
+> `PS1='$ '`
+> into your shell, followed by pressing the 'enter' key,
+> your window should look like our example in this lesson.  
+> This isn't necessary to follow along (in fact, your prompt may have
+> other helpful information you want to know about).  This is up to you!  
+{: .callout}
 
-      cd dc_sample data
+~~~
+$
+~~~
+{: .bash}
 
-`cd` stands for 'change directory'
+The dollar sign is a **prompt**, which shows us that the shell is waiting for input;
+your shell may use a different character as a prompt and may add information before
+the prompt. When typing commands, either from these lessons or from other sources,
+do not type the prompt, only the commands that follow it.
 
-Let's see what is in here. Type
+Let's find out where we are by running a command called `pwd`
+(which stands for "print working directory").
+At any moment, our **current working directory**
+is our current default directory,
+i.e.,
+the directory that the computer assumes we want to run commands in
+unless we explicitly specify something else.
+Here,
+the computer's response is `/Users/nelle`,
+which is Nelle's **home directory**:
 
-      ls
+~~~
+$ pwd
+~~~
+{: .bash}
 
-You will see
+~~~
+/Users/nelle
+~~~
+{: .output}
 
-    sra_metadata  untrimmed_fastq
+> ## Home Directory Variation
+>
+> The home directory path will look different on different operating systems.
+> On Linux it may look like `/home/nelle`,
+> and on Windows it will be similar to `C:\Documents and Settings\nelle` or
+> `C:\Users\nelle`.  
+> (Note that it may look slightly different for different versions of Windows.)
+> In future examples, we've used Mac output as the default - Linux and Windows
+> output may differ slightly, but should be generally similar.  
+{: .callout}
 
-`ls` stands for 'list' and it lists the contents of a directory.
+To understand what a "home directory" is,
+let's have a look at how our file system as a whole is organized.  
 
-There are two items listed.  What are they? We can use a command line argument with 'ls' to get more information.
+!--- insert image of file system we're using
+![The File System](../fig/filesystem.svg)
+---!
 
-      ls -F
-      sra_metadata/  untrimmed_fastq/
+At the top is the **root directory**
+that holds everything else.
+We refer to it using a slash character `/` on its own;
+this is the leading slash in `/Users/nelle`.
+
+!--- replace with directories from the file system we're using 
+Inside that directory are several other directories:
+`bin` (which is where some built-in programs are stored),
+`data` (for miscellaneous data files),
+`Users` (where users' personal directories are located),
+`tmp` (for temporary files that don't need to be stored long-term),
+and so on.  
+---!
+
+We know that our current working directory `/Users/nelle` is stored inside `/Users`
+because `/Users` is the first part of its name.
+Similarly,
+we know that `/Users` is stored inside the root directory `/`
+because its name begins with `/`.
+
+> ## Slashes
+>
+> Notice that there are two meanings for the `/` character.
+> When it appears at the front of a file or directory name,
+> it refers to the root directory. When it appears *inside* a name,
+> it's just a separator.
+{: .callout}
+
+
+The command to change locations is `cd` followed by a
+directory name to change our working directory.
+`cd` stands for "change directory".
+
+Let's say we want to navigate to the `data` directory we saw above.  We can
+use the following command to get there:
+
+~~~
+$ cd dc_sample_data
+~~~
+{: .bash}
+
+We can see files and subdirectores are in this directory by running `ls`,
+which stands for "listing":
+
+~~~
+$ ls
+~~~
+{: .bash}
+
+~~~
+sra_metadata  untrimmed_fastq
+~~~
+{: .output}
+
+`ls` prints the names of the files and directories in the current directory in
+alphabetical order,
+arranged neatly into columns.
+We can make its output more comprehensible by using the **flag** `-F`,
+which tells `ls` to add a trailing `/` to the names of directories:
+
+~~~
+$ ls -F
+~~~
+{: .bash}
+
+~~~
+sra_metadata/  untrimmed_fastq/
+~~~
+{: .output}
 
 Anything with a "/" after it is a directory.  
 Things with a "*" after them are programs.  
 If there are no decorations, it's a file.
 
-You can also use the command
+`ls` has lots of other options. To find out what they are, we can type:
 
-    ls -l
-    drwxr-x--- 2 dcuser sudo 4096 Jul 30 11:37 sra_metadata
-    drwxr-xr-x 2 dcuser sudo 4096 Jul 30 11:38 untrimmed_fastq
+~~~
+$ man ls
+~~~
+{: .bash}
 
-to see whether items in a directory are files or directories. `ls -l` gives a lot more
-information too.
+or if you're using Git bash for Windows
 
-Let's go into the untrimmed_fastq directory and see what is in there.
+~~~
+$ ls --help
+~~~
+{: .bash}
 
-    cd untrimmed_fastq
-    ls -F
-    SRR097977.fastq  SRR098026.fastq
-
-There are two items in this directory with no trailing slash, so they are files.
-
-
-## Arguments
-
-Most programs take additional arguments that control their exact
-behavior. For example, `-F` and `-l` are arguments to `ls`.  The `ls`
-program, like many programs, take a lot of arguments. Another useful one is '-a',
-which show everything, including hidden files.  How do we
-know what the options are to particular commands?
-
-Most commonly used shell programs have a manual. You can access the
-manual using the `man` program. Try entering:
-
-    man ls
-
-This will open the manual page for `ls`. Use the space key to go
-forward and b to go backwards. When you are done reading, just hit `q`
+Some manual files are very long. You can scroll through the file using
+your keyboard's down arrow or use the space key to go forward one page
+and the `b` key to go backwards one page. When you are done reading, hit `q`
 to quit.
 
-Programs that are run from the shell can get extremely complicated. To
-see an example, open up the manual page for the `find` program.
-No one can possibly learn all of
-these arguments, of course. So you will probably find yourself
-referring back to the manual page frequently.
+> ## Challenge
+> Use the `-l` option for the `ls` command to display more information for each item 
+> in the directory. What is one piece of additional information this long format
+> gives you that you don't see with the bare `ls` command?
+>
+> > ## Solution
+> > ~~~
+> > $ ls -l
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > drwxr-x--- 2 dcuser sudo 4096 Jul 30 11:37 sra_metadata
+> > drwxr-xr-x 2 dcuser sudo 4096 Jul 30 11:38 untrimmed_fastq
+> > ~~~
+> > {: .output}
+> > 
+> > The additional information given includes the name of the owner of the file,
+> > when the file was last modified, and whether the current user has permission
+> > to read and write to the file.
+> > 
+> {: .solution}
+{: .challenge}
+
+No one can possibly learn all of these arguments, that's why the manual page
+is for. You can (and should) refer to the manual page or other help files
+as needed.
+
+Let's go into the `untrimmed_fastq` directory and see what is in there.
+
+~~~
+$ cd untrimmed_fastq
+$ ls -F
+~~~
+{: .bash}
+
+~~~
+SRR097977.fastq  SRR098026.fastq
+~~~
+{: .output}
+
+This directory contains two files with `.fastq` extensions. FASTQ is a format
+for storing information about sequencing reads and their quality.
+We will be learning more about FASTQ files in a later lesson.
 
 ### Shortcut: Tab Completion
 
 Typing out file or directory names can waste a
-lot of time and it's easy to make typing mistakes. Instead we can use tab complete as a shortcut. When you start typing out the name of a directory, then
+lot of time and it's easy to make typing mistakes. Instead we can use tab complete 
+as a shortcut. When you start typing out the name of a directory or file, then
 hit the tab key, the shell will try to fill in the rest of the
-directory name.
+directory or file name.
 
-For example, type `cd` to get back to your home directly, then enter:
+For example, type `cd` to go back to your home directly, then enter:
 
-    cd dc_<tab>
+~~~
+$ cd dc_<tab>
+~~~
+{: .bash}
 
 The shell will fill in the rest of the directory name for
 `dc_sample_data`.
 
-Now change directories to **untrimmed_fastq** in **dc_sample_data**
+Now change directories to `untrimmed_fastq` in `dc_sample_data`
 
-    cd dc_sample_data
-    cd untrimmed_fastq
+~~
+$ cd dc_sample_data/untrimmed_fastq
+~~
+{: .bash}
 
-    ls SR<tab><tab>
+Notice that we can move two (or more) directory levels at a time by placing a `\` 
+between directory names.
 
-When you hit the first tab, nothing happens. The reason is that there
-are multiple directories in the home directory which start with
-`SR`. Thus, the shell does not know which one to fill in. When you hit
+You can also navigate backwards by using `..` or `../` to go back one directory. For
+example, we can go from the `untrimmed_fastq` directory to our home directory by
+typing
+
+~~
+$ cd ../..
+~~
+{: .bash}
+
+!--- insert a challenge here ---!
+
+
+Using tab complete can be very helpful. However, it will only autocomplete
+a file or directory name if you've typed enough characters to provide
+a unique identifier for the file or directory you are trying to access.
+
+If we navigate back to our `untrimmed_fastq` directory and try to access one
+of our sample files
+
+~~
+$ cd dc_sample_data/untrimmed_fastq
+$ ls SR<tab>
+~~
+{: .bash}
+
+Nothing happens because there are multiple files which start with
+`SR`. The shell does not know which one to fill in. When you hit
 tab again, the shell will list the possible choices.
 
-Tab completion can also fill in the names of programs. For example,
-enter `e<tab><tab>`. You will see the name of every program that
-starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
-will see that tab completion works.
+~~
+$ ls SR<tab><tab>
+~~
+{: .bash}
+
+Tab completion can also fill in the names of programs, which can be useful if you
+remember the begining of a program name. 
+
+~~
+$ pw<tab><tab>
+~~
+{: .bash}
+
+~~~
+pwd         pwd_mkdb    pwhich      pwhich5.16  pwhich5.18  pwpolicy
+~~~
+{: .output}
+
+Displays the name of every program that starts with `pw`. 
+
 
 ## More information on the shell
 
