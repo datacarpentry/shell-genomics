@@ -40,7 +40,7 @@ with no mistakes.
 (rather than a GUI), your computer keeps a record of every step that you've carried out, which you can use 
 to re-do your work when you need to. It also gives you a way to communicate unambiguously what you've done, 
 so that others can check your work or apply your process to new data.  
-* Many bioinformatic tasks require large amounts of computing power and can't reallistically be run on your
+* Many bioinformatic tasks require large amounts of computing power and can't realistically be run on your
 own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed
 through a shell.
 
@@ -58,15 +58,15 @@ on your computer. If you're using Windows, you'll need to download a separate pr
 > **Mac**  
 > On Mac the shell is available through Terminal  
 > Applications -> Utilities -> Terminal  
-> Go ahead and drag the Terminal application to your Dock for easy access.
+> You can drag the Terminal application to your Dock for easy access.
 > 
 > **Windows**  
 > For Windows, we're going to be using gitbash.  
-> Download and install [gitbash](http://msysgit.github.io);
+> Download and install [gitbash](http://msysgit.github.io).
 > Open up the program.
 > 
 > **Linux**    
-> The shell is available by default when you connect to your AWS instance.  You should be set.
+> The shell is available by default when you connect to your AWS instance.  
 {: .callout}
 
 
@@ -78,7 +78,15 @@ by manipulating some experimental data.
 First, we're going to download the data we will be working with. 
 For this you'll need internet access, because you're going to get it off the web.  
 
-We're going to be working with data on our remote server.
+We're going to be working with data on our remote server. 
+
+You can log-in to the remote server using the information in the Etherpad. First 
+open your shell (through the Terminal application) and then enter the text starting
+with `ssh` from the Etherpad. Each of you will have a different log-in. This will 
+prevent us from accidentally changing each other's files as we work through the
+exercises.  
+
+## Navigating your file system
 
 The part of the operating system responsible for managing files and directories
 is called the **file system**.
@@ -88,8 +96,6 @@ and directories (also called "folders"),
 which hold files or other directories.
 
 Several commands are frequently used to create, inspect, rename, and delete files and directories.
-To start exploring them,
-let's open a shell window:
 
 > ## Preparation Magic
 >
@@ -119,8 +125,8 @@ i.e.,
 the directory that the computer assumes we want to run commands in
 unless we explicitly specify something else.
 Here,
-the computer's response is `/Users/nelle`,
-which is Nelle's **home directory**:
+the computer's response is `/home/dcuser`,
+which is the top level directory within our cloud system:
 
 ~~~
 $ pwd
@@ -128,62 +134,34 @@ $ pwd
 {: .bash}
 
 ~~~
-/Users/nelle
+/home/dcuser
 ~~~
 {: .output}
 
-> ## Home Directory Variation
->
-> The home directory path will look different on different operating systems.
-> On Linux it may look like `/home/nelle`,
-> and on Windows it will be similar to `C:\Documents and Settings\nelle` or
-> `C:\Users\nelle`.  
-> (Note that it may look slightly different for different versions of Windows.)
-> In future examples, we've used Mac output as the default - Linux and Windows
-> output may differ slightly, but should be generally similar.  
-{: .callout}
+Let's look at how our file system is organized.  
 
-To understand what a "home directory" is,
-let's have a look at how our file system as a whole is organized.  
+At the top is our `dcuser` directory, which holds all the 
+subdirectories and files.
 
-!--- insert image of file system we're using
-![The File System](../fig/filesystem.svg)
----!
-
-At the top is the **root directory**
-that holds everything else.
-We refer to it using a slash character `/` on its own;
-this is the leading slash in `/Users/nelle`.
-
-!--- replace with directories from the file system we're using 
 Inside that directory are several other directories:
-`bin` (which is where some built-in programs are stored),
-`data` (for miscellaneous data files),
-`Users` (where users' personal directories are located),
-`tmp` (for temporary files that don't need to be stored long-term),
-and so on.  
----!
+`dc_sample_data`
+`dc_workshop`
+`Desktop`
+`Downloads`
+`FastQC`  
+`openrefine-2-6-beta.1`
+`R`
+and
+`Trimmomatic-0.32`
 
-We know that our current working directory `/Users/nelle` is stored inside `/Users`
-because `/Users` is the first part of its name.
-Similarly,
-we know that `/Users` is stored inside the root directory `/`
-because its name begins with `/`.
-
-> ## Slashes
->
-> Notice that there are two meanings for the `/` character.
-> When it appears at the front of a file or directory name,
-> it refers to the root directory. When it appears *inside* a name,
-> it's just a separator.
-{: .callout}
+We'll be working with many of these subdirectories throughout this workshop.  
 
 
-The command to change locations is `cd` followed by a
+The command to change locations in our file system is `cd` followed by a
 directory name to change our working directory.
 `cd` stands for "change directory".
 
-Let's say we want to navigate to the `data` directory we saw above.  We can
+Let's say we want to navigate to the `dc_sample_data` directory we saw above.  We can
 use the following command to get there:
 
 ~~~
@@ -200,7 +178,7 @@ $ ls
 {: .bash}
 
 ~~~
-sra_metadata  untrimmed_fastq
+r_genomics  sra_metadata  untrimmed_fastq  variant_calling  variant_calling.tar.gz
 ~~~
 {: .output}
 
@@ -216,7 +194,7 @@ $ ls -F
 {: .bash}
 
 ~~~
-sra_metadata/  untrimmed_fastq/
+r_genomics/  sra_metadata/  untrimmed_fastq/  variant_calling/	variant_calling.tar.gz
 ~~~
 {: .output}
 
@@ -255,8 +233,11 @@ to quit.
 > > {: .bash}
 > > 
 > > ~~~
-> > drwxr-x--- 2 dcuser sudo 4096 Jul 30 11:37 sra_metadata
-> > drwxr-xr-x 2 dcuser sudo 4096 Jul 30 11:38 untrimmed_fastq
+> > drwxrwxr-x 4 dcuser dcuser     4096 May 21  2016 r_genomics
+> > drwxr-x--- 2 dcuser dcuser     4096 Jul 30  2015 sra_metadata
+> > drwxr-xr-x 2 dcuser dcuser     4096 Jul 30  2015 untrimmed_fastq
+> > drwxr-xr-x 3 dcuser dcuser     4096 Jul 31  2015 variant_calling
+> > -rw-rw-r-- 1 dcuser dcuser 64281061 Jul 31  2015 variant_calling.tar.gz
 > > ~~~
 > > {: .output}
 > > 
@@ -299,7 +280,7 @@ directory or file name.
 For example, type `cd` to go back to your home directly, then enter:
 
 ~~~
-$ cd dc_<tab>
+$ cd dc_sam<tab>
 ~~~
 {: .bash}
 
@@ -333,7 +314,7 @@ a file or directory name if you've typed enough characters to provide
 a unique identifier for the file or directory you are trying to access.
 
 If we navigate back to our `untrimmed_fastq` directory and try to access one
-of our sample files
+of our sample files:
 
 ~~~
 $ cd dc_sample_data/untrimmed_fastq
