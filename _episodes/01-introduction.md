@@ -297,15 +297,6 @@ $ cd dc_sample_data/untrimmed_fastq
 Notice that we can move two (or more) directory levels at a time by placing a `\` 
 between directory names.
 
-You can also navigate backwards by using `..` or `../` to go back one directory. For
-example, we can go from the `untrimmed_fastq` directory to our home directory by
-typing
-
-~~~
-$ cd ../..
-~~~
-{: .bash}
-
 Using tab complete can be very helpful. However, it will only autocomplete
 a file or directory name if you've typed enough characters to provide
 a unique identifier for the file or directory you are trying to access.

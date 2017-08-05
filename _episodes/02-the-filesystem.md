@@ -88,6 +88,14 @@ r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
 
 From this output, we can see that `..` did indeed take us back one level in our file system. 
 
+You can chain these together like so:
+
+~~~
+$ ls ../../
+~~~
+{: .bash}
+
+prints the contents of `/home/dcuser` which is your home directory. 
 
 > ## Finding hidden directories
 >
@@ -109,7 +117,7 @@ From this output, we can see that `..` did indeed take us back one level in our 
 > > entries starting with ." This is the option we want. 
 > > 
 > > ~~~
-> > ls -a
+> > $ ls -a
 > > ~~~
 > > {: .bash}
 > > 
@@ -122,14 +130,14 @@ From this output, we can see that `..` did indeed take us back one level in our 
 > > using `cd`. 
 > > 
 > > ~~~
-> > cd .hidden
+> > $ cd .hidden
 > > ~~~
 > > {: .bash}
 > > 
 > > And then list the contents of the directory using `ls`. 
 > > 
 > > ~~~
-> > ls
+> > $ ls
 > > ~~~
 > > {: .bash}
 > > 
@@ -151,14 +159,14 @@ give `ls` the names of other directories to view. Navigate to the
 home directory if you are not already there.
 
 ~~~
-cd
+$ cd
 ~~~
 {: .bash}
 
 Then enter the command:
 
 ~~~
-ls dc_sample_data
+$ ls dc_sample_data
 ~~~
 {: .bash}
 
@@ -175,8 +183,8 @@ The `cd` command works in a similar way.
 Try entering:
 
 ~~~
-cd
-cd dc_sample_data/untrimmed_fastq
+$ cd
+$ cd dc_sample_data/untrimmed_fastq
 ~~~
 {: .bash}
 
@@ -191,8 +199,8 @@ the intermediate directory.
 > > ## Solution
 > >
 > > ~~~
-> > cd
-> > ls dc_sample_data/untrimmed_fastq/
+> > $ cd
+> > $ ls dc_sample_data/untrimmed_fastq/
 > > ~~~
 > > {: .bash}
 > > 
@@ -204,19 +212,29 @@ the intermediate directory.
 > {: .solution}
 {: .challenge}
 
-
 ## Full vs. Relative Paths
 
-The `cd` command takes an argument which is the directory
+The `cd` command takes an argument which is a directory
 name. Directories can be specified using either a *relative* path or a
-full *path*. The directories on the computer are arranged into a
+full *absolute* path. The directories on the computer are arranged into a
 hierarchy. The full path tells you where a directory is in that
-hierarchy. Navigate to the home directory. Now, enter the `pwd`
-command and you should see:
+hierarchy. Navigate to the home directory, then enter the `pwd`
+command.
 
-    /home/dcuser
+~~~
+$ cd  
+$ pwd  
+~~~
+{: .bash}
 
-which is the full name of your home directory. This tells you that you
+You will see: 
+
+~~~
+/home/dcuser
+~~~
+{: .output}
+
+This is the full name of your home directory. This tells you that you
 are in a directory called `dcuser`, which sits inside a directory called
 `home` which sits inside the very top directory in the hierarchy. The
 very top of the hierarchy is a directory called `/` which is usually
@@ -225,142 +243,94 @@ directory in `home` which is a directory in `/`.
 
 Now enter the following command:
 
-    cd /home/dcuser/dc_sample_data/.hidden
+~~~
+$ cd /home/dcuser/dc_sample_data/.hidden
+~~~
+{: .bash}
 
-This jumps to `.hidden`. Now go back to the home directory (cd). We saw
-earlier that the command:
+This jumps forward multiple levels to the `.hidden` directory. 
+Now go back to the home directory. 
 
-    cd dc_sample_data/.hidden
+~~~
+$ cd
+~~~
+{: .bash}
 
-had the same effect - it took us to the `hidden` directory. But,
-instead of specifying the full path
-(`/home/dcuser/dc_sample_data/data`), we specified a *relative path*. In
-other words, we specified the path relative to our current
-directory. A full path always starts with a `/`. A relative path does
-not.
+You can also navigate to the `.hidden` directory using:
 
-A relative path is like getting directions
-from someone on the street. They tell you to "go right at the Stop sign, and
-then turn left on Main Street". That works great if you're standing there
-together, but not so well if you're trying to tell someone how to get there
-from another country. A full path is like GPS coordinates.
-It tells you exactly where something
-is no matter where you are right now.
+~~~
+$ cd dc_sample_data/.hidden
+~~~
+{: .bash}
+
+
+These two commands have the same effect, they both take us to the `.hidden` directory.
+The first uses the absolute path, giving the full address from the home directory. The
+second uses a relative path, giving only the address from the working directory. A full
+path always starts with a `/`. A relative path does not.
+
+A relative path is like getting directions from someone on the street. They tell you to
+"go right at the stop sign, and then turn left on Main Street". That works great if
+you're standing there together, but not so well if you're trying to tell someone how to
+get there from another country. A full path is like GPS coordinates. It tells you exactly
+where something is no matter where you are right now.
 
 You can usually use either a full path or a relative path
 depending on what is most convenient. If we are in the home directory,
-it is more convenient to just enter the relative path since it
+it is more convenient to enter the relative path since it
 involves less typing.
 
 Over time, it will become easier for you to keep a mental note of the
 structure of the directories that you are using and how to quickly
 navigate amongst them.
 
-***
-## Relative Path Resolution
-
-Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
-what will `ls ../backup` display?
-
-1.  `../backup: No such file or directory`
-2.  `2012-12-01 2013-01-08 2013-01-27`
-3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
-4.  `original pnas_final pnas_sub`
-
-![File System for Challenge Questions](../fig/filesystem-challenge.svg)
-
-> ## Solution
-> 1. No: there *is* a directory `backup` in `/Users`.
-> 2. No: this is the content of `Users/thing/backup`,
->    but with `..` we asked for one level further up.
-> 3. No: see previous explanation.
->    Also, we did not specify `-F` to display `/` at the end of the directory names.
-> 4. Yes: `../backup` refers to `/Users/backup`.
-{: .solution}
-{: .challenge}
-***
-
-***
-**Exercise**
-
-Now, list the contents of the /bin directory. Do you see anything
-familiar in there?
-How can you tell these are programs rather than plain files?
-
-***
-
-## Saving time with navigation shortcuts and tab completion
+> ## Relative path resolution
+> 
+> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
+> what will `ls ../backup` display?
+> 
+> 1.  `../backup: No such file or directory`
+> 2.  `2012-12-01 2013-01-08 2013-01-27`
+> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
+> 4.  `original pnas_final pnas_sub`
+> 
+> ![File System for Challenge Questions](../fig/filesystem-challenge.svg)
+> 
+> > ## Solution
+> >  1. No: there *is* a directory `backup` in `/Users`.
+> >  2. No: this is the content of `Users/thing/backup`,
+> >   but with `..` we asked for one level further up.
+> >  3. No: see previous explanation.
+> >    Also, we did not specify `-F` to display `/` at the end of the directory names.
+> >  4. Yes: `../backup` refers to `/Users/backup`.
+> {: .solution}
+{: .challenge} 
 
 ### Navigational Shortcuts
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. So, in the shell the tilde character,
-""~"", is a shortcut for your home directory. Navigate to the `dc_sample_data`
+`~`, is a shortcut for your home directory. Navigate to the `dc_sample_data`
 directory:
 
-    cd
-    cd dc_sample_data
+~~~
+$ cd
+$ cd dc_sample_data
+~~~
+{: .bash}
 
 Then enter the command:
 
-    ls ~
+~~~
+$ ls ~
+~~~
+{: .bash}
 
-This prints the contents of your home directory, without you having to
+This prints the contents of your home directory, without you needing to 
 type the full path. 
-
-The shortcut `..` always refers to the directory
-above your current directory. 
-
-Thus:
-
-    ls ..
-
-prints the contents of the `/home/dcuser/dc_sample_data` directory.
-
-You can chain these together like so:
-
-    ls ../../
-
-prints the contents of `/home/dcuser` which is your home directory. 
-Finally, the special directory `.` always refers to your
-current directory. So, `ls`, `ls .`, and `ls ././././.` all do the
-same thing, they print the contents of the current directory. This may
-seem like a useless shortcut right now, but we'll see when it is
-needed in a little while.
 
 To summarize, while you are in the `shell` directory, the commands
 `ls ~`, `ls ~/.`, `ls ../../`, and `ls /home/dcuser` all do exactly the
 same thing. These shortcuts are not necessary, they are provided for
 your convenience.
 
-### Tab Completion
-
-Navigate to the home directory. Typing out directory names can waste a
-lot of time. When you start typing out the name of a directory, then
-hit the tab key, the shell will try to fill in the rest of the
-directory name.
-
-For example, type:
-
-`cd` 
-
-to get back to your home directy, then enter:
-
-    cd dc_<tab>
-
-The shell will fill in the rest of the directory name for
-`dc_sample_data`. Now go to dc_sample_data/untrimmed_fastq.
-
-Type:
-
-    ls SR<tab><tab>
-
-When you hit the first tab, nothing happens. The reason is that there
-are multiple directories in the home directory which start with
-`SR`. Thus, the shell does not know which one to fill in. When you hit
-tab again, the shell will list the possible choices.
-
-Tab completion can also fill in the names of programs. For example,
-enter `e<tab><tab>`. You will see the name of every program that
-starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
-will see that tab completion works.
