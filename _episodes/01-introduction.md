@@ -306,9 +306,6 @@ $ cd ../..
 ~~~
 {: .bash}
 
----! insert a challenge here ---!
-
-
 Using tab complete can be very helpful. However, it will only autocomplete
 a file or directory name if you've typed enough characters to provide
 a unique identifier for the file or directory you are trying to access.
