@@ -3,7 +3,8 @@ title: "The Filesystem"
 teaching: 0
 exercises: 0
 questions:
-- "Key question"
+- How can I give my computer directions to files I want to access?  
+- Ho
 objectives:
 - Navigate the Unix file system
 - Understand and use file paths and relative paths
@@ -29,69 +30,117 @@ data in the place the program expects it to be.
 
 ## Moving around the file system
 
-Let's practice moving around a bit.
+We've learned how to use `pwd` to find our current location within our file system. 
+We've also learned how to use `cd` to change locations and `ls` to list the contents
+of a directory. Now we're going to learn some additional commands for moving around 
+within our file system.
 
-We're going to work in that `dc_sample_data` directory.
+Use the commands we've learned so far to navigate to the `dc_sample_data` directory, if
+you're not already there. 
 
-First we did something like go to the folder of our username. Then we opened
-'dc_sample_data' then 'data'
+What if we want to move back up and out of this directory and to our top level 
+directory? Can we type `cd dc_sample_data`? Try it and see what happens.
 
-Let's draw out how that went.
+~~~
+$ cd dc_sample_data
+~~~
+{: .bash}
 
-Now let's draw some of the other files and folders we could have clicked on.
+~~~
+-bash: cd: dc_sample_data: No such file or directory
+~~~
+{: .output}
 
-This is called a hierarchical file system structure, like an upside down tree
-with root (/) at the base that looks like this.
+Your computer looked for a directory or file called `dc_sample_data` within the 
+directory you were already in. It didn't know you wanted to look at a directory level
+above the one you were located in. 
+
+We have a special command to tell the computer to move us back or up one directory level. 
+
+~~~
+$ cd ..
+~~~
+{: .bash}
 
 
-![Unix](../img/Slide1.jpg)
+Now we can use `pwd` to make sure that we are in the directory we intended to navigate
+to, and `ls` to check that the contents of the directory are correct.
 
-That (/) at the base is often also called the 'top' level.
+~~~
+$ pwd
+~~~
+{: .bash}
 
-When you are working at your computer or log in to a remote computer,
-you are on one of the branches of that tree, your home directory (/home/dcuser)
+~~~
+/home/dcuser/dc_sample_data
+~~~
+{: .output}
 
-Now let's go do that same navigation at the command line. 
+~~~
+$ ls
+~~~
+{: .bash}
 
-Type:
+~~~
+r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
+~~~
+{: .output}
 
-     cd
+From this output, we can see that `..` did indeed take us back one level in our file system. 
 
-This puts you in your home directory. This folder here.
 
-Now using `cd` and `ls`, go in to the 'dc_sample_data' directory and list its contents.
-
-Let's also check to see where we are. Sometimes when we're wandering around
-in the file system, it's easy to lose track of where we are and get lost.
-
-Now let's see what directory you're currently in.
-
-Type:
-
-     pwd
-
-This stands for 'print working directory'. The directory you're currently working in.
-
-What if we want to move back up and out of the 'data' directory? Can we just
-type `cd dc_sample_data`? Try it and see what happens.
-
-To go 'back up a level' we need to use `..`
-
-Type:
-
-     cd ..
-
-Now do `ls` and `pwd`. See now that we went back up in to the 'dc_sample_data'
-directory. `..` means go back up a level.
-
-* * * *
-**Exercise**
-
-Now we're going to try a hunt.  Find the hidden directory in dc_sample_data, list its contents, and identify the name of the text file in that directory.
-
-Hint: hidden files and folders in unix start with '.', for example .my_hidden_directory
-* * * *
-
+> ## Finding hidden directories
+>
+> There is a hidden directory in our file system. Explore the options for `ls` to 
+> find out how to see hidden directories. List the contents of the directory and 
+> identify the name of the text file in that directory.
+> 
+> Hint: hidden files and folders in Unix start with `.`, for example .my_hidden_directory
+>
+> > ## Solution
+> > 
+> > First use the `man` command to look at the options for `ls`. 
+> > ~~~
+> > $ man ls
+> > ~~~
+> > {: .bash}
+> > 
+> > The `-a` option is short for `all` and says that it causes `ls` to "not ignore
+> > entries starting with ." This is the option we want. 
+> > 
+> > ~~~
+> > ls -a
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > .  ..  .hidden	r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
+> > ~~~
+> > {: .output}
+> > 
+> > The name of the hidden directory is `.hidden`. We can navigate to that directory
+> > using `cd`. 
+> > 
+> > ~~~
+> > cd .hidden
+> > ~~~
+> > {: .bash}
+> > 
+> > And then list the contents of the directory using `ls`. 
+> > 
+> > ~~~
+> > ls
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > youfoundit.txt
+> > ~~~
+> > {: .output}
+> > 
+> > The name of the text file is `youfoundit.txt`.
+> {: .solution}
+{: .challenge}
 
 ## Examining the contents of other directories
 
@@ -101,32 +150,60 @@ directory you are in using the `pwd` command. However, you can also
 give `ls` the names of other directories to view. Navigate to the
 home directory if you are not already there.
 
-Type:
-
-    cd
+~~~
+cd
+~~~
+{: .bash}
 
 Then enter the command:
 
-    ls dc_sample_data
+~~~
+ls dc_sample_data
+~~~
+{: .bash}
+
+~~~
+r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
+~~~
+{: .output}
 
 This will list the contents of the `dc_sample_data` directory without
-your having to navigate there.
+you needing to navigate there.
 
 The `cd` command works in a similar way.
 
 Try entering:
 
-    cd
-    cd dc_sample_data/untrimmed_fastq
+~~~
+cd
+cd dc_sample_data/untrimmed_fastq
+~~~
+{: .bash}
 
-and you will jump directly to `untrimmed_fastq` without having to go through
+This will take you to the `untrimmed_fastq` directory without having to go through
 the intermediate directory.
 
-* * * *
-**Exercise**
+> ## Navigating practice
+> 
+> Navigate to your home directory. From there, list the contents of the `untrimmed_fastq` 
+> directory. 
+> 
+> > ## Solution
+> >
+> > ~~~
+> > cd
+> > ls dc_sample_data/untrimmed_fastq/
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > SRR097977.fastq  SRR098026.fastq 
+> > ~~~
+> > {: .output}
+> > 
+> {: .solution}
+{: .challenge}
 
-List the contents of the directory containing the 'SRR097977.fastq' file. Do this from your home directory without leaving that directory.
-* * * *
 
 ## Full vs. Relative Paths
 
