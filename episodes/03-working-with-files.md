@@ -184,7 +184,7 @@ This will print out all of the contents of the `SRR098026.fastq` to the screen.
 > > ## Solution
 > > 1. The last line of the file is `TATTTTAAAATGGAATACCTAACATGTTAATTAACC`.
 > > 2. cat ~/dc_sample_data/untrimmed_fastq/*
-> > 
+> {: .solution}
 {: .challenge}
 
 `cat` is a terrific program, but when the file is really big, it can
