@@ -16,145 +16,190 @@ keypoints:
 
 ### Our data set: FASTQ files
 
-We did an experiment and want to look at sequencing results.
-We want to be able to look at these files and do some things with them.
-
+Now that we know how to navigate around our directory structure, lets
+start working with our sequencing files. We did a sequencing experiment and 
+have two results files, which are stored in our `untrimmed_fastq` directory. 
 
 ### Wild cards
 
-Navigate to the `~/dc_sample_data/data/untrimmed_fastq` directory. This
-directory contains our FASTQ files.
+Navigate to your `untrimmed_fastq` directory.
 
-The `*` character is a shortcut for "everything". Thus, if
-you enter `ls *`, you will see all of the contents of a given
-directory.
+~~~
+$ cd ~/dc_sample_data/untrimmed_fastq
+~~~
+{: .bash}
 
-Now try this command:
+We are interested in looking at the FASTQ files in this directory. We can list
+all files with the fastq extension using the command:
 
-    ls *fastq
+~~~
+$ ls *fastq
+~~~
+{: .bash}
 
-This lists every file that ends with a `fastq`.
+~~~
+SRR097977.fastq  SRR098026.fastq
+~~~
+{: .output}
 
-This command:
+The `*` character is a wildcard character which stands for "everything". 
+Thus, `*fastq` matches every file that ends with `fastq`. 
 
-    ls /usr/bin/*.sh
+This command: 
 
-Lists every file in `/usr/bin` that ends in the characters `.sh`.
+~~~
+$ ls *977.fastq
+~~~
+{: .bash}
 
-    ls *977.fastq
+~~~
+SRR097977.fastq
+~~~
+{: .output}
 
-lists only the file that ends with `977.fastq`
+lists only the file that ends with `977.fastq`.
 
-So how does this actually work? Well...when the shell (bash) sees a
-word that contains the `*` character, it automatically looks for filenames
-that match the given pattern.
+We can use the command `echo` to see wilcards are they are intepreted by the
+shell.
 
-We can use the command `echo` to see wilcards are they are intepreted by the shell.
+~~~
+$ echo *.fastq
+~~~
+{: .bash}
 
-    echo *.fastq
-    SRR097977.fastq SRR098026.fastq
+~~~
+SRR097977.fastq SRR098026.fastq
+~~~
+{: .output}
 
 The `*` is expanded to include any file that ends with `.fastq`.
 
+This command:
 
-****
-**Exercise**
+~~~
+$ ls /usr/bin/*.sh
+~~~
+{: .bash}
 
-Do each of the following tasks from your current directory using a single `ls` command.
+Lists every file in `/usr/bin` that ends in the characters `.sh`.
 
-1.  List all of the files in `/bin` that start with the letter 'c'
-2.  List all of the files in `/bin` that contain the letter 'a'
-3.  List all of the files in `/bin` that end with the letter 'o'
-
-BONUS: List all of the files in '/bin' that contain the letter 'a' or the letter 'c'
-
-HINT: This requires a Unix wildcard that we haven't talked about yet. Trying searching the internet for information about Unix wildcards to find what you need to solve the bonus problem.
-
-****
+> ## Exercise
+> Do each of the following tasks from your current directory using a single
+> `ls` command for each.
+> 
+> 1.  List all of the files in `/usr/bin` that start with the letter 'c'.
+> 2.  List all of the files in `/usr/bin` that contain the letter 'a'. 
+> 3.  List all of the files in `/usr/bin` that end with the letter 'o'.
+>
+> Bonus: List all of the files in 'usr/bin' that contain the letter 'a' or the
+> letter 'c'.
+> 
+> Hint: The bonus question requires a Unix wildcard that we haven't talked about
+> yet. Trying searching the internet for information about Unix wildcards to find
+> what you need to solve the bonus problem.
+> 
+> > ## Solution
+> > 1. ls /usr/bin/c*
+> > 2. ls /usr/bin/*a*
+> > 3. ls /usr/bin/*o
+> > Bonus: 
+> > 
+> {: .solution}
+{: .challenge}
 
 
 ## Command History
 
-You can easily access previous commands.  Hit the up arrow.
-Hit it again.  You can step backwards through your command history.
-The down arrow takes your forwards in the command history.
+If you want to repeat a command that you've run recently, you can access previous
+commands using the up arrow on your keyboard to go back to the most recent
+command. Likewise, the down arrow takes your forwards in the command history.
 
-`^-C` will cancel the command you are writing, and give you a fresh prompt.
+A few more useful shortcuts: 
+
+`^-C` (Control-C) will cancel the command you are writing, and give you a 
+fresh prompt.
 
 `^-R` will do a reverse-search through your command history.  This
 is very useful.
 
-You can also review your recent commands with the `history` command.  Just enter:
+You can also review your recent commands with the `history` command, by entering:
 
-    history
+~~~
+$ history
+~~~
+{: .bash}
 
-to see a numbered list of recent commands, including this just issues
-`history` command.  You can reuse one of these commands directly by
-referring to the number of that command.
+to see a numbered list of recent commands. You can reuse one of these commands
+directly by referring to the number of that command.
 
-If your history looked like this:
+For example, if your history looked like this:
 
-    259  ls *
-    260  ls /usr/bin/*.sh
-    261  ls *R1*fastq
+~~~
+259  ls *
+260  ls /usr/bin/*.sh
+261  ls *R1*fastq
+~~~
+{: .output}
 
-then you could repeat command #260 by simply entering:
+then you could repeat command #260 by entering:
 
-    !260
+~~~
+!260
+~~~
+{: .bash}
 
-(that's an exclamation mark).  You will be glad you learned this when you try to re-run very complicated commands.
+Type `!` (exclamation point) and then the number of the command from your history.
+You will be glad you learned this when you need to re-run very complicated commands.
 
-****
-**Exercise**
-
-Find the line number in your history for the command that listed all the
-files in /bin.
-
-****
-
-
+> ## Exercise
+> Find the line number in your history for the command that listed all the .sh
+> files in `/usr/bin`. Rerun that command.
+{: .challenge}
 
 ## Examining Files
 
 We now know how to switch directories, run programs, and look at the
 contents of directories, but how do we look at the contents of files?
 
-The easiest way to examine a file is to just print out all of the
+One way to examine a file is to print out all of the
 contents using the program `cat`. 
 
-Enter the following command:
+Enter the following command from within the `untrimmed_fastq` directory: 
 
-    cat SRR098026.fastq
+~~~
+$ cat SRR098026.fastq
+~~~
+{: .bash}
 
-This prints out the all the contents of the the `SRR098026.fastq` to the screen.
-
-* * * *
-**Exercises**
-
-1.  Print out the contents of the `~/dc_sample_data/untrimmed_fastq/SRR097977.fastq`
-    file. What does this file contain?
-
-2.  From your home directory, without changing directories,
-    use one short command to print the contents of all of the files in
-    the `/home/dcuser/dc_sample_data/untrimmed_fastq` directory.
-
-* * * *
+This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
 
-    cd ~/dc_sample_data/untrimmed_fastq
+> ## Exercise
+> 
+> 1. Print out the contents of the `~/dc_sample_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file? 
+> 2.  From your home directory, and without changing directories,
+> use one short command to print the contents of all of the files in
+> the `~/dc_sample_data/untrimmed_fastq` directory.
+> 
+> > ## Solution
+> > 1. The last line of the file is `TATTTTAAAATGGAATACCTAACATGTTAATTAACC`.
+> > 2. cat ~/dc_sample_data/untrimmed_fastq/*
+> {: .solution}
+{: .challenge}
 
 `cat` is a terrific program, but when the file is really big, it can
 be annoying to use. The program, `less`, is useful for this
-case. 
+case. `less` opens the file as read only, and lets you navigate through it. The naviation commands
+are identical to the `man` program.
 
 Enter the following command:
 
-    less SRR098026.fastq
+~~~
+$ less SRR098026.fastq
+~~~
+{: .bash}
 
-`less` opens the file as read only, and lets you navigate through it. The naviation commands
-are identical to the `man` program.
-
-**Some navigation commands in `less`**
+Some navigation commands in `less`
 
 | key     | action |
 | ------- | ---------- |
@@ -164,11 +209,11 @@ are identical to the `man` program.
 |  "G"    | to go to the end |
 |  "q"    | to quit |
 
-`less` also gives you a way of searching through files. Just hit the
+`less` also gives you a way of searching through files. Use the
 "/" key to begin a search. Enter the word you would like
-to search for and press "enter". The screen will jump to the next location where
-that word is found. Try searching the `dictionary.txt` file for the
-word "cat". 
+to search for and press `enter`. The screen will jump to the next location where
+that word is found. 
+
 **Shortcut:** If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
 works its way forward. Note, if you are at the end of the file and search
@@ -178,6 +223,14 @@ beginning of the file and search.
 For instance, let's search the file we have open for the sequence `GTGCGGGCAATTAACAGGGGTTCAC`.
 You can see that we go right to that sequence and can see
 what it looks like.
+
+## Exercise
+> What are the next three nucleotides (characters) after the sequence quoted above?
+> 
+> > ## Solution
+> > `TCA`
+> {: .solution}
+{: .challenge}
 
 Remember, the `man` program actually uses `less` internally and
 therefore uses the same commands, so you can search documentation
