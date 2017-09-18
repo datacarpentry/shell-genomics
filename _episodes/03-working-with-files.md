@@ -33,7 +33,7 @@ We are interested in looking at the FASTQ files in this directory. We can list
 all files with the fastq extension using the command:
 
 ~~~
-$ ls *fastq
+$ ls *.fastq
 ~~~
 {: .bash}
 
@@ -43,7 +43,7 @@ SRR097977.fastq  SRR098026.fastq
 {: .output}
 
 The `*` character is a wildcard character which stands for "everything". 
-Thus, `*fastq` matches every file that ends with `fastq`. 
+Thus, `*.fastq` matches every file that ends with `fastq`. 
 
 This command: 
 
