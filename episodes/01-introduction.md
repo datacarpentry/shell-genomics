@@ -277,7 +277,7 @@ as a shortcut. When you start typing out the name of a directory or file, then
 hit the tab key, the shell will try to fill in the rest of the
 directory or file name.
 
-For example, type `cd` to go back to your home directly, then enter:
+For example, type `cd` to go back to your home directory, then enter:
 
 ~~~
 $ cd dc_sam<tab>
