@@ -64,7 +64,7 @@ out the bad reads and write them to a file to see if we can figure out what's go
 
 Bad reads have a lot of N's, so we're going to look for  ''NNNNNNNNNN" with grep. We want the whole FASTQ record, so we're also going to get the 1 line above the sequence and the two lines below. We also want to look in all the files that end with fastq, so we're going to use the * wild card.
 
-      grep -B1 -A2 NNNNNNNNNN *.fastq > bad-reads.txt
+      grep -B1 -A2 NNNNNNNNNN *.fastq > scripted_bad_reads.txt
 
 We're going to create a new file to put this command in. We'll call it
 `bad-reads-script.sh`. The 'sh' isn't required, but using that extension tells us that it's a shell script.
@@ -77,7 +77,7 @@ Now comes the neat part. We can run this script. Type:
 
     bash bad-reads-script.sh
 
-It will look like nothing happened, but now if you look at bad-reads.txt, you can see that there are reads in there.
+It will look like nothing happened, but now if you look at scripted_bad_reads.txt, you can see that there are reads in there.
 
 
 ***
