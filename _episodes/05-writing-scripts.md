@@ -123,7 +123,7 @@ We'll have a chance to do more of this as we go through bioinformatics pipelines
 
 ## Where can I learn more about the shell?
 
-- Software Carpentry tutorial - [The Unix shell](http://software-carpentry.org/v4/shell/index.html)
+- Software Carpentry tutorial - [The Unix shell](https://swcarpentry.github.io/shell-novice/reference/)
 - The shell handout - [Command Reference](http://files.fosswire.com/2007/08/fwunixref.pdf)
 - [explainshell.com](http://explainshell.com)
 - http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html
