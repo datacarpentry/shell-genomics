@@ -59,7 +59,7 @@ SRR097977.fastq
 
 lists only the file that ends with `977.fastq`.
 
-We can use the command `echo` to see wilcards are they are intepreted by the
+We can use the command `echo` to see how the wildcard character is intepreted by the
 shell.
 
 ~~~
