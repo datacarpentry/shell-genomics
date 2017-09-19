@@ -209,13 +209,6 @@ $ man ls
 ~~~
 {: .bash}
 
-or if you're using Git bash for Windows
-
-~~~
-$ ls --help
-~~~
-{: .bash}
-
 Some manual files are very long. You can scroll through the file using
 your keyboard's down arrow or use the space key to go forward one page
 and the `b` key to go backwards one page. When you are done reading, hit `q`
