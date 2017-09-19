@@ -88,21 +88,21 @@ We had to type `bash` because we needed to tell the computer what progra to use 
 
 First, let's look at it now
 
-  ls -l bad-reads-script.sh
+    ls -l bad-reads-script.sh
 
 We see that it says "-rw-r--r--" which means that the file can mainly be read. That's the 'r'.   
 
 We want to change it so that it can be executed as a program. We use the command `chmod` which stands for "change mode". We're going to say "+x" to add that we want it to be executable.
 
-   chmod +x bad-reads-script.sh
+    chmod +x bad-reads-script.sh
 
 Now let's look at it again.
 
-  ls -l bad-reads-script.sh
+    ls -l bad-reads-script.sh
 
 Now we see that it says "-rwxr-xr-x". The x's that are there now tell us we can run it as a program. So, let's try it! We'll need to put "./" at the beginning so the computer knows to look here in this directory for the program.
 
-   ./bad-reads-script.sh
+    ./bad-reads-script.sh
 
 The script should run the same way as before, but now we've created our very own computer program!
 
