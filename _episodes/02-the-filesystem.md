@@ -154,7 +154,7 @@ prints the contents of `/home`, which is one level up from your home directory.
 By default, the `ls` commands lists the contents of the working
 directory (i.e. the directory you are in). You can always find the
 directory you are in using the `pwd` command. However, you can also
-give `ls` the names of other directories to view. Navigate to the
+give `ls` the names of other directories to view. Navigate to your
 home directory if you are not already there.
 
 ~~~
