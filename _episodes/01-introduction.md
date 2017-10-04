@@ -229,7 +229,6 @@ to quit.
 > > drwxrwxr-x 4 dcuser dcuser     4096 May 21  2016 r_genomics
 > > drwxr-x--- 2 dcuser dcuser     4096 Jul 30  2015 sra_metadata
 > > drwxr-xr-x 2 dcuser dcuser     4096 Jul 30  2015 untrimmed_fastq
-> > drwxr-xr-x 3 dcuser dcuser     4096 Jul 31  2015 variant_calling
 > > -rw-rw-r-- 1 dcuser dcuser 64281061 Jul 31  2015 variant_calling.tar.gz
 > > ~~~
 > > {: .output}
@@ -303,12 +302,12 @@ $ ls SR<tab>
 ~~~
 {: .bash}
 
-Nothing happens because there are multiple files which start with
-`SR`. The shell does not know which one to fill in. When you hit
+The shell auto-completes your command to `SRR09`, because all file names in 
+the directory begin with this prefix. When you hit
 tab again, the shell will list the possible choices.
 
 ~~~
-$ ls SR<tab><tab>
+$ ls SRR09<tab>
 ~~~
 {: .bash}
 
