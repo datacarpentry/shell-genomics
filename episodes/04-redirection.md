@@ -23,14 +23,14 @@ Suppose we want to see how many reads in our file have really bad segments conta
 Let's search for the string NNNNNNNNNN in the SRR098026 file.
 
 ~~~
-grep NNNNNNNNNN SRR098026.fastq
+$ grep NNNNNNNNNN SRR098026.fastq
 ~~~
 {: .bash}
 
 We get back a lot of lines. What we want to see is the whole fastq record for each of these reads. The fastq record consists of one line before the sequence information as well as two lines after. We can use the '-B' argument for grep to return the matched line plus one before: '-B1'. With the '-A argument', we can have grep list the two lines after also: '-A2'.
 
 ~~~
-grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
 ~~~
 {: .bash}
 
@@ -44,15 +44,14 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 ~~~
 {: .output}
 
-* * * *
-**Exercise**
-
-1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
-In addition to identifying the line containing the sequence, have your search also return
-the line containing the name of the sequence (tip: the name of the sequence is listed after the '@' sign).
-
-2) Search for the sequence AAGTT in both fastq files. Get the lines containing the name of the sequence and the sequence itself.
-* * * *
+> ## Exercise
+>
+> 1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
+> In addition to identifying the line containing the sequence, have your search also return
+> the line containing the name of the sequence (tip: the name of the sequence is listed after the '@' sign).
+> 
+> 2) Search for the sequence AAGTT in both fastq files. Get the lines containing the name of the sequence and the sequence itself.
+{: .challenge}
 
 ## Redirection
 
@@ -72,7 +71,7 @@ Let's try it out and put all the sequences that contain 'NNNNNNNNNN'
 from all the files in to another file called 'bad_reads.txt'
 
 ~~~
-grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 ~~~
 {: .bash}
 
@@ -84,8 +83,8 @@ If we use '>>', it will append to rather than overwrite a file.  This can be use
 saving more than one search, for example:
 
 ~~~
-grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
 ~~~
 {: .bash}
 
@@ -98,7 +97,7 @@ look at it, like we can with `less`. Well it turns out that we can! We pipe
 the `grep` command through `less`
 
 ~~~
-grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
 ~~~
 {: .bash}
 
@@ -107,7 +106,7 @@ Now we can use the arrows to scroll up and down and use `q` to get out.
 We can also do something tricky and use the command `wc`. `wc` stands for `word count`. It counts the number of lines or characters. So, we can use it to count the number of lines we're getting back from our `grep` command. If we divide by it four (to account for the additional three lines we've requested) that will magically tell us how many sequences we're finding.
 
 ~~~
-grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc
 ~~~
 {: .bash}
 
@@ -115,7 +114,7 @@ That tells us the number of lines, words and characters in the file. If we
 just want the number of lines, we can use the `-l` flag for `lines`.
 
 ~~~
-grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
 ~~~
 {: .bash}
 
@@ -132,8 +131,8 @@ learn to become proficient with the pipe and redirection operators:
 Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
 
 ~~~
-cd
-cd dc_sample_data/sra_metadata
+$ cd
+$ cd dc_sample_data/sra_metadata
 ~~~
 {: .bash}
 
@@ -144,7 +143,7 @@ Let's ask a few questions about the data.
 We know this information is somewhere in our SraRunTable.txt file, we just need to find it. First, let's look at the column headers.
 
 ~~~
-head -n 1 SraRunTable.txt
+$ head -n 1 SraRunTable.txt
 ~~~
 {: .bash}
 
@@ -158,7 +157,7 @@ files.  It is a very good command to know.  Lets look at just the first four col
 and 'cut'.
 
 ~~~
-head -n 1 SraRunTable.txt | cut -f1-4
+$ head -n 1 SraRunTable.txt | cut -f1-4
 ~~~
 {: .bash}
 
@@ -170,7 +169,7 @@ BioSample_s InsertSize_l      LibraryLayout_s	Library_Name_s
 '-f1-4' means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let's look at some data for just that column.
 
 ~~~
-cut -f3 SraRunTable.txt | head -n 10
+$ cut -f3 SraRunTable.txt | head -n 10
 ~~~
 {: .bash}
 
@@ -192,7 +191,7 @@ We can see that there are (at least) two categories, SINGLE and PAIRED.  We want
 for just PAIRED and count the number of hits.
 
 ~~~
-cut -f3 SraRunTable.txt | grep PAIRED | wc -l
+$ cut -f3 SraRunTable.txt | grep PAIRED | wc -l
 ~~~
 {: .bash}
 
@@ -204,10 +203,10 @@ cut -f3 SraRunTable.txt | grep PAIRED | wc -l
 #### How many of each class of library layout are there?  
 
 We can use some new tools 'sort' and 'uniq' to extract more information.  For example, cut the third column, remove the
-header and sort the values.  The '-v' option for greap means return all lines that DO NOT match.
+header and sort the values.  The '-v' option for grep means return all lines that DO NOT match.
 
 ~~~
-cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
+$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
 ~~~
 {: .bash}
 
@@ -215,7 +214,7 @@ This returns a sorted list (too long to show here) of PAIRED and SINGLE values. 
 count the different categories.
 
 ~~~
-cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
+$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
 ~~~
 {: .bash}
 
@@ -231,7 +230,7 @@ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
    similar to cut's '-f'.
 
 ~~~
-sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
+$ sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
 ~~~
 {: .bash}
 
@@ -240,7 +239,7 @@ sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
    Do we know PAIRED only occurs in column 4?  We know there are only two in the file, so let's check.
 
 ~~~
-grep PAIRED SraRunTable.txt | wc -l
+$ grep PAIRED SraRunTable.txt | wc -l
 ~~~
 {: .bash}
 
@@ -252,16 +251,13 @@ grep PAIRED SraRunTable.txt | wc -l
 OK, we are good to go.
 
 ~~~
-grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
+$ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 ~~~
 {: .bash}
 
-* * * *
-**Final Exercise**
-
-1) How many sample load dates are there?
-
-2) How many samples were loaded on each date?
-
-3) Filter subsets into new files based on load date.
-* * * *
+> ## Exercise
+>
+> 1) How many sample load dates are there?
+> 2) How many samples were loaded on each date?
+> 3) Filter subsets into new files based on load date.
+{: .challenge}
