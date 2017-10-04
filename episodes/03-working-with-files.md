@@ -122,6 +122,8 @@ fresh prompt.
 `^-R` (Control-R) will do a reverse-search through your command history.  This
 is very useful.
 
+`^-L` (Control-L) or the `clear` command will clear your screen.
+
 You can also review your recent commands with the `history` command, by entering:
 
 ~~~
