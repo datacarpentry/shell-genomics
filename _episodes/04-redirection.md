@@ -79,7 +79,7 @@ The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should have a new file called bad_reads.txt. Take
 a look at it and see if it has what you think it should.
 
-If we use '>>', it will append to rather than overwrite a file.  This can be useful for
+If we use `>>`, it will append to rather than overwrite a file.  This can be useful for
 saving more than one search, for example:
 
 ~~~
@@ -94,7 +94,7 @@ your keyboard you use very much. What `|` does is take the output that
 scrolling by on the terminal and then can run it through another command.
 When it was all whizzing by before, we wished we could just slow it down and
 look at it, like we can with `less`. Well it turns out that we can! We pipe
-the `grep` command through `less`
+the `grep` command through `less`.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
@@ -152,9 +152,9 @@ BioSample_s	InsertSize_l	LibraryLayout_s	Library_Name_s	LoadDate_s	MBases_l	MByt
 ~~~
 {: .output}
 
-That's only the first line but it is a lot to take in.  'cut' is a program that will extract columns in tab-delimited
-files.  It is a very good command to know.  Lets look at just the first four columns in the header using the '|' redirect
-and 'cut'.
+That's only the first line but it is a lot to take in.  `cut` is a program that will extract columns in tab-delimited
+files.  It is a very good command to know.  Lets look at just the first four columns in the header using the `|` redirect
+and `cut`.
 
 ~~~
 $ head -n 1 SraRunTable.txt | cut -f1-4
@@ -166,7 +166,7 @@ BioSample_s InsertSize_l      LibraryLayout_s	Library_Name_s
 ~~~
 {: .output}
 
-'-f1-4' means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let's look at some data for just that column.
+`-f1-4` means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let's look at some data for just that column.
 
 ~~~
 $ cut -f3 SraRunTable.txt | head -n 10
@@ -202,19 +202,19 @@ $ cut -f3 SraRunTable.txt | grep PAIRED | wc -l
 
 #### How many of each class of library layout are there?  
 
-We can use some new tools 'sort' and 'uniq' to extract more information.  For example, cut the third column, remove the
-header and sort the values.  The '-v' option for grep means return all lines that DO NOT match.
+We can use some new tools `sort` and `uniq` to extract more information.  For example, cut the third column, remove the
+header and sort the values.  The `-v` option for grep means return all lines that DO NOT match.
 
 ~~~
 $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
 ~~~
 {: .bash}
 
-This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use 'uniq' with the '-c' flag to
+This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use `uniq` with the `-c` flag to
 count the different categories.
 
 ~~~
-$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
+$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
 ~~~
 {: .bash}
 
@@ -226,8 +226,8 @@ $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s |	sort | uniq -c
 
 #### Can we sort the file by PAIRED/SINGLE and save it to a new file?  
 
-   We can use the '-k' option for sort to specify which column to sort on.  Note that this does something
-   similar to cut's '-f'.
+   We can use the `-k` option for sort to specify which column to sort on.  Note that this does something
+   similar to cut's `-f` option.
 
 ~~~
 $ sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
