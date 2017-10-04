@@ -119,7 +119,7 @@ A few more useful shortcuts:
 `^-C` (Control-C) will cancel the command you are writing, and give you a 
 fresh prompt.
 
-`^-R` will do a reverse-search through your command history.  This
+`^-R` (Control-R) will do a reverse-search through your command history.  This
 is very useful.
 
 You can also review your recent commands with the `history` command, by entering:
