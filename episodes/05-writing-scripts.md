@@ -77,7 +77,7 @@ It will look like nothing happened, but now if you look at scripted_bad_reads.tx
 
 We want the script to tell us when it's done.
 
-- Open `bad-reads-script.sh` and add the line "echo Script finished!" after the grep command and save the file.
+- Open `bad-reads-script.sh` and add the line `echo "Script finished!"` after the grep command and save the file.
 - Run the updated script
 
 ***
