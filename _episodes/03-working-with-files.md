@@ -218,7 +218,7 @@ that word is found.
 **Shortcut:** If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
 works its way forward. Note, if you are at the end of the file and search
-for the word "cat", `less` will not find it. You need to go to the
+for the sequence "CAA", `less` will not find it. You need to go to the
 beginning of the file and search.
 
 For instance, let's search the file we have open for the sequence `GTGCGGGCAATTAACAGGGGTTCAC`.
