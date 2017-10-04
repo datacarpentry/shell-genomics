@@ -94,7 +94,7 @@ $ ls ../../
 ~~~
 {: .bash}
 
-prints the contents of `/home/dcuser` which is your home directory. 
+prints the contents of `/home`, which is one level up from your home directory. 
 
 > ## Finding hidden directories
 >
