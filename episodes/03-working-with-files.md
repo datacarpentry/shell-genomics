@@ -156,6 +156,7 @@ You will be glad you learned this when you need to re-run very complicated comma
 > files in `/usr/bin`. Rerun that command.
 {: .challenge}
 
+
 ## Examining Files
 
 We now know how to switch directories, run programs, and look at the
@@ -224,7 +225,8 @@ For instance, let's search the file we have open for the sequence `GTGCGGGCAATTA
 You can see that we go right to that sequence and can see
 what it looks like.
 
-## Exercise
+> ## Exercise
+>
 > What are the next three nucleotides (characters) after the sequence quoted above?
 > 
 > > ## Solution
@@ -333,15 +335,12 @@ Enter the following command:
 
     rm -r backup
 
-* * * *
-**Exercise**
-
-Do the following:
-
-1.  Create a backup of your SRR097977.fastq file in the directory containing the original file.
-2.  Move the backup copy to the backup directory.
-3.  Rename the backup copy of your file.
-
-* * * *
+> ## Exercise
+>
+> Do the following:
+> 1.  Create a backup of your SRR097977.fastq file in the directory containing the original file.
+> 2.  Move the backup copy to the backup directory.
+> 3.  Rename the backup copy of your file.
+{: .challenge}
 
 
