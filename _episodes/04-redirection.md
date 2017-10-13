@@ -14,7 +14,7 @@ keypoints:
 
 ## Searching files
 
-We showed a little how to search within a file using `less`. We can also
+We discussed in a previous episode how to search within a file using `less`. We can also
 search within files without even opening them, using `grep`. Grep is a command-line
 utility for searching plain-text files for lines matching a specific set of 
 characters (sometimes called a string) or a particular pattern 
@@ -72,20 +72,21 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
 ## Redirection
 
-We're excited we have all these sequences that we care about that we
-just got from the FASTQ files. That is a really important motif
-that is going to help us answer our important question. But all those
-sequences just went whizzing by with grep. How can we capture them?
+`grep` allowed us to identify sequences in our FASTQ files that match a particular pattern. 
+But all of these sequences were printed to our terminal screen. In order to work with these 
+sequences and perform other opperations on them, we will need to capture that output in some
+way. 
 
-We can do that with something called "redirection". The idea is that
-we're redirecting the output to the terminal (all the stuff that went
-whizzing by) to something else. In this case, we want to print it
-to a file, so that we can look at it later.
+We can do this with something called "redirection". The idea is that
+we're redirecting what was output to the terminal to another location. 
+In our case, we want to print this information to a file, so that we can look at it later and 
+do other analyses with this data.
 
-The redirection command for putting something in a file is `>`
+The command for redirecting output to a file is `>`.
 
-Let's try it out and put all the sequences that contain 'NNNNNNNNNN'
-from all the files in to another file called 'bad_reads.txt'
+Let's try out this command and copy all the records (including all four lines of each record) 
+in our FASTQ files that contain 
+'NNNNNNNNNN' to another file called 'bad_reads.txt'.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
@@ -93,8 +94,31 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 {: .bash}
 
 The prompt should sit there a little bit, and then it should look like nothing
-happened. But type `ls`. You should have a new file called bad_reads.txt. Take
-a look at it and see if it has what you think it should.
+happened. But type `ls`. You should see a new file called bad_reads.txt. 
+
+We can check the number of lines in our new file using a command called `wc`. 
+`wc` stands for `word count`. This command counts the number of words, lines, and characters
+in a file. 
+
+~~~
+$ wc bad_reads.txt
+~~~
+{: .bash}
+
+This will tell us the number of lines, words and characters in the file. If we
+want only the number of lines, we can use the `-l` flag for `lines`.
+
+~~~
+$ wc -l bad_reads.txt
+~~~
+{: .bash}
+
+Because we asked grep for all four lines of each FASTQ record, we need to divide the output by
+four to get the number of sequences that match our search pattern.
+
+
+
+
 
 If we use `>>`, it will append to rather than overwrite a file.  This can be useful for
 saving more than one search, for example:
@@ -119,21 +143,6 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
 {: .bash}
 
 Now we can use the arrows to scroll up and down and use `q` to get out.
-
-We can also do something tricky and use the command `wc`. `wc` stands for `word count`. It counts the number of lines or characters. So, we can use it to count the number of lines we're getting back from our `grep` command. If we divide by it four (to account for the additional three lines we've requested) that will magically tell us how many sequences we're finding.
-
-~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc
-~~~
-{: .bash}
-
-That tells us the number of lines, words and characters in the file. If we
-just want the number of lines, we can use the `-l` flag for `lines`.
-
-~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
-~~~
-{: .bash}
 
 Redirecting is not super intuitive, but it's really powerful for stringing
 together these different commands, so you can do whatever you need to do.
