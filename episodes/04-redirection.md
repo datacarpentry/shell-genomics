@@ -36,7 +36,7 @@ file which contains at least 10 consecutive Ns is printed to the terminal. We ma
 interested not only in the actual sequence which contains this string, but 
 in the name (or identifier) of that sequence. We discussed in a previous lesson 
 that the identifier line immediately precedes the nucleotide sequence for each read
-in a fastq file. We may also want to inspect the quality scores associated with
+in a FASTQ file. We may also want to inspect the quality scores associated with
 each of these reads. To get all of this information, we will return the line 
 immediately before each match and the two lines immediately after each match.
 
@@ -65,7 +65,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match.
 > 
-> 2) Search for the sequence AAGTT in both fastq files.
+> 2) Search for the sequence AAGTT in both FASTQ files.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match.
 {: .challenge}
@@ -113,27 +113,71 @@ $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
-Because we asked grep for all four lines of each FASTQ record, we need to divide the output by
+Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
 four to get the number of sequences that match our search pattern.
 
+> ## Exercise
+>
+> How many sequences in SRR098026.fastq contain at least 3 consecutive Ns?
+>
+>> ## Solution
+>> 
+> {: .solution}
+{: .challenge}
 
-
-
-
-If we use `>>`, it will append to rather than overwrite a file.  This can be useful for
-saving more than one search, for example:
+We might want to search multiple FASTQ files for sequences that match our search pattern.
+However, we need to be careful, because each time we use the `>` command to redirect output
+to a file, the new output will replace the output that was already present in the file. 
+This is called "overwriting" and, just like you don't want to overwrite your video recording
+of your kid's first birthday party, you also want to avoid overwriting your data files.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+$ wc -l bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
+$ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
+Here, the output of our second  call to `wc` shows that we no longer have any lines in our bad_reads.txt file. This is 
+because the second file we searched (SRR097977.fastq) does not contain any lines that match our
+search sequence. So our file was overwritten and is now empty.
+
+We can avoid overwriting our files by using the command `>>`. `>>` will 
+append new output to the end of a file, rather than overwriting it.
+
+~~~
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ wc -l bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+$ wc -l bad_reads.txt
+~~~
+{: .bash}
+
+The output of our second call to `wc` shows that we have not overwritten our original data. 
+
+We can also do this with a single line of code by using a wildcard. 
+
+~~~
+$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
+~~~
+{: .bash}
+
+> ## Exercise
+>
+> 
+>
+>> ## Solution
+>> 
+> {: .solution}
+{: .challenge}
+
+
 There's one more useful redirection command that we're going to show, and that's
-called the pipe command, and it is `|`. It's probably not a key on
-your keyboard you use very much. What `|` does is take the output that
-scrolling by on the terminal and then can run it through another command.
-When it was all whizzing by before, we wished we could just slow it down and
+called the pipe command (`|`). It's probably not a key on
+your keyboard you use very much. What `|` does is take the output that is
+scrolling by on the terminal and uses that output as input to another command. 
+When our output was , we wished we could just slow it down and
 look at it, like we can with `less`. Well it turns out that we can! We pipe
 the `grep` command through `less`.
 
