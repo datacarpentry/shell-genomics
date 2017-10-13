@@ -23,8 +23,7 @@ regular expressions in this lesson, and are instead going to specify the strings
 we are searching for.
 Let's give it a try!
 
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns).  
-Let's search for the string NNNNNNNNNN in the SRR098026 file.
+Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns). Let's search for the string NNNNNNNNNN in the SRR098026 file.
 
 ~~~
 $ grep NNNNNNNNNN SRR098026.fastq
@@ -316,16 +315,46 @@ sequencing.
 
 #### How many of each class of library layout are there?  
 
-We can use some new tools `sort` and `uniq` to extract more information.  For example, cut the third column, remove the
-header and sort the values.  The `-v` option for grep means return all lines that DO NOT match.
+We can extract even more information from our metadata table if we add in some new tools: `sort` and `uniq`. The `sort` command will sort the lines of a text file and the `uniq` command will
+filter out repeated neighboring lines in a file. You might expect `uniq` to
+extract all of the unique lines in a file. This isn't what it does, however, for reasons
+involving computer memory and speed. If we want to extract all unique lines, we 
+can do so by combining `uniq` with `sort`. We'll see how to do this soon.
+
+For example, if we want to know how many samples of each library type are recorded in our table,
+we can extract the third column (with `cut`), and pipe that output into `sort`. 
+
+~~~
+$ cut -f3 SraRunTable.txt | sort
+~~~
+{: .bash}
+
+If you look closely, you might see that we have one line that reads "LibraryLayout_s". This is the 
+header of our column. We can discard this information using the `-v` flag in `grep`, which means 
+return all the lines that **do not** match the search pattern.
 
 ~~~
 $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
 ~~~
 {: .bash}
 
-This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use `uniq` with the `-c` flag to
-count the different categories.
+This command returns a sorted list (too long to show here) of PAIRED and SINGLE values. We can use
+the `uniq` command to see a list of all the different categories that are present. If we do this,
+we see that the only two types of libraries we have present are labelled PAIRED and SINGLE. There 
+aren't any other types in our file.
+
+~~~
+$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq
+~~~
+{: .bash}
+
+~~~
+PAIRED
+SINGLE
+~~~
+{: .output}
+
+If we want to count how many of each we have, we can use the `-c` (count) flag for `uniq`. 
 
 ~~~
 $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
@@ -338,19 +367,37 @@ $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
 ~~~
 {: .output}
 
-#### Can we sort the file by PAIRED/SINGLE and save it to a new file?  
+> ## Exercise
+> a) How many different sample load dates are there? 
+> b) How many samples were loaded on each date?
+> 
+>> ## Solution
+>> 
+>> 
+> {: .solution}
+{: .challenge}
 
-   We can use the `-k` option for sort to specify which column to sort on.  Note that this does something
-   similar to cut's `-f` option.
+
+#### Can we sort the file by library layout and save that sorted information to a new file?  
+
+We might want to re-order our entire metadata table so that all of the paired-end samples appear
+together and all of the single-end samples appear together. We can use the `-k` (key) flag for `sort` to
+sort based on a particular column. This is similar to the `-f` flag for `cut`.
+
+Let's sort based on the third column (`-k3`) and redirect our output to a new file.
 
 ~~~
 $ sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
 ~~~
 {: .bash}
 
-#### Can we extract only paired end records into a new file?  
+#### Can we extract only paired-end records into a new file?  
 
-   Do we know PAIRED only occurs in column 4?  We know there are only two in the file, so let's check.
+We also might want to extract the information for all samples that meet a specific criterion 
+(for example, are paired-end) and put those lines of our table in a new file. First, we need
+to check to make sure that the pattern we're searching for ("PAIRED") only appears in the column
+where we expect it to occur (column 3). We know from earlier that there are only two paired-end
+samples in the file, so we can `grep` for "PAIRED" and see how many results we get.
 
 ~~~
 $ grep PAIRED SraRunTable.txt | wc -l
@@ -362,7 +409,8 @@ $ grep PAIRED SraRunTable.txt | wc -l
 ~~~
 {: .output}
 
-OK, we are good to go.
+There are only two results, so we can use "PAIRED" as our search term to extract the paired-end 
+samples to a new file.
 
 ~~~
 $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
@@ -370,8 +418,6 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 {: .bash}
 
 > ## Exercise
->
-> 1) How many sample load dates are there?
-> 2) How many samples were loaded on each date?
-> 3) Filter subsets into new files based on load date.
+> Sort samples by load date and export each of those sets to a new file (one new file per
+> unique load date). 
 {: .challenge}
