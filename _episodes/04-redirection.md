@@ -14,27 +14,41 @@ keypoints:
 
 ## Searching files
 
-We showed a little how to search within a file using `less`. We can also
+We discussed in a previous episode how to search within a file using `less`. We can also
 search within files without even opening them, using `grep`. Grep is a command-line
-utility for searching plain-text data sets for lines matching a string or regular expression.
+utility for searching plain-text files for lines matching a specific set of 
+characters (sometimes called a string) or a particular pattern 
+(which can be specified using something called regular expressions). We're not going to work with 
+regular expressions in this lesson, and are instead going to specify the strings 
+we are searching for.
 Let's give it a try!
 
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive Ns.  
-Let's search for the string NNNNNNNNNN in the SRR098026 file.
+Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns). Let's search for the string NNNNNNNNNN in the SRR098026 file.
 
 ~~~
 $ grep NNNNNNNNNN SRR098026.fastq
 ~~~
 {: .bash}
 
-We get back a lot of lines. What we want to see is the whole fastq record for each of these reads. The fastq record consists of one line before the sequence information as well as two lines after. We can use the '-B' argument for grep to return the matched line plus one before: '-B1'. With the '-A argument', we can have grep list the two lines after also: '-A2'.
+This command returns a lot of output to the terminal. Each line in the SRR098026 
+file which contains at least 10 consecutive Ns is printed to the terminal. We may be 
+interested not only in the actual sequence which contains this string, but 
+in the name (or identifier) of that sequence. We discussed in a previous lesson 
+that the identifier line immediately precedes the nucleotide sequence for each read
+in a FASTQ file. We may also want to inspect the quality scores associated with
+each of these reads. To get all of this information, we will return the line 
+immediately before each match and the two lines immediately after each match.
+
+We can use the `-B` argument for grep to return a specific number of lines before
+each match and the `-A` argument to return a specific number of lines after each matching line. Here we want the line before and the two lines after each 
+matching line so we add `-B1 -A2` to our grep command.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
 ~~~
 {: .bash}
 
-for example:
+One of the sets of lines returned by this command is: 
 
 ~~~
 @SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
@@ -46,29 +60,32 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
 > ## Exercise
 >
-> 1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
-> In addition to identifying the line containing the sequence, have your search also return
-> the line containing the name of the sequence (tip: the name of the sequence is listed after the '@' sign).
+> 1) Search for the sequence GNATNACCACTTCC in the SRR098026.fastq.
+> Have your search return all matching lines and the name (or identifier) for each sequence
+> that contains a match.
 > 
-> 2) Search for the sequence AAGTT in both fastq files. Get the lines containing the name of the sequence and the sequence itself.
+> 2) Search for the sequence AAGTT in both FASTQ files.
+> Have your search return all matching lines and the name (or identifier) for each sequence
+> that contains a match.
 {: .challenge}
 
-## Redirection
+## Redirecting output
 
-We're excited we have all these sequences that we care about that we
-just got from the FASTQ files. That is a really important motif
-that is going to help us answer our important question. But all those
-sequences just went whizzing by with grep. How can we capture them?
+`grep` allowed us to identify sequences in our FASTQ files that match a particular pattern. 
+But all of these sequences were printed to our terminal screen. In order to work with these 
+sequences and perform other opperations on them, we will need to capture that output in some
+way. 
 
-We can do that with something called "redirection". The idea is that
-we're redirecting the output to the terminal (all the stuff that went
-whizzing by) to something else. In this case, we want to print it
-to a file, so that we can look at it later.
+We can do this with something called "redirection". The idea is that
+we're redirecting what was output to the terminal to another location. 
+In our case, we want to print this information to a file, so that we can look at it later and 
+do other analyses with this data.
 
-The redirection command for putting something in a file is `>`
+The command for redirecting output to a file is `>`.
 
-Let's try it out and put all the sequences that contain 'NNNNNNNNNN'
-from all the files in to another file called 'bad_reads.txt'
+Let's try out this command and copy all the records (including all four lines of each record) 
+in our FASTQ files that contain 
+'NNNNNNNNNN' to another file called 'bad_reads.txt'.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
@@ -76,59 +93,123 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 {: .bash}
 
 The prompt should sit there a little bit, and then it should look like nothing
-happened. But type `ls`. You should have a new file called bad_reads.txt. Take
-a look at it and see if it has what you think it should.
+happened. But type `ls`. You should see a new file called bad_reads.txt. 
 
-If we use `>>`, it will append to rather than overwrite a file.  This can be useful for
-saving more than one search, for example:
+We can check the number of lines in our new file using a command called `wc`. 
+`wc` stands for `word count`. This command counts the number of words, lines, and characters
+in a file. 
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+$ wc bad_reads.txt
 ~~~
 {: .bash}
 
+This will tell us the number of lines, words and characters in the file. If we
+want only the number of lines, we can use the `-l` flag for `lines`.
+
+~~~
+$ wc -l bad_reads.txt
+~~~
+{: .bash}
+
+Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
+four to get the number of sequences that match our search pattern.
+
+> ## Exercise
+>
+> How many sequences in SRR098026.fastq contain at least 3 consecutive Ns?
+>
+>> ## Solution
+>> 
+> {: .solution}
+{: .challenge}
+
+We might want to search multiple FASTQ files for sequences that match our search pattern.
+However, we need to be careful, because each time we use the `>` command to redirect output
+to a file, the new output will replace the output that was already present in the file. 
+This is called "overwriting" and, just like you don't want to overwrite your video recording
+of your kid's first birthday party, you also want to avoid overwriting your data files.
+
+~~~
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ wc -l bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
+$ wc -l bad_reads.txt
+~~~
+{: .bash}
+
+Here, the output of our second  call to `wc` shows that we no longer have any lines in our bad_reads.txt file. This is 
+because the second file we searched (SRR097977.fastq) does not contain any lines that match our
+search sequence. So our file was overwritten and is now empty.
+
+We can avoid overwriting our files by using the command `>>`. `>>` will 
+append new output to the end of a file, rather than overwriting it.
+
+~~~
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ wc -l bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+$ wc -l bad_reads.txt
+~~~
+{: .bash}
+
+The output of our second call to `wc` shows that we have not overwritten our original data. 
+
+We can also do this with a single line of code by using a wildcard. 
+
+~~~
+$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
+~~~
+{: .bash}
+
+> ## Exercise
+>
+> 
+>
+>> ## Solution
+>> 
+> {: .solution}
+{: .challenge}
+
+
 There's one more useful redirection command that we're going to show, and that's
-called the pipe command, and it is `|`. It's probably not a key on
-your keyboard you use very much. What `|` does is take the output that
-scrolling by on the terminal and then can run it through another command.
-When it was all whizzing by before, we wished we could just slow it down and
-look at it, like we can with `less`. Well it turns out that we can! We pipe
-the `grep` command through `less`.
+called the pipe command (`|`). This is probably not a key on
+your keyboard you use very much, so let's all take a minute to find that key. 
+What `|` does is take the output that is
+scrolling by on the terminal and uses that output as input to another command. 
+When our output was scrolling by, we might have wished we could slow it down and
+look at it, like we can with `less`. Well it turns out that we can! We can redirect our output
+from our `grep` call through the `less` command.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
 ~~~
 {: .bash}
 
-Now we can use the arrows to scroll up and down and use `q` to get out.
+We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows 
+to scroll through the output and use `q` to exit `less`.
 
-We can also do something tricky and use the command `wc`. `wc` stands for `word count`. It counts the number of lines or characters. So, we can use it to count the number of lines we're getting back from our `grep` command. If we divide by it four (to account for the additional three lines we've requested) that will magically tell us how many sequences we're finding.
+Redirecting output is often not intuitive, and can take some time to get used to. Once you're 
+comfortable with redirection, however, you'll be able to combine any number of commands to
+do all sorts of exciting things with your data!
 
-~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc
-~~~
-{: .bash}
+None of the command line programs we've been learning
+do anything all that impressive on their own, but when you start chaining
+them together, you can do some really powerful things very
+efficiently. Let's take a few minutes to practice. 
 
-That tells us the number of lines, words and characters in the file. If we
-just want the number of lines, we can use the `-l` flag for `lines`.
+> ## Exercise
+>
+> 
+>
+>> ## Solution
+>> 
+> {: .solution}
+{: .challenge}
 
-~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
-~~~
-{: .bash}
+## File manipulation and more practice with pipes
 
-Redirecting is not super intuitive, but it's really powerful for stringing
-together these different commands, so you can do whatever you need to do.
-
-The philosophy behind these command line programs is that none of them
-really do anything all that impressive. BUT when you start chaining
-them together, you can do some really powerful things really
-efficiently. If you want to be proficient at using the shell, you must
-learn to become proficient with the pipe and redirection operators:
-`|`, `>`, `>>`.
-
-Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
+Let's use the tools we've added to our tool kit so far, along with a few new ones, to example our SRA metadata file. First, let's navigate to the correct directory.
 
 ~~~
 $ cd
@@ -136,11 +217,18 @@ $ cd dc_sample_data/sra_metadata
 ~~~
 {: .bash}
 
-Let's ask a few questions about the data.
+This file contains a lot of information about the samples that we submitted for sequencing. We
+took a look at this file in an earlier lesson. Here we're going to use the information in this
+file to answer some questions about our samples.
 
 #### How many of the read libraries are paired end?
 
-We know this information is somewhere in our SraRunTable.txt file, we just need to find it. First, let's look at the column headers.
+The samples that we submitted to the sequencing facility were a mix of single and paired end
+libraries. We know that we recorded information in our metadata table about which samples used 
+which library preparation method, but we don't remember exactly where this data is recorded. 
+Let's start by looking at our column headers to see which column might have this information. Our
+column headers are in the first row of our data table, so we can use `head` with a `-n` flag to
+look at just the first row of the file.
 
 ~~~
 $ head -n 1 SraRunTable.txt
@@ -152,21 +240,28 @@ BioSample_s	InsertSize_l	LibraryLayout_s	Library_Name_s	LoadDate_s	MBases_l	MByt
 ~~~
 {: .output}
 
-That's only the first line but it is a lot to take in.  `cut` is a program that will extract columns in tab-delimited
-files.  It is a very good command to know.  Lets look at just the first four columns in the header using the `|` redirect
-and `cut`.
+That is only the first line of our file, but because there are a lot of columns, the output
+likely wraps around your terminal window and appears as multiple lines. Once we figure out which
+column our data is in, we can use a command called `cut` to extract the column of interest.
+
+Because this is pretty hard to read, we can look at just a few column header names at a time by combining the `|` redirect and `cut`.
 
 ~~~
 $ head -n 1 SraRunTable.txt | cut -f1-4
 ~~~
 {: .bash}
 
+`cut` takes a `-f` flag, which stands for "field". This flag accepts a list of field numbers,
+in our case, column numbers. Here we are extracting the first four column names.
+
 ~~~
 BioSample_s InsertSize_l      LibraryLayout_s	Library_Name_s    
 ~~~
 {: .output}
 
-`-f1-4` means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let's look at some data for just that column.
+The LibraryLayout_s column looks like it should have the information we want.  Let's look at some
+of the data from that column. We can use `cut` to extract only the 3rd column from the file and
+then use the `|` operator with `head` to look at just the first few lines of data in that column.
 
 ~~~
 $ cut -f3 SraRunTable.txt | head -n 10
@@ -188,7 +283,8 @@ PAIRED
 {: .output}
 
 We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
-for just PAIRED and count the number of hits.
+for just PAIRED and count the number of matches. For this, we will use the `|` operator twice
+to combine `cut` (to extract the column we want), `grep` (to find matches) and `wc` (to count matches).
 
 ~~~
 $ cut -f3 SraRunTable.txt | grep PAIRED | wc -l
@@ -200,18 +296,65 @@ $ cut -f3 SraRunTable.txt | grep PAIRED | wc -l
 ~~~
 {: .output}
 
+We can see from this that we have only two paired-end libraries in the samples we submitted for 
+sequencing.
+
+> ## Exercise
+>
+> How many single-end libraries are in our samples? 
+>
+>> ## Solution
+>> ~~~
+>> $ cut -f3 SraRunTable.txt | grep SINGLE | wc -l
+>> ~~~
+>> {: .bash}
+>> 
+> {: .solution}
+{: .challenge}
+
+
 #### How many of each class of library layout are there?  
 
-We can use some new tools `sort` and `uniq` to extract more information.  For example, cut the third column, remove the
-header and sort the values.  The `-v` option for grep means return all lines that DO NOT match.
+We can extract even more information from our metadata table if we add in some new tools: `sort` and `uniq`. The `sort` command will sort the lines of a text file and the `uniq` command will
+filter out repeated neighboring lines in a file. You might expect `uniq` to
+extract all of the unique lines in a file. This isn't what it does, however, for reasons
+involving computer memory and speed. If we want to extract all unique lines, we 
+can do so by combining `uniq` with `sort`. We'll see how to do this soon.
+
+For example, if we want to know how many samples of each library type are recorded in our table,
+we can extract the third column (with `cut`), and pipe that output into `sort`. 
+
+~~~
+$ cut -f3 SraRunTable.txt | sort
+~~~
+{: .bash}
+
+If you look closely, you might see that we have one line that reads "LibraryLayout_s". This is the 
+header of our column. We can discard this information using the `-v` flag in `grep`, which means 
+return all the lines that **do not** match the search pattern.
 
 ~~~
 $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort
 ~~~
 {: .bash}
 
-This returns a sorted list (too long to show here) of PAIRED and SINGLE values.  Now we can use `uniq` with the `-c` flag to
-count the different categories.
+This command returns a sorted list (too long to show here) of PAIRED and SINGLE values. We can use
+the `uniq` command to see a list of all the different categories that are present. If we do this,
+we see that the only two types of libraries we have present are labelled PAIRED and SINGLE. There 
+aren't any other types in our file.
+
+~~~
+$ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq
+~~~
+{: .bash}
+
+~~~
+PAIRED
+SINGLE
+~~~
+{: .output}
+
+If we want to count how many of each we have, we can use the `-c` (count) flag for `uniq`. 
 
 ~~~
 $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
@@ -224,19 +367,37 @@ $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
 ~~~
 {: .output}
 
-#### Can we sort the file by PAIRED/SINGLE and save it to a new file?  
+> ## Exercise
+> a) How many different sample load dates are there? 
+> b) How many samples were loaded on each date?
+> 
+>> ## Solution
+>> 
+>> 
+> {: .solution}
+{: .challenge}
 
-   We can use the `-k` option for sort to specify which column to sort on.  Note that this does something
-   similar to cut's `-f` option.
+
+#### Can we sort the file by library layout and save that sorted information to a new file?  
+
+We might want to re-order our entire metadata table so that all of the paired-end samples appear
+together and all of the single-end samples appear together. We can use the `-k` (key) flag for `sort` to
+sort based on a particular column. This is similar to the `-f` flag for `cut`.
+
+Let's sort based on the third column (`-k3`) and redirect our output to a new file.
 
 ~~~
 $ sort -k3 SraRunTable.txt > SraRunTable_sorted_by_layout.txt
 ~~~
 {: .bash}
 
-#### Can we extract only paired end records into a new file?  
+#### Can we extract only paired-end records into a new file?  
 
-   Do we know PAIRED only occurs in column 4?  We know there are only two in the file, so let's check.
+We also might want to extract the information for all samples that meet a specific criterion 
+(for example, are paired-end) and put those lines of our table in a new file. First, we need
+to check to make sure that the pattern we're searching for ("PAIRED") only appears in the column
+where we expect it to occur (column 3). We know from earlier that there are only two paired-end
+samples in the file, so we can `grep` for "PAIRED" and see how many results we get.
 
 ~~~
 $ grep PAIRED SraRunTable.txt | wc -l
@@ -248,7 +409,8 @@ $ grep PAIRED SraRunTable.txt | wc -l
 ~~~
 {: .output}
 
-OK, we are good to go.
+There are only two results, so we can use "PAIRED" as our search term to extract the paired-end 
+samples to a new file.
 
 ~~~
 $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
@@ -256,8 +418,6 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 {: .bash}
 
 > ## Exercise
->
-> 1) How many sample load dates are there?
-> 2) How many samples were loaded on each date?
-> 3) Filter subsets into new files based on load date.
+> Sort samples by load date and export each of those sets to a new file (one new file per
+> unique load date). 
 {: .challenge}
