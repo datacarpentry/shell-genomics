@@ -59,7 +59,7 @@ SRR097977.fastq
 
 lists only the file that ends with `977.fastq`.
 
-We can use the command `echo` to see wilcards are they are intepreted by the
+We can use the command `echo` to see how the wildcard character is intepreted by the
 shell.
 
 ~~~
@@ -112,15 +112,17 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 
 If you want to repeat a command that you've run recently, you can access previous
 commands using the up arrow on your keyboard to go back to the most recent
-command. Likewise, the down arrow takes your forwards in the command history.
+command. Likewise, the down arrow takes you forward in the command history.
 
 A few more useful shortcuts: 
 
 `^-C` (Control-C) will cancel the command you are writing, and give you a 
 fresh prompt.
 
-`^-R` will do a reverse-search through your command history.  This
+`^-R` (Control-R) will do a reverse-search through your command history.  This
 is very useful.
+
+`^-L` (Control-L) or the `clear` command will clear your screen.
 
 You can also review your recent commands with the `history` command, by entering:
 
@@ -156,6 +158,7 @@ You will be glad you learned this when you need to re-run very complicated comma
 > files in `/usr/bin`. Rerun that command.
 {: .challenge}
 
+
 ## Examining Files
 
 We now know how to switch directories, run programs, and look at the
@@ -189,7 +192,7 @@ This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
 `cat` is a terrific program, but when the file is really big, it can
 be annoying to use. The program, `less`, is useful for this
-case. `less` opens the file as read only, and lets you navigate through it. The naviation commands
+case. `less` opens the file as read only, and lets you navigate through it. The navigation commands
 are identical to the `man` program.
 
 Enter the following command:
@@ -204,7 +207,7 @@ Some navigation commands in `less`
 | key     | action |
 | ------- | ---------- |
 | "space" | to go forward |
-|  "b"    | to go backwarsd |
+|  "b"    | to go backward |
 |  "g"    | to go to the beginning |
 |  "G"    | to go to the end |
 |  "q"    | to quit |
@@ -217,14 +220,15 @@ that word is found.
 **Shortcut:** If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
 works its way forward. Note, if you are at the end of the file and search
-for the word "cat", `less` will not find it. You need to go to the
+for the sequence "CAA", `less` will not find it. You need to go to the
 beginning of the file and search.
 
 For instance, let's search the file we have open for the sequence `GTGCGGGCAATTAACAGGGGTTCAC`.
 You can see that we go right to that sequence and can see
 what it looks like.
 
-## Exercise
+> ## Exercise
+>
 > What are the next three nucleotides (characters) after the sequence quoted above?
 > 
 > > ## Solution
@@ -243,16 +247,21 @@ to see the beginning or end of the file, or see how it's formatted.
 The commands are `head` and `tail` and they let you look at
 the beginning and end of a file, respectively.
 
-    head SRR098026.fastq
-    tail SRR098026.fastq
+~~~
+head SRR098026.fastq
+tail SRR098026.fastq
+~~~
+{: .bash}
 
 The `-n` option to either of these commands can be used to print the
 first or last `n` lines of a file. To print the first/last line of the
 file use:
 
-    head -n 1 SRR098026.fastq
-    tail -n 1 SRR098026.fastq
-
+~~~
+head -n 1 SRR098026.fastq
+tail -n 1 SRR098026.fastq
+~~~
+{: .bash}
 
 ## Creating, moving, copying, and removing
 
@@ -273,9 +282,16 @@ command backs up the file.
 
 Navigate to the `data` directory and enter:
 
-    cp SRR098026.fastq SRR098026-copy.fastq
-    ls -F
-    SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
+~~~
+cp SRR098026.fastq SRR098026-copy.fastq
+ls -F
+~~~
+{: .bash}
+
+~~~
+SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
+~~~
+{: .output}
 
 Now SRR098026-copy.fastq has been created as a copy of SRR098026.fastq
 
@@ -286,7 +302,10 @@ Let's make a `backup` directory where we can put this file.
 The `mkdir` command is used to make a directory. Just enter `mkdir`
 followed by a space, then the directory name.
 
-    mkdir backup
+~~~
+mkdir backup
+~~~
+{: .bash}
 
 ### Moving / Renaming 
 
@@ -295,24 +314,36 @@ move files around using the command `mv`.
 
 Enter this command:
 
-    mv *-copy.fastq backup
-    ls -al backup
-    
-    total 52
-    drwxrwxr-x 2 dcuser dcuser  4096 Jul 30 15:31 .
-    drwxr-xr-x 3 dcuser dcuser  4096 Jul 30 15:31 ..
-    -rw-r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-copy.fastq
+~~~
+mv *-copy.fastq backup
+ls -al backup
+~~~
+{: .bash}
+ 
+~~~
+total 52
+drwxrwxr-x 2 dcuser dcuser  4096 Jul 30 15:31 .
+drwxr-xr-x 3 dcuser dcuser  4096 Jul 30 15:31 ..
+-rw-r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-copy.fastq
+~~~
+{: .output}
 
 The `mv` command is also how you rename files. Since this file is so
 important, let's rename it! 
 
 Type:
 
-    cd backup
-    mv SRR098026-copy.fastq SRR098026-copy.fastq_DO_NOT_TOUCH!
-    ls
-    
-    SRR098026-copy.fastq_DO_NOT_TOUCH!
+~~~
+cd backup
+mv SRR098026-copy.fastq SRR098026-copy.fastq_DO_NOT_TOUCH!
+ls
+~~~
+{: .bash}
+
+~~~
+SRR098026-copy.fastq_DO_NOT_TOUCH!
+~~~
+{: .output}
 
 ### Removing
 
@@ -320,7 +351,10 @@ Finally, we decided this was silly and want to start over.
 
 Type:
 
-    rm backup/SRR*
+~~~
+rm backup/SRR*
+~~~
+{: .bash}
 
 The `rm` file permanently removes the file. Be careful with this command. It doesn't
 just nicely put the files in the Trash. They're really gone.
@@ -331,17 +365,17 @@ we just made.
 
 Enter the following command:
 
-    rm -r backup
+~~~
+rm -r backup
+~~~
+{: .bash}
 
-* * * *
-**Exercise**
-
-Do the following:
-
-1.  Create a backup of your SRR097977.fastq file in the directory containing the original file.
-2.  Move the backup copy to the backup directory.
-3.  Rename the backup copy of your file.
-
-* * * *
+> ## Exercise
+>
+> Do the following:
+> 1.  Create a backup of your SRR097977.fastq file in the directory containing the original file.
+> 2.  Move the backup copy to the backup directory.
+> 3.  Rename the backup copy of your file.
+{: .challenge}
 
 
