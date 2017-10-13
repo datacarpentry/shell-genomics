@@ -16,10 +16,14 @@ keypoints:
 
 We showed a little how to search within a file using `less`. We can also
 search within files without even opening them, using `grep`. Grep is a command-line
-utility for searching plain-text data sets for lines matching a string or regular expression.
+utility for searching plain-text files for lines matching a specific set of 
+characters (sometimes called a string) or a particular pattern 
+(which can be specified using something called regular expressions). We're not going to work with 
+regular expressions in this lesson, and are instead going to specify the strings 
+we are searching for.
 Let's give it a try!
 
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive Ns.  
+Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns).  
 Let's search for the string NNNNNNNNNN in the SRR098026 file.
 
 ~~~
@@ -27,14 +31,25 @@ $ grep NNNNNNNNNN SRR098026.fastq
 ~~~
 {: .bash}
 
-We get back a lot of lines. What we want to see is the whole fastq record for each of these reads. The fastq record consists of one line before the sequence information as well as two lines after. We can use the '-B' argument for grep to return the matched line plus one before: '-B1'. With the '-A argument', we can have grep list the two lines after also: '-A2'.
+This command returns a lot of output to the terminal. Each line in the SRR098026 
+file which contains at least 10 consecutive Ns is printed to the terminal. We may be 
+interested not only in the actual sequence which contains this string, but 
+in the name (or identifier) of that sequence. We discussed in a previous lesson 
+that the identifier line immediately precedes the nucleotide sequence for each read
+in a fastq file. We may also want to inspect the quality scores associated with
+each of these reads. To get all of this information, we will return the line 
+immediately before each match and the two lines immediately after each match.
+
+We can use the `-B` argument for grep to return a specific number of lines before
+each match and the `-A` argument to return a specific number of lines after each matching line. Here we want the line before and the two lines after each 
+matching line so we add `-B1 -A2` to our grep command.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
 ~~~
 {: .bash}
 
-for example:
+One of the sets of lines returned by this command is: 
 
 ~~~
 @SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
@@ -46,11 +61,13 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
 > ## Exercise
 >
-> 1) Search for the sequence GNATNACCACTTCC in SRR098026.fastq.
-> In addition to identifying the line containing the sequence, have your search also return
-> the line containing the name of the sequence (tip: the name of the sequence is listed after the '@' sign).
+> 1) Search for the sequence GNATNACCACTTCC in the SRR098026.fastq.
+> Have your search return all matching lines and the name (or identifier) for each sequence
+> that contains a match.
 > 
-> 2) Search for the sequence AAGTT in both fastq files. Get the lines containing the name of the sequence and the sequence itself.
+> 2) Search for the sequence AAGTT in both fastq files.
+> Have your search return all matching lines and the name (or identifier) for each sequence
+> that contains a match.
 {: .challenge}
 
 ## Redirection
