@@ -174,29 +174,39 @@ $ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
 
 
 There's one more useful redirection command that we're going to show, and that's
-called the pipe command (`|`). It's probably not a key on
-your keyboard you use very much. What `|` does is take the output that is
+called the pipe command (`|`). This is probably not a key on
+your keyboard you use very much, so let's all take a minute to find that key. 
+What `|` does is take the output that is
 scrolling by on the terminal and uses that output as input to another command. 
-When our output was , we wished we could just slow it down and
-look at it, like we can with `less`. Well it turns out that we can! We pipe
-the `grep` command through `less`.
+When our output was scrolling by, we might have wished we could slow it down and
+look at it, like we can with `less`. Well it turns out that we can! We can redirect our output
+from our `grep` call through the `less` command.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
 ~~~
 {: .bash}
 
-Now we can use the arrows to scroll up and down and use `q` to get out.
+We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows 
+to scroll through the output and use `q` to exit `less`.
 
-Redirecting is not super intuitive, but it's really powerful for stringing
-together these different commands, so you can do whatever you need to do.
+Redirecting output is often not intuitive, and can take some time to get used to. Once you're 
+comfortable with redirection, however, you'll be able to combine any number of commands to
+do all sorts of exciting things with your data!
 
-The philosophy behind these command line programs is that none of them
-really do anything all that impressive. BUT when you start chaining
-them together, you can do some really powerful things really
-efficiently. If you want to be proficient at using the shell, you must
-learn to become proficient with the pipe and redirection operators:
-`|`, `>`, `>>`.
+None of the command line programs we've been learning
+do anything all that impressive on their own, but when you start chaining
+them together, you can do some really powerful things very
+efficiently. Let's take a few minutes to practice. 
+
+> ## Exercise
+>
+> 
+>
+>> ## Solution
+>> 
+> {: .solution}
+{: .challenge}
 
 Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
 
