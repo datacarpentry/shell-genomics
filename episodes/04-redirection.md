@@ -70,7 +70,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 > that contains a match.
 {: .challenge}
 
-## Redirection
+## Redirecting output
 
 `grep` allowed us to identify sequences in our FASTQ files that match a particular pattern. 
 But all of these sequences were printed to our terminal screen. In order to work with these 
@@ -208,7 +208,9 @@ efficiently. Let's take a few minutes to practice.
 > {: .solution}
 {: .challenge}
 
-Finally, let's use the new tools in our kit and a few new ones to example our SRA metadata file.
+## File manipulation and more practice with pipes
+
+Let's use the tools we've added to our tool kit so far, along with a few new ones, to example our SRA metadata file. First, let's navigate to the correct directory.
 
 ~~~
 $ cd
@@ -216,11 +218,18 @@ $ cd dc_sample_data/sra_metadata
 ~~~
 {: .bash}
 
-Let's ask a few questions about the data.
+This file contains a lot of information about the samples that we submitted for sequencing. We
+took a look at this file in an earlier lesson. Here we're going to use the information in this
+file to answer some questions about our samples.
 
 #### How many of the read libraries are paired end?
 
-We know this information is somewhere in our SraRunTable.txt file, we just need to find it. First, let's look at the column headers.
+The samples that we submitted to the sequencing facility were a mix of single and paired end
+libraries. We know that we recorded information in our metadata table about which samples used 
+which library preparation method, but we don't remember exactly where this data is recorded. 
+Let's start by looking at our column headers to see which column might have this information. Our
+column headers are in the first row of our data table, so we can use `head` with a `-n` flag to
+look at just the first row of the file.
 
 ~~~
 $ head -n 1 SraRunTable.txt
@@ -232,21 +241,28 @@ BioSample_s	InsertSize_l	LibraryLayout_s	Library_Name_s	LoadDate_s	MBases_l	MByt
 ~~~
 {: .output}
 
-That's only the first line but it is a lot to take in.  `cut` is a program that will extract columns in tab-delimited
-files.  It is a very good command to know.  Lets look at just the first four columns in the header using the `|` redirect
-and `cut`.
+That is only the first line of our file, but because there are a lot of columns, the output
+likely wraps around your terminal window and appears as multiple lines. Once we figure out which
+column our data is in, we can use a command called `cut` to extract the column of interest.
+
+Because this is pretty hard to read, we can look at just a few column header names at a time by combining the `|` redirect and `cut`.
 
 ~~~
 $ head -n 1 SraRunTable.txt | cut -f1-4
 ~~~
 {: .bash}
 
+`cut` takes a `-f` flag, which stands for "field". This flag accepts a list of field numbers,
+in our case, column numbers. Here we are extracting the first four column names.
+
 ~~~
 BioSample_s InsertSize_l      LibraryLayout_s	Library_Name_s    
 ~~~
 {: .output}
 
-`-f1-4` means to cut the first four fields (columns).  The LibraryLayout_s column looks promising.  Let's look at some data for just that column.
+The LibraryLayout_s column looks like it should have the information we want.  Let's look at some
+of the data from that column. We can use `cut` to extract only the 3rd column from the file and
+then use the `|` operator with `head` to look at just the first few lines of data in that column.
 
 ~~~
 $ cut -f3 SraRunTable.txt | head -n 10
@@ -268,7 +284,8 @@ PAIRED
 {: .output}
 
 We can see that there are (at least) two categories, SINGLE and PAIRED.  We want to search all entries in this column
-for just PAIRED and count the number of hits.
+for just PAIRED and count the number of matches. For this, we will use the `|` operator twice
+to combine `cut` (to extract the column we want), `grep` (to find matches) and `wc` (to count matches).
 
 ~~~
 $ cut -f3 SraRunTable.txt | grep PAIRED | wc -l
@@ -279,6 +296,23 @@ $ cut -f3 SraRunTable.txt | grep PAIRED | wc -l
 2
 ~~~
 {: .output}
+
+We can see from this that we have only two paired-end libraries in the samples we submitted for 
+sequencing.
+
+> ## Exercise
+>
+> How many single-end libraries are in our samples? 
+>
+>> ## Solution
+>> ~~~
+>> $ cut -f3 SraRunTable.txt | grep SINGLE | wc -l
+>> ~~~
+>> {: .bash}
+>> 
+> {: .solution}
+{: .challenge}
+
 
 #### How many of each class of library layout are there?  
 
