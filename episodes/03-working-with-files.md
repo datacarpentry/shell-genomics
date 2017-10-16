@@ -30,7 +30,7 @@ $ cd ~/dc_sample_data/untrimmed_fastq
 {: .bash}
 
 We are interested in looking at the FASTQ files in this directory. We can list
-all files with the fastq extension using the command:
+all files with the .fastq extension using the command:
 
 ~~~
 $ ls *.fastq
@@ -146,7 +146,7 @@ For example, if your history looked like this:
 then you could repeat command #260 by entering:
 
 ~~~
-!260
+$ !260
 ~~~
 {: .bash}
 
@@ -248,8 +248,8 @@ The commands are `head` and `tail` and they let you look at
 the beginning and end of a file, respectively.
 
 ~~~
-head SRR098026.fastq
-tail SRR098026.fastq
+$ head SRR098026.fastq
+$ tail SRR098026.fastq
 ~~~
 {: .bash}
 
@@ -258,33 +258,33 @@ first or last `n` lines of a file. To print the first/last line of the
 file use:
 
 ~~~
-head -n 1 SRR098026.fastq
-tail -n 1 SRR098026.fastq
+$ head -n 1 SRR098026.fastq
+$ tail -n 1 SRR098026.fastq
 ~~~
 {: .bash}
 
 ## Creating, moving, copying, and removing
 
-Now we can move around in the file structure, look at files, search files,
-redirect. But what if we want to do normal things like copy files or move
-them around or get rid of them. Sure we could do most of these things
-without the command line, but what fun would that be?! Besides it's often
-faster to do it at the command line, or you'll be on a remote server
-like Amazon where you won't have another option.
+Now we can move around in the file structure, look at files, search files, and
+redirect output to new files or to other commands. But what if we want to copy files or move
+them around or get rid of them. Most of the time, you can do these sorts of file manipulations without the command line,
+but there will be some cases (like when you're working with a remote computer like we are for this lesson) where it will be
+impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all 
+of those files. In cases like this, it's much faster to do these operations at the command line.
 
-### Copying 
+### Copying Files
 
-Our raw data in this case is fastq files.  We don't want to change the original files,
-so let's make a copy to work with.
+When working with computational data, it's important to keep a safe copy of that data that can't be accidentally overwritten or deleted. 
+For this lesson, our raw data is our FASTQ files.  We don't want to accidentally change the original files, so we'll make a copy of them
+and change the file permissions so that we can read from, but not write to, the files.
 
-Lets copy the file using the `cp` command. The `cp`
-command backs up the file. 
+First, let's make a copy of one of our FASTQ files using the `cp` command. 
 
 Navigate to the `data` directory and enter:
 
 ~~~
-cp SRR098026.fastq SRR098026-copy.fastq
-ls -F
+$ cp SRR098026.fastq SRR098026-copy.fastq
+$ ls -F
 ~~~
 {: .bash}
 
@@ -293,74 +293,115 @@ SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
 ~~~
 {: .output}
 
-Now SRR098026-copy.fastq has been created as a copy of SRR098026.fastq
-
-Let's make a `backup` directory where we can put this file.
+We now have two copies of the SRR098026.fastq file, one of them named SRR098026-copy.fastq. We'll move this file to a new directory
+called `backup` where we'll store our backup data files.
 
 ### Creating Directories
 
-The `mkdir` command is used to make a directory. Just enter `mkdir`
-followed by a space, then the directory name.
+The `mkdir` command is used to make a directory. Enter `mkdir`
+followed by a space, then the directory name you want to create.
 
 ~~~
-mkdir backup
+$ mkdir backup
 ~~~
 {: .bash}
 
 ### Moving / Renaming 
 
-We can now move our backed up file in to this directory. We can
+We can now move our backup file to this directory. We can
 move files around using the command `mv`. 
 
-Enter this command:
-
 ~~~
-mv *-copy.fastq backup
-ls -al backup
+$ mv SRR098026-copy.fastq backup
+$ ls backup
 ~~~
 {: .bash}
  
 ~~~
-total 52
-drwxrwxr-x 2 dcuser dcuser  4096 Jul 30 15:31 .
-drwxr-xr-x 3 dcuser dcuser  4096 Jul 30 15:31 ..
--rw-r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-copy.fastq
+SRR098026-copy.fastq
 ~~~
 {: .output}
 
-The `mv` command is also how you rename files. Since this file is so
-important, let's rename it! 
-
-Type:
+The `mv` command is also how you rename files. Let's rename this file to make it clear that this is a backup.
 
 ~~~
-cd backup
-mv SRR098026-copy.fastq SRR098026-copy.fastq_DO_NOT_TOUCH!
-ls
+$ cd backup
+$ mv SRR098026-copy.fastq SRR098026-backup.fastq
+$ ls
 ~~~
 {: .bash}
 
 ~~~
-SRR098026-copy.fastq_DO_NOT_TOUCH!
+SRR098026-backup.fastq
+~~~
+{: .output}
+
+### File Permissions
+
+We've now made a backup copy of our file, but just because we have two copies doesn't make us safe. We can still accidentally delete or 
+overwrite both copies. To make sure we can't accidentally mess up this backup file, we're going to change the permissions on the file so
+that we're only allowed to read (i.e. view) the file, not write to it (i.e. make new changes).
+
+View the current permissions on a file using the `-l` (long) flag for the `ls` command. 
+
+~~~
+$ ls -l
+~~~
+{: .bash}
+
+~~~
+-rw-r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-backup.fastq
+~~~
+{: .output}
+
+The first part of the output for the `-l` flag gives you information about the file's current permissions. There are ten slots in the
+permissions list. The first character in this list is related to file type, not permissions, so we'll ignore it for now. The next three
+characters relate to the permissions that the file owner has, the next three relate to the permissions for group members, and the final
+three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
+that deal with your permissions (as the file owner). 
+
+Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w` 
+indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you 
+don't have permission to carry out the ability encoded by that space (this is the space where `x` or executable ability is stored, we'll 
+talk more about this in [a later lesson](http://www.datacarpentry.org/shell-genomics/05-writing-scripts/)).
+
+Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`. 
+
+~~~
+$ chmod -w SRR098026-backup.fastq
+$ ls -l 
+~~~
+{: .bash}
+
+~~~
+-r--r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-backup.fastq
 ~~~
 {: .output}
 
 ### Removing
 
-Finally, we decided this was silly and want to start over.
-
-Type:
+To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command.
 
 ~~~
-rm backup/SRR*
+$ rm backup/SRR098026-backup.fastq
 ~~~
 {: .bash}
 
-The `rm` file permanently removes the file. Be careful with this command. It doesn't
+You'll be asked if you want to override your file permissions.
+
+~~~
+override r--r--r-- dcuser/dcuser backup/SRR098026-backup.fastq?
+~~~
+{: .output}
+
+If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra 
+measure of security, as there is one more step between us and deleting our data files.
+
+Important: The `rm` file permanently removes the file. Be careful with this command. It doesn't
 just nicely put the files in the Trash. They're really gone.
 
-By default, `rm`, will NOT delete directories. You can tell `rm` to
-delete a directory using the `-r` option. Let's delete that `new` directory
+By default, `rm`, will not delete directories. You can tell `rm` to
+delete a directory using the `-r` (recursive) option. Let's delete the backup directory
 we just made. 
 
 Enter the following command:
@@ -370,12 +411,16 @@ rm -r backup
 ~~~
 {: .bash}
 
+This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory, 
+you will be asked whether you want to override your permission settings. 
+
 > ## Exercise
 >
 > Do the following:
-> 1.  Create a backup of your SRR097977.fastq file in the directory containing the original file.
-> 2.  Move the backup copy to the backup directory.
-> 3.  Rename the backup copy of your file.
+> 1. Make sure that you have deleted your backup directory and all files it contains.
+> 1. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
+> learned yet how to do this
+> with a wild-card.)
+> 1. Use a wildcard to move all of your backup files to a new backup directory. 
+> 1. Change the permissions on all of your backup files to be write-protected.
 {: .challenge}
-
-
