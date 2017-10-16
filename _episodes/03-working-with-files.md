@@ -268,7 +268,7 @@ $ tail -n 1 SRR098026.fastq
 Now we can move around in the file structure, look at files, search files, and
 redirect output to new files or to other commands. But what if we want to copy files or move
 them around or get rid of them. Most of the time, you can do these sorts of file manipulations without the command line,
-but there will be come cases (like when you're working with a remote computer like we are for this lesson) where it will be
+but there will be some cases (like when you're working with a remote computer like we are for this lesson) where it will be
 impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all 
 of those files. In cases like this, it's much faster to do these operations at the command line.
 
