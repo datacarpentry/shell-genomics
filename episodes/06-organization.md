@@ -38,14 +38,7 @@ documenting your genomics project.
 Your future self will thank you.  
 
 
-In this exercise we will setup a filesystem for the project we will be working on during this workshop. We will 
-also introduce you to some more helpful shell commands, programs and tools, including: 
-* ``mkdir``  
-* ``history``  
-* ``tail``  
-* ``|``  
-* ``nano``  
-* ``>>``  
+In this exercise we will setup a filesystem for the project we will be working on during this workshop.  
 
 We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
 
@@ -62,15 +55,10 @@ You should see the output:
 ~~~
 {: .output}
 
-
 > ## Tip  
 > If you aren't in your home directory, the easiest way to get there is to enter the command `cd`, which
 > always returns you to home.  
 {: .callout}
-
-Now that we know how to navigate around our directory structure,
-we'll learn how to create new directories and files. We can make new
-directories with the `mkdir` command.
 
 > ## Exercise  
 > Use the `mkdir` command to make the following directories. 
@@ -88,7 +76,9 @@ directories with the `mkdir` command.
 > {: .solution}
 {: .challenge}
 
-Use `ls -R` to verify that you have created these directories. 
+Use `ls -R` to verify that you have created these directories. The `-R` option for `ls` stands for recursive. This option causes
+`ls` to return the contents of each subdirectory within the directory
+iteratively. 
 
 ~~~
 $ ls -R dc_workshop
@@ -108,10 +98,6 @@ dc_workshop/docs:
 dc_workshop/results: 
 ~~~
 {: .output}
-
-The `-R` option for `ls` stands for recursive. This option causes
-`ls` to return the contents of each subdirectory within the directory
-iteratively. 
 
 # Organizing your files
 
@@ -164,12 +150,6 @@ View the last n lines of your history (where n = approximately the last few line
 $ history | tail -n 7
 ~~~
 
-We will talk much more about the `|` command in a later lesson. 
-For now, it's important to know that this is called a `pipe` and it
-sends the output of the first command (`history`) as input to the
-next command (`tail`). We have used the `-n` option to give the last
-7 lines of our history.  
-
 Using your knowledge of the shell use the append redirect `>>` to create a file called
 **dc_workshop_log_XXXX_XX_XX.txt** (Use the four-digit year, two-digit month, and two digit day, e.g.
 dc_workshop_log_2015_07_30.txt)  
@@ -181,7 +161,7 @@ from our log, lets use the `nano` text editor to fix the file:
     $ nano dc_workshop_log
 ```
 
-From the nano screen, you should be able to use your cursor to navigate, type, and delete any redundant lines.   
+From the nano screen, you can use your cursor to navigate, type, and delete any redundant lines.   
 
 Add a dateline and comment to the line where you have created the directory, for example:   
 
@@ -190,20 +170,12 @@ Add a dateline and comment to the line where you have created the directory, for
 # Created sample directories for the Data Carpentry workshop  
 ```
 
-Next, remove any lines of the history that are not relevant by navigating to those lines and using your 
-delete key.   
+Bash treats the `#` character as a comment character. Any text on a line after a `#` is ignored by bash when evaluating the text as code.
 
-Close nano by hitting 'Control' and the 'X' key at the same time; notice in nano this is abbreviated '\^X'.
-Nano will ask if you want to save. Type 'Y' for yes. When prompted for the 'File Name to Write', hit 'Enter'
-to keep the same name and save.   
+Next, remove any lines of the history that are not relevant by navigating to those lines and using your 
+delete key. Save your file and close nano.
 
 Now that you have created the file, move the file to 'dc_workshop/docs' using the `mv` command.  
-
-
-> ## Questions  
-> 1. What is the default number of lines that tail displays?  
-> 2. What is the difference between `>` and `>>`?
-{: .challenge}
 
 ## References
 [A Quick Guide to Organizing Computational Biology Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)

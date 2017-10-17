@@ -93,25 +93,24 @@ It will look like nothing happened, but now if you look at `scripted_bad_reads.t
 
 ## Making the script into a program
 
-We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead we can turn this script into its own program. We need to tell it that it's a program by making it executable.
+We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead we can turn this script into its own program. We need to tell it that it's a program by making it executable. We can do this by changing the file permissions. We
+talked about permissions in [an earlier episode](http://www.datacarpentry.org/shell-genomics/03-working-with-files/).
 
-First, let's look at it now
+First, let's look at the current permissions.
 
 ~~~
 $ ls -l bad-reads-script.sh
 ~~~
 {: .bash}
 
-We see that it says `-rw-r--r--` which means that the file can mainly be read. That's the `r`.   
-
-We want to change it so that it can be executed as a program. We use the command `chmod` which stands for `change mode`. We're going to say `+x` to add that we want it to be executable.
+We see that it says `-rw-r--r--`. This shows that the file can be read by any user and written to by the file owner (you). We want to change these permissions so that the file can be executed as a program. We use the command `chmod` like we did earlier when we removed write permissions. Here we are adding (`+`) executable permissions (`+x`).
 
 ~~~
 $ chmod +x bad-reads-script.sh
 ~~~
 {: .bash}
 
-Now let's look at it again.
+Now let's look at the permissions again.
 
 ~~~
 $ ls -l bad-reads-script.sh
