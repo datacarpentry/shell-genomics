@@ -307,9 +307,14 @@ the directory begin with this prefix. When you hit
 tab again, the shell will list the possible choices.
 
 ~~~
-$ ls SRR09<tab>
+$ ls SRR09<tab><tab>
 ~~~
 {: .bash}
+
+~~~
+SRR097977.fastq  SRR098026.fastq
+~~~
+{: .output}
 
 Tab completion can also fill in the names of programs, which can be useful if you
 remember the begining of a program name. 
