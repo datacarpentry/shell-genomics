@@ -61,18 +61,21 @@ You should see the output:
 {: .callout}
 
 > ## Exercise  
-> Use the `mkdir` command to make the following directories. 
-> * dc_workshop   
-> * dc_workshop/docs
-> * dc_workshop/data  
-> * dc_workshop/results 
+> Use the `mkdir` command to make the following directories:   
+> dc_workshop     
+> dc_workshop/docs  
+> dc_workshop/data    
+> dc_workshop/results   
 > 
 > > ## Solution
 > > 
+> > ~~~
 > > $ mkdir dc_workshop
 > > $ mkdir dc_workshop/docs
 > > $ mkdir dc_workshop/data
 > > $ mkdir dc_workshop/results
+> > ~~~
+> > {: .bash}
 > {: .solution}
 {: .challenge}
 
