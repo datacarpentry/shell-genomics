@@ -99,10 +99,10 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > what you need to solve the bonus problem.
 > 
 > > ## Solution
-> > 1. ls /usr/bin/c*
-> > 2. ls /usr/bin/*a*
-> > 3. ls /usr/bin/*o
-> > Bonus: 
+> > 1. `ls /usr/bin/c*`
+> > 2. `ls /usr/bin/*a*`
+> > 3. `ls /usr/bin/*o`  
+> > Bonus: `ls /usr/bin/*[ac]*`
 > > 
 > {: .solution}
 {: .challenge}
@@ -156,6 +156,10 @@ You will be glad you learned this when you need to re-run very complicated comma
 > ## Exercise
 > Find the line number in your history for the command that listed all the .sh
 > files in `/usr/bin`. Rerun that command.
+>
+> > ## Solution
+> > First type `history`. Then use `!` followed by the line number to rerun that command.
+> {: .solution}
 {: .challenge}
 
 
@@ -198,7 +202,7 @@ are identical to the `man` program.
 Enter the following command:
 
 ~~~
-$ less SRR098026.fastq
+$ less SRR097977.fastq
 ~~~
 {: .bash}
 
@@ -416,11 +420,26 @@ you will be asked whether you want to override your permission settings.
 
 > ## Exercise
 >
-> Do the following:
-> 1. Make sure that you have deleted your backup directory and all files it contains.
-> 1. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
+> Do the following:  
+> 1. Make sure that you have deleted your backup directory and all files it contains.  
+> 2. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
 > learned yet how to do this
-> with a wild-card.)
-> 1. Use a wildcard to move all of your backup files to a new backup directory. 
-> 1. Change the permissions on all of your backup files to be write-protected.
+> with a wild-card.)  
+> 3. Use a wildcard to move all of your backup files to a new backup directory.   
+> 4. Change the permissions on all of your backup files to be write-protected.  
+>
+> > ## Solution
+> >
+> > 1. `rm -r backup`  
+> > 2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`  
+> > 3. `mkdir backup` and `mv *-backup.fastq backup`
+> > 4. `chmod -w backup/*-backup.fastq`   
+> > It's always a good idea to check your work with `ls -l backup`. You should see something like: 
+> > 
+> > ~~~
+> > -r--r--r-- 1 dcuser dcuser 47649 Oct 20 16:59 SRR097977-backup.fastq
+> > -r--r--r-- 1 dcuser dcuser 43421 Oct 20 16:59 SRR098026-backup.fastq
+> > ~~~
+> > {: .output}
+> {: .solution}
 {: .challenge}
