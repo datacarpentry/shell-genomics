@@ -49,6 +49,14 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 > ## Exercise
 >
 > Open `README.txt` and add the date to the top of the file and save the file.
+>
+> > ## Solution
+> > 
+> > Use `nano README.txt` to open the file.  
+> > Add today's date and then use `Ctrl-X` to exit and `y` to save.
+> >
+> {: .solution}
+>
 {: .challenge}
 
 ## Writing scripts
@@ -86,8 +94,8 @@ It will look like nothing happened, but now if you look at `scripted_bad_reads.t
 
 > ## Exercise
 >
-> We want the script to tell us when it's done.
-> 1. Open `bad-reads-script.sh` and add the line `echo "Script finished!"` after the `grep` command and save the file.
+> We want the script to tell us when it's done.  
+> 1. Open `bad-reads-script.sh` and add the line `echo "Script finished!"` after the `grep` command and save the file.  
 > 2. Run the updated script.
 {: .challenge}
 
