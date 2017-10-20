@@ -17,7 +17,7 @@ keypoints:
 
 We've been able to do a lot of work with files that already exist, but what if we want to write our own files. Obviously, we're not going to type in a FASTA file, but we'll see as we go through other tutorials, there area lot of reasons we'll want to write a file, or edit an existing file.
 
-To write in files, we're going to use the program `nano`. We're going to create a file to take notes on what we've been doing with the data files in `/dc_sample_data/untrimmed_fastq`.
+To write in files, we're going to use the program `nano`. We're going to create a file to take notes on what we've been doing with the data files in `~/dc_sample_data/untrimmed_fastq`.
 
 This is good practice when working in bioinformatics. We can create a file called a `README.txt` that describes the data files in the directory or documents how the files in that directory were generated.  As the name suggests it's a file that we or others should read to understand the information in that directory.
 
