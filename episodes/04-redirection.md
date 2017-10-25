@@ -67,6 +67,12 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 > 2) Search for the sequence AAGTT in both FASTQ files.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match.
+> 
+> > ## Solution  
+> > 1) `grep -B1 GNATNACCACTTCC SRR098026.fastq`  
+> > 2) `grep -B1 AAGTT *.fastq`
+> >
+> {: .solution}
 {: .challenge}
 
 ## Redirecting output
@@ -120,10 +126,18 @@ four to get the number of sequences that match our search pattern.
 > How many sequences in SRR098026.fastq contain at least 3 consecutive Ns?
 >
 >> ## Solution
->> We can do it in one step, using the `|` pipe:
->>  ~~~
->>  $ grep NNN SRR098026.fastq | wc -l
->>  ~~~
+>> We can do it in one step, using the `|` pipe:  
+>>
+>> ~~~
+>> $ grep NNN SRR098026.fastq | wc -l
+>> ~~~
+>> {: .bash}
+>> 
+>> ~~~
+>> 250
+>> ~~~
+>> {: .output}
+>>
 > {: .solution}
 {: .challenge}
 
@@ -312,6 +326,11 @@ sequencing.
 >> ~~~
 >> {: .bash}
 >> 
+>> ~~~
+>> 35
+>> ~~~
+>> {: .output}
+>>
 > {: .solution}
 {: .challenge}
 
@@ -371,12 +390,37 @@ $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
 {: .output}
 
 > ## Exercise
-> a) How many different sample load dates are there? 
-> b) How many samples were loaded on each date?
+> 1) How many different sample load dates are there?   
+> 2) How many samples were loaded on each date?  
 > 
 >> ## Solution
->> 
->> 
+>>  
+>> There are two different sample load dates.  
+>>
+>> ~~~
+>> cut -f5 SraRunTable.txt | grep -v LoadDate_s | sort | uniq
+>> ~~~
+>> {: .bash}
+>>
+>> ~~~
+>> 25-Jul-12
+>> 29-May-14
+>> ~~~
+>> {: .output}
+>>
+>> Six samples were loaded on one date and 31 were loaded on the other.  
+>>
+>> ~~~
+>> cut -f5 SraRunTable.txt | grep -v LoadDate_s | sort | uniq -c
+>> ~~~
+>> {: .bash}
+>>
+>> ~~~
+>>  6 25-Jul-12
+>> 31 29-May-14
+>> ~~~
+>> {: .output}
+>>
 > {: .solution}
 {: .challenge}
 
@@ -423,4 +467,11 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 > ## Exercise
 > Sort samples by load date and export each of those sets to a new file (one new file per
 > unique load date). 
+> 
+> > ## Solution
+> > 
+> > `grep 25-Jul-12 SraRunTable.txt > SraRunTable_25-Jul-12.txt`  
+> > `grep 29-May-14 SraRunTable.txt > SraRunTable_29-May-14.txt`
+> >
+> {: .solution}
 {: .challenge}

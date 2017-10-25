@@ -307,9 +307,14 @@ the directory begin with this prefix. When you hit
 tab again, the shell will list the possible choices.
 
 ~~~
-$ ls SRR09<tab>
+$ ls SRR09<tab><tab>
 ~~~
 {: .bash}
+
+~~~
+SRR097977.fastq  SRR098026.fastq
+~~~
+{: .output}
 
 Tab completion can also fill in the names of programs, which can be useful if you
 remember the begining of a program name. 
@@ -325,16 +330,3 @@ pwd         pwd_mkdb    pwhich      pwhich5.16  pwhich5.18  pwpolicy
 {: .output}
 
 Displays the name of every program that starts with `pw`. 
-
-
-## More information on the shell
-
-shell cheat sheets:<br>
-* [http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/](http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/)
-* [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
-
-Explain shell - a web site where you can see what the different components of
-a shell command are doing.  
-* [http://explainshell.com](http://explainshell.com)
-* [http://www.commandlinefu.com](http://www.commandlinefu.com)
-
