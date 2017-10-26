@@ -1,7 +1,7 @@
 ---
 title: "Introducing the Shell"
 teaching: 20
-exercises: 0
+exercises: 10
 questions:
 - "What is a command shell and why would I use one?"
 - "How can I move around on my computer?"
@@ -10,10 +10,12 @@ questions:
 objectives:
 - "Describe key reasons for learning shell."
 - "Navigate your file system using the command line."
+- "Access and read help files for `bash` programs and use help files to identify useful command options."
 - "Demonstrate the use of tab completion, and explain its advantages."
 keypoints:
 - "The shell gives you the ability to work more efficiently by using keyboard commands rather than a GUI."
-- "pwd, ls, and cd are useful commands to navigate a file system."
+- "Useful commands for navigating your file system include: `ls`, `pwd`, and `cd`."
+- "Most commands take options (flags) which begin with a `-`."
 - "Tab completion can reduce errors from mistyping and make work more efficient in the shell."
 ---
 
@@ -330,3 +332,14 @@ pwd         pwd_mkdb    pwhich      pwhich5.16  pwhich5.18  pwpolicy
 {: .output}
 
 Displays the name of every program that starts with `pw`. 
+
+## Summary
+
+We now know how to move around our file system using the command line.
+This gives us an advantage over interacting with the file system through
+a GUI as it allows us to work on a remote server, carry out the same set of operations 
+on a large number of files quickly, and opens up many opportunities for using 
+bioinformatics software that is only available in command line versions. 
+
+In the next few episodes, we'll be expanding on these skills and seeing how 
+using the command line shell enables us to make our workflow more efficient and reproducible.
