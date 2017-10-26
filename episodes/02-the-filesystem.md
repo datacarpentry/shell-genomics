@@ -1,31 +1,21 @@
 ---
-title: "The Filesystem"
-teaching: 0
-exercises: 0
+title: "Navigating Files and Directories"
+teaching: 30
+exercises: 20
 questions:
-- How can I give my computer directions to files I want to access?  
-- Ho
+- "How can I perform operations on files outside of my working directory?"
+- "What are some navigational shortcuts I can use to make my work more efficient?"
 objectives:
-- Navigate the Unix file system
-- Understand and use file paths and relative paths
-- Keyboard shortcuts to make work more efficiently at the command line 
+- "Use a single command to navigate multiple steps in your directory structure, including moving backwards (up a level)."
+- "Perform operations on files in directories outside your working directory."
+- "Work with hidden directories and hidden files."
+- "Interconvert between absolute and relative paths."
+- "Employ navigational shortcuts to move around your file system."
 keypoints:
-- "First key point."
+- "The `/`, `~`, and `..` characters represent important navigational shortcuts."
+- "Hidden files and directories start with `.` and can be viewed using `ls -a`."
+- "Relative paths specify a location starting from the current location, while absolute paths specify a location from the root of the file system."
 ---
-
-
-## The Unix directory file structure (a.k.a. where am I?)
-
-As you've already just seen, you can move around in different directories
-or folders at the command line. Why would you want to do this, rather
-than just navigating around by clicking on folders as you might usually do.
-
-When you're working with bioinformatics programs, you're working with
-your data and it's key to be able to have that data in the right place
-and make sure the program has access to the data. Many of the problems
-people run in to with command line bioinformatics programs is not having the
-data in the place the program expects it to be.
-
 
 ## Moving around the file system
 
@@ -98,7 +88,7 @@ prints the contents of `/home`, which is one level up from your home directory.
 
 > ## Finding hidden directories
 >
-> There is a hidden directory in our file system. Explore the options for `ls` to 
+> First navigate to the `dc_sample_data` directory. There is a hidden directory within this directory. Explore the options for `ls` to 
 > find out how to see hidden directories. List the contents of the directory and 
 > identify the name of the text file in that directory.
 > 
@@ -308,7 +298,7 @@ navigate amongst them.
 ### Navigational Shortcuts
 
 There are some shortcuts which you should know about. Dealing with the
-home directory is very common. So, in the shell the tilde character,
+home directory is very common. The tilde character,
 `~`, is a shortcut for your home directory. Navigate to the `dc_sample_data`
 directory:
 
@@ -328,8 +318,4 @@ $ ls ~
 This prints the contents of your home directory, without you needing to 
 type the full path. 
 
-To summarize, while you are in the `shell` directory, the commands
-`ls ~`, `ls ~/.`, `ls ../../`, and `ls /home/dcuser` all do exactly the
-same thing. These shortcuts are not necessary, they are provided for
-your convenience.
-
+The commands `cd`, and `cd ~` are very useful for quickly navigating back to your home directory. We will be using the `~` character in later lessons to specify our home directory.
