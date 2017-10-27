@@ -75,18 +75,68 @@ on your computer. If you're using Windows, you'll need to download a separate pr
 ## Starting with the shell
 
 We will spend most of our time learning about the basics of the shell
-by manipulating some experimental data.
+by manipulating some experimental data. 
 
-First, we're going to download the data we will be working with. 
-For this you'll need internet access, because you're going to get it off the web.  
+Some of the data we're going to be working with is quite large, and
+we're also going to be using several bioinformatics packages in later
+lessons to work with this data. To avoid having to spend time 
+downloading the data and downloading and installing all of the software,
+we're going to be working with data on a remote server. 
 
-We're going to be working with data on our remote server. 
-
-You can log-in to the remote server using the information in the Etherpad. First 
+You can log-in to the remote server using the information that your instructor has pasted into the Etherpad. First 
 open your shell (through the Terminal application) and then enter the text starting
 with `ssh` from the Etherpad. Each of you will have a different log-in. This will 
 prevent us from accidentally changing each other's files as we work through the
-exercises.  
+exercises. For example, you might type:
+
+~~~
+$ ssh dcuser@ec2-34-229-196-68.compute-1.amazonaws.com
+~~~
+{: .bash}
+
+Make sure you replace `ec2-34-229-196-68.compute-1.amazonaws.com` with your individual log-in. 
+
+You will be prompted to enter a password. The password will be provided to you by your instructor.
+
+After loging on, you will see a screen showing something like this: 
+
+~~~
+Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Wed Oct 25 21:24:00 UTC 2017
+
+  System load:  0.0                Processes:           147
+  Usage of /:   48.6% of 98.30GB   Users logged in:     0
+  Memory usage: 28%                IP address for eth0: 172.31.30.246
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+483 packages can be updated.
+322 updates are security updates.
+
+
+Last login: Wed Oct 25 21:24:02 2017 from 104.220.130.189
+~~~
+{: .output}
+
+This provides a lot of information about the remote server that you're logging in to. We're not going to use most of this information for
+our workshop, so you can clear your screen using the `clear` command. 
+
+~~~
+$ clear
+~~~
+{: .bash}
+
+This will scroll your screen down to give you a fresh screen and will make it easier to read. 
+You haven't lost any of the information on your screen. If you scroll up, you can see everything that has been output to your screen
+up until this point.
 
 ## Navigating your file system
 

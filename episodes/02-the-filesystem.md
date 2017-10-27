@@ -6,7 +6,7 @@ questions:
 - "How can I perform operations on files outside of my working directory?"
 - "What are some navigational shortcuts I can use to make my work more efficient?"
 objectives:
-- "Use a single command to navigate multiple steps in your directory structure, including moving backwards (up a level)."
+- "Use a single command to navigate multiple steps in your directory structure, including moving backwards (one level up)."
 - "Perform operations on files in directories outside your working directory."
 - "Work with hidden directories and hidden files."
 - "Interconvert between absolute and relative paths."
