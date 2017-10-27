@@ -131,7 +131,7 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 > also be a FASTQ file? The answer is, yes - it will be a FASTQ file and it would make sense to 
 > name it with a `.fastq` extension. However, using a `.fastq` extension will lead us to problems
 > when we move to using wildcards later in this episode. We'll point out where this becomes
-> important. For now, it's good that you're think about file extensions! 
+> important. For now, it's good that you're thinking about file extensions! 
 > 
 {: .callout}
 
