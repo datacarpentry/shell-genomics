@@ -1,21 +1,26 @@
 ---
 title: "Redirection"
-teaching: 0
-exercises: 0
+teaching: 30
+exercises: 15
 questions:
-- "Key question"
+- "How can I search within files?"
+- "How can I combine existing commands to do new things?"
 objectives:
-- Employ the grep command to search for information within files.
-- Print the results of a command to a file.
-- Access resources to learn more information about the shell.
+- "Employ the `grep` command to search for information within files."
+- "Print the results of a command to a file."
+- "Construct command pipelines with two or more stages."
 keypoints:
-- "First key point."
+- "`grep` is a powerful search tool with many options for customization."
+- "`>`, `>>`, and `|` are different ways of redirecting output."
+- "`command > file` redirects a command's output to a file."
+- "`command >> file` redirects a command's output to a file without overwriting the existing contents of the file."
+- "`command_1 | command_2` redirects the output of the first command as input to the second command."
 ---
 
 ## Searching files
 
 We discussed in a previous episode how to search within a file using `less`. We can also
-search within files without even opening them, using `grep`. Grep is a command-line
+search within files without even opening them, using `grep`. `grep` is a command-line
 utility for searching plain-text files for lines matching a specific set of 
 characters (sometimes called a string) or a particular pattern 
 (which can be specified using something called regular expressions). We're not going to work with 
@@ -23,7 +28,28 @@ regular expressions in this lesson, and are instead going to specify the strings
 we are searching for.
 Let's give it a try!
 
+> ## Nucleotide abbreviations
+> 
+> The four nucleotides that appear in DNA are abbreviated `A`, `C`, `T` and `G`. 
+> Unknown nucleotides are represented with the letter `N`. An `N` appearing
+> in a sequencing file represents a position where the sequencing machine was not able to 
+> confidently determine the nucleotide in that position. You can think of an `N` as a `NULL` value
+> within a DNA sequence. 
+> 
+{: .callout}
+
 Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns). Let's search for the string NNNNNNNNNN in the SRR098026 file.
+
+> ## Determining quality
+> 
+> In this lesson, we're going to be manually searching for strings of `N`s within our sequence
+> results to illustrate some principles of file searching. It can be really useful to do this
+> type of searching to get a feel for the quality of your sequencing results, however, in you 
+> research you will most likely use a bioinformatics tool that has a built-in program for
+> filtering out low-quality reads. You'll learn how to use one such tool in 
+> [a later lesson](http://www.datacarpentry.org/wrangling-genomics/00-readQC/).
+> 
+{: .callout}
 
 ~~~
 $ grep NNNNNNNNNN SRR098026.fastq
@@ -98,6 +124,18 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 ~~~
 {: .bash}
 
+> ## File extensions
+> 
+> You might be confused about why we're naming our output file with a `.txt` extension. After all,
+> it will be holding FASTQ formatted data that we're extracting from our FASTQ files. Won't it 
+> also be a FASTQ file? The answer is, yes - it will be a FASTQ file and it would make sense to 
+> name it with a `.fastq` extension. However, using a `.fastq` extension will lead us to problems
+> when we move to using wildcards later in this episode. We'll point out where this becomes
+> important. For now, it's good that you're thinking about file extensions! 
+> 
+{: .callout}
+
+
 The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should see a new file called bad_reads.txt. 
 
@@ -159,7 +197,7 @@ Here, the output of our second  call to `wc` shows that we no longer have any li
 because the second file we searched (SRR097977.fastq) does not contain any lines that match our
 search sequence. So our file was overwritten and is now empty.
 
-We can avoid overwriting our files by using the command `>>`. `>>` will 
+We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will 
 append new output to the end of a file, rather than overwriting it.
 
 ~~~
@@ -179,18 +217,65 @@ $ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
 ~~~
 {: .bash}
 
-> ## Exercise
->
+> ## File extensions - part 2
 > 
+> This is where we would have trouble if we were naming our output file with a `.fastq` extension. 
+> If we already had a file called `bad_reads.fastq` (from our previous `grep` practice) 
+> and then ran the command above using a `.fastq` extension instead of a `.txt` extension, `grep`
+> would give us a warning. 
+> 
+> ~~~
+> grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
+> ~~~
+> {: .bash}
+> 
+> ~~~
+> grep: input file ‘bad_reads.fastq’ is also the output
+> ~~~
+> {: .output}
+> 
+> `grep` is letting you know that the output file `bad_reads.fastq` is also included in your
+> `grep` call because it matches the `*.fastq` pattern. Be careful with this as it can lead to
+> some surprising output.
+> 
+{: .callout}
+
+So far we've searched for reads containing a long string of at least 10 unknown nucleotides. 
+We might also be interested in finding any reads with at least two shorter strings of 5 unknown 
+nucleotides, separated by any number of known nucleotides. Reads with more than one region of 
+ambiguity like this might be poor enough to not pass our quality filter. We can search for these
+reads using a wildcard within our search string for `grep`. 
+
+> ## Exercise
+> 
+> How many reads in the `SRR098026.fastq` file contain at least two regions of 5 unknown
+> nucleotides in a row, separated by any number of known nucleotides?
 >
 >> ## Solution
 >> 
+>> ~~~
+>> $ grep "NNNNN*NNNNN" SRR098026.fastq > bad_reads_2.txt
+>> $ wc -l bad_reads_2.txt
+>> ~~~
+>> {: .bash}
+>> 
+>> ~~~
+>> 186 bad_reads_2.txt
+>> ~~~
+>> {: .output}
 > {: .solution}
 {: .challenge}
 
 
-There's one more useful redirection command that we're going to show, and that's
-called the pipe command (`|`). This is probably not a key on
+We've now created two separate files to store the results of our search for reads matching 
+particular criteria. Since we might have multiple different criteria we want to search for, 
+creating a new output file each time has the potential to clutter up our workspace. We also
+so far haven't been interested in the actual contents of those files, only in the number of 
+reads that we've found. We created the files to store the reads and then counted the lines in 
+the file to see how many reads matched our criteria. There's a way to do this, however, that
+doesn't require us to create these intermediate files - the pipe command (`|`).
+
+This is probably not a key on
 your keyboard you use very much, so let's all take a minute to find that key. 
 What `|` does is take the output that is
 scrolling by on the terminal and uses that output as input to another command. 
@@ -217,9 +302,22 @@ efficiently. Let's take a few minutes to practice.
 
 > ## Exercise
 >
-> 
+> Now that we know about the pipe (`|`), write a single command to find the number of reads 
+> in the `SRR098026.fastq` file that contain at least two regions of 5 unknown
+> nucleotides in a row, separated by any number of known nucleotides. Do this without creating 
+> a new file.
 >
 >> ## Solution
+>> 
+>> ~~~
+>> $ grep "NNNNN*NNNNN" SRR098026.fastq | wc -l
+>> ~~~
+>> {: .bash}
+>>
+>> ~~~
+>> 186
+>> ~~~
+>> {: .output}
 >> 
 > {: .solution}
 {: .challenge}
@@ -333,7 +431,6 @@ sequencing.
 >>
 > {: .solution}
 {: .challenge}
-
 
 #### How many of each class of library layout are there?  
 
