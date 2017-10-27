@@ -96,7 +96,7 @@ Make sure you replace `ec2-34-229-196-68.compute-1.amazonaws.com` with your indi
 
 You will be prompted to enter a password. The password will be provided to you by your instructor.
 
-After loging on, you will see a screen something like this: 
+After loging on, you will see a screen showing something like this: 
 
 ~~~
 Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
@@ -124,7 +124,7 @@ Last login: Wed Oct 25 21:24:02 2017 from 104.220.130.189
 ~~~
 {: .output}
 
-This provides a lot of information about the remote server that you're loging in to. We're not going to use most of this information for
+This provides a lot of information about the remote server that you're logging in to. We're not going to use most of this information for
 our workshop, so you can clear your screen using the `clear` command. 
 
 ~~~
