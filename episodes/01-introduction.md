@@ -334,7 +334,8 @@ The shell will fill in the rest of the directory name for
 Now change directories to `untrimmed_fastq` in `dc_sample_data`
 
 ~~~
-$ cd dc_sample_data/untrimmed_fastq
+$ cd dc_sample_data
+$ cd untrimmed_fastq
 ~~~
 {: .bash}
 
@@ -349,7 +350,8 @@ If we navigate back to our `untrimmed_fastq` directory and try to access one
 of our sample files:
 
 ~~~
-$ cd dc_sample_data/untrimmed_fastq
+$ cd dc_sample_data
+$ cd untrimmed_fastq
 $ ls SR<tab>
 ~~~
 {: .bash}
