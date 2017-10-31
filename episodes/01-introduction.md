@@ -60,6 +60,7 @@ on your computer. If you're using Windows, you'll need to download a separate pr
 > **Mac**  
 > On Mac the shell is available through Terminal  
 > Applications -> Utilities -> Terminal  
+> (Shortcut: Type `command + spacebar` to open Spotlight Search then type terminal and press enter to open the application.)
 > You can drag the Terminal application to your Dock for easy access.
 > 
 > **Windows**  
