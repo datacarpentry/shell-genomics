@@ -241,12 +241,15 @@ that word is found.
 **Shortcut:** If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
 works its way forward. Note, if you are at the end of the file and search
-for the sequence "CAA", `less` will not find it. You need to go to the
-beginning of the file and search.
+for the sequence "CAA", `less` will not find it. You either need to go to the
+beginning of the file (by typing `g`) and search again using `/` or you
+can use `?` to search backwards in the same way you used `/` previously.
 
-For instance, let's search the file we have open for the sequence `GTGCGGGCAATTAACAGGGGTTCAC`.
-You can see that we go right to that sequence and can see
-what it looks like.
+For instance, let's search forward for the sequence `TTTTT` in our file. 
+You can see that we go right to that sequence, what it looks like,
+and where it is in the file. If you continue to type `/` and hit return, you will move 
+forward to the next instance of this sequence motif. If you instead type `?` and hit 
+return, you will search backwards and move up the file to previous examples of this motif.
 
 > ## Exercise
 >
