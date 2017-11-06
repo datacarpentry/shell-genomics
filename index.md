@@ -22,9 +22,9 @@ There are many reasons to learn about the shell.
 >
 > #### Prerequisites
 >
-> This lesson requires a working copy of a command line program or remote computing such as Amazon instances.
-> <br>To most effectively use these materials, please make sure to install 
-> everything *before* working through this lesson.
+> This lesson uses data hosted on an Amazon Machine Instance (AMI). Workshop participants will be given information on how
+> to log-in to the AMI during the workshop. Learners using these materials for self-directed study will need to set up their own
+> AMI. Information on setting up an AMI and accessing the required data is provided on the [Genomics Workshop overview page](http://www.datacarpentry.org/genomics-workshop/) under "Teaching Platform".
 {: .prereq}
 
 > ## For Instructors
