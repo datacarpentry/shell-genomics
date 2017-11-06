@@ -19,8 +19,10 @@ the bash shell). They will learn how to navigate their file system, computationa
 This lesson is meant to be taught in its entirety. For novice learners, schedule around 4 hours for this lesson. If your learners are 
 already somewhat familiar with the bash shell, the earlier episodes can be condensed. 
 
-## Technical tips and tricks
+This lesson uses data hosted on an Amazon Machine Instance (AMI). Instructors will be sent information on how to log-in to the AMI by the workshop coordinator a few days before the workshop. If you are running a self-organized workshop, you can get information for setting 
+up an AMI and accessing the required data on the Genomics Workshop overview page under "Teaching Platform".
 
+## Technical tips and tricks
 
 ## Common problems
 
