@@ -1,7 +1,7 @@
 ---
 title: "Writing Scripts"
-teaching: 0
-exercises: 0
+teaching: 20
+exercises: 20
 questions:
 - How can we automate a commonly used set of commands?
 objectives:
@@ -32,7 +32,7 @@ $ nano README.txt
 
 You should see something like this: 
 
-![nano1.png](../img/nano1.png)
+![nano201711.png](../img/nano1.png)
 
 The text at the bottom of the screen shows the keyboard shortcuts for performing various tasks in `nano`. We will talk more about how to interpret this information soon.
 
