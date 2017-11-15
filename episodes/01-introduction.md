@@ -196,19 +196,14 @@ Let's look at how our file system is organized.
 At the top is our `dcuser` directory, which holds all the 
 subdirectories and files.
 
-Inside that directory are several other directories:
-`dc_sample_data`
-`dc_workshop`
-`Desktop`
-`Downloads`
-`FastQC`  
-`openrefine-2-6-beta.1`
-`R`
-and
-`Trimmomatic-0.32`
+Inside that directory are some other directories:
 
-We'll be working with many of these subdirectories throughout this workshop.  
+~~~
+dc_sample_data	FastQC	Trimmomatic-0.32
+~~~
+{: .output}
 
+We'll be working with these subdirectories throughout this workshop.  
 
 The command to change locations in our file system is `cd` followed by a
 directory name to change our working directory.
@@ -222,7 +217,7 @@ $ cd dc_sample_data
 ~~~
 {: .bash}
 
-We can see files and subdirectores are in this directory by running `ls`,
+We can see files and subdirectories are in this directory by running `ls`,
 which stands for "listing":
 
 ~~~
@@ -231,7 +226,7 @@ $ ls
 {: .bash}
 
 ~~~
-r_genomics  sra_metadata  untrimmed_fastq  variant_calling  variant_calling.tar.gz
+sra_metadata  untrimmed_fastq
 ~~~
 {: .output}
 
@@ -247,13 +242,12 @@ $ ls -F
 {: .bash}
 
 ~~~
-r_genomics/  sra_metadata/  untrimmed_fastq/  variant_calling/	variant_calling.tar.gz
+sra_metadata/  untrimmed_fastq/
 ~~~
 {: .output}
 
-Anything with a "/" after it is a directory.  
-Things with a "*" after them are programs.  
-If there are no decorations, it's a file.
+Anything with a "/" after it is a directory. Things with a "*" after them are programs. If
+there are no decorations, it's a file.
 
 `ls` has lots of other options. To find out what they are, we can type:
 
@@ -279,10 +273,8 @@ to quit.
 > > {: .bash}
 > > 
 > > ~~~
-> > drwxrwxr-x 4 dcuser dcuser     4096 May 21  2016 r_genomics
-> > drwxr-x--- 2 dcuser dcuser     4096 Jul 30  2015 sra_metadata
-> > drwxr-xr-x 2 dcuser dcuser     4096 Jul 30  2015 untrimmed_fastq
-> > -rw-rw-r-- 1 dcuser dcuser 64281061 Jul 31  2015 variant_calling.tar.gz
+> > drwxr-x--- 2 dcuser dcuser 4096 Jul 30  2015 sra_metadata
+> > drwxr-xr-x 2 dcuser dcuser 4096 Jul 30  2015 untrimmed_fastq
 > > ~~~
 > > {: .output}
 > > 
@@ -340,9 +332,6 @@ $ cd untrimmed_fastq
 ~~~
 {: .bash}
 
-Notice that we can move two (or more) directory levels at a time by placing a `\` 
-between directory names.
-
 Using tab complete can be very helpful. However, it will only autocomplete
 a file or directory name if you've typed enough characters to provide
 a unique identifier for the file or directory you are trying to access.
@@ -351,6 +340,7 @@ If we navigate back to our `untrimmed_fastq` directory and try to access one
 of our sample files:
 
 ~~~
+$ cd
 $ cd dc_sample_data
 $ cd untrimmed_fastq
 $ ls SR<tab>
