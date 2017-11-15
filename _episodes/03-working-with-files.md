@@ -89,6 +89,17 @@ $ ls /usr/bin/*.sh
 
 Lists every file in `/usr/bin` that ends in the characters `.sh`.
 
+> ## Home vs. Root
+> 
+> The `/` character is another navigational shortcut and refers to your root directory.
+> The root directory is the highest level directory in your file system and contains
+> files that are important for your computer to perform its daily work, but which you usually won't
+> have to interact with directly. In our case,
+> the root directory is two levels above our home directory, so `cd` or `cd ~` will take you to `/home/dcuser`
+> and `cd /` will take you to `/`, which is equivalent to `~/../../`. Try not to worry if this is confusing,
+> it will all become clearer with practice.
+{: .callout}
+
 > ## Exercise
 > Do each of the following tasks from your current directory using a single
 > `ls` command for each.
@@ -230,12 +241,15 @@ that word is found.
 **Shortcut:** If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
 works its way forward. Note, if you are at the end of the file and search
-for the sequence "CAA", `less` will not find it. You need to go to the
-beginning of the file and search.
+for the sequence "CAA", `less` will not find it. You either need to go to the
+beginning of the file (by typing `g`) and search again using `/` or you
+can use `?` to search backwards in the same way you used `/` previously.
 
-For instance, let's search the file we have open for the sequence `GTGCGGGCAATTAACAGGGGTTCAC`.
-You can see that we go right to that sequence and can see
-what it looks like.
+For instance, let's search forward for the sequence `TTTTT` in our file. 
+You can see that we go right to that sequence, what it looks like,
+and where it is in the file. If you continue to type `/` and hit return, you will move 
+forward to the next instance of this sequence motif. If you instead type `?` and hit 
+return, you will search backwards and move up the file to previous examples of this motif.
 
 > ## Exercise
 >
