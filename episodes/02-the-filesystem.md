@@ -24,8 +24,15 @@ We've also learned how to use `cd` to change locations and `ls` to list the cont
 of a directory. Now we're going to learn some additional commands for moving around 
 within our file system.
 
-Use the commands we've learned so far to navigate to the `dc_sample_data` directory, if
+Use the commands we've learned so far to navigate to the `dc_sample_data/untrimmed_fastq` directory, if
 you're not already there. 
+
+~~~
+$ cd
+$ cd dc_sample_data
+$ cd untrimmed_fastq
+~~~
+{: .bash}
 
 What if we want to move back up and out of this directory and to our top level 
 directory? Can we type `cd dc_sample_data`? Try it and see what happens.
@@ -71,7 +78,7 @@ $ ls
 {: .bash}
 
 ~~~
-r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
+sra_metadata  untrimmed_fastq
 ~~~
 {: .output}
 
@@ -84,7 +91,7 @@ $ ls ../../
 ~~~
 {: .bash}
 
-prints the contents of `/home`, which is one level up from your home directory. 
+prints the contents of `/home`, which is one level up from your root directory. 
 
 > ## Finding hidden directories
 >
@@ -111,7 +118,7 @@ prints the contents of `/home`, which is one level up from your home directory.
 > > {: .bash}
 > > 
 > > ~~~
-> > .  ..  .hidden	r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
+> > .  ..  .hidden	sra_metadata  untrimmed_fastq
 > > ~~~
 > > {: .output}
 > > 
@@ -160,7 +167,7 @@ $ ls dc_sample_data
 {: .bash}
 
 ~~~
-r_genomics  sra_metadata  untrimmed_fastq  variant_calling.tar.gz
+sra_metadata  untrimmed_fastq
 ~~~
 {: .output}
 
@@ -314,6 +321,11 @@ Then enter the command:
 $ ls ~
 ~~~
 {: .bash}
+
+~~~
+dc_sample_data	FastQC	Trimmomatic-0.32
+~~~
+{: .output}
 
 This prints the contents of your home directory, without you needing to 
 type the full path. 
