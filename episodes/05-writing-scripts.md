@@ -1,7 +1,7 @@
 ---
 title: "Writing Scripts"
-teaching: 0
-exercises: 0
+teaching: 20
+exercises: 20
 questions:
 - How can we automate a commonly used set of commands?
 objectives:
@@ -15,7 +15,7 @@ keypoints:
 
 ## Writing files
 
-We've been able to do a lot of work with files that already exist, but what if we want to write our own files. We're not going to type in a FASTA file, but we'll see as we go through other tutorials, there area lot of reasons we'll want to write a file, or edit an existing file.
+We've been able to do a lot of work with files that already exist, but what if we want to write our own files. We're not going to type in a FASTA file, but we'll see as we go through other tutorials, there are a lot of reasons we'll want to write a file, or edit an existing file.
 
 To add text to files, we're going to use a text editor called Nano. We're going to create a file to take notes about what we've been doing with the data files in `~/dc_sample_data/untrimmed_fastq`.
 
@@ -32,7 +32,7 @@ $ nano README.txt
 
 You should see something like this: 
 
-![nano1.png](../img/nano1.png)
+![nano201711.png](../img/nano1.png)
 
 The text at the bottom of the screen shows the keyboard shortcuts for performing various tasks in `nano`. We will talk more about how to interpret this information soon.
 
