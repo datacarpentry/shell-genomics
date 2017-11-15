@@ -87,6 +87,11 @@ $ ls /usr/bin/*.sh
 ~~~
 {: .bash}
 
+~~~
+/usr/bin/amuFormat.sh  /usr/bin/gettext.sh  /usr/bin/gvmap.sh
+~~~
+{: .output}
+
 Lists every file in `/usr/bin` that ends in the characters `.sh`.
 
 > ## Home vs. Root
@@ -207,7 +212,7 @@ This will print out all of the contents of the `SRR098026.fastq` to the screen.
 > 
 > > ## Solution
 > > 1. The last line of the file is `TATTTTAAAATGGAATACCTAACATGTTAATTAACC`.
-> > 2. cat ~/dc_sample_data/untrimmed_fastq/*
+> > 2. `cat ~/dc_sample_data/untrimmed_fastq/*`
 > {: .solution}
 {: .challenge}
 
@@ -253,10 +258,10 @@ return, you will search backwards and move up the file to previous examples of t
 
 > ## Exercise
 >
-> What are the next three nucleotides (characters) after the sequence quoted above?
+> What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
 > 
 > > ## Solution
-> > `TCA`
+> > `CAC`
 > {: .solution}
 {: .challenge}
 
@@ -273,19 +278,64 @@ the beginning and end of a file, respectively.
 
 ~~~
 $ head SRR098026.fastq
+~~~
+{: .bash}
+
+~~~
+@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
++SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
++SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@SRR098026.3 HWUSI-EAS1599_1:2:1:0:570 length=35
+NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
+~~~
+{: .output}
+
+~~~
 $ tail SRR098026.fastq
 ~~~
 {: .bash}
 
+~~~
++SRR098026.247 HWUSI-EAS1599_1:2:1:2:1311 length=35
+#!##!#################!!!!!!!######
+@SRR098026.248 HWUSI-EAS1599_1:2:1:2:118 length=35
+GNTGNGGTCATCATACGCGCCCNNNNNNNGGCATG
++SRR098026.248 HWUSI-EAS1599_1:2:1:2:118 length=35
+B!;?!A=5922:##########!!!!!!!######
+@SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
+CNCTNTATGCGTACGGCAGTGANNNNNNNGGAGAT
++SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
+A!@B!BBB@ABAB#########!!!!!!!######
+~~~
+{: .output}
+
 The `-n` option to either of these commands can be used to print the
-first or last `n` lines of a file. To print the first/last line of the
-file use:
+first or last `n` lines of a file. 
 
 ~~~
 $ head -n 1 SRR098026.fastq
+~~~
+{: .bash}
+
+~~~
+@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+~~~
+{: .output}
+
+~~~
 $ tail -n 1 SRR098026.fastq
 ~~~
 {: .bash}
+
+~~~
+A!@B!BBB@ABAB#########!!!!!!!######
+~~~
+{: .output}
 
 ## Creating, moving, copying, and removing
 
@@ -304,7 +354,7 @@ and change the file permissions so that we can read from, but not write to, the 
 
 First, let's make a copy of one of our FASTQ files using the `cp` command. 
 
-Navigate to the `data` directory and enter:
+Navigate to the `dc_sample_data/untrimmed_fastq` directory and enter:
 
 ~~~
 $ cp SRR098026.fastq SRR098026-copy.fastq
@@ -374,7 +424,7 @@ $ ls -l
 {: .bash}
 
 ~~~
--rw-r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-backup.fastq
+-rw-r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
 ~~~
 {: .output}
 
@@ -398,7 +448,7 @@ $ ls -l
 {: .bash}
 
 ~~~
--r--r--r-- 1 dcuser dcuser 43421 Jul 30 15:28 SRR098026-backup.fastq
+-r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
 ~~~
 {: .output}
 
@@ -407,14 +457,14 @@ $ ls -l
 To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command.
 
 ~~~
-$ rm backup/SRR098026-backup.fastq
+$ rm SRR098026-backup.fastq
 ~~~
 {: .bash}
 
 You'll be asked if you want to override your file permissions.
 
 ~~~
-override r--r--r-- dcuser/dcuser backup/SRR098026-backup.fastq?
+rm: remove write-protected regular file ‘SRR098026-backup.fastq’? 
 ~~~
 {: .output}
 
@@ -431,7 +481,8 @@ we just made.
 Enter the following command:
 
 ~~~
-rm -r backup
+$ cd ..
+$ rm -r backup
 ~~~
 {: .bash}
 
@@ -457,8 +508,8 @@ you will be asked whether you want to override your permission settings.
 > > It's always a good idea to check your work with `ls -l backup`. You should see something like: 
 > > 
 > > ~~~
-> > -r--r--r-- 1 dcuser dcuser 47649 Oct 20 16:59 SRR097977-backup.fastq
-> > -r--r--r-- 1 dcuser dcuser 43421 Oct 20 16:59 SRR098026-backup.fastq
+> > -r--r--r-- 1 dcuser dcuser 47552 Nov 15 23:06 SRR097977-backup.fastq
+> > -r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:06 SRR098026-backup.fastq
 > > ~~~
 > > {: .output}
 > {: .solution}
