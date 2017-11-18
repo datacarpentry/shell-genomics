@@ -93,7 +93,7 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 
 > ## Exercise
 >
-> Open `README.txt` and add the date to the top of the file and save the file.
+> Open `README.txt` and add the date to the top of the file and save the file. 
 >
 > > ## Solution
 > > 

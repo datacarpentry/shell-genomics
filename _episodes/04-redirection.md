@@ -86,11 +86,11 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
 > ## Exercise
 >
-> 1) Search for the sequence GNATNACCACTTCC in the SRR098026.fastq.
+> 1) Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match.
 > 
-> 2) Search for the sequence AAGTT in both FASTQ files.
+> 2) Search for the sequence `AAGTT` in both FASTQ files.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match.
 > 
@@ -148,6 +148,11 @@ $ wc bad_reads.txt
 ~~~
 {: .bash}
 
+~~~
+  537  1073 23217 bad_reads.txt
+~~~
+{: .output}
+
 This will tell us the number of lines, words and characters in the file. If we
 want only the number of lines, we can use the `-l` flag for `lines`.
 
@@ -156,12 +161,17 @@ $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
+~~~
+537 bad_reads.txt
+~~~
+{: .output}
+
 Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
 four to get the number of sequences that match our search pattern.
 
 > ## Exercise
 >
-> How many sequences in SRR098026.fastq contain at least 3 consecutive Ns?
+> How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
 >
 >> ## Solution
 >> We can do it in one step, using the `|` pipe:  
@@ -172,7 +182,7 @@ four to get the number of sequences that match our search pattern.
 >> {: .bash}
 >> 
 >> ~~~
->> 250
+>> 249
 >> ~~~
 >> {: .output}
 >>
@@ -188,13 +198,27 @@ of your kid's first birthday party, you also want to avoid overwriting your data
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
+~~~
+{: .bash}
+
+~~~
+537 bad_reads.txt
+~~~
+{: .output}
+
+~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
+~~~
+0 bad_reads.txt
+~~~
+{: .output}
+
 Here, the output of our second  call to `wc` shows that we no longer have any lines in our bad_reads.txt file. This is 
-because the second file we searched (SRR097977.fastq) does not contain any lines that match our
+because the second file we searched (`SRR097977.fastq`) does not contain any lines that match our
 search sequence. So our file was overwritten and is now empty.
 
 We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will 
@@ -203,10 +227,24 @@ append new output to the end of a file, rather than overwriting it.
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
+~~~
+{: .bash}
+
+~~~
+537 bad_reads.txt
+~~~
+{: .output}
+
+~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
+
+~~~
+537 bad_reads.txt
+~~~
+{: .output}
 
 The output of our second call to `wc` shows that we have not overwritten our original data. 
 
@@ -214,8 +252,14 @@ We can also do this with a single line of code by using a wildcard.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
+$ wc -l bad_reads.txt
 ~~~
 {: .bash}
+
+~~~
+537 bad_reads.txt
+~~~
+{: .output}
 
 > ## File extensions - part 2
 > 
