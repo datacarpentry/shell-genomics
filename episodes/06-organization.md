@@ -230,9 +230,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_sample_data			Downloads	       R
-dc_workshop_log_2017_10_27.txt	FastQC		       Trimmomatic-0.32
-Desktop				openrefine-2.6-beta.1
+dc_sample_data	dc_workshop_log_2017_10_27.txt  FastQC	Trimmomatic-0.32
 ~~~
 {: .output}
 
@@ -246,9 +244,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_sample_data			Desktop    openrefine-2.6-beta.1
-dc_workshop			Downloads  R
-dc_workshop_log_2017_10_27.txt	FastQC	   Trimmomatic-0.32
+dc_sample_data	dc_workshop dc_workshop_log_2017_10_27.txt  FastQC	Trimmomatic-0.32
 ~~~
 {: .output}
 
