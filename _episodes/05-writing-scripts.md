@@ -32,7 +32,7 @@ $ nano README.txt
 
 You should see something like this: 
 
-![nano201711.png](../img/nano1.png)
+![nano201711.png](../img/nano201711.png)
 
 The text at the bottom of the screen shows the keyboard shortcuts for performing various tasks in `nano`. We will talk more about how to interpret this information soon.
 
