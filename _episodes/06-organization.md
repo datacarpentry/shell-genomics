@@ -20,8 +20,7 @@ Project organization is one of the most important parts of a sequencing project,
 excitement to get a first look at new data. While it's best to get yourself organized before you begin analysis,
 it's never too late to start.  
 
-You should approach your sequencing project in a very similar way to how you do a biological experiment, and 
-ideally, begin with experimental design. We're going to assume that you've already designed a beautiful 
+You should approach your sequencing project similarly to how you do a biological experiment and this ideally begins with experimental design. We're going to assume that you've already designed a beautiful 
 sequencing experiment to address your biological question, collected appropriate samples, and that you have 
 enough statistical power to answer the questions you're interested in asking. These 
 steps are all incredibly important, but beyond the scope of our course. 
@@ -230,9 +229,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_sample_data			Downloads	       R
-dc_workshop_log_2017_10_27.txt	FastQC		       Trimmomatic-0.32
-Desktop				openrefine-2.6-beta.1
+dc_sample_data	dc_workshop_log_2017_10_27.txt  FastQC	Trimmomatic-0.32
 ~~~
 {: .output}
 
@@ -246,9 +243,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_sample_data			Desktop    openrefine-2.6-beta.1
-dc_workshop			Downloads  R
-dc_workshop_log_2017_10_27.txt	FastQC	   Trimmomatic-0.32
+dc_sample_data	dc_workshop dc_workshop_log_2017_10_27.txt  FastQC	Trimmomatic-0.32
 ~~~
 {: .output}
 

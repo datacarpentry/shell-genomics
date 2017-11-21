@@ -32,7 +32,7 @@ $ nano README.txt
 
 You should see something like this: 
 
-![nano201711.png](../img/nano1.png)
+![nano201711.png](../img/nano201711.png)
 
 The text at the bottom of the screen shows the keyboard shortcuts for performing various tasks in `nano`. We will talk more about how to interpret this information soon.
 
@@ -93,7 +93,7 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 
 > ## Exercise
 >
-> Open `README.txt` and add the date to the top of the file and save the file.
+> Open `README.txt` and add the date to the top of the file and save the file. 
 >
 > > ## Solution
 > > 
