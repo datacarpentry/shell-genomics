@@ -125,7 +125,7 @@ Several commands are frequently used to create, inspect, rename, and delete file
 >
 > If you type the command:
 > `PS1='$ '`
-> into your shell, followed by pressing the 'enter' key,
+> into your shell, followed by pressing the <kbd>Enter</kbd> key,
 > your window should look like our example in this lesson.  
 > This isn't necessary to follow along (in fact, your prompt may have
 > other helpful information you want to know about).  This is up to you!  
@@ -228,8 +228,8 @@ $ man ls
 {: .bash}
 
 Some manual files are very long. You can scroll through the file using
-your keyboard's down arrow or use the space key to go forward one page
-and the `b` key to go backwards one page. When you are done reading, hit `q`
+your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page
+and the <kbd>B</kbd> key to go backwards one page. When you are done reading, hit <kbd>Q</kbd>
 to quit.
 
 > ## Challenge
@@ -282,7 +282,7 @@ We will be learning more about FASTQ files in a later lesson.
 Typing out file or directory names can waste a
 lot of time and it's easy to make typing mistakes. Instead we can use tab complete 
 as a shortcut. When you start typing out the name of a directory or file, then
-hit the tab key, the shell will try to fill in the rest of the
+hit the <kbd>Tab</kbd> key, the shell will try to fill in the rest of the
 directory or file name.
 
 For example, type `cd` to go back to your home directory, then enter:
@@ -320,7 +320,7 @@ $ ls SR<tab>
 
 The shell auto-completes your command to `SRR09`, because all file names in 
 the directory begin with this prefix. When you hit
-tab again, the shell will list the possible choices.
+<kbd>tab</kbd> again, the shell will list the possible choices.
 
 ~~~
 $ ls SRR09<tab><tab>
