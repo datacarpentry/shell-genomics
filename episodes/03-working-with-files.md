@@ -138,13 +138,13 @@ command. Likewise, the down arrow takes you forward in the command history.
 
 A few more useful shortcuts: 
 
-`^-C` (<kbd>Ctrl</kbd><kbd>C</kbd>) will cancel the command you are writing, and give you a 
+`^-C` (<kbd>Ctrl</kbd>+<kbd>C</kbd>) will cancel the command you are writing, and give you a 
 fresh prompt.
 
-`^-R` (<kbd>Ctrl</kbd><kbd>R</kbd>) will do a reverse-search through your command history.  This
+`^-R` (<kbd>Ctrl</kbd>+<kbd>R</kbd>) will do a reverse-search through your command history.  This
 is very useful.
 
-`^-L` (<kbd>Ctrl</kbd><kbd>L</kbd>) or the `clear` command will clear your screen.
+`^-L` (<kbd>Ctrl</kbd>+<kbd>L</kbd>) or the `clear` command will clear your screen.
 
 You can also review your recent commands with the `history` command, by entering:
 
