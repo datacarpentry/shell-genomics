@@ -320,7 +320,7 @@ $ ls SR<tab>
 
 The shell auto-completes your command to `SRR09`, because all file names in 
 the directory begin with this prefix. When you hit
-<kbd>tab</kbd> again, the shell will list the possible choices.
+<kbd>Tab</kbd> again, the shell will list the possible choices.
 
 ~~~
 $ ls SRR09<tab><tab>
