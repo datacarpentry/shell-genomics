@@ -138,13 +138,13 @@ command. Likewise, the down arrow takes you forward in the command history.
 
 A few more useful shortcuts: 
 
-`^-C` (Control-C) will cancel the command you are writing, and give you a 
+`^-C` (<kbd>Ctrl</kbd>+<kbd>C</kbd>) will cancel the command you are writing, and give you a 
 fresh prompt.
 
-`^-R` (Control-R) will do a reverse-search through your command history.  This
+`^-R` (<kbd>Ctrl</kbd>+<kbd>R</kbd>) will do a reverse-search through your command history.  This
 is very useful.
 
-`^-L` (Control-L) or the `clear` command will clear your screen.
+`^-L` (<kbd>Ctrl</kbd>+<kbd>L</kbd>) or the `clear` command will clear your screen.
 
 You can also review your recent commands with the `history` command, by entering:
 
@@ -232,11 +232,11 @@ Some navigation commands in `less`
 
 | key     | action |
 | ------- | ---------- |
-| "space" | to go forward |
-|  "b"    | to go backward |
-|  "g"    | to go to the beginning |
-|  "G"    | to go to the end |
-|  "q"    | to quit |
+| <kbd>Space</kbd> | to go forward |
+|  <kbd>B</kbd>    | to go backward |
+|  <kbd>g</kbd>    | to go to the beginning |
+|  <kbd>G</kbd>    | to go to the end |
+|  <kbd>q</kbd>    | to quit |
 
 `less` also gives you a way of searching through files. Use the
 "/" key to begin a search. Enter the word you would like
