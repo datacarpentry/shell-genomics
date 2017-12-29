@@ -211,7 +211,7 @@ This will print out all of the contents of the `SRR098026.fastq` to the screen.
 > the `~/dc_sample_data/untrimmed_fastq` directory.
 > 
 > > ## Solution
-> > 1. The last line of the file is `TATTTTAAAATGGAATACCTAACATGTTAATTAACC`.
+> > 1. The last line of the file is `TC:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
 > > 2. `cat ~/dc_sample_data/untrimmed_fastq/*`
 > {: .solution}
 {: .challenge}
