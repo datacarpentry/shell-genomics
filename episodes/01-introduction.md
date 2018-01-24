@@ -229,7 +229,7 @@ $ man ls
 
 Some manual files are very long. You can scroll through the file using
 your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page
-and the <kbd>B</kbd> key to go backwards one page. When you are done reading, hit <kbd>Q</kbd>
+and the <kbd>b</kbd> key to go backwards one page. When you are done reading, hit <kbd>q</kbd>
 to quit.
 
 > ## Challenge
