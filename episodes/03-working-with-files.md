@@ -233,7 +233,7 @@ Some navigation commands in `less`
 | key     | action |
 | ------- | ---------- |
 | <kbd>Space</kbd> | to go forward |
-|  <kbd>B</kbd>    | to go backward |
+|  <kbd>b</kbd>    | to go backward |
 |  <kbd>g</kbd>    | to go to the beginning |
 |  <kbd>G</kbd>    | to go to the end |
 |  <kbd>q</kbd>    | to quit |
