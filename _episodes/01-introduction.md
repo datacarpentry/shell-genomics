@@ -285,11 +285,18 @@ as a shortcut. When you start typing out the name of a directory or file, then
 hit the <kbd>Tab</kbd> key, the shell will try to fill in the rest of the
 directory or file name.
 
-For example, type `cd` to go back to your home directory, then enter:
+Return to your home directory:
+
+~~~
+cd
+~~~
+
+then enter:
 
 ~~~
 $ cd dc_sam<tab>
 ~~~
+  
 {: .bash}
 
 The shell will fill in the rest of the directory name for
