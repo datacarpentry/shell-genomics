@@ -174,10 +174,11 @@ four to get the number of sequences that match our search pattern.
 > How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
 >
 >> ## Solution
->> We can do it in one step, using the `|` pipe:  
+>>  
 >>
 >> ~~~
->> $ grep NNN SRR098026.fastq | wc -l
+>> $ grep NNN SRR098026.fastq > bad_reads.txt
+>> $ wc -l bad_reads.txt
 >> ~~~
 >> {: .bash}
 >> 
