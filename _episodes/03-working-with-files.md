@@ -14,7 +14,7 @@ objectives:
 keypoints:
 - "You can view file contents using `less`, `cat`, `head` or `tail`."
 - "The commands `cp`, `mv`, and `mkdir` are useful for manipulating existing files and creating new directories."
-- "You can view file permissions using `ls -a` and change permissions using `chmod`."
+- "You can view file permissions using `ls -l` and change permissions using `chmod`."
 - "The `history` command and the up arrow on your keyboard can be used to repeat recently used commands."
 ---
 
@@ -113,7 +113,7 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > 2.  List all of the files in `/usr/bin` that contain the letter 'a'. 
 > 3.  List all of the files in `/usr/bin` that end with the letter 'o'.
 >
-> Bonus: List all of the files in 'usr/bin' that contain the letter 'a' or the
+> Bonus: List all of the files in `/usr/bin` that contain the letter 'a' or the
 > letter 'c'.
 > 
 > Hint: The bonus question requires a Unix wildcard that we haven't talked about
@@ -339,9 +339,8 @@ A!@B!BBB@ABAB#########!!!!!!!######
 
 ## Creating, moving, copying, and removing
 
-Now we can move around in the file structure, look at files, search files, and
-redirect output to new files or to other commands. But what if we want to copy files or move
-them around or get rid of them. Most of the time, you can do these sorts of file manipulations without the command line,
+Now we can move around in the file structure, look at files, and search files. But what if we want to copy files or move
+them around or get rid of them? Most of the time, you can do these sorts of file manipulations without the command line,
 but there will be some cases (like when you're working with a remote computer like we are for this lesson) where it will be
 impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all 
 of those files. In cases like this, it's much faster to do these operations at the command line.
@@ -491,7 +490,7 @@ you will be asked whether you want to override your permission settings.
 
 > ## Exercise
 >
-> Do the following:  
+> Starting in the `dc_sample_data/untrimmed_fastq/ dirrectory, do the following:
 > 1. Make sure that you have deleted your backup directory and all files it contains.  
 > 2. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
 > learned yet how to do this
