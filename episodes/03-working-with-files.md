@@ -10,6 +10,7 @@ questions:
 objectives:
 - View, search within, copy, move, and rename files. Create new directories.
 - Use wild cards (`*`) to perform operations on multiple files.
+- Make a file read only
 - Use the `history` command to view and repeat recently used commands.
 keypoints:
 - "You can view file contents using `less`, `cat`, `head` or `tail`."
