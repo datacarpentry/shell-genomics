@@ -16,29 +16,39 @@ keypoints:
 
 # Getting your project started
 
-Project organization is one of the most important parts of a sequencing project, but is often overlooked in the
-excitement to get a first look at new data. While it's best to get yourself organized before you begin analysis,
-it's never too late to start.  
+Project organization is one of the most important parts of a sequencing project, and yet is often overlooked amidst the
+excitement of getting a first look at new data. Of course, while it's best to get yourself organized before you even begin your analyses,
+it's never too late to start, either.  
 
 You should approach your sequencing project similarly to how you do a biological experiment and this ideally begins with experimental design. We're going to assume that you've already designed a beautiful 
 sequencing experiment to address your biological question, collected appropriate samples, and that you have 
 enough statistical power to answer the questions you're interested in asking. These 
 steps are all incredibly important, but beyond the scope of our course. 
 For all of those steps (collecting specimens, extracting DNA, prepping your samples)
-you've likely kept a lab notebook that details how and why you did each step, but documentation doesn't stop at 
+you've likely kept a lab notebook that details how and why you did each step. However, the process of documentation doesn't stop at 
 the sequencer!  
 
-Every computational analysis you do is going to create many files, and inevitably, you'll 
-want to run some of those analysis again. Genomics projects can quickly accumulate hundreds of files across 
-tens of folders. Do you remember what PCR conditions you used to create your sequencing library? Probably not.
-Similarly, you probably won't remember whether your best alignment results were in `Analysis1`, `AnalysisRedone`, 
-or `AnalysisRedone2`; or which quality cutoff you used.  
+Genomics projects can quickly accumulate hundreds of files across 
+tens of folders. Every computational analysis you perform over the course of your project is going to create
+many files, which can especially become a problem when you'll inevitably want to run some of those
+analyses again. For instance, you might have made significant headway into your project, but then have to remember the PCR conditions
+you used to create your sequencing library months prior. 
 
-Luckily, recording your computational experiments is even easier than recording lab data. Copy / paste will become
+Other questions might arise along the way: 
+- What were your best alignment results?
+- Which folder were they in: Analysis1, AnalysisRedone, or AnalysisRedone2?
+- Which quality cutoff did you use?
+- What version of a given program did you implement your analysis in?
+
+Good documentation is key to avoiding this issue, and luckily enough,
+recording your computational experiments is even easier than recording lab data. Copy/Paste will become
 your best friend, sensible file names will make your analysis understandable by you and your collaborators, and 
-writing the methods section for your next paper will be easy! Let's look at the best practices for 
-documenting your genomics project. Your future self will thank you.  
+writing the methods section for your next paper will be easy! Remember that in any given project of yours, it's worthwhile to consider
+a future version of yourself as an entirely separate collaborator. The better your documenation is, the more this 'collaborator' will
+feel indebted to you!
 
+With this in mind, let's have a look at the best practices for 
+documenting your genomics project. Your future self will thank you.  
 
 In this exercise we will setup a file system for the project we will be working on during this workshop.  
 
@@ -152,7 +162,7 @@ $ history
 The history likely contains many more commands than you have used for the current project. Let's view the last
 several commands that focus on just what we need for this project.   
 
-View the last n lines of your history (where n = approximately the last few lines you think relevant - for our example we will use the last 7):
+View the last n lines of your history (where n = approximately the last few lines you think relevant). For our example, we will use the last 7:
 
 ~~~   
 $ history | tail -n 7
@@ -161,10 +171,10 @@ $ history | tail -n 7
 
 Using your knowledge of the shell, use the append redirect `>>` to create a file called
 `dc_workshop_log_XXXX_XX_XX.txt` (Use the four-digit year, two-digit month, and two digit day, e.g.
-dc_workshop_log_2017_10_27.txt)  
+`dc_workshop_log_2017_10_27.txt`)  
 
 You may have noticed that your history contains the `history` command itself. To remove this redundancy
-from our log, lets use the `nano` text editor to fix the file:  
+from our log, let's use the `nano` text editor to fix the file:  
 
 ~~~
 $ nano dc_workshop_log_2017_10_27.txt
