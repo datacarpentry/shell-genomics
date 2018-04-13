@@ -55,49 +55,20 @@ In this lesson you will learn how to use the command line interface to move arou
 On a Mac or Linux machine, you can access a shell through a program called Terminal, which is already available
 on your computer. If you're using Windows, you'll need to download a separate program to access the shell.
 
-
-> ## Accessing the shell  
-> **Mac**  
-> On Mac the shell is available through Terminal  
-> Applications -> Utilities -> Terminal  
-> (Shortcut: Type `command + spacebar` to open Spotlight Search then type terminal and press enter to open the application.)
-> You can drag the Terminal application to your Dock for easy access.
-> 
-> **Windows**  
-> For Windows, we're going to be using gitbash.  
-> Download and install [gitbash](http://msysgit.github.io).
-> Open up the program.
-> 
-> **Linux**    
-> The shell is available by default when you connect to your AWS instance.  
-{: .callout}
-
-
-## Starting with the shell
-
 We will spend most of our time learning about the basics of the shell
-by manipulating some experimental data. 
-
-Some of the data we're going to be working with is quite large, and
+by manipulating some experimental data. Some of the data we're going to be working with is quite large, and
 we're also going to be using several bioinformatics packages in later
 lessons to work with this data. To avoid having to spend time 
 downloading the data and downloading and installing all of the software,
 we're going to be working with data on a remote server. 
 
-You can log-in to the remote server using the information that your instructor has pasted into the Etherpad. First 
-open your shell (through the Terminal application) and then enter the text starting
-with `ssh` from the Etherpad. Each of you will have a different log-in. This will 
+You can log-in to the remote server using the instructions 
+[here](http://www.datacarpentry.org/cloud-genomics/02-logging-onto-cloud/#logging-onto-a-cloud-instance). 
+Your instructor will supply the ip_address and password that you need to login.
+
+Each of you will have a different ip_address. This will 
 prevent us from accidentally changing each other's files as we work through the
-exercises. For example, you might type:
-
-~~~
-$ ssh dcuser@ec2-34-229-196-68.compute-1.amazonaws.com
-~~~
-{: .bash}
-
-Make sure you replace `ec2-34-229-196-68.compute-1.amazonaws.com` with your individual log-in. 
-
-You will be prompted to enter a password. The password will be provided to you by your instructor.
+exercises. The password will be the same for everyone. 
 
 After loging on, you will see a screen showing something like this: 
 
@@ -154,7 +125,7 @@ Several commands are frequently used to create, inspect, rename, and delete file
 >
 > If you type the command:
 > `PS1='$ '`
-> into your shell, followed by pressing the 'enter' key,
+> into your shell, followed by pressing the <kbd>Enter</kbd> key,
 > your window should look like our example in this lesson.  
 > This isn't necessary to follow along (in fact, your prompt may have
 > other helpful information you want to know about).  This is up to you!  
@@ -257,8 +228,8 @@ $ man ls
 {: .bash}
 
 Some manual files are very long. You can scroll through the file using
-your keyboard's down arrow or use the space key to go forward one page
-and the `b` key to go backwards one page. When you are done reading, hit `q`
+your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page
+and the <kbd>b</kbd> key to go backwards one page. When you are done reading, hit <kbd>q</kbd>
 to quit.
 
 > ## Challenge
@@ -311,14 +282,21 @@ We will be learning more about FASTQ files in a later lesson.
 Typing out file or directory names can waste a
 lot of time and it's easy to make typing mistakes. Instead we can use tab complete 
 as a shortcut. When you start typing out the name of a directory or file, then
-hit the tab key, the shell will try to fill in the rest of the
+hit the <kbd>Tab</kbd> key, the shell will try to fill in the rest of the
 directory or file name.
 
-For example, type `cd` to go back to your home directory, then enter:
+Return to your home directory:
+
+~~~
+cd
+~~~
+
+then enter:
 
 ~~~
 $ cd dc_sam<tab>
 ~~~
+  
 {: .bash}
 
 The shell will fill in the rest of the directory name for
@@ -349,7 +327,7 @@ $ ls SR<tab>
 
 The shell auto-completes your command to `SRR09`, because all file names in 
 the directory begin with this prefix. When you hit
-tab again, the shell will list the possible choices.
+<kbd>Tab</kbd> again, the shell will list the possible choices.
 
 ~~~
 $ ls SRR09<tab><tab>
