@@ -74,10 +74,10 @@ You should see the output:
 
 > ## Exercise  
 > Use the `mkdir` command to make the following directories:   
-> dc_workshop     
-> dc_workshop/docs  
-> dc_workshop/data    
-> dc_workshop/results   
+> - `dc_workshop`
+> - `dc_workshop/docs`
+> - `dc_workshop/data`
+> - `dc_workshop/results`
 > 
 > > ## Solution
 > > 
@@ -170,14 +170,14 @@ $ history | tail -n 7
 {: .bash}
 
 Using your knowledge of the shell, use the append redirect `>>` to create a file called
-`dc_workshop_log_XXXX_XX_XX.txt` (Use the four-digit year, two-digit month, and two digit day, e.g.
-`dc_workshop_log_2017_10_27.txt`)  
+`dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g.
+`dc_workshop_log_2017_10_27.sh`)  
 
 You may have noticed that your history contains the `history` command itself. To remove this redundancy
 from our log, let's use the `nano` text editor to fix the file:  
 
 ~~~
-$ nano dc_workshop_log_2017_10_27.txt
+$ nano dc_workshop_log_2017_10_27.sh
 ~~~
 {: .bash}
 
@@ -190,15 +190,15 @@ From the `nano` screen, you can use your cursor to navigate, type, and delete an
 > Although `nano` is useful, it can be frustrating to edit documents, as you 
 > can't use your mouse to navigate to the part of the document you would like to edit.
 > Here are some useful keyboard shortcuts for moving around within a text document in 
-> `nano`. You can find more information by typing `Ctrl-G` within `nano`.
+> `nano`. You can find more information by typing <kbd>Ctrl</kbd>-<kbd>G</kbd> within `nano`.
 > 
 > | key     | action |
 > | ------- | ---------- |
-> | `Ctrl-Space` | to move forward one word |
-> | `Alt-Space`  | to move back one word |
-> | `Ctrl-A`     | to move to the beginning of the current line |
-> | `Ctrl-E`     | to move to the end of the current line |
-> | `Ctrl-W`     | to search |
+> | <kbd>Ctrl</kbd>-<kbd>Space</kbd> | to move forward one word |
+> | <kbd>Alt</kbd>-<kbd>Space</kbd> | to move back one word |
+> | <kbd>Ctrl</kbd>-<kbd>A</kbd> | to move to the beginning of the current line |
+> | <kbd>Ctrl</kbd>-<kbd>E</kbd> | to move to the end of the current line |
+> | <kbd>Ctrl</kbd>-<kbd>W</kbd> | to search |
 > 
 {: .callout}
 
@@ -239,7 +239,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_sample_data	dc_workshop_log_2017_10_27.txt  FastQC	Trimmomatic-0.32
+dc_sample_data	dc_workshop_log_2017_10_27.sh  FastQC	Trimmomatic-0.32
 ~~~
 {: .output}
 
@@ -247,7 +247,7 @@ Then run your workshop log file as a bash script. You should see the `dc_worksho
 directory and all of its subdirectories reappear. 
 
 ~~~
-$ bash dc_workshop_log_2017_10_27.txt
+$ bash dc_workshop_log_2017_10_27.sh
 $ ls
 ~~~
 {: .bash}
