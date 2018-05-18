@@ -99,7 +99,7 @@ prints the contents of `/home`, which is one level up from your root directory.
 > find out how to see hidden directories. List the contents of the directory and 
 > identify the name of the text file in that directory.
 > 
-> Hint: hidden files and folders in Unix start with `.`, for example .my_hidden_directory
+> Hint: hidden files and folders in Unix start with `.`, for example `.my_hidden_directory`
 >
 > > ## Solution
 > > 
