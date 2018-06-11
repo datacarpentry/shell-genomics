@@ -86,17 +86,17 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
 > ## Exercise
 >
-> 1) Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
+> 1. Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match.
 > 
-> 2) Search for the sequence `AAGTT` in both FASTQ files.
+> 2. Search for the sequence `AAGTT` in both FASTQ files.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match.
 > 
 > > ## Solution  
-> > 1) `grep -B1 GNATNACCACTTCC SRR098026.fastq`  
-> > 2) `grep -B1 AAGTT *.fastq`
+> > 1. `grep -B1 GNATNACCACTTCC SRR098026.fastq`  
+> > 2. `grep -B1 AAGTT *.fastq`
 > >
 > {: .solution}
 {: .challenge}
@@ -117,7 +117,7 @@ The command for redirecting output to a file is `>`.
 
 Let's try out this command and copy all the records (including all four lines of each record) 
 in our FASTQ files that contain 
-'NNNNNNNNNN' to another file called 'bad_reads.txt'.
+'NNNNNNNNNN' to another file called `bad_reads.txt`.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
@@ -137,7 +137,7 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 
 
 The prompt should sit there a little bit, and then it should look like nothing
-happened. But type `ls`. You should see a new file called bad_reads.txt. 
+happened. But type `ls`. You should see a new file called `bad_reads.txt`. 
 
 We can check the number of lines in our new file using a command called `wc`. 
 `wc` stands for `word count`. This command counts the number of words, lines, and characters
@@ -218,7 +218,7 @@ $ wc -l bad_reads.txt
 ~~~
 {: .output}
 
-Here, the output of our second  call to `wc` shows that we no longer have any lines in our bad_reads.txt file. This is 
+Here, the output of our second  call to `wc` shows that we no longer have any lines in our `bad_reads.txt` file. This is 
 because the second file we searched (`SRR097977.fastq`) does not contain any lines that match our
 search sequence. So our file was overwritten and is now empty.
 
@@ -532,36 +532,37 @@ $ cut -f3 SraRunTable.txt | grep -v LibraryLayout_s | sort | uniq -c
 {: .output}
 
 > ## Exercise
-> 1) How many different sample load dates are there?   
-> 2) How many samples were loaded on each date?  
+>
+> 1. How many different sample load dates are there?   
+> 2. How many samples were loaded on each date?  
 > 
 >> ## Solution
 >>  
->> There are two different sample load dates.  
+>> 1. There are two different sample load dates.  
 >>
->> ~~~
->> cut -f5 SraRunTable.txt | grep -v LoadDate_s | sort | uniq
->> ~~~
->> {: .bash}
+>>    ~~~
+>>    cut -f5 SraRunTable.txt | grep -v LoadDate_s | sort | uniq
+>>    ~~~
+>>    {: .bash}
 >>
->> ~~~
->> 25-Jul-12
->> 29-May-14
->> ~~~
->> {: .output}
+>>    ~~~
+>>    25-Jul-12
+>>    29-May-14
+>>    ~~~
+>>    {: .output}
 >>
->> Six samples were loaded on one date and 31 were loaded on the other.  
+>> 2. Six samples were loaded on one date and 31 were loaded on the other.
 >>
->> ~~~
->> cut -f5 SraRunTable.txt | grep -v LoadDate_s | sort | uniq -c
->> ~~~
->> {: .bash}
+>>    ~~~
+>>    cut -f5 SraRunTable.txt | grep -v LoadDate_s | sort | uniq -c
+>>    ~~~
+>>    {: .bash}
 >>
->> ~~~
->>  6 25-Jul-12
->> 31 29-May-14
->> ~~~
->> {: .output}
+>>    ~~~
+>>     6 25-Jul-12
+>>    31 29-May-14
+>>    ~~~
+>>    {: .output}
 >>
 > {: .solution}
 {: .challenge}
@@ -612,8 +613,11 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 > 
 > > ## Solution
 > > 
-> > `grep 25-Jul-12 SraRunTable.txt > SraRunTable_25-Jul-12.txt`  
-> > `grep 29-May-14 SraRunTable.txt > SraRunTable_29-May-14.txt`
+> > ~~~ 
+> > $ grep 25-Jul-12 SraRunTable.txt > SraRunTable_25-Jul-12.txt
+> > $ grep 29-May-14 SraRunTable.txt > SraRunTable_29-May-14.txt
+> > ~~~
+> > {: .bash}
 > >
 > {: .solution}
 {: .challenge}

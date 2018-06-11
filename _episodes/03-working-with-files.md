@@ -139,13 +139,11 @@ command. Likewise, the down arrow takes you forward in the command history.
 
 A few more useful shortcuts: 
 
-`^-C` (<kbd>Ctrl</kbd>+<kbd>C</kbd>) will cancel the command you are writing, and give you a 
+- <kbd>Ctrl</kbd>+<kbd>C</kbd> will cancel the command you are writing, and give you a 
 fresh prompt.
-
-`^-R` (<kbd>Ctrl</kbd>+<kbd>R</kbd>) will do a reverse-search through your command history.  This
+- <kbd>Ctrl</kbd>+<kbd>R</kbd> will do a reverse-search through your command history.  This
 is very useful.
-
-`^-L` (<kbd>Ctrl</kbd>+<kbd>L</kbd>) or the `clear` command will clear your screen.
+- <kbd>Ctrl</kbd>+<kbd>L</kbd> or the `clear` command will clear your screen.
 
 You can also review your recent commands with the `history` command, by entering:
 
@@ -367,7 +365,7 @@ SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
 ~~~
 {: .output}
 
-We now have two copies of the SRR098026.fastq file, one of them named SRR098026-copy.fastq. We'll move this file to a new directory
+We now have two copies of the `SRR098026.fastq` file, one of them named `SRR098026-copy.fastq`. We'll move this file to a new directory
 called `backup` where we'll store our backup data files.
 
 ### Creating Directories
@@ -471,10 +469,10 @@ rm: remove write-protected regular file ‘SRR098026-backup.fastq’?
 If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra 
 measure of security, as there is one more step between us and deleting our data files.
 
-Important: The `rm` file permanently removes the file. Be careful with this command. It doesn't
+**Important**: The `rm` file permanently removes the file. Be careful with this command. It doesn't
 just nicely put the files in the Trash. They're really gone.
 
-By default, `rm`, will not delete directories. You can tell `rm` to
+By default, `rm` will not delete directories. You can tell `rm` to
 delete a directory using the `-r` (recursive) option. Let's delete the backup directory
 we just made. 
 
@@ -491,7 +489,7 @@ you will be asked whether you want to override your permission settings.
 
 > ## Exercise
 >
-> Starting in the `dc_sample_data/untrimmed_fastq/ directory, do the following:
+> Starting in the `dc_sample_data/untrimmed_fastq/` directory, do the following:
 > 1. Make sure that you have deleted your backup directory and all files it contains.  
 > 2. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
 > learned yet how to do this
