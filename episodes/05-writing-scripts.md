@@ -62,20 +62,19 @@ The text at the bottom of the screen shows the keyboard shortcuts for performing
 
 Let's type in a few lines of text. Describe what the files in this
 directory are or what you've been doing with them.
-Once we're happy with our text, we can press `Ctrl-O` (press the Ctrl or Control key and, while
-holding it down, press the O key) to write our data to disk
-(we'll be asked what file we want to save this to:
-press Return to accept the suggested default of `README.txt`).
+Once we're happy with our text, we can press <kbd>Ctrl</kbd>-<kbd>O</kbd> (press the <kbd>Ctrl</kbd> or <kbd>Control</kbd> key and, while
+holding it down, press the <kbd>O</kbd> key) to write our data to disk. You'll be asked what file we want to save this to:
+press <kbd>Return</kbd> to accept the suggested default of `README.txt`.
 
-Once our file is saved, we can use `Ctrl-X` to quit the editor and
+Once our file is saved, we can use <kbd>Ctrl</kbd>-<kbd>X</kbd> to quit the editor and
 return to the shell.
 
 > ## Control, Ctrl, or ^ Key
 >
 > The Control key is also called the "Ctrl" key. There are various ways
 > in which using the Control key may be described. For example, you may
-> see an instruction to press the Control key and, while holding it down,
-> press the X key, described as any of:
+> see an instruction to press the <kbd>Ctrl</kbd> key and, while holding it down,
+> press the <kbd>X</kbd> key, described as any of:
 >
 > * `Control-X`
 > * `Control+X`
@@ -85,7 +84,7 @@ return to the shell.
 > * `C-x`
 >
 > In `nano`, along the bottom of the screen you'll see `^G Get Help ^O WriteOut`.
-> This means that you can use `Control-G` to get help and `Control-O` to save your
+> This means that you can use <kbd>Ctrl</kbd>-<kbd>G</kbd> to get help and <kbd>Ctrl</kbd>-<kbd>O</kbd> to save your
 > file.
 {: .callout}
 
@@ -98,7 +97,7 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 > > ## Solution
 > > 
 > > Use `nano README.txt` to open the file.  
-> > Add today's date and then use `Ctrl-X` to exit and `y` to save.
+> > Add today's date and then use <kbd>Ctrl</kbd>-<kbd>X</kbd> to exit and `y` to save.
 > >
 > {: .solution}
 >
@@ -115,7 +114,7 @@ One thing we will commonly want to do with sequencing results is pull out bad re
 Bad reads have a lot of N's, so we're going to look for  `NNNNNNNNNN` with `grep`. We want the whole FASTQ record, so we're also going to get the one line above the sequence and the two lines below. We also want to look in all the files that end with `.fastq`, so we're going to use the `*` wild card.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN *.fastq > scripted_bad_reads.txt
+grep -B1 -A2 NNNNNNNNNN *.fastq > scripted_bad_reads.txt
 ~~~
 {: .bash}
 
@@ -126,7 +125,7 @@ $ nano bad-reads-script.sh
 ~~~
 {: .bash}
 
-Type your `grep` command into the file and save it as before.
+Type your `grep` command into the file and save it as before. Be careful that you did not add the `$` at the beginning of the line.
 
 Now comes the neat part. We can run this script. Type:
 
@@ -139,38 +138,38 @@ It will look like nothing happened, but now if you look at `scripted_bad_reads.t
 
 > ## Exercise
 > 
-> How many bad reads are there in the two FASTQ files combined? 
-> 
-> Bonus: How many bad reads are in each of the two FASTQ files? (Hint: You will need to use the
+> 1. How many bad reads are there in the two FASTQ files combined? 
+> 2. How many bad reads are in each of the two FASTQ files? (Hint: You will need to use the
 > `cut` command with the `-d` flag.)
 > 
 > > ## Solution
 > > 
-> > ~~~
-> > $ wc -l scripted_bad_reads.txt
-> > ~~~
-> > {: .bash}
+> > 1. There are 537 / 4 bad reads in the two files combined.
+> >    
+> >    ~~~
+> >    $ wc -l scripted_bad_reads.txt
+> >    ~~~
+> >    {: .bash}
+> >
+> >    ~~~
+> >    537 scripted_bad_reads.txt
+> >    ~~~
+> >    {: .output}
+> >    
+> >    If you look closely, you will see that there is a `--` delimiter inserted between the non-consecutive matches to grep. This accounts for the extra line. So there are 536 / 4 = 134 total bad reads.
 > > 
-> > ~~~
-> > 537 scripted_bad_reads.txt
-> > ~~~
-> > {: .output}
-> > 
-> > There are 537 / 4 bad reads in the two files combined. If you look closely, you will see that there is a `--` delimiter inserted between the non-consecutive matches to grep. This accounts for the extra line. So there are 536 / 4 = 134 total bad reads. 
-> > 
-> > ~~~
-> > $ cut -d . -f1 scripted_bad_reads.txt | sort | uniq -c
-> > ~~~
-> > {: .bash}
-> > 
-> > ~~~
-> > 1 --
-> > 536 SRR098026
-> > ~~~
-> > {: .output}
-> > 
-> > 
-> > There are 536 / 4 bad reads for the `SRR098026.fastq` file and none for the other file.
+> > 2. There are 536 / 4 bad reads for the `SRR098026.fastq` file and none for the other file.
+> >
+> >    ~~~
+> >    $ cut -d . -f1 scripted_bad_reads.txt | sort | uniq -c
+> >    ~~~
+> >    {: .bash}
+> >
+> >    ~~~
+> >    1 --
+> >    536 SRR098026
+> >    ~~~
+> >    {: .output}
 > {: .solution}
 {: .challenge}
 
