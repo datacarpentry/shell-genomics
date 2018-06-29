@@ -50,7 +50,7 @@ SRR097977.fastq  SRR098026.fastq
 {: .output}
 
 The `*` character is a wildcard character which stands for "everything". 
-Thus, `*.fastq` matches every file that ends with `fastq`. 
+Thus, `*.fastq` matches every file that ends with `.fastq`. 
 
 This command: 
 
