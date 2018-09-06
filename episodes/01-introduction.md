@@ -46,8 +46,6 @@ so that others can check your work or apply your process to new data.
 own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed
 through a shell.
 
-![Automation](../img/gvng.jpg)
-
 In this lesson you will learn how to use the command line interface to move around in your file system. 
 
 ## How to access the shell
@@ -70,7 +68,7 @@ Each of you will have a different `ip_address`. This will
 prevent us from accidentally changing each other's files as we work through the
 exercises. The password will be the same for everyone. 
 
-After loging on, you will see a screen showing something like this: 
+After logging in, you will see a screen showing something like this: 
 
 ~~~
 Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
