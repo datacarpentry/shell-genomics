@@ -285,35 +285,7 @@ $ wc -l bad_reads.txt
 > 
 {: .callout}
 
-So far we've searched for reads containing a long string of at least 10 unknown nucleotides. 
-We might also be interested in finding any reads with at least two shorter strings of 5 unknown 
-nucleotides, separated by any number of known nucleotides. Reads with more than one region of 
-ambiguity like this might be poor enough to not pass our quality filter. We can search for these
-reads using a wildcard within our search string for `grep`. 
-
-> ## Exercise
-> 
-> How many reads in the `SRR098026.fastq` file contain at least two regions of 5 unknown
-> nucleotides in a row, separated by any number of known nucleotides?
->
->> ## Solution
->> 
->> ~~~
->> $ grep "NNNNN*NNNNN" SRR098026.fastq > bad_reads_2.txt
->> $ wc -l bad_reads_2.txt
->> ~~~
->> {: .bash}
->> 
->> ~~~
->> 186 bad_reads_2.txt
->> ~~~
->> {: .output}
-> {: .solution}
-{: .challenge}
-
-
-We've now created two separate files to store the results of our search for reads matching 
-particular criteria. Since we might have multiple different criteria we want to search for, 
+Since we might have multiple different criteria we want to search for, 
 creating a new output file each time has the potential to clutter up our workspace. We also
 so far haven't been interested in the actual contents of those files, only in the number of 
 reads that we've found. We created the files to store the reads and then counted the lines in 
