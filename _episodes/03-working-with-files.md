@@ -9,7 +9,7 @@ questions:
 - "How can I repeat recently used commands?"
 objectives:
 - View, search within, copy, move, and rename files. Create new directories.
-- Use wild cards (`*`) to perform operations on multiple files.
+- Use wildcards (`*`) to perform operations on multiple files.
 - Make a file read only
 - Use the `history` command to view and repeat recently used commands.
 keypoints:
@@ -27,7 +27,7 @@ Now that we know how to navigate around our directory structure, lets
 start working with our sequencing files. We did a sequencing experiment and 
 have two results files, which are stored in our `untrimmed_fastq` directory. 
 
-### Wild cards
+### Wildcards
 
 Navigate to your `untrimmed_fastq` directory.
 
@@ -528,7 +528,7 @@ you will be asked whether you want to override your permission settings.
 > 1. Make sure that you have deleted your backup directory and all files it contains.  
 > 2. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
 > learned yet how to do this
-> with a wild-card.)  
+> with a wildcard.)  
 > 3. Use a wildcard to move all of your backup files to a new backup directory.   
 > 4. Change the permissions on all of your backup files to be write-protected.  
 >
