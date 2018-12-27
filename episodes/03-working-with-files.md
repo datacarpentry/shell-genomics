@@ -66,21 +66,6 @@ SRR097977.fastq
 
 lists only the file that ends with `977.fastq`.
 
-We can use the command `echo` to see how the wildcard character is intepreted by the
-shell.
-
-~~~
-$ echo *.fastq
-~~~
-{: .bash}
-
-~~~
-SRR097977.fastq SRR098026.fastq
-~~~
-{: .output}
-
-The `*` is expanded to include any file that ends with `.fastq`.
-
 This command:
 
 ~~~
@@ -131,6 +116,49 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > > 2. `ls /usr/bin/*a*`
 > > 3. `ls /usr/bin/*o`  
 > > Bonus: `ls /usr/bin/*[ac]*`
+> > 
+> {: .solution}
+{: .challenge}
+
+> ## Exercise
+> We can use the command `echo` to see how the wildcard character is interpreted by the shell.
+> 
+> ~~~
+> $ echo *.fastq
+> ~~~
+> {: .bash}
+> 
+> ~~~
+> SRR097977.fastq SRR098026.fastq
+> ~~~
+> {: .output}
+> 
+> The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
+> `echo *.fastq` is the same as of `ls *.fastq`.
+> 
+> What would the output look like if the wildcard could *not* be matched? Compare the outputs of
+> `echo *.missing` and `ls *.missing`.
+> 
+> > ## Solution
+> > ~~~
+> > $ echo *.missing
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > *.missing
+> > ~~~
+> > {: .output}
+> > 
+> > ~~~
+> > $ ls *.missing
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > ls: cannot access '*.missing': No such file or directory
+> > ~~~
+> > {: .output}
 > > 
 > {: .solution}
 {: .challenge}
