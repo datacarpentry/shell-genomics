@@ -462,7 +462,7 @@ After executing the loop, you should see the first two lines of both fastq files
 will save this information to a file.
 
 ~~~
-$ for filename in *.fastq
+$ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
 > do
 > head -n 2 $filename >> seq_info.txt
 > done
@@ -471,6 +471,22 @@ $ for filename in *.fastq
 Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
 every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
 
-### Basename
+### Using Basename in for loops
 
-Add basename lesson here, put in for loops at end
+Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use
+basename to remove the `*.fastq` from the files that we've been working with. Inside our for loop, we create a new `name` variable.
+We call the `basename` function inside the parenthesis, then give our variable name from the for loop, in this case `$filename`, 
+and finally state that `.fastq` should be removed from the file name. It's important to note that we're not changing the actual files,
+we're creating and manipulating a new variable called `name`. The line `> echo $name` will print to the terminal the variable `name`
+each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
+
+~~~
+$ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
+> do
+> name=$(basename $filename .fastq)
+> echo $name
+> done
+~~~
+
+Although the utility of basename may still seem unclear, it will become very useful in subsequent analysis, such as trimming many reads
+in a for loop.
