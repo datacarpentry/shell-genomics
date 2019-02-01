@@ -350,3 +350,25 @@ $ scp <AWS instance> <local file>
 $  scp local_file.txt dcuser@ip.address:/home/dcuser/
 ~~~
 {: .bash}
+
+### Downloading Data from your Virtual Machine
+
+Let's download a zipped file from our remote machine.  You should have a fastqc report in ~/dc_workshop/results/fastqc_untrimmed_reads/SRR097977_fastqc.zip
+
+**Tip:** If you are looking for another (or any really) zip file in your home directory to use instead try
+
+~~~
+$ find ~ -name *.zip
+~~~
+{: .bash}
+
+
+1. Download the fastqc report in ~/dc_workshop/results/fastqc_untrimmed_reads/SRR097977_fastqc.zip to your home ~/Download directory using the following command **(make sure you use substitute dcuser@ ip.address with your remote login credentials)**:
+
+~~~
+$ scp dcuser@ip.address:/home/dcuser/dc_workshop/dc_sample_data/untrimmed_fastq/SRR097977.fastq ~/Downloads
+~~~
+{: .bash}
+
+Remember that in both instances, the command is run from your local machine, we've just flipped the order of the to and from parts of the command.
+</div>
