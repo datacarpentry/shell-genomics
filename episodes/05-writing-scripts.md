@@ -443,7 +443,7 @@ the commands inside the loop are executed, before moving on to  the next item in
 the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable**
 as a variable name and substitute its value in its place, rather than treat it as text or an external command. 
 
-Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier.
+Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
 
 ~~~
 $ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
@@ -452,11 +452,24 @@ $ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
 > done
 ~~~
 
-You will notice shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
-
 The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated 
 as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename` 
-because they fit the pattern of ending with .fastq in directory we've specified. The next line of the for loop is `do`.
+because they fit the pattern of ending with .fastq in directory we've specified. The next line of the for loop is `do`. The next line is 
+the code that we want to excute. We are telling the loop to print the first two lines of each variable we iterate over. Finally, the 
+word `done` ends the loop.
+
+After executing the loop, you should see the first two lines of both fastq files printed to the terminal. Let's create a loop that 
+will save this information to a file.
+
+~~~
+$ for filename in *.fastq
+> do
+> print head -n 2 $filename >> seq_info.txt
+> done
+~~~
+
+Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
+every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
 
 ### Basename
 
