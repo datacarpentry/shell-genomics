@@ -1,5 +1,5 @@
 ---
-title: "Writing Scripts"
+title: "Writing Scripts and Working with Data"
 teaching: 20
 exercises: 20
 questions:
