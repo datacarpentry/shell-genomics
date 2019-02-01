@@ -374,7 +374,7 @@ $ find ~ -name *.zip
 1. Download the fastqc report in ~/dc_workshop/results/fastqc_untrimmed_reads/SRR097977_fastqc.zip to your home ~/Download directory using the following command **(make sure you use substitute dcuser@ ip.address with your remote login credentials)**:
 
 ~~~
-$ scp dcuser@ip.address:/home/dcuser/dc_workshop/dc_sample_data/untrimmed_fastq/SRR097977.fastq ~/Downloads
+$ scp dcuser@ip.address:/home/dcuser/dc_workshop/dc_sample_data/sra_metadata/SraRunTable.txt ~/Downloads
 ~~~
 {: .bash}
 
@@ -420,7 +420,8 @@ C:\User\your-pc-username\Downloads> pscp.exe local_file.txt dcuser@ip.address:/h
 2. Download the zipped fastqc report using the following command **(make sure you use substitute 'your-pc-username' for your actual pc username and dcuser@ ip.address with your remote login credentials)**
 
 ~~~
-C:\User\your-pc-username\Downloads> pscp.exe dcuser@ip.address:/home/dcuser/dc_workshop/dc_sample_data/untrimmed_fastq/SRR097977.fastq C:\User\your-pc-username\Downloads
+C:\User\your-pc-username\Downloads> pscp.exe dcuser@ip.address:/home/dcuser/dc_workshop/dc_sample_data/sra_metadata/SraRunTable.txt
+C:\User\your-pc-username\Downloads
 ~~~
 {: .bash}
 
