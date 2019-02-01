@@ -447,11 +447,10 @@ the commands inside the loop are executed, before moving on to  the next item in
 the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable**
 as a variable name and substitute its value in its place, rather than treat it as text or an external command. 
 
+<insert creating a simple for loop here>
 
-## Basename
+The shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
 
-Add basename lesson here.
+### Basename
 
-## Word counts
-
-Add wc lesson here.
+Add basename lesson here, put in for loops at end
