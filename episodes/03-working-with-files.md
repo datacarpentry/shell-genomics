@@ -49,7 +49,7 @@ SRR097977.fastq  SRR098026.fastq
 ~~~
 {: .output}
 
-The `*` character is a wildcard character which stands for "everything". 
+The `*` character is a special type of character called a wildcard, which can be used to represent any number of any type of character. 
 Thus, `*.fastq` matches every file that ends with `.fastq`. 
 
 This command: 
@@ -104,6 +104,11 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > the root directory is two levels above our home directory, so `cd` or `cd ~` will take you to `/home/dcuser`
 > and `cd /` will take you to `/`, which is equivalent to `~/../../`. Try not to worry if this is confusing,
 > it will all become clearer with practice.
+> 
+> While you will be using the root at the beginning of your absolute paths, it is important that you avoid 
+> working with data in these higher-level directories, as your commands can permanently alter files that the 
+> operating system needs to function. In many cases, trying to run commands in root directories will require 
+> special permissions which are not discussed here, so it's best to avoid it and work within your home directory.
 {: .callout}
 
 > ## Exercise
@@ -432,6 +437,8 @@ characters relate to the permissions that the file owner has, the next three rel
 three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
 that deal with your permissions (as the file owner). 
 
+![Permissions breakdown](../fig/rwx_figure.svg)
+
 Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w` 
 indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you 
 don't have permission to carry out the ability encoded by that space (this is the space where `x` or executable ability is stored, we'll 
@@ -469,7 +476,7 @@ rm: remove write-protected regular file ‘SRR098026-backup.fastq’?
 If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra 
 measure of security, as there is one more step between us and deleting our data files.
 
-**Important**: The `rm` file permanently removes the file. Be careful with this command. It doesn't
+**Important**: The `rm` command permanently removes the file. Be careful with this command. It doesn't
 just nicely put the files in the Trash. They're really gone.
 
 By default, `rm` will not delete directories. You can tell `rm` to
