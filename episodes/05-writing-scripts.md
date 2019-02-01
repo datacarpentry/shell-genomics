@@ -429,3 +429,29 @@ C:\User\your-pc-username\Downloads> pscp.exe dcuser@ip.address:/home/dcuser/dc_w
 
 
 <div id="div_aws_unix" style="display:block" markdown="1">
+
+## Writing for loops
+
+Loops are key to productivity improvements through automation as they allow us to execute commands repeatedly. 
+Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). 
+Loops are helpful when performing operations on groups of sequencing files, such as unzippingg or trimming multiple
+files. We will use loops for these purposes in subsequent analyses, but will cover the basics of them for now.
+
+Here is an example of a for loop.
+
+<insert for loop example here>
+
+When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list. 
+Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the **variable**, and 
+the commands inside the loop are executed, before moving on to  the next item in the list. Inside the loop, we call for 
+the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable**
+as a variable name and substitute its value in its place, rather than treat it as text or an external command. 
+
+
+## Basename
+
+Add basename lesson here.
+
+## Word counts
+
+Add wc lesson here.
