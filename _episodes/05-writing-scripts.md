@@ -448,7 +448,7 @@ Let's write a for loop to show us the first two lines of the fastq files we down
 ~~~
 $ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
 > do
-> print head -n 2 $filename
+> head -n 2 $filename
 > done
 ~~~
 
@@ -464,7 +464,7 @@ will save this information to a file.
 ~~~
 $ for filename in *.fastq
 > do
-> print head -n 2 $filename >> seq_info.txt
+> head -n 2 $filename >> seq_info.txt
 > done
 ~~~
 
