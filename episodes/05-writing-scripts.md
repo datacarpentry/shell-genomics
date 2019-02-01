@@ -227,4 +227,90 @@ $ ./bad-reads-script.sh
 
 The script should run the same way as before, but now we've created our very own computer program!
 
-You will learn more about writing scripts in [a later lesson](http://www.datacarpentry.org/wrangling-genomics/02-automating_a_workflow/). 
+You will learn more about writing scripts in [a later lesson](http://www.datacarpentry.org/wrangling-genomics/02-automating_a_workflow/).
+
+## Moving and Downloading Data
+
+### Getting data from the cloud
+
+There are two programs that will download data from a remote server to your local
+(or remote) machine: ``wget`` and ``curl``. They were designed to do slightly different
+tasks by default, so you'll need to give the programs somewhat different options to get
+the same behaviour, but they are mostly interchangeable.
+
+ - ``wget`` is short for "world wide web get", and it's basic function is to *download*
+ web pages or data at a web address.
+
+ - ``cURL`` is a pun, it is suppose to be read as "see URL", so it's basic function is
+ to *display* webpages or data at a web address.
+
+Which one you need to use mostly depends on your operating system, as most computers will
+only have one or the other installed by default.
+
+Let's say you want to download some data from Ensembl. We're going to download a very small
+tab-delimited file that just tells us what data is available on the Ensembl bacteria server.
+Before we can start our download, we need to know whether we're using ``curl`` or ``wget``.
+
+To see which program you have type:
+ 
+~~~
+$ which curl
+$ which wget
+~~~
+{: .bash}
+
+``which`` is a BASH program that looks through everything you have
+installed, and tells you what folder it is installed to. If it can't
+find the program you asked for, it returns nothing, i.e. gives you no
+results.
+
+On Mac OSX, you'll likely get the following output:
+
+~~~
+$ which curl
+~~~
+{: .bash}
+
+~~~
+/usr/bin/curl
+~~~
+{: .output}
+
+~~~
+$ which wget
+~~~
+{: .bash}
+
+~~~
+$
+~~~
+{: .output}
+
+This output means that you have ``curl`` installed, but not ``wget``.
+
+Once you know whether you have ``curl`` or ``wget`` use one of the
+following commands to download the file:
+
+~~~
+$ cd
+$ wget ftp://ftp.ensemblgenomes.org/pub/release-37/bacteria/species_EnsemblBacteria.txt
+~~~
+{: .bash}
+
+or
+
+~~~
+$ cd
+$ curl -O ftp://ftp.ensemblgenomes.org/pub/release-37/bacteria/species_EnsemblBacteria.txt
+~~~
+{: .bash}
+
+Since we wanted to *download* the file rather than just view it, we used ``wget`` without
+any modifiers. With ``curl`` however, we had to use the -O flag, which simultaneously tells ``curl`` to
+download the page instead of showing it to us **and** specifies that it should save the
+file using the same name it had on the server: species_EnsemblBacteria.txt
+
+It's important to note that both ``curl`` and ``wget`` download to the computer that the
+command line belongs to. So, if you are logged into AWS on the command line and execute
+the ``curl`` command above in the AWS terminal, the file will be downloaded to your AWS
+machine, not your local one.
