@@ -56,9 +56,9 @@ $ grep NNNNNNNNNN SRR098026.fastq
 ~~~
 {: .bash}
 
-This command returns a lot of output to the terminal. Each line in the SRR098026 
-file which contains at least 10 consecutive Ns is printed to the terminal. We may be 
-interested not only in the actual sequence which contains this string, but 
+This command returns a lot of output to the terminal. Every single line in the SRR098026 
+file that contains at least 10 consecutive Ns is printed to the terminal, regardless of how long or short the file is. 
+We may be interested not only in the actual sequence which contains this string, but 
 in the name (or identifier) of that sequence. We discussed in a previous lesson 
 that the identifier line immediately precedes the nucleotide sequence for each read
 in a FASTQ file. We may also want to inspect the quality scores associated with
@@ -104,14 +104,14 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 ## Redirecting output
 
 `grep` allowed us to identify sequences in our FASTQ files that match a particular pattern. 
-But all of these sequences were printed to our terminal screen. In order to work with these 
+All of these sequences were printed to our terminal screen, but in order to work with these 
 sequences and perform other opperations on them, we will need to capture that output in some
 way. 
 
 We can do this with something called "redirection". The idea is that
-we're redirecting what was output to the terminal to another location. 
-In our case, we want to print this information to a file, so that we can look at it later and 
-do other analyses with this data.
+we are taking what would ordinarily be printed to the terminal screen and redirecting it to another location. 
+In our case, we want to print this information to a file so that we can look at it later and 
+use other commands to analyze this data.
 
 The command for redirecting output to a file is `>`.
 
@@ -140,7 +140,7 @@ The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should see a new file called `bad_reads.txt`. 
 
 We can check the number of lines in our new file using a command called `wc`. 
-`wc` stands for `word count`. This command counts the number of words, lines, and characters
+`wc` stands for **word count**. This command counts the number of words, lines, and characters
 in a file. 
 
 ~~~
