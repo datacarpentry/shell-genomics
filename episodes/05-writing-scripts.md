@@ -437,19 +437,26 @@ Similar to wildcards and tab completion, using loops also reduces the amount of 
 Loops are helpful when performing operations on groups of sequencing files, such as unzippingg or trimming multiple
 files. We will use loops for these purposes in subsequent analyses, but will cover the basics of them for now.
 
-Here is an example of a for loop.
-
-<insert for loop example here>
-
 When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list. 
 Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the **variable**, and 
 the commands inside the loop are executed, before moving on to  the next item in the list. Inside the loop, we call for 
 the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable**
 as a variable name and substitute its value in its place, rather than treat it as text or an external command. 
 
-<insert creating a simple for loop here>
+Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier.
 
-The shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
+~~~
+$ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
+> do
+> print head -n 2 $filename
+> done
+~~~
+
+You will notice shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
+
+The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated 
+as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename` 
+because they fit the pattern of ending with .fastq in directory we've specified. The next line of the for loop is `do`.
 
 ### Basename
 
