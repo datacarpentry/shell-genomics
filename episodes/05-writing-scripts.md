@@ -314,3 +314,39 @@ It's important to note that both ``curl`` and ``wget`` download to the computer 
 command line belongs to. So, if you are logged into AWS on the command line and execute
 the ``curl`` command above in the AWS terminal, the file will be downloaded to your AWS
 machine, not your local one.
+
+## Transferring Data Between your Local Machine and the Cloud
+### scp
+
+`scp` stands for 'secure copy protocol', and is a widely used UNIX tool for moving files
+between computers. The simplest way to use `scp` is to run it in your local terminal,
+and use it to copy a single file:
+
+~~~
+scp <file I want to move> <where I want to move it>
+~~~
+{: .bash}
+
+Note that you are always running `scp` locally, but that *doesn't* mean that
+you can only move files from your local computer. A command like:
+
+~~~
+$ scp <local file> <AWS instance>
+~~~
+{: .bash}
+
+To move it back, you just re-order the to and from fields:
+
+~~~
+$ scp <AWS instance> <local file>
+~~~
+{: .bash}
+
+### Uploading Data to your Virtual Machine
+
+1. Open the terminal and use the `scp` command to upload a file (e.g. local_file.txt) to the dcuser home directory:
+
+~~~
+$  scp local_file.txt dcuser@ip.address:/home/dcuser/
+~~~
+{: .bash}
