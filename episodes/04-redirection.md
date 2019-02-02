@@ -624,7 +624,7 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 
 Loops are key to productivity improvements through automation as they allow us to execute commands repeatedly. 
 Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). 
-Loops are helpful when performing operations on groups of sequencing files, such as unzippingg or trimming multiple
+Loops are helpful when performing operations on groups of sequencing files, such as unzipping or trimming multiple
 files. We will use loops for these purposes in subsequent analyses, but will cover the basics of them for now.
 
 When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list. 
