@@ -24,30 +24,30 @@ We've also learned how to use `cd` to change locations and `ls` to list the cont
 of a directory. Now we're going to learn some additional commands for moving around 
 within our file system.
 
-Use the commands we've learned so far to navigate to the `dc_sample_data/untrimmed_fastq` directory, if
+Use the commands we've learned so far to navigate to the `shell_data/untrimmed_fastq` directory, if
 you're not already there. 
 
 ~~~
 $ cd
-$ cd dc_sample_data
+$ cd shell_data
 $ cd untrimmed_fastq
 ~~~
 {: .bash}
 
 What if we want to move back up and out of this directory and to our top level 
-directory? Can we type `cd dc_sample_data`? Try it and see what happens.
+directory? Can we type `cd shell_data`? Try it and see what happens.
 
 ~~~
-$ cd dc_sample_data
+$ cd shell_data
 ~~~
 {: .bash}
 
 ~~~
--bash: cd: dc_sample_data: No such file or directory
+-bash: cd: shell_data: No such file or directory
 ~~~
 {: .output}
 
-Your computer looked for a directory or file called `dc_sample_data` within the 
+Your computer looked for a directory or file called `shell_data` within the 
 directory you were already in. It didn't know you wanted to look at a directory level
 above the one you were located in. 
 
@@ -68,7 +68,7 @@ $ pwd
 {: .bash}
 
 ~~~
-/home/dcuser/dc_sample_data
+/home/dcuser/shell_data
 ~~~
 {: .output}
 
@@ -95,7 +95,7 @@ prints the contents of `/home`, which is one level up from your root directory.
 
 > ## Finding hidden directories
 >
-> First navigate to the `dc_sample_data` directory. There is a hidden directory within this directory. Explore the options for `ls` to 
+> First navigate to the `shell_data` directory. There is a hidden directory within this directory. Explore the options for `ls` to 
 > find out how to see hidden directories. List the contents of the directory and 
 > identify the name of the text file in that directory.
 > 
@@ -162,7 +162,7 @@ $ cd
 Then enter the command:
 
 ~~~
-$ ls dc_sample_data
+$ ls shell_data
 ~~~
 {: .bash}
 
@@ -171,7 +171,7 @@ sra_metadata  untrimmed_fastq
 ~~~
 {: .output}
 
-This will list the contents of the `dc_sample_data` directory without
+This will list the contents of the `shell_data` directory without
 you needing to navigate there.
 
 The `cd` command works in a similar way.
@@ -180,7 +180,7 @@ Try entering:
 
 ~~~
 $ cd
-$ cd dc_sample_data/untrimmed_fastq
+$ cd shell_data/untrimmed_fastq
 ~~~
 {: .bash}
 
@@ -196,7 +196,7 @@ the intermediate directory.
 > >
 > > ~~~
 > > $ cd
-> > $ ls dc_sample_data/untrimmed_fastq/
+> > $ ls shell_data/untrimmed_fastq/
 > > ~~~
 > > {: .bash}
 > > 
@@ -240,7 +240,7 @@ directory in `home` which is a directory in `/`.
 Now enter the following command:
 
 ~~~
-$ cd /home/dcuser/dc_sample_data/.hidden
+$ cd /home/dcuser/shell_data/.hidden
 ~~~
 {: .bash}
 
@@ -255,7 +255,7 @@ $ cd
 You can also navigate to the `.hidden` directory using:
 
 ~~~
-$ cd dc_sample_data/.hidden
+$ cd shell_data/.hidden
 ~~~
 {: .bash}
 
@@ -306,12 +306,12 @@ navigate amongst them.
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. The tilde character,
-`~`, is a shortcut for your home directory. Navigate to the `dc_sample_data`
+`~`, is a shortcut for your home directory. Navigate to the `shell_data`
 directory:
 
 ~~~
 $ cd
-$ cd dc_sample_data
+$ cd shell_data
 ~~~
 {: .bash}
 
@@ -323,7 +323,7 @@ $ ls ~
 {: .bash}
 
 ~~~
-dc_sample_data	FastQC	Trimmomatic-0.32
+shell_data
 ~~~
 {: .output}
 

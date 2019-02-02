@@ -239,7 +239,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_sample_data	dc_workshop_log_2017_10_27.sh  FastQC	Trimmomatic-0.32
+shell_data	dc_workshop_log_2017_10_27.sh
 ~~~
 {: .output}
 
@@ -253,7 +253,7 @@ $ ls
 {: .bash}
 
 ~~~
-dc_sample_data	dc_workshop dc_workshop_log_2017_10_27.txt  FastQC	Trimmomatic-0.32
+shell_data	dc_workshop dc_workshop_log_2017_10_27.txt
 ~~~
 {: .output}
 
@@ -272,5 +272,3 @@ bioinformatics journey!
 
 ## References
 [A Quick Guide to Organizing Computational Biology Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)
-
-
