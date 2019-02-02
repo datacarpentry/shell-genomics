@@ -40,6 +40,14 @@ Let's give it a try!
 > 
 {: .callout}
 
+We'll search for strings inside of our fastq files. Let's first make sure we are in the correct 
+directory.
+
+~~~
+$ cd ~/shell_data/untrimmed_fastq
+~~~
+{: .bash}
+
 Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns). Let's search for the string NNNNNNNNNN in the SRR098026 file.
 
 > ## Determining quality
@@ -375,7 +383,7 @@ Let's use the tools we've added to our tool kit so far, along with a few new one
 
 ~~~
 $ cd
-$ cd dc_sample_data/sra_metadata
+$ cd shell_data/sra_metadata
 ~~~
 {: .bash}
 
@@ -640,11 +648,17 @@ as a variable name and substitute its value in its place, rather than treat it a
 Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
 
 ~~~
-$ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
+$ cd ../untrimmed_fastq/
+~~~
+{: .bash}
+
+~~~
+$ for filename in *.fastq
 > do
-> head -n 2 $filename
+> head -n 2 ${filename}
 > done
 ~~~
+{: .bash}
 
 The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated 
 as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename` 
@@ -656,11 +670,12 @@ After executing the loop, you should see the first two lines of both fastq files
 will save this information to a file.
 
 ~~~
-$ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
+$ for filename in *.fastq
 > do
-> head -n 2 $filename >> seq_info.txt
+> head -n 2 ${filename} >> seq_info.txt
 > done
 ~~~
+{: .bash}
 
 Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
 every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
@@ -675,12 +690,13 @@ we're creating and manipulating a new variable called `name`. The line `> echo $
 each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
 
 ~~~
-$ for filename in ~/dc_sample_data/untrimmed_fastq/*.fastq
+$ for filename in *.fastq
 > do
-> name=$(basename $filename .fastq)
-> echo $name
+> name=$(basename ${filename} .fastq)
+> echo ${name}
 > done
 ~~~
+{: .bash}
 
 Although the utility of basename may still seem unclear, it will become very useful in subsequent analysis, such as trimming many reads
 in a for loop.
