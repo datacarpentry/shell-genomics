@@ -18,15 +18,15 @@ keypoints:
 
 We've been able to do a lot of work with files that already exist, but what if we want to write our own files. We're not going to type in a FASTA file, but we'll see as we go through other tutorials, there are a lot of reasons we'll want to write a file, or edit an existing file.
 
-To add text to files, we're going to use a text editor called Nano. We're going to create a file to take notes about what we've been doing with the data files in `~/dc_sample_data/untrimmed_fastq`.
+To add text to files, we're going to use a text editor called Nano. We're going to create a file to take notes about what we've been doing with the data files in `~/shell_data/untrimmed_fastq`.
 
 This is good practice when working in bioinformatics. We can create a file called a `README.txt` that describes the data files in the directory or documents how the files in that directory were generated.  As the name suggests it's a file that we or others should read to understand the information in that directory.
 
-Let's change our working directory to `~/dc_sample_data/untrimmed_fastq` using `cd`,
+Let's change our working directory to `~/shell_data/untrimmed_fastq` using `cd`,
 then run `nano` to create a file called `README.txt`:
 
 ~~~
-$ cd ~/dc_sample_data/untrimmed_fastq
+$ cd ~/shell_data/untrimmed_fastq
 $ nano README.txt
 ~~~
 {: .bash}
@@ -229,6 +229,10 @@ You will learn more about writing scripts in [a later lesson](http://www.datacar
 
 ## Moving and Downloading Data
 
+So far, we've worked with data that is pre-loaded on the instance in the cloud. Usually, however,
+most analyses begin with moving data onto the instance. Below we'll show you some commands to 
+download data onto your instance, or to move data between your computer and the cloud.
+
 ### Getting data from the cloud
 
 There are two programs that will download data from a remote server to your local
@@ -359,20 +363,20 @@ $  scp local_file.txt dcuser@ip.address:/home/dcuser/
 
 #### Downloading Data from your Virtual Machine with scp
 
-Let's download a zipped file from our remote machine.  You should have a fastqc report in ~/dc_workshop/results/fastqc_untrimmed_reads/SRR097977_fastqc.zip
+Let's download a text file from our remote machine. You should have a file that contains bad reads called ~/shell_data/scripted_bad_reads.txt.
 
-**Tip:** If you are looking for another (or any really) zip file in your home directory to use instead try
+**Tip:** If you are looking for another (or any really) text file in your home directory to use instead try
 
 ~~~
-$ find ~ -name *.zip
+$ find ~ -name *.txt
 ~~~
 {: .bash}
 
 
-1. Download the fastqc report in ~/dc_workshop/results/fastqc_untrimmed_reads/SRR097977_fastqc.zip to your home ~/Download directory using the following command **(make sure you use substitute dcuser@ ip.address with your remote login credentials)**:
+1. Download the bad reads file in ~/shell_data/scripted_bad_reads.txt to your home ~/Download directory using the following command **(make sure you use substitute dcuser@ ip.address with your remote login credentials)**:
 
 ~~~
-$ scp dcuser@ip.address:/home/dcuser/dc_workshop/dc_sample_data/sra_metadata/SraRunTable.txt ~/Downloads
+$ scp dcuser@ip.address:/home/dcuser/shell_data/scripted_bad_reads.txt. ~/Downloads
 ~~~
 {: .bash}
 
@@ -415,10 +419,11 @@ C:\User\your-pc-username\Downloads> pscp.exe local_file.txt dcuser@ip.address:/h
 ### Downloading Data from your Virtual Machine with PSCP
 
 1. Follow the instructions in the Upload section to download (if needed) and access the *PSCP* program (steps 1-3)
-2. Download the zipped fastqc report using the following command **(make sure you use substitute 'your-pc-username' for your actual pc username and dcuser@ ip.address with your remote login credentials)**
+2. Download the text file using the following command **(make sure you use substitute 'your-pc-username' for your actual pc username and dcuser@ ip.address with your remote login credentials)**
 
 ~~~
-C:\User\your-pc-username\Downloads> pscp.exe dcuser@ip.address:/home/dcuser/dc_workshop/dc_sample_data/sra_metadata/SraRunTable.txt
+C:\User\your-pc-username\Downloads> pscp.exe dcuser@ip.address:/home/dcuser/shell_data/scripted_bad_reads.txt.
+
 C:\User\your-pc-username\Downloads
 ~~~
 {: .bash}
