@@ -16,7 +16,7 @@ There are quite a few reasons to start learning about the shell:
 > their own computers to ensure the proper setup of tools for an efficient 
 > workflow. <br>**These lessons assume no prior knowledge of the skills or tools.**
 >
-> #### Prerequisites
+> #### Software Requirements
 >
 > This lesson uses data hosted on an Amazon Machine Instance (AMI). Workshop participants will be given information on how
 > to log-in to the AMI during the workshop. Learners using these materials for self-directed study will need to set up their own
