@@ -9,7 +9,7 @@ questions:
 - "How can I repeat recently used commands?"
 objectives:
 - View, search within, copy, move, and rename files. Create new directories.
-- Use wild cards (`*`) to perform operations on multiple files.
+- Use wildcards (`*`) to perform operations on multiple files.
 - Make a file read only
 - Use the `history` command to view and repeat recently used commands.
 keypoints:
@@ -27,7 +27,7 @@ Now that we know how to navigate around our directory structure, lets
 start working with our sequencing files. We did a sequencing experiment and 
 have two results files, which are stored in our `untrimmed_fastq` directory. 
 
-### Wild cards
+### Wildcards
 
 Navigate to your `untrimmed_fastq` directory.
 
@@ -66,7 +66,7 @@ SRR097977.fastq
 
 lists only the file that ends with `977.fastq`.
 
-We can use the command `echo` to see how the wildcard character is intepreted by the
+We can use the command `echo` to see how the wildcard character is interpreted by the
 shell.
 
 ~~~
