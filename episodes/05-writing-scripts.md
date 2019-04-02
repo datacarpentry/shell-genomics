@@ -106,7 +106,7 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 
 ## Writing scripts
 
-A really powerful thing about the command line is that you can write scripts. Scripts let you save commands to run them and also lets you put multiple commands together. Scripts let you save commands to run them and also let you put multiple commands together. Though writing scripts may require an additional time investment initially, this can save you time as you run them repeatedly. Scripts can also address the challenge of reproducibility: if you need to repeat an analysis, you retain a record of your command history within the script.
+A really powerful thing about the command line is that you can write scripts. Scripts let you save commands to run them and also lets you put multiple commands together. Though writing scripts may require an additional time investment initially, this can save you time as you run them repeatedly. Scripts can also address the challenge of reproducibility: if you need to repeat an analysis, you retain a record of your command history within the script.
 
 One thing we will commonly want to do with sequencing results is pull out bad reads and write them to a file to see if we can figure out what's going on with them. We're going to look for reads with long sequences of N's like we did before, but now we're going to write a script, so we can run it each time we get new sequences, rather than type the code in by hand each time.
 
@@ -135,43 +135,6 @@ $ bash bad-reads-script.sh
 
 It will look like nothing happened, but now if you look at `scripted_bad_reads.txt`, you can see that there are now reads in the file.
 
-> ## Exercise
-> 
-> 1. How many bad reads are there in the two FASTQ files combined? 
-> 2. How many bad reads are in each of the two FASTQ files? (Hint: You will need to use the
-> `cut` command with the `-d` flag.)
-> 
-> > ## Solution
-> > 
-> > 1. There are 537 / 4 bad reads in the two files combined.
-> >    
-> >    ~~~
-> >    $ wc -l scripted_bad_reads.txt
-> >    ~~~
-> >    {: .bash}
-> >
-> >    ~~~
-> >    537 scripted_bad_reads.txt
-> >    ~~~
-> >    {: .output}
-> >    
-> >    If you look closely, you will see that there is a `--` delimiter inserted between the non-consecutive matches to grep. This accounts for the extra line. So there are 536 / 4 = 134 total bad reads.
-> > 
-> > 2. There are 536 / 4 bad reads for the `SRR098026.fastq` file and none for the other file.
-> >
-> >    ~~~
-> >    $ cut -d . -f1 scripted_bad_reads.txt | sort | uniq -c
-> >    ~~~
-> >    {: .bash}
-> >
-> >    ~~~
-> >    1 --
-> >    536 SRR098026
-> >    ~~~
-> >    {: .output}
-> {: .solution}
-{: .challenge}
-
 
 > ## Exercise
 >
@@ -182,8 +145,7 @@ It will look like nothing happened, but now if you look at `scripted_bad_reads.t
 
 ## Making the script into a program
 
-We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead we can turn this script into its own program. We need to tell it that it's a program by making it executable. We can do this by changing the file permissions. We
-talked about permissions in [an earlier episode](http://www.datacarpentry.org/shell-genomics/03-working-with-files/).
+We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead we can turn this script into its own program. We need to tell it that it's a program by making it executable. We can do this by changing the file permissions. We talked about permissions in [an earlier episode](http://www.datacarpentry.org/shell-genomics/03-working-with-files/).
 
 First, let's look at the current permissions.
 
