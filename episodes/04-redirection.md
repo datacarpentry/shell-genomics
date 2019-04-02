@@ -48,19 +48,20 @@ $ cd ~/shell_data/untrimmed_fastq
 ~~~
 {: .bash}
 
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns). Let's search for the string NNNNNNNNNN in the SRR098026 file.
+Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns). 
 
 > ## Determining quality
 > 
 > In this lesson, we're going to be manually searching for strings of `N`s within our sequence
 > results to illustrate some principles of file searching. It can be really useful to do this
-> type of searching to get a feel for the quality of your sequencing results, however, in you 
+> type of searching to get a feel for the quality of your sequencing results, however, in your 
 > research you will most likely use a bioinformatics tool that has a built-in program for
 > filtering out low-quality reads. You'll learn how to use one such tool in 
 > [a later lesson](http://www.datacarpentry.org/wrangling-genomics/00-readQC/).
 > 
 {: .callout}
 
+Let's search for the string NNNNNNNNNN in the SRR098026 file.
 ~~~
 $ grep NNNNNNNNNN SRR098026.fastq
 ~~~
@@ -76,8 +77,8 @@ each of these reads. To get all of this information, we will return the line
 immediately before each match and the two lines immediately after each match.
 
 We can use the `-B` argument for grep to return a specific number of lines before
-each match and the `-A` argument to return a specific number of lines after each matching line. Here we want the line before and the two lines after each 
-matching line so we add `-B1 -A2` to our grep command.
+each match. The `-A` argument returns a specific number of lines after each matching line. Here we want the line *before* and the two lines *after* each 
+matching line, so we add `-B1 -A2` to our grep command.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
@@ -291,7 +292,7 @@ $ wc -l bad_reads.txt
 > 
 > `grep` is letting you know that the output file `bad_reads.fastq` is also included in your
 > `grep` call because it matches the `*.fastq` pattern. Be careful with this as it can lead to
-> some surprising output.
+> some unintended results.
 > 
 {: .callout}
 
