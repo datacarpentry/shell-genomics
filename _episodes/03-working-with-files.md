@@ -9,7 +9,7 @@ questions:
 - "How can I repeat recently used commands?"
 objectives:
 - View, search within, copy, move, and rename files. Create new directories.
-- Use wild cards (`*`) to perform operations on multiple files.
+- Use wildcards (`*`) to perform operations on multiple files.
 - Make a file read only
 - Use the `history` command to view and repeat recently used commands.
 keypoints:
@@ -27,7 +27,7 @@ Now that we know how to navigate around our directory structure, lets
 start working with our sequencing files. We did a sequencing experiment and 
 have two results files, which are stored in our `untrimmed_fastq` directory. 
 
-### Wild cards
+### Wildcards
 
 Navigate to your `untrimmed_fastq` directory.
 
@@ -66,7 +66,7 @@ SRR097977.fastq
 
 lists only the file that ends with `977.fastq`.
 
-We can use the command `echo` to see how the wildcard character is intepreted by the
+We can use the command `echo` to see how the wildcard character is interpreted by the
 shell.
 
 ~~~
@@ -388,13 +388,13 @@ above, the quality score line is:
 The `#` character and each of the `!` characters represent the encoded quality for an 
 individual nucleotide. The numerical value assigned to each of these characters depends on the 
 sequencing platform that generated the reads. The sequencing machine used to generate our data 
-uses the standard Sanger quality PHRED score encoding, using by Illumina version 1.8 onwards.
-Each character is assigned a quality score between 0 and 40 as shown in the chart below.
+uses the standard Sanger quality PHRED score encoding, Illumina version 1.8 onwards.
+Each character is assigned a quality score between 0 and 42 as shown in the chart below.
 
 ~~~
-Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHI
+Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJK
                   |         |         |         |         |
-Quality score:    0........10........20........30........40                                
+Quality score:    0........10........20........30........40..                          
 ~~~
 {: .output}
 
