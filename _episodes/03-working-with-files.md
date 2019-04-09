@@ -359,7 +359,7 @@ We can view the first complete read in one of the files our dataset by using `he
 the first four lines.
 
 ~~~
-$ head -n4 SRR098026.fastq
+$ head -n 4 SRR098026.fastq
 ~~~
 {: .bash}
 
