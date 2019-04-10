@@ -32,7 +32,7 @@ have two results files, which are stored in our `untrimmed_fastq` directory.
 Navigate to your `untrimmed_fastq` directory.
 
 ~~~
-$ cd ~/dc_sample_data/untrimmed_fastq
+$ cd ~/shell_data/untrimmed_fastq
 ~~~
 {: .bash}
 
@@ -237,14 +237,14 @@ This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
 > ## Exercise
 > 
-> 1. Print out the contents of the `~/dc_sample_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file? 
+> 1. Print out the contents of the `~/shell_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file? 
 > 2.  From your home directory, and without changing directories,
 > use one short command to print the contents of all of the files in
-> the `~/dc_sample_data/untrimmed_fastq` directory.
+> the `~/shell_data/untrimmed_fastq` directory.
 > 
 > > ## Solution
-> > 1. The last line of the file is `TC:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
-> > 2. `cat ~/dc_sample_data/untrimmed_fastq/*`
+> > 1. The last line of the file is `C:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
+> > 2. `cat ~/shell_data/untrimmed_fastq/*`
 > {: .solution}
 {: .challenge}
 
@@ -369,6 +369,84 @@ A!@B!BBB@ABAB#########!!!!!!!######
 ~~~
 {: .output}
 
+
+## Details on the FASTQ format
+
+Although it looks complicated (and it is), it's easy to understand the
+[fastq](https://en.wikipedia.org/wiki/FASTQ_format) format with a little decoding. Some rules about the format
+include...
+
+|Line|Description|
+|----|-----------|
+|1|Always begins with '@' and then information about the read|
+|2|The actual DNA sequence|
+|3|Always begins with a '+' and sometimes the same info in line 1|
+|4|Has a string of characters which represent the quality scores; must have same number of characters as line 2|
+
+We can view the first complete read in one of the files our dataset by using `head` to look at
+the first four lines.
+
+~~~
+$ head -n 4 SRR098026.fastq
+~~~
+{: .bash}
+
+~~~
+@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
++SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+~~~
+{: .output}
+
+All but one of the nucleotides in this read are unknown (`N`). This is a pretty bad read!
+
+Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the 
+probability of an incorrect base call (e.g. 1 in 10) or, equivalently, the base call 
+accuracy (eg 90%). To make it possible to line up each individual nucleotide with its quality
+score, the numerical score is converted into a code where each individual character 
+represents the numerical quality score for an individual nucleotide. For example, in the line
+above, the quality score line is: 
+
+~~~
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+~~~
+{: .output}
+
+The `#` character and each of the `!` characters represent the encoded quality for an 
+individual nucleotide. The numerical value assigned to each of these characters depends on the 
+sequencing platform that generated the reads. The sequencing machine used to generate our data 
+uses the standard Sanger quality PHRED score encoding, Illumina version 1.8 onwards.
+Each character is assigned a quality score between 0 and 42 as shown in the chart below.
+
+~~~
+Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJK
+                  |         |         |         |         |
+Quality score:    0........10........20........30........40..                          
+~~~
+{: .output}
+
+Each quality score represents the probability that the corresponding nucleotide call is
+incorrect. This quality score is logarithmically based, so a quality score of 10 reflects a
+base call accuracy of 90%, but a quality score of 20 reflects a base call accuracy of 99%. 
+These probability values are the results from the base calling algorithm and dependent on how 
+much signal was captured for the base incorporation. 
+
+Looking back at our read: 
+
+~~~
+@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
++SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+~~~
+{: .output}
+
+we can now see that the quality of each of the `N`s is 0 and the quality of the only
+nucleotide call (`C`) is also very poor (`#` = a quality score of 2). This is indeed a very
+bad read. 
+
+
 ## Creating, moving, copying, and removing
 
 Now we can move around in the file structure, look at files, and search files. But what if we want to copy files or move
@@ -385,7 +463,7 @@ and change the file permissions so that we can read from, but not write to, the 
 
 First, let's make a copy of one of our FASTQ files using the `cp` command. 
 
-Navigate to the `dc_sample_data/untrimmed_fastq` directory and enter:
+Navigate to the `shell_data/untrimmed_fastq` directory and enter:
 
 ~~~
 $ cp SRR098026.fastq SRR098026-copy.fastq
@@ -524,7 +602,7 @@ you will be asked whether you want to override your permission settings.
 
 > ## Exercise
 >
-> Starting in the `dc_sample_data/untrimmed_fastq/` directory, do the following:
+> Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
 > 1. Make sure that you have deleted your backup directory and all files it contains.  
 > 2. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
 > learned yet how to do this

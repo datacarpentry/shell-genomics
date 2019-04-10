@@ -75,12 +75,10 @@ Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com/
 
-  System information as of Wed Oct 25 21:24:00 UTC 2017
+  System information as of Sat Feb  2 00:08:17 UTC 2019
 
-  System load:  0.0                Processes:           147
-  Usage of /:   48.6% of 98.30GB   Users logged in:     0
-  Memory usage: 28%                IP address for eth0: 172.31.30.246
-  Swap usage:   0%
+  System load: 0.0                Memory usage: 5%   Processes:       82
+  Usage of /:  29.9% of 98.30GB   Swap usage:   0%   Users logged in: 0
 
   Graph this data and manage this system at:
     https://landscape.canonical.com/
@@ -88,11 +86,14 @@ Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
   Get cloud support with Ubuntu Advantage Cloud Guest:
     http://www.ubuntu.com/business/services/cloud
 
-483 packages can be updated.
-322 updates are security updates.
+597 packages can be updated.
+444 updates are security updates.
+
+New release '16.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
 
 
-Last login: Wed Oct 25 21:24:02 2017 from 104.220.130.189
+Last login: Fri Feb  1 22:34:53 2019 from c-73-116-43-163.hsd1.ca.comcast.net
 ~~~
 {: .output}
 
@@ -165,24 +166,24 @@ Let's look at how our file system is organized.
 At the top is our `dcuser` directory, which holds all the 
 subdirectories and files.
 
-Inside that directory are some other directories:
+Inside that directory there is the following:
 
 ~~~
-dc_sample_data	FastQC	Trimmomatic-0.32
+R  r_data  shell_data
 ~~~
 {: .output}
 
-We'll be working with these subdirectories throughout this workshop.  
+We'll be working within the `shell_data` subdirectory, and creating new subdirectories, throughout this workshop.  
 
 The command to change locations in our file system is `cd` followed by a
 directory name to change our working directory.
 `cd` stands for "change directory".
 
-Let's say we want to navigate to the `dc_sample_data` directory we saw above.  We can
+Let's say we want to navigate to the `shell_data` directory we saw above.  We can
 use the following command to get there:
 
 ~~~
-$ cd dc_sample_data
+$ cd shell_data
 ~~~
 {: .bash}
 
@@ -242,8 +243,9 @@ to quit.
 > > {: .bash}
 > > 
 > > ~~~
+> > total 8
 > > drwxr-x--- 2 dcuser dcuser 4096 Jul 30  2015 sra_metadata
-> > drwxr-xr-x 2 dcuser dcuser 4096 Jul 30  2015 untrimmed_fastq
+> > drwxr-xr-x 2 dcuser dcuser 4096 Nov 15  2017 untrimmed_fastq
 > > ~~~
 > > {: .output}
 > > 
@@ -293,17 +295,17 @@ $ cd
 then enter:
 
 ~~~
-$ cd dc_sam<tab>
+$ cd she<tab>
 ~~~
 {: .bash}
 
 The shell will fill in the rest of the directory name for
-`dc_sample_data`.
+`shell_data`.
 
-Now change directories to `untrimmed_fastq` in `dc_sample_data`
+Now change directories to `untrimmed_fastq` in `shell_data`
 
 ~~~
-$ cd dc_sample_data
+$ cd shell_data
 $ cd untrimmed_fastq
 ~~~
 {: .bash}
@@ -317,7 +319,7 @@ of our sample files:
 
 ~~~
 $ cd
-$ cd dc_sample_data
+$ cd shell_data
 $ cd untrimmed_fastq
 $ ls SR<tab>
 ~~~
