@@ -166,14 +166,14 @@ Let's look at how our file system is organized.
 At the top is our `dcuser` directory, which holds all the 
 subdirectories and files.
 
-Inside that directory there is currently one other directory:
+Inside that directory there is the following:
 
 ~~~
-shell_data
+R  r_data  shell_data
 ~~~
 {: .output}
 
-We'll be working with this subdirectory, and creating new subdirectories, throughout this workshop.  
+We'll be working within the `shell_data` subdirectory, and creating new subdirectories, throughout this workshop.  
 
 The command to change locations in our file system is `cd` followed by a
 directory name to change our working directory.
