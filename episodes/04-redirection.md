@@ -376,14 +376,36 @@ $ for filename in *.fastq
 Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
 every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
 
-### Using Basename in for loops
+## Using Basename in for loops
+Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the `.fastq` from the files that we’ve been working with. 
 
-Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use
-basename to remove the `*.fastq` from the files that we've been working with. Inside our for loop, we create a new `name` variable.
-We call the `basename` function inside the parenthesis, then give our variable name from the for loop, in this case `$filename`, 
-and finally state that `.fastq` should be removed from the file name. It's important to note that we're not changing the actual files,
-we're creating and manipulating a new variable called `name`. The line `> echo $name` will print to the terminal the variable `name`
-each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
+~~~
+$ basename SRR097977.fastq .fastq
+~~~
+{: .bash}
+
+We see that this returns just the SRR accession, and no longer has the .fastq file extension on it.
+
+~~~
+SRR097977
+~~~
+{: .output}
+
+If we try the same thing but use `.fasta` as the file extension instead, nothing happens. This is because basename only works when it exactly matches a string in the file.
+
+~~~
+$ basename SRR097977.fastq .fasta
+~~~
+{: .bash}
+
+~~~
+SRR097977.fastq
+~~~
+{: .output}
+
+Basename is really powerful when used in a for loop. It allows to access just the file prefix, which you can use to name things. Let's try this.
+
+Inside our for loop, we create a new name variable. We call the basename function inside the parenthesis, then give our variable name from the for loop, in this case `${filename}`, and finally state that `.fastq` should be removed from the file name. It’s important to note that we’re not changing the actual files, we’re creating a new variable called name. The line > echo $name will print to the terminal the variable name each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
 
 ~~~
 $ for filename in *.fastq
@@ -394,5 +416,53 @@ $ for filename in *.fastq
 ~~~
 {: .bash}
 
-Although the utility of basename may still seem unclear, it will become very useful in subsequent analysis, such as trimming many reads
-in a for loop.
+
+
+> ## Exercise
+>
+> Print the file prefix of all of the `.txt` files in our current directory.
+>
+>> ## Solution
+>>  
+>>
+>> ~~~
+>> $ for filename in *.txt
+>> > do
+>> > name=$(basename ${filename} .txt)
+>> > echo ${name}
+>> > done
+>> ~~~
+>> {: .bash}
+>>
+> {: .solution}
+{: .challenge}
+
+One way this is really useful is to move files. Let's rename all of our .txt files using `mv` so that they have the years on them, which will document when we created them. 
+
+~~~
+$ for filename in *.txt
+> do
+> name=$(basename ${filename} .txt)
+> mv ${filename}  ${name}_2019.txt
+~~~
+{: .bash}
+
+
+> ## Exercise
+>
+> Remove `_2019` from all of the `.txt` files. 
+>
+>> ## Solution
+>>  
+>>
+>> ~~~
+>> $ for filename in *_2019.txt
+>> > do
+>> > name=$(basename ${filename} *_2019.txt)
+>> > mv ${filename} ${name}.txt
+>> > done
+>> ~~~
+>> {: .bash}
+>>
+> {: .solution}
+{: .challenge}
