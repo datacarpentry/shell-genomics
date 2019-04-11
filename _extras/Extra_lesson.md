@@ -1,16 +1,7 @@
 ---
-title: "File manipulation"
-teaching: 10
-exercises: 10
-questions:
-- "How can I work with tables on the command line?"
-objectives:
-- "Manipulate tabular files on the command line."
-keypoints:
-- "`cut`, `sort` and `uniq` are powerful tools to manipulate files."
-- "`command_1 | command_2` redirects the output of the first command as input to the second command."
+layout: page
+title: File manipulation
 ---
-
 
 ## File manipulation and more practice with pipes
 
