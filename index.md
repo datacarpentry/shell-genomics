@@ -14,7 +14,7 @@ There are quite a few reasons to start learning about the shell:
 >
 > This lesson assumes no prior experience with the tools covered in the workshop. 
 > However, learners are expected to have some familiarity with biological concepts,
-> including nucleotide abbreviations and the 
+> including the 
 > concept of genomic variation within a population. Participants should bring their laptops and plan to participate actively. 
 >
 > This lesson is part of a workshop that uses data hosted on an Amazon Machine Instance (AMI). Workshop participants will be given 
