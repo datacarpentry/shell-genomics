@@ -377,7 +377,7 @@ Note that we are using `>>` to append the text to our `seq_info.txt` file. If we
 every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
 
 ## Using Basename in for loops
-Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the `.fastq` from the files that we’ve been working with. 
+Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the `.fastq` extension from the files that we’ve been working with. 
 
 ~~~
 $ basename SRR097977.fastq .fastq
