@@ -340,7 +340,7 @@ SRR097977.fastq  SRR098026.fastq
 {: .output}
 
 Tab completion can also fill in the names of programs, which can be useful if you
-remember the begining of a program name. 
+remember the beginning of a program name.
 
 ~~~
 $ pw<tab><tab>
