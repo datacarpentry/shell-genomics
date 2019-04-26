@@ -48,7 +48,7 @@ $ cd ~/shell_data/untrimmed_fastq
 ~~~
 {: .bash}
 
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleoties (Ns). 
+Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).
 
 > ## Determining quality
 > 
@@ -116,7 +116,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
 `grep` allowed us to identify sequences in our FASTQ files that match a particular pattern. 
 All of these sequences were printed to our terminal screen, but in order to work with these 
-sequences and perform other opperations on them, we will need to capture that output in some
+sequences and perform other operations on them, we will need to capture that output in some
 way. 
 
 We can do this with something called "redirection". The idea is that
@@ -359,7 +359,7 @@ $ for filename in *.fastq
 The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated 
 as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename` 
 because they fit the pattern of ending with .fastq in directory we've specified. The next line of the for loop is `do`. The next line is 
-the code that we want to excute. We are telling the loop to print the first two lines of each variable we iterate over. Finally, the 
+the code that we want to execute. We are telling the loop to print the first two lines of each variable we iterate over. Finally, the
 word `done` ends the loop.
 
 After executing the loop, you should see the first two lines of both fastq files printed to the terminal. Let's create a loop that 

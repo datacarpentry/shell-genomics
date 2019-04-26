@@ -403,7 +403,7 @@ All but one of the nucleotides in this read are unknown (`N`). This is a pretty 
 
 Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the 
 probability of an incorrect base call (e.g. 1 in 10) or, equivalently, the base call 
-accuracy (eg 90%). To make it possible to line up each individual nucleotide with its quality
+accuracy (e.g. 90%). To make it possible to line up each individual nucleotide with its quality
 score, the numerical score is converted into a code where each individual character 
 represents the numerical quality score for an individual nucleotide. For example, in the line
 above, the quality score line is: 
