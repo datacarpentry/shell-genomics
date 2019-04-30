@@ -116,7 +116,7 @@ dc_workshop/results:
 
 # Organizing your files
 
-Before begining any analysis, it's important to save a copy of your 
+Before beginning any analysis, it's important to save a copy of your
 raw data. The raw data should never be changed. Regardless of how
 sure you are that you want to carry out a particular data cleaning
 step, there's always the chance that you'll change your mind later 
