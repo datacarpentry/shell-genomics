@@ -14,6 +14,26 @@ keypoints:
 - Transferring information to and from virtual and local computers.
 ---
 
+<script language="javascript" type="text/javascript">
+function set_page_view_defaults() {
+    document.getElementById('div_aws_unix').style.display = 'block';
+    document.getElementById('div_aws_win ').style.display = 'none';
+};
+
+function change_content_by_platform(form_control){
+    if (!form_control || document.getElementById(form_control).value == 'aws_win') {
+        set_page_view_defaults();
+    } else if (document.getElementById(form_control).value == 'aws_unix') {
+        document.getElementById('div_aws_unix').style.display = 'none';
+        document.getElementById('div_aws_win').style.display = 'block';
+    } else {
+        alert("Error: Missing platform value for 'change_content_by_platform()' script!");
+    }
+}
+
+window.onload = set_page_view_defaults;
+</script>
+
 ## Writing files
 
 We've been able to do a lot of work with files that already exist, but what if we want to write our own files. We're not going to type in a FASTA file, but we'll see as we go through other tutorials, there are a lot of reasons we'll want to write a file, or edit an existing file.
@@ -347,11 +367,9 @@ Remember that in both instances, the command is run from your local machine, we'
 
 These directions are platform specific so please follow the instructions for your system:
 
-**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="aws_unix" id="id_aws_unix" selected> AWS_UNIX </option><option value="aws_win" id="id_aws_win" selected> AWS_Windows </option></select>**
-
+**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="aws_unix" id="id_aws_unix" selected> Unix </option><option value="aws_win" id="id_aws_win"> Windows </option></select>**
 
 <div id="div_aws_win" style="display:block" markdown="1">
-
 
 ### Uploading Data to your Virtual Machine with PSCP
 
@@ -392,6 +410,10 @@ C:\User\your-pc-username\Downloads
 
 </div>
 
-
-
 <div id="div_aws_unix" style="display:block" markdown="1">
+
+### Uploading Data to your Virtual Machine 
+
+Content needed here!
+
+</div>
