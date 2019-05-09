@@ -323,7 +323,7 @@ $ ls ~
 {: .bash}
 
 ~~~
-shell_data
+R  r_data  shell_data
 ~~~
 {: .output}
 
