@@ -444,6 +444,7 @@ $ for filename in *.txt
 > do
 > name=$(basename ${filename} .txt)
 > mv ${filename}  ${name}_2019.txt
+> done
 ~~~
 {: .bash}
 
@@ -458,7 +459,7 @@ $ for filename in *.txt
 >> ~~~
 >> $ for filename in *_2019.txt
 >> > do
->> > name=$(basename ${filename} *_2019.txt)
+>> > name=$(basename ${filename} _2019.txt)
 >> > mv ${filename} ${name}.txt
 >> > done
 >> ~~~
