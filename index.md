@@ -26,5 +26,5 @@ There are quite a few reasons to start learning about the shell:
 > ## For Instructors
 >
 > If you are teaching this lesson in a workshop, please see the 
-> [Instructor notes](/guide/index.html).
+> [Instructor notes](./guide/index.html).
 {: .prereq}
