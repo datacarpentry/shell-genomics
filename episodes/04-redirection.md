@@ -57,7 +57,7 @@ Suppose we want to see how many reads in our file have really bad segments conta
 > type of searching to get a feel for the quality of your sequencing results, however, in your 
 > research you will most likely use a bioinformatics tool that has a built-in program for
 > filtering out low-quality reads. You'll learn how to use one such tool in 
-> [a later lesson](http://www.datacarpentry.org/wrangling-genomics/00-readQC/).
+> [a later lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html).
 > 
 {: .callout}
 
