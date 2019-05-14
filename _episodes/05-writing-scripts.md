@@ -16,16 +16,16 @@ keypoints:
 
 <script language="javascript" type="text/javascript">
 function set_page_view_defaults() {
-    document.getElementById('div_aws_unix').style.display = 'block';
-    document.getElementById('div_aws_win ').style.display = 'none';
+    document.getElementById('div_win').style.display = 'block';
+    document.getElementById('div_unix').style.display = 'none';
 };
 
 function change_content_by_platform(form_control){
-    if (!form_control || document.getElementById(form_control).value == 'aws_win') {
+    if (!form_control || document.getElementById(form_control).value == 'win') {
         set_page_view_defaults();
-    } else if (document.getElementById(form_control).value == 'aws_unix') {
-        document.getElementById('div_aws_unix').style.display = 'none';
-        document.getElementById('div_aws_win').style.display = 'block';
+    } else if (document.getElementById(form_control).value == 'unix') {
+        document.getElementById('div_win').style.display = 'none';
+        document.getElementById('div_unix').style.display = 'block';
     } else {
         alert("Error: Missing platform value for 'change_content_by_platform()' script!");
     }
@@ -33,6 +33,7 @@ function change_content_by_platform(form_control){
 
 window.onload = set_page_view_defaults;
 </script>
+
 
 ## Writing files
 
@@ -51,7 +52,7 @@ $ nano README.txt
 ~~~
 {: .bash}
 
-You should see something like this: 
+You should see something like this:
 
 ![nano201711.png](../img/nano201711.png)
 
@@ -61,12 +62,12 @@ The text at the bottom of the screen shows the keyboard shortcuts for performing
 >
 > When we say, "`nano` is a text editor," we really do mean "text": it can
 > only work with plain character data, not tables, images, or any other
-> human-friendly media. We use it in examples because it is one of the 
-> least complex text editors. However, because of this trait, it may 
+> human-friendly media. We use it in examples because it is one of the
+> least complex text editors. However, because of this trait, it may
 > not be powerful enough or flexible enough for the work you need to do
 > after this workshop. On Unix systems (such as Linux and Mac OS X),
 > many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
-> [Vim](http://www.vim.org/) (both of which require more time to learn), 
+> [Vim](http://www.vim.org/) (both of which require more time to learn),
 > or a graphical editor such as
 > [Gedit](http://projects.gnome.org/gedit/). On Windows, you may wish to
 > use [Notepad++](http://notepad-plus-plus.org/).  Windows also has a built-in
@@ -113,10 +114,10 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 
 > ## Exercise
 >
-> Open `README.txt` and add the date to the top of the file and save the file. 
+> Open `README.txt` and add the date to the top of the file and save the file.
 >
 > > ## Solution
-> > 
+> >
 > > Use `nano README.txt` to open the file.  
 > > Add today's date and then use <kbd>Ctrl</kbd>-<kbd>X</kbd> to exit and `y` to save.
 > >
@@ -212,7 +213,7 @@ You will learn more about writing scripts in [a later lesson](http://www.datacar
 ## Moving and Downloading Data
 
 So far, we've worked with data that is pre-loaded on the instance in the cloud. Usually, however,
-most analyses begin with moving data onto the instance. Below we'll show you some commands to 
+most analyses begin with moving data onto the instance. Below we'll show you some commands to
 download data onto your instance, or to move data between your computer and the cloud.
 
 ### Getting data from the cloud
@@ -236,7 +237,7 @@ tab-delimited file that just tells us what data is available on the Ensembl bact
 Before we can start our download, we need to know whether we're using ``curl`` or ``wget``.
 
 To see which program you have type:
- 
+
 ~~~
 $ which curl
 $ which wget
@@ -307,8 +308,18 @@ to start the transfer locally. **This means if you're typing into a terminal, th
 should not be logged into your instance, it should be showing your local computer. If you're
 using a transfer program, it needs to be installed on your local machine, not your instance.**
 
+
 ## Transferring Data Between your Local Machine and the Cloud
-### scp
+
+These directions are platform specific so please follow the instructions for your system:
+
+**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="unix" id="id_unix" selected> UNIX </option><option value="win" id="id_win" selected> Windows </option></select>**
+
+
+
+<div id="div_unix" style="display:block" markdown="1">
+
+### Uploading Data to your Virtual Machine with scp
 
 `scp` stands for 'secure copy protocol', and is a widely used UNIX tool for moving files
 between computers. The simplest way to use `scp` is to run it in your local terminal,
@@ -365,11 +376,8 @@ $ scp dcuser@ip.address:/home/dcuser/shell_data/untrimmed_fastq/scripted_bad_rea
 Remember that in both instances, the command is run from your local machine, we've just flipped the order of the to and from parts of the command.
 </div>
 
-These directions are platform specific so please follow the instructions for your system:
 
-**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="aws_unix" id="id_aws_unix" selected> Unix </option><option value="aws_win" id="id_aws_win"> Windows </option></select>**
-
-<div id="div_aws_win" style="display:block" markdown="1">
+<div id="div_win" style="display:block" markdown="1">
 
 ### Uploading Data to your Virtual Machine with PSCP
 
@@ -407,13 +415,5 @@ C:\User\your-pc-username\Downloads> pscp.exe dcuser@ip.address:/home/dcuser/shel
 C:\User\your-pc-username\Downloads
 ~~~
 {: .bash}
-
-</div>
-
-<div id="div_aws_unix" style="display:block" markdown="1">
-
-### Uploading Data to your Virtual Machine 
-
-Content needed here!
 
 </div>
