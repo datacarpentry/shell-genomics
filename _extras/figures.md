@@ -1,5 +1,6 @@
 ---
 title: Figures
+layout: page
 ---
 
 {% include base_path.html %}
