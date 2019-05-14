@@ -24,6 +24,7 @@ There are quite a few reasons to start learning about the shell:
 {: .prereq}
 
 > ## For Instructors
+>
 > If you are teaching this lesson in a workshop, please see the 
-> [Instructor notes]({% link _extras/guide.md %}).
+> [Instructor notes](/guide/index.html).
 {: .prereq}
