@@ -1,7 +1,10 @@
 ---
 layout: lesson
-root: .
 ---
+
+{% include gh_variables.html %}
+
+
 Command line interface (OS shell) and graphic user interface (GUI) are different ways of interacting with a computer's operating system. The shell is a program that presents a command line interface which allows you to control your computer using commands entered with a keyboard instead of controlling graphical user interfaces (GUIs) with a mouse/keyboard combination.
 
 There are quite a few reasons to start learning about the shell:
@@ -26,5 +29,5 @@ There are quite a few reasons to start learning about the shell:
 > ## For Instructors
 >
 > If you are teaching this lesson in a workshop, please see the 
-> [Instructor notes](./guide/index.html).
+> [Instructor notes]({{ relative_root_path }}{% link _extras/guide.md %}).
 {: .prereq}
