@@ -29,5 +29,5 @@ There are quite a few reasons to start learning about the shell:
 > ## For Instructors
 >
 > If you are teaching this lesson in a workshop, please see the 
-> [Instructor notes]({{ relative_root_path }}{% link _extras/guide.md %}).
+> [Instructor notes](./guide/index.html).
 {: .prereq}
