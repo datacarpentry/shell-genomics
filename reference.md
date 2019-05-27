@@ -86,6 +86,10 @@ loop
 loop body
 :   The set of statements or commands that are repeated inside a [for loop](#for-loop)
     or [while loop](#while-loop).
+    
+MIME type
+:   MIME (Multi-Purpose Internet Mail Extensions) types describe different file types for exchange on the Internet,
+    for example images, audio, and documents.
 
 operating system
 :   Software that manages interactions between users, hardware, and software [processes](#process). Common
@@ -149,7 +153,7 @@ root directory
     Its name is "/" on Unix (including Linux and Mac OS X) and "\\" on Microsoft Windows.
 
 shell
-:   A [command-line interface](#cli) such as Bash (the Bourne-Again Shell)
+:   A [command-line interface](#command-line interface) such as Bash (the Bourne-Again Shell)
     or the Microsoft Windows DOS shell
     that allows a user to interact with the [operating system](#operating-system).
 
