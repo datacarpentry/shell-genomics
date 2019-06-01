@@ -169,9 +169,19 @@ $ history | tail -n 7
 ~~~
 {: .bash}
 
-Using your knowledge of the shell, use the append redirect `>>` to create a file called
-`dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g.
-`dc_workshop_log_2017_10_27.sh`)  
+> ## Exercise
+> Using your knowledge of the shell, use the append redirect `>>` to create a file called
+> `dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g.
+> `dc_workshop_log_2017_10_27.sh`)  
+> > 
+> > ## Solution
+> > ~~~
+> > $ history | tail -n 8 >> dc_workshop_log_2017_10_27.sh
+> > ~~~
+> > {: .bash}
+> > Note we used the last 7 lines as an example, the number of lines may vary.
+> {: .solution}
+{: .challenge}
 
 You may have noticed that your history contains the `history` command itself. To remove this redundancy
 from our log, let's use the `nano` text editor to fix the file:  
