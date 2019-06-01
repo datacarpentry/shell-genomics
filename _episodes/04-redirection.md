@@ -129,9 +129,12 @@ The command for redirecting output to a file is `>`.
 Let's try out this command and copy all the records (including all four lines of each record) 
 in our FASTQ files that contain 
 'NNNNNNNNNN' to another file called `bad_reads.txt`.
+Later we will want to count the number of reads where this patterns occured.
+Since using the `-A` or `-B` adds in separator lines, we will also include
+the `--no-group-separator` flag so we can get an accurate count.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 --no-group-separator NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 ~~~
 {: .bash}
 
@@ -160,7 +163,7 @@ $ wc bad_reads.txt
 {: .bash}
 
 ~~~
-  537  1073 23217 bad_reads.txt
+  536  1072 23214 bad_reads.txt
 ~~~
 {: .output}
 
@@ -173,7 +176,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+536 bad_reads.txt
 ~~~
 {: .output}
 
@@ -208,18 +211,18 @@ This is called "overwriting" and, just like you don't want to overwrite your vid
 of your kid's first birthday party, you also want to avoid overwriting your data files.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 --no-group-separator NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+536 bad_reads.txt
 ~~~
 {: .output}
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
+$ grep -B1 -A2 --no-group-separator NNNNNNNNNN SRR097977.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
@@ -237,24 +240,24 @@ We can avoid overwriting our files by using the command `>>`. `>>` is known as t
 append new output to the end of a file, rather than overwriting it.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 --no-group-separator NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+536 bad_reads.txt
 ~~~
 {: .output}
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+$ grep -B1 -A2 --no-group-separator NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+536 bad_reads.txt
 ~~~
 {: .output}
 
@@ -263,13 +266,13 @@ The output of our second call to `wc` shows that we have not overwritten our ori
 We can also do this with a single line of code by using a wildcard. 
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
+$ grep -B1 -A2 --no-group-separator NNNNNNNNNN *.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+536 bad_reads.txt
 ~~~
 {: .output}
 
@@ -312,7 +315,7 @@ look at it, like we can with `less`. Well it turns out that we can! We can redir
 from our `grep` call through the `less` command.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
+$ grep -B1 -A2 --no-group-separator NNNNNNNNNN SRR098026.fastq | less
 ~~~
 {: .bash}
 
