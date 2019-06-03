@@ -14,6 +14,27 @@ keypoints:
 - Transferring information to and from virtual and local computers.
 ---
 
+<script language="javascript" type="text/javascript">
+function set_page_view_defaults() {
+    document.getElementById('div_win').style.display = 'block';
+    document.getElementById('div_unix').style.display = 'none';
+};
+
+function change_content_by_platform(form_control){
+    if (!form_control || document.getElementById(form_control).value == 'win') {
+        set_page_view_defaults();
+    } else if (document.getElementById(form_control).value == 'unix') {
+        document.getElementById('div_win').style.display = 'none';
+        document.getElementById('div_unix').style.display = 'block';
+    } else {
+        alert("Error: Missing platform value for 'change_content_by_platform()' script!");
+    }
+}
+
+window.onload = set_page_view_defaults;
+</script>
+
+
 ## Writing files
 
 We've been able to do a lot of work with files that already exist, but what if we want to write our own files. We're not going to type in a FASTA file, but we'll see as we go through other tutorials, there are a lot of reasons we'll want to write a file, or edit an existing file.
@@ -288,7 +309,16 @@ should not be logged into your instance, it should be showing your local compute
 using a transfer program, it needs to be installed on your local machine, not your instance.**
 
 ## Transferring Data Between your Local Machine and the Cloud
-### scp
+
+These directions are platform specific so please follow the instructions for your system:
+
+**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="unix" id="id_unix" selected> UNIX </option><option value="win" id="id_win" selected> Windows </option></select>**
+
+
+
+<div id="div_unix" style="display:block" markdown="1">
+
+### Uploading Data to your Virtual Machine with scp
 
 `scp` stands for 'secure copy protocol', and is a widely used UNIX tool for moving files
 between computers. The simplest way to use `scp` is to run it in your local terminal,
@@ -345,13 +375,8 @@ $ scp dcuser@ip.address:/home/dcuser/shell_data/untrimmed_fastq/scripted_bad_rea
 Remember that in both instances, the command is run from your local machine, we've just flipped the order of the to and from parts of the command.
 </div>
 
-These directions are platform specific so please follow the instructions for your system:
 
-**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="aws_unix" id="id_aws_unix" selected> AWS_UNIX </option><option value="aws_win" id="id_aws_win" selected> AWS_Windows </option></select>**
-
-
-<div id="div_aws_win" style="display:block" markdown="1">
-
+<div id="div_win" style="display:block" markdown="1">
 
 ### Uploading Data to your Virtual Machine with PSCP
 
@@ -391,7 +416,3 @@ C:\User\your-pc-username\Downloads
 {: .bash}
 
 </div>
-
-
-
-<div id="div_aws_unix" style="display:block" markdown="1">
