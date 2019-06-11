@@ -319,6 +319,15 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
 We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows 
 to scroll through the output and use `q` to exit `less`.
 
+If we don't want to create a file before counting lines of output from our `grep` search, we could directly pipe
+the output of the grep search to the command `wc -l`. This can be helpful for investigating your output if you are not sure
+you would like to save it to a file. 
+
+~~~
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l 
+~~~
+{: .bash}
+
 Redirecting output is often not intuitive, and can take some time to get used to. Once you're 
 comfortable with redirection, however, you'll be able to combine any number of commands to
 do all sorts of exciting things with your data!
@@ -327,6 +336,8 @@ None of the command line programs we've been learning
 do anything all that impressive on their own, but when you start chaining
 them together, you can do some really powerful things very
 efficiently. 
+
+
 
 ## Writing for loops
 
