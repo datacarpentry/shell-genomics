@@ -604,7 +604,7 @@ you will be asked whether you want to override your permission settings.
 >
 > Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
 > 1. Make sure that you have deleted your backup directory and all files it contains.  
-> 2. Create a copy of each of your FASTQ files. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
+> 2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
 > learned yet how to do this
 > with a wildcard.)  
 > 3. Use a wildcard to move all of your backup files to a new backup directory.   
