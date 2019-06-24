@@ -119,7 +119,7 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 > > ## Solution
 > > 
 > > Use `nano README.txt` to open the file.  
-> > Add today's date and then use <kbd>Ctrl</kbd>-<kbd>X</kbd> to exit and `y` to save.
+> > Add today's date and then use <kbd>Ctrl</kbd>-<kbd>X</kbd> followed by `y` and <kbd>Enter</kbd> to save.
 > >
 > {: .solution}
 >
@@ -162,11 +162,15 @@ It will look like nothing happened, but now if you look at `scripted_bad_reads.t
 > We want the script to tell us when it's done.  
 > 1. Open `bad-reads-script.sh` and add the line `echo "Script finished!"` after the `grep` command and save the file.  
 > 2. Run the updated script.
+>
+> > ## Solution
+> > 
 > >    ```
 > >   $ bash bad-reads-script.sh
 > >   Script finished!
 > >   ```
-> {: .soultion}
+> >
+> {: .solution}
 {: .challenge}
 
 ## Making the script into a program
