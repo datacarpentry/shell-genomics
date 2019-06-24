@@ -106,14 +106,14 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 > that contains a match.
 > 
 > > ## Solution  
-> > 1. `grep -B1 GNATNACCACTTCC SRR098026.fastq` 
+> > * `grep -B1 GNATNACCACTTCC SRR098026.fastq` 
 > > 
 > > ```
 > > @SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
 > > GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG
 > > ```
 > > 
-> > 2. `grep -B1 AAGTT *.fastq`
+> > * `grep -B1 AAGTT *.fastq`
 > >
 > > ```
 > > SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
