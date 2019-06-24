@@ -106,16 +106,16 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 > that contains a match.
 > 
 > > ## Solution  
-> > * `grep -B1 GNATNACCACTTCC SRR098026.fastq` 
+> > 1. `grep -B1 GNATNACCACTTCC SRR098026.fastq` 
 > > 
-> > ```
-> > @SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
-> > GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG
-> > ```
+> >     ```
+> >     @SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
+> >     GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG
+> >     ```
 > > 
-> > * `grep -B1 AAGTT *.fastq`
+> > 2. `grep -B1 AAGTT *.fastq`
 > >
-> > ```
+> >     ```
 > > SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
 > > SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
 > > --
@@ -139,7 +139,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 > > --
 > > SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
 > > SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG
-> > ```
+> >     ```
 > > 
 > {: .solution}
 {: .challenge}
