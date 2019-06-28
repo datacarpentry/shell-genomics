@@ -1,0 +1,124 @@
+{
+  "contributors": [
+    {
+      "type": "Editor",
+      "name": "Shichen Wang"
+    },
+    {
+      "type": "Editor",
+      "name": "Anita Schürch",
+      "orcid": "0000-0003-1894-7545"
+    },
+    {
+      "type": "Editor",
+      "name": "Bastian Greshake Tzovaras",
+      "orcid": "0000-0002-9925-9623"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Erin Alison Becker",
+      "orcid": "0000-0002-6832-0233"
+    },
+    {
+      "name": "Anita Schürch",
+      "orcid": "0000-0003-1894-7545"
+    },
+    {
+      "name": "Tracy Teal",
+      "orcid": "0000-0002-9180-9598"
+    },
+    {
+      "name": "Sheldon John McKay",
+      "orcid": "0000-0002-4011-3160"
+    },
+    {
+      "name": "Jessica Elizabeth Mizzi",
+      "orcid": "0000-0002-6604-4618"
+    },
+    {
+      "name": "François Michonneau",
+      "orcid": "0000-0002-9092-966X"
+    },
+    {
+      "name": "Amy E. Hodge",
+      "orcid": "0000-0002-5902-3077"
+    },
+    {
+      "name": "Shannon EK Joslin",
+      "orcid": "0000-0001-5470-1193"
+    },
+    {
+      "name": "Taylor Reiter",
+      "orcid": "0000-0002-7388-421X"
+    },
+    {
+      "name": "Karen Cranston",
+      "orcid": "0000-0002-4798-9499"
+    },
+    {
+      "name": "Kari L Jordan",
+      "orcid": "0000-0003-4121-2432"
+    },
+    {
+      "name": "Tristan De Buysscher"
+    },
+    {
+      "name": "Niclas Jareborg",
+      "orcid": "0000-0002-4520-044X"
+    },
+    {
+      "name": "Tobi"
+    },
+    {
+      "name": "Amanda Charbonneau",
+      "orcid": "0000-0001-7376-7702"
+    },
+    {
+      "name": "Bastian Greshake Tzovaras",
+      "orcid": "0000-0002-9925-9623"
+    },
+    {
+      "name": "Bérénice Batut",
+      "orcid": "0000-0001-9852-1987"
+    },
+    {
+      "name": "Colin Davenport"
+    },
+    {
+      "name": "Diya Das",
+      "orcid": "0000-0001-9646-8983"
+    },
+    {
+      "name": "Giulio Valentino Dalla Riva"
+    },
+    {
+      "name": "Omar Julio Sosa",
+      "orcid": "0000-0001-5516-5724"
+    },
+    {
+      "name": "Mattias de Hollander"
+    },
+    {
+      "name": "Mike Lee"
+    },
+    {
+      "name": "Rayna Michelle Harris",
+      "orcid": "0000-0002-7943-5650"
+    },
+    {
+      "name": "Ross Cunning",
+      "orcid": "0000-0001-7241-1181"
+    },
+    {
+      "name": "Sarah Stevens",
+      "orcid": "0000-0002-7040-548X"
+    },
+    {
+      "name": "Siva Chudalayandi"
+    }
+  ],
+  "license": {
+    "id": "CC-BY-4.0"
+  }
+}
