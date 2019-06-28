@@ -161,18 +161,22 @@ $ pwd
 ~~~
 {: .output}
 
-Let's look at how our file system is organized.  
+Let's look at how our file system is organized. We can see what files and subdirectories are in this directory by running `ls`,
+which stands for "listing":
 
-At the top is our `dcuser` directory, which holds all the 
-subdirectories and files.
-
-Inside that directory there is the following:
+~~~
+$ ls
+~~~
+{: .bash}
 
 ~~~
 R  r_data  shell_data
 ~~~
 {: .output}
 
+`ls` prints the names of the files and directories in the current directory in
+alphabetical order,
+arranged neatly into columns. 
 We'll be working within the `shell_data` subdirectory, and creating new subdirectories, throughout this workshop.  
 
 The command to change locations in our file system is `cd` followed by a
@@ -187,8 +191,7 @@ $ cd shell_data
 ~~~
 {: .bash}
 
-We can see files and subdirectories are in this directory by running `ls`,
-which stands for "listing":
+Let's look at what is in this directory:
 
 ~~~
 $ ls
@@ -200,10 +203,7 @@ sra_metadata  untrimmed_fastq
 ~~~
 {: .output}
 
-`ls` prints the names of the files and directories in the current directory in
-alphabetical order,
-arranged neatly into columns.
-We can make its output more comprehensible by using the **flag** `-F`,
+We can make the `ls` output more comprehensible by using the **flag** `-F`,
 which tells `ls` to add a trailing `/` to the names of directories:
 
 ~~~
