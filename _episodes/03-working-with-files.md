@@ -10,7 +10,7 @@ questions:
 objectives:
 - View, search within, copy, move, and rename files. Create new directories.
 - Use wildcards (`*`) to perform operations on multiple files.
-- Make a file read only
+- Make a file read only.
 - Use the `history` command to view and repeat recently used commands.
 keypoints:
 - "You can view file contents using `less`, `cat`, `head` or `tail`."
@@ -23,13 +23,13 @@ keypoints:
 
 ### Our data set: FASTQ files
 
-Now that we know how to navigate around our directory structure, lets
+Now that we know how to navigate around our directory structure, let's
 start working with our sequencing files. We did a sequencing experiment and 
 have two results files, which are stored in our `untrimmed_fastq` directory. 
 
 ### Wildcards
 
-Navigate to your `untrimmed_fastq` directory.
+Navigate to your `untrimmed_fastq` directory:
 
 ~~~
 $ cd ~/shell_data/untrimmed_fastq
@@ -98,7 +98,7 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 
 > ## Exercise
 > Do each of the following tasks from your current directory using a single
-> `ls` command for each.
+> `ls` command for each:
 > 
 > 1.  List all of the files in `/usr/bin` that start with the letter 'c'.
 > 2.  List all of the files in `/usr/bin` that contain the letter 'a'. 
@@ -108,7 +108,7 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > letter 'c'.
 > 
 > Hint: The bonus question requires a Unix wildcard that we haven't talked about
-> yet. Trying searching the internet for information about Unix wildcards to find
+> yet. Try searching the internet for information about Unix wildcards to find
 > what you need to solve the bonus problem.
 > 
 > > ## Solution
@@ -134,7 +134,7 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 > {: .output}
 > 
 > The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
-> `echo *.fastq` is the same as of `ls *.fastq`.
+> `echo *.fastq` is the same as that of `ls *.fastq`.
 > 
 > What would the output look like if the wildcard could *not* be matched? Compare the outputs of
 > `echo *.missing` and `ls *.missing`.
@@ -260,7 +260,7 @@ $ less SRR097977.fastq
 ~~~
 {: .bash}
 
-Some navigation commands in `less`
+Some navigation commands in `less`:
 
 | key     | action |
 | ------- | ---------- |
@@ -383,7 +383,7 @@ include...
 |3|Always begins with a '+' and sometimes the same info in line 1|
 |4|Has a string of characters which represent the quality scores; must have same number of characters as line 2|
 
-We can view the first complete read in one of the files our dataset by using `head` to look at
+We can view the first complete read in one of the files in our dataset by using `head` to look at
 the first four lines.
 
 ~~~
@@ -482,7 +482,7 @@ called `backup` where we'll store our backup data files.
 ### Creating Directories
 
 The `mkdir` command is used to make a directory. Enter `mkdir`
-followed by a space, then the directory name you want to create.
+followed by a space, then the directory name you want to create:
 
 ~~~
 $ mkdir backup
@@ -492,7 +492,7 @@ $ mkdir backup
 ### Moving / Renaming 
 
 We can now move our backup file to this directory. We can
-move files around using the command `mv`. 
+move files around using the command `mv`: 
 
 ~~~
 $ mv SRR098026-copy.fastq backup
@@ -505,7 +505,7 @@ SRR098026-copy.fastq
 ~~~
 {: .output}
 
-The `mv` command is also how you rename files. Let's rename this file to make it clear that this is a backup.
+The `mv` command is also how you rename files. Let's rename this file to make it clear that this is a backup:
 
 ~~~
 $ cd backup
@@ -521,11 +521,11 @@ SRR098026-backup.fastq
 
 ### File Permissions
 
-We've now made a backup copy of our file, but just because we have two copies doesn't make us safe. We can still accidentally delete or 
+We've now made a backup copy of our file, but just because we have two copies, it doesn't make us safe. We can still accidentally delete or 
 overwrite both copies. To make sure we can't accidentally mess up this backup file, we're going to change the permissions on the file so
 that we're only allowed to read (i.e. view) the file, not write to it (i.e. make new changes).
 
-View the current permissions on a file using the `-l` (long) flag for the `ls` command. 
+View the current permissions on a file using the `-l` (long) flag for the `ls` command: 
 
 ~~~
 $ ls -l
@@ -565,14 +565,14 @@ $ ls -l
 
 ### Removing
 
-To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command.
+To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command:
 
 ~~~
 $ rm SRR098026-backup.fastq
 ~~~
 {: .bash}
 
-You'll be asked if you want to override your file permissions.
+You'll be asked if you want to override your file permissions:
 
 ~~~
 rm: remove write-protected regular file ‘SRR098026-backup.fastq’? 
