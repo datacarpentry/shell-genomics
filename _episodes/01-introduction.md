@@ -26,7 +26,7 @@ which allows you to control your computer using commands entered
 with a keyboard instead of controlling graphical user interfaces
 (GUIs) with a mouse/keyboard combination.
 
-There are many reasons to learn about the shell.
+There are many reasons to learn about the shell:
 
 * Many bioinformatics tools can only be used through a command line interface, or 
 have extra capabilities in the command line version that are not available in the GUI.
@@ -55,7 +55,7 @@ on your computer. If you're using Windows, you'll need to download a separate pr
 
 We will spend most of our time learning about the basics of the shell
 by manipulating some experimental data. Some of the data we're going to be working with is quite large, and
-we're also going to be using several bioinformatics packages in later
+we're also going to be using several bioinformatic packages in later
 lessons to work with this data. To avoid having to spend time 
 downloading the data and downloading and installing all of the software,
 we're going to be working with data on a remote server. 
@@ -145,7 +145,7 @@ Let's find out where we are by running a command called `pwd`
 At any moment, our **current working directory**
 is our current default directory,
 i.e.,
-the directory that the computer assumes we want to run commands in
+the directory that the computer assumes we want to run commands in,
 unless we explicitly specify something else.
 Here,
 the computer's response is `/home/dcuser`,
@@ -179,7 +179,7 @@ alphabetical order,
 arranged neatly into columns. 
 We'll be working within the `shell_data` subdirectory, and creating new subdirectories, throughout this workshop.  
 
-The command to change locations in our file system is `cd` followed by a
+The command to change locations in our file system is `cd`, followed by a
 directory name to change our working directory.
 `cd` stands for "change directory".
 
@@ -256,7 +256,7 @@ to quit.
 > {: .solution}
 {: .challenge}
 
-No one can possibly learn all of these arguments, that's why the manual page
+No one can possibly learn all of these arguments, that's what the manual page
 is for. You can (and should) refer to the manual page or other help files
 as needed.
 
@@ -360,7 +360,7 @@ We now know how to move around our file system using the command line.
 This gives us an advantage over interacting with the file system through
 a GUI as it allows us to work on a remote server, carry out the same set of operations 
 on a large number of files quickly, and opens up many opportunities for using 
-bioinformatics software that is only available in command line versions. 
+bioinformatic software that is only available in command line versions. 
 
 In the next few episodes, we'll be expanding on these skills and seeing how 
 using the command line shell enables us to make our workflow more efficient and reproducible.
