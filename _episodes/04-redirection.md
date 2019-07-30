@@ -15,8 +15,8 @@ keypoints:
 - "`command > file` redirects a command's output to a file."
 - "`command >> file` redirects a command's output to a file without overwriting the existing contents of the file."
 - "`command_1 | command_2` redirects the output of the first command as input to the second command."
-- "for loops are used for iteration"
-- "`basename` gets rid of repetitive parts of names"
+- "for loops are used for iteration."
+- "`basename` gets rid of repetitive parts of names."
 ---
 
 ## Searching files
@@ -41,7 +41,7 @@ Let's give it a try!
 {: .callout}
 
 We'll search for strings inside of our fastq files. Let's first make sure we are in the correct 
-directory.
+directory:
 
 ~~~
 $ cd ~/shell_data/untrimmed_fastq
@@ -61,7 +61,7 @@ Suppose we want to see how many reads in our file have really bad segments conta
 > 
 {: .callout}
 
-Let's search for the string NNNNNNNNNN in the SRR098026 file.
+Let's search for the string NNNNNNNNNN in the SRR098026 file:
 ~~~
 $ grep NNNNNNNNNN SRR098026.fastq
 ~~~
@@ -78,7 +78,7 @@ immediately before each match and the two lines immediately after each match.
 
 We can use the `-B` argument for grep to return a specific number of lines before
 each match. The `-A` argument returns a specific number of lines after each matching line. Here we want the line *before* and the two lines *after* each 
-matching line, so we add `-B1 -A2` to our grep command.
+matching line, so we add `-B1 -A2` to our grep command:
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
@@ -260,7 +260,7 @@ $ wc -l bad_reads.txt
 
 The output of our second call to `wc` shows that we have not overwritten our original data. 
 
-We can also do this with a single line of code by using a wildcard. 
+We can also do this with a single line of code by using a wildcard: 
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
@@ -298,7 +298,7 @@ $ wc -l bad_reads.txt
 
 Since we might have multiple different criteria we want to search for, 
 creating a new output file each time has the potential to clutter up our workspace. We also
-so far haven't been interested in the actual contents of those files, only in the number of 
+thus far haven't been interested in the actual contents of those files, only in the number of 
 reads that we've found. We created the files to store the reads and then counted the lines in 
 the file to see how many reads matched our criteria. There's a way to do this, however, that
 doesn't require us to create these intermediate files - the pipe command (`|`).
@@ -348,7 +348,7 @@ files. We will use loops for these purposes in subsequent analyses, but will cov
 
 When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list. 
 Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the **variable**, and 
-the commands inside the loop are executed, before moving on to  the next item in the list. Inside the loop, we call for 
+the commands inside the loop are executed, before moving on to the next item in the list. Inside the loop, we call for 
 the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable**
 as a variable name and substitute its value in its place, rather than treat it as text or an external command. In shell programming, this is usually called "expanding" the variable.
 
@@ -378,7 +378,7 @@ foo is abcEFG
 ~~~
 {: .bash}
 
-Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
+Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice the shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
 
 ~~~
 $ cd ../untrimmed_fastq/
@@ -395,7 +395,7 @@ $ for filename in *.fastq
 
 The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated 
 as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename` 
-because they fit the pattern of ending with .fastq in directory we've specified. The next line of the for loop is `do`. The next line is 
+because they fit the pattern of ending with .fastq in the directory we've specified. The next line of the for loop is `do`. The next line is 
 the code that we want to execute. We are telling the loop to print the first two lines of each variable we iterate over. Finally, the
 word `done` ends the loop.
 
