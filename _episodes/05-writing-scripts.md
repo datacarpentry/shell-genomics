@@ -337,7 +337,7 @@ $ scp <local file> <AWS instance>
 ~~~
 {: .bash}
 
-To move it back to your local computer, you just re-order the to and from fields:
+To move it back to your local computer, you re-order the `to` and `from` fields:
 
 ~~~
 $ scp <AWS instance> <local file>
