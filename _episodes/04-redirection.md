@@ -304,9 +304,12 @@ the file to see how many reads matched our criteria. There's a way to do this, h
 doesn't require us to create these intermediate files - the pipe command (`|`).
 
 This is probably not a key on
-your keyboard you use very much, so let's all take a minute to find that key. 
-What `|` does is take the output that is
-scrolling by on the terminal and uses that output as input to another command. 
+your keyboard you use very much, so let's all take a minute to find that key. For the standard QWERTY keyboard
+layout, the `|` character can be found using the key combination
+
+- <kbd>Shift</kbd>+<kbd>\</kbd>
+
+What `|` does is take the output that is scrolling by on the terminal and uses that output as input to another command. 
 When our output was scrolling by, we might have wished we could slow it down and
 look at it, like we can with `less`. Well it turns out that we can! We can redirect our output
 from our `grep` call through the `less` command.
@@ -409,6 +412,12 @@ $ for filename in *.fastq
 > done
 ~~~
 {: .bash}
+
+When writing a loop, you will not be able to return to previous lines once you have pressed Enter. Remember that we can cancel the current command using
+
+- <kbd>Ctrl</kbd>+<kbd>C</kbd>
+
+If you notice a mistake that is going to prevent your loop for executing correctly.
 
 Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
 every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
