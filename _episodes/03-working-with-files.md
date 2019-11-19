@@ -121,7 +121,9 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 {: .challenge}
 
 > ## Exercise
-> We can use the command `echo` to see how the wildcard character is interpreted by the shell.
+> `echo` is a built-in shell command that writes its arguments, like a line of text to standard output. 
+> The `echo` command can also be used with pattern matching characters, such as wildcard characters. 
+> Here we will use the `echo` command to see how the wildcard character is interpreted by the shell.
 > 
 > ~~~
 > $ echo *.fastq
