@@ -348,7 +348,7 @@ $ pw<tab><tab>
 {: .bash}
 
 ~~~
-pwd         pwd_mkdb    pwhich      pwhich5.16  pwhich5.18  pwpolicy
+pwck      pwconv    pwd       pwdx      pwunconv
 ~~~
 {: .output}
 
