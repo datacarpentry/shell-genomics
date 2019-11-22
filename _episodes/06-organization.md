@@ -263,7 +263,7 @@ $ ls
 {: .bash}
 
 ~~~
-shell_data	dc_workshop dc_workshop_log_2017_10_27.txt
+shell_data	dc_workshop dc_workshop_log_2017_10_27.sh
 ~~~
 {: .output}
 
