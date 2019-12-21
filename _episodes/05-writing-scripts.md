@@ -309,6 +309,9 @@ command line belongs to. So, if you are logged into AWS on the command line and 
 the ``curl`` command above in the AWS terminal, the file will be downloaded to your AWS
 machine, not your local one.
 
+Additionally, when downloading files or making changes to files, it is important to have "sanity checks" along the way. One common sanity check is to investigate the size of our files after downloading them or after editing them in some way. The command ``ls -lh`` is a modified version of ``ls -l`` which allows users to list the files and their sizes in a human-readable format. For example, if we use ``ls -lh species_EnsemblBacteria.txt``, the output shows us our file size is 8.0M. If we see a different file size that we do not expect, such as 0M, we would have an indication the download did not go as expected.
+
+
 ### Moving files between your laptop and your instance
 
 What if the data you need is on your local computer, but you need to get it *into* the
