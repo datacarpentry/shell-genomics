@@ -109,6 +109,11 @@ This will scroll your screen down to give you a fresh screen and will make it ea
 You haven't lost any of the information on your screen. If you scroll up, you can see everything that has been output to your screen
 up until this point.
 
+> ## Tip
+>
+> If you like to use hot-key combinations you might be interested to know that clearing the console can also be achieved by pressing `Ctrl+L`. Feel free to try it and see for yourself.
+{: .callout}
+
 ## Navigating your file system
 
 The part of the operating system responsible for managing files and directories
