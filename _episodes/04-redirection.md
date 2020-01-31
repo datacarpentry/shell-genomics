@@ -209,9 +209,6 @@ $ wc -l bad_reads.txt
 ~~~
 {: .output}
 
-Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
-four to get the number of sequences that match our search pattern.
-
 > ## Exercise
 >
 > How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
@@ -360,6 +357,51 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
 ~~~
 {: .bash}
 
+Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
+four to get the number of sequences that match our search pattern. Since 537 / 4 = 134.25 and we
+are expecting an integer number of records, there is something added or missing in `bad_reads.txt`. 
+If we explore `bad_reads.txt` using `less`, we might be able to notice what is causing the uneven 
+number of lines. Luckily, this issue happens by the end of the file so we can also spot it with `tail`.
+
+~~~
+$ tail bad_reads.txt
+~~~
+{: .bash}
+
+~~~
+@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
+ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
++SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
+#!!!!!!!!!##########!!!!!!!!!!##!#!
+--
+@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
++SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+~~~
+{: .output}
+
+The fifth line in the output displays "--" which is the default action for `grep` to separate groups of 
+lines matching the pattern, and indicate groups of lines which did not match the pattern so are not displayed. 
+To fix this issue, we can redirect the output of grep to a second instance of `grep` as follows.
+
+~~~
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | grep -v '^--' > bad_reads.fastq
+~~~
+{: .bash}
+
+The `-v` option in the second `grep` search stands for `--invert-match` meaning `grep` will now only display the 
+lines which do not match the searched pattern, in this case `'^--'`. The caret (`^`) is an **anchoring** 
+character matching the beginning of the line, and the pattern has to be enclose by single quotes so `grep` does 
+not interpret the pattern as an extended option (starting with --).
+
+> ## Custom `grep` control
+> 
+> Use `man grep` to read more about other options to customize the output of `grep` including extended options, 
+> anchoring characters, and much more.
+> 
+{: .callout}
+
 Redirecting output is often not intuitive, and can take some time to get used to. Once you're 
 comfortable with redirection, however, you'll be able to combine any number of commands to
 do all sorts of exciting things with your data!
@@ -368,8 +410,6 @@ None of the command line programs we've been learning
 do anything all that impressive on their own, but when you start chaining
 them together, you can do some really powerful things very
 efficiently. 
-
-
 
 ## Writing for loops
 
