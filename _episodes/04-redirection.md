@@ -420,7 +420,6 @@ efficiently.
 > 
 {: .callout}
 
-To practice a bit more with file manipulation and pipes, an extra
 
 ## Writing for loops
 
