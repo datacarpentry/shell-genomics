@@ -279,7 +279,8 @@ that word is found.
 
 **Shortcut:** If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
-works its way forward. Note, if you are at the end of the file and search
+works its way forward. Scroll up a couple lines on your terminal to verify
+you are at the beginning of the file. Note, if you are at the end of the file and search
 for the sequence "CAA", `less` will not find it. You either need to go to the
 beginning of the file (by typing `g`) and search again using `/` or you
 can use `?` to search backwards in the same way you used `/` previously.
