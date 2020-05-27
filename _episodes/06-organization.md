@@ -212,15 +212,14 @@ From the `nano` screen, you can use your cursor to navigate, type, and delete an
 > 
 {: .callout}
 
-Add a date line and comment to the line where you have created the directory, for example:   
+Add a date line and comment to the line where you have created the directory. Recall that any
+text on a line after a `#` is ignored by bash when evaluating the text as code. For example:   
 
 ~~~
 # 2017_10_27   
 # Created sample directories for the Data Carpentry workshop  
 ~~~
 {: .bash}
-
-`bash` treats the `#` character as a comment character. Any text on a line after a `#` is ignored by bash when evaluating the text as code.
 
 Next, remove any lines of the history that are not relevant by navigating to those lines and using your 
 delete key. Save your file and close `nano`.
