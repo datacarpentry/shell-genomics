@@ -271,10 +271,10 @@ you're standing there together, but not so well if you're trying to tell someone
 get there from another country. A full path is like GPS coordinates. It tells you exactly
 where something is no matter where you are right now.
 
-You can usually use either a full path or a relative path
-depending on what is most convenient. If we are in the home directory,
-it is more convenient to enter the relative path since it
-involves less typing.
+You can usually use either a full path or a relative path depending on what is most convenient.
+If we are in the home directory, it is more convenient to enter the full path.
+If we are in the working directory, it is more convenient to enter the relative path
+since it involves less typing.
 
 Over time, it will become easier for you to keep a mental note of the
 structure of the directories that you are using and how to quickly
