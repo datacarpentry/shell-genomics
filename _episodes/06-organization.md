@@ -204,8 +204,8 @@ From the `nano` screen, you can use your cursor to navigate, type, and delete an
 > 
 > | key     | action |
 > | ------- | ---------- |
-> | <kbd>Ctrl</kbd>-<kbd>Space</kbd> OR <kbd>Ctrl</kbd>-<kbd>Right arrow key</kbd> | to move forward one word |
-> | <kbd>Alt</kbd>-<kbd>Space</kbd> OR <kbd>Esc</kbd>-<kbd>Space</kbd> OR <kbd>Ctrl</kbd>-<kbd>Left arrow key</kbd> | to move back one word |
+> | <kbd>Ctrl</kbd>-<kbd>Space</kbd> OR <kbd>Ctrl</kbd>-<kbd>→</kbd> | to move forward one word |
+> | <kbd>Alt</kbd>-<kbd>Space</kbd> OR <kbd>Esc</kbd>-<kbd>Space</kbd> OR <kbd>Ctrl</kbd>-<kbd>←</kbd> | to move back one word |
 > | <kbd>Ctrl</kbd>-<kbd>A</kbd> | to move to the beginning of the current line |
 > | <kbd>Ctrl</kbd>-<kbd>E</kbd> | to move to the end of the current line |
 > | <kbd>Ctrl</kbd>-<kbd>W</kbd> | to search |
