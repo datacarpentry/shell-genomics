@@ -231,8 +231,10 @@ $ man ls
 ~~~
 {: .bash}
 
-Some manual files are very long. You can scroll through the file using
-your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page
+`man` (short for manual) displays detailed documentation (also referred as man page or man file)
+for `bash` commands. It is a powerful resource to explore `bash` commands, understand
+their usage and flags. Some manual files are very long. You can scroll through the
+file using your keyboard's down arrow or use the <kbd>Space</kbd> key to go forward one page
 and the <kbd>b</kbd> key to go backwards one page. When you are done reading, hit <kbd>q</kbd>
 to quit.
 
