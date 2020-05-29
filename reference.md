@@ -206,6 +206,7 @@ wildcard
 * [Using the Windows 10 Bash Shell](https://www.howtogeek.com/265900/everything-you-can-do-with-windows-10s-new-bash-shell/)
 * [Using a UNIX/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty)](http://faculty.smu.edu/reynolds/unixtut/windows.html)
 * [Addressing the digital divide in contemporary biology: Lessons from teaching UNIX](http://www.biorxiv.org/content/early/2017/04/07/122424.full.pdf+html)
+* [Unix cheat sheet](https://files.fosswire.com/2007/08/fwunixref.pdf)
 
 ### Manuals
 * [GNU manuals](http://www.gnu.org/manual/manual.html)
