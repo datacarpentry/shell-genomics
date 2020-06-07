@@ -79,22 +79,8 @@ $ ls /usr/bin/*.sh
 {: .output}
 
 Lists every file in `/usr/bin` that ends in the characters `.sh`.
-
-> ## Home vs. Root
-> 
-> The `/` character is another navigational shortcut and refers to your root directory.
-> The root directory is the highest level directory in your file system and contains
-> files that are important for your computer to perform its daily work, but which you usually won't
-> have to interact with directly. In our case,
-> the root directory is two levels above our home directory, so `cd` or `cd ~` will take you to `/home/dcuser`
-> and `cd /` will take you to `/`, which is equivalent to `~/../../`. Try not to worry if this is confusing,
-> it will all become clearer with practice.
-> 
-> While you will be using the root at the beginning of your absolute paths, it is important that you avoid 
-> working with data in these higher-level directories, as your commands can permanently alter files that the 
-> operating system needs to function. In many cases, trying to run commands in root directories will require 
-> special permissions which are not discussed here, so it's best to avoid it and work within your home directory.
-{: .callout}
+Note that the output displays __full__ paths to files, since
+each result starts with `/`.
 
 > ## Exercise
 > Do each of the following tasks from your current directory using a single
