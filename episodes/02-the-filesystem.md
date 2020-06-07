@@ -91,7 +91,7 @@ $ ls ../../
 ~~~
 {: .bash}
 
-prints the contents of `/home`, which is one level up from your root directory. 
+prints the contents of `/home`.
 
 > ## Finding hidden directories
 >
@@ -235,7 +235,8 @@ are in a directory called `dcuser`, which sits inside a directory called
 `home` which sits inside the very top directory in the hierarchy. The
 very top of the hierarchy is a directory called `/` which is usually
 referred to as the *root directory*. So, to summarize: `dcuser` is a
-directory in `home` which is a directory in `/`.
+directory in `home` which is a directory in `/`. More on `root` and
+`home` in the next section.
 
 Now enter the following command:
 
@@ -304,10 +305,21 @@ navigate amongst them.
 
 ### Navigational Shortcuts
 
-There are some shortcuts which you should know about. Dealing with the
-home directory is very common. The tilde character,
-`~`, is a shortcut for your home directory. Navigate to the `shell_data`
-directory:
+The root directory is the highest level directory in your file
+system and contains files that are important for your computer
+to perform its daily work. While you will be using the root (`/`)
+at the beginning of your absolute paths, it is important that you
+avoid working with data in these higher-level directories, as
+your commands can permanently alter files that the operating
+system needs to function. In many cases, trying to run commands
+in `root` directories will require special permissions which are
+not discussed here, so it’s best to avoid them and work within your
+home directory. Dealing with the `home` directory is very common.
+The tilde character, `~`, is a shortcut for your home directory.
+In our case, the `root` directory is __two__ levels above our
+`home` directory, so `cd` or `cd ~` will take you to
+`/home/dcuser` and `cd /` will take you to `/`. Navigate to the
+`shell_data` directory:
 
 ~~~
 $ cd
