@@ -212,3 +212,9 @@ wildcard
 * [GNU manuals](http://www.gnu.org/manual/manual.html)
 * [Core GNU utilities](http://www.gnu.org/software/coreutils/manual/coreutils.html)
 
+### FASTQ files
+* [Phred quality score](https://en.wikipedia.org/wiki/Phred_quality_score)
+* [FASTQ format](https://en.wikipedia.org/wiki/FASTQ_format)
+
+### High-throughput sequencing
+* Illumina Sequencing Technology [YouTube video](https://www.youtube.com/watch?v=womKfikWlxM)
