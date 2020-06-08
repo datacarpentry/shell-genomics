@@ -194,6 +194,8 @@ $ !260
 
 Type `!` (exclamation point) and then the number of the command from your history.
 You will be glad you learned this when you need to re-run very complicated commands.
+For more information on advanced usage of `history`, read section 9.3 of
+[Bash manual](https://www.gnu.org/software/bash/manual/html_node/index.html).
 
 > ## Exercise
 > Find the line number in your history for the command that listed all the .sh

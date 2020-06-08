@@ -209,7 +209,8 @@ wildcard
 * [Unix cheat sheet](https://files.fosswire.com/2007/08/fwunixref.pdf)
 
 ### Manuals
-* [GNU manuals](http://www.gnu.org/manual/manual.html)
+* [GNU BASH reference](https://www.gnu.org/software/bash/manual/html_node/index.html)
+* [GNU manual](http://www.gnu.org/manual/manual.html)
 * [Core GNU utilities](http://www.gnu.org/software/coreutils/manual/coreutils.html)
 
 ### FASTQ files
