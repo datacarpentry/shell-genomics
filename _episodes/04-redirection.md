@@ -9,13 +9,14 @@ objectives:
 - "Employ the `grep` command to search for information within files."
 - "Print the results of a command to a file."
 - "Construct command pipelines with two or more stages."
+- "Use `for` loops to run the same command for several input files."
 keypoints:
 - "`grep` is a powerful search tool with many options for customization."
 - "`>`, `>>`, and `|` are different ways of redirecting output."
 - "`command > file` redirects a command's output to a file."
 - "`command >> file` redirects a command's output to a file without overwriting the existing contents of the file."
 - "`command_1 | command_2` redirects the output of the first command as input to the second command."
-- "for loops are used for iteration."
+- "`for` loops are used for iteration."
 - "`basename` gets rid of repetitive parts of names."
 ---
 
