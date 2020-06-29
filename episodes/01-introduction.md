@@ -321,13 +321,10 @@ Using tab complete can be very helpful. However, it will only autocomplete
 a file or directory name if you've typed enough characters to provide
 a unique identifier for the file or directory you are trying to access.
 
-If we navigate back to our `untrimmed_fastq` directory and try to access one
-of our sample files:
+For example, if we now try to list the files which names start with `SR`
+by using tab complete:  
 
 ~~~
-$ cd
-$ cd shell_data
-$ cd untrimmed_fastq
 $ ls SR<tab>
 ~~~
 {: .bash}
