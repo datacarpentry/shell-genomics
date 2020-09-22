@@ -570,7 +570,7 @@ rm: remove write-protected regular file ‘SRR098026-backup.fastq’?
 ~~~
 {: .output}
 
-If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra 
+You should enter `n` for now. If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra 
 measure of security, as there is one more step between us and deleting our data files.
 
 **Important**: The `rm` command permanently removes the file. Be careful with this command. It doesn't
