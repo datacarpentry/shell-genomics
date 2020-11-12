@@ -146,6 +146,12 @@ prints the contents of `/home`.
 > {: .solution}
 {: .challenge}
 
+In most commands the flags can be combined together in no particular order to obtain the desired results/output.
+~~~
+$ ls -Fa
+$ ls -laF
+~~~
+
 ## Examining the contents of other directories
 
 By default, the `ls` commands lists the contents of the working
