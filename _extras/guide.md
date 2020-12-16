@@ -22,6 +22,18 @@ This lesson uses data hosted on an Amazon Machine Instance (AMI). Instructors wi
 
 ## Technical tips and tricks
 
+#### Command Prompt Editing
+
+Instructors might find it helpful to shorten their command prompt to allow better visibility of the commands they are typing, particularly if using the AMI.  This is because the prompt will contain additional information including the username and login for the instance, as well as filesystem location. This is especially useful when teaching the material online, as many learners may be splitting their screens and text wrapping may make the commands more difficult to identify if the prompt takes up a lot of space.
+
+In order to edit your command prompt, type `PS1='$ '` into your shell and press enter. This will produce the simple "dollar space" prompt visible in the lesson content.  
+
+In order to reset the command prompt, type `source .bashrc` in order to source the bash profile, or type `PS1="\u@\h:\w $ "` in order to set the prompt to show username, "@", hostname, ":", and current working directory (ie. the user's current location within the filesystem). 
+
+NOTE: Editing the prompt is discussed in [lesson 01 - Introduction](https://datacarpentry.org/shell-genomics/01-introduction/index.html) under the 'Navigating your file system' section. This explains how to edit the prompt via `PS1='$ '` as here, so it would perhaps be best to *start* the lesson with the *default* prompt (as all the learners will and they can see that their screen will reassuringly match the instructor's screen at this point), and then instructors can choose to edit their prompt and talk through how they're doing that for learners' benefit at this section, or the instructor can just make the change early in the lesson for the visibility benefit, and explain to learners that they can find out how to do this in the lesson materials. 
+
+Resetting the command prompt is not currently included in the lesson materials, so it might be useful to be familiar with this beforehand in case of learners' questions.
+
 ## Common problems
 
 Learners will work through an Amazon Web Service (AWS) instance for this lesson. The workshop coordinator will set up AWS instances for 
