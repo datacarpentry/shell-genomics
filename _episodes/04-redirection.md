@@ -185,7 +185,12 @@ happened. But type `ls`. You should see a new file called `bad_reads.txt`.
 
 We can check the number of lines in our new file using a command called `wc`. 
 `wc` stands for **word count**. This command counts the number of words, lines, and characters
-in a file. 
+in a file. The FASTQ file may change over time, so given the potential for updates, 
+make sure your file matches your instructor's output. 
+
+As of Sept. 2020, wc gives the following output:  
+
+
 
 ~~~
 $ wc bad_reads.txt
@@ -193,7 +198,7 @@ $ wc bad_reads.txt
 {: .bash}
 
 ~~~
-  537  1073 23217 bad_reads.txt
+  802    1338   24012 bad_reads.txt
 ~~~
 {: .output}
 
@@ -206,7 +211,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+802 bad_reads.txt
 ~~~
 {: .output}
 
@@ -244,7 +249,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+802 bad_reads.txt
 ~~~
 {: .output}
 
@@ -273,7 +278,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+802 bad_reads.txt
 ~~~
 {: .output}
 
@@ -284,7 +289,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+802 bad_reads.txt
 ~~~
 {: .output}
 
@@ -299,7 +304,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+802 bad_reads.txt
 ~~~
 {: .output}
 
@@ -362,7 +367,7 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
 {: .bash}
 
 Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
-four to get the number of sequences that match our search pattern. Since 537 / 4 = 134.25 and we
+four to get the number of sequences that match our search pattern. Since 802 / 4 = 200.5 and we
 are expecting an integer number of records, there is something added or missing in `bad_reads.txt`. 
 If we explore `bad_reads.txt` using `less`, we might be able to notice what is causing the uneven 
 number of lines. Luckily, this issue happens by the end of the file so we can also spot it with `tail`.
