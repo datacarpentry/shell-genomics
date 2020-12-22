@@ -373,6 +373,7 @@ If we explore `bad_reads.txt` using `less`, we might be able to notice what is c
 number of lines. Luckily, this issue happens by the end of the file so we can also spot it with `tail`.
 
 ~~~
+$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ tail bad_reads.txt
 ~~~
 {: .bash}
@@ -383,6 +384,7 @@ ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
 +SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
 #!!!!!!!!!##########!!!!!!!!!!##!#!
 --
+--
 @SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
 CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
@@ -390,14 +392,29 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 ~~~
 {: .output}
 
-The fifth line in the output displays "--" which is the default action for `grep` to separate groups of 
+The fifth and six lines in the output display "--" which is the default action for `grep` to separate groups of 
 lines matching the pattern, and indicate groups of lines which did not match the pattern so are not displayed. 
 To fix this issue, we can redirect the output of grep to a second instance of `grep` as follows.
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | grep -v '^--' > bad_reads.fastq
+tail bad_reads.fastq
 ~~~
 {: .bash}
+
+~~~
++SRR098026.132 HWUSI-EAS1599_1:2:1:0:320 length=35
+#!!!!!!!!!##########!!!!!!!!!!##!#!
+@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
+ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
++SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
+#!!!!!!!!!##########!!!!!!!!!!##!#!
+@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
++SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+~~~
+{: .output}
 
 The `-v` option in the second `grep` search stands for `--invert-match` meaning `grep` will now only display the 
 lines which do not match the searched pattern, in this case `'^--'`. The caret (`^`) is an **anchoring** 
