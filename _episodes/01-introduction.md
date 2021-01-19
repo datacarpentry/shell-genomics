@@ -126,13 +126,25 @@ which hold files or other directories.
 Several commands are frequently used to create, inspect, rename, and delete files and directories.
 
 > ## Preparation Magic
+> You may have a prompt (the characters to the left of the cursor) that looks different from the `$` sign character used here.
+> If you would like to change your prompt to match the example prompt, first type the command:
+> `echo $PS1`
+> into your shell, followed by pressing the <kbd>Enter</kbd> key.
 >
-> If you type the command:
+> This will print the bash special characters that are currently defining your prompt.
+> To change the prompt to a `$` (followed by a space), enter the command:
 > `PS1='$ '`
-> into your shell, followed by pressing the <kbd>Enter</kbd> key,
-> your window should look like our example in this lesson.  
-> This isn't necessary to follow along (in fact, your prompt may have
-> other helpful information you want to know about).  This is up to you!  
+> Your window should look like our example in this lesson.  
+> 
+> To change back to your original prompt, type in the output of the previous command `echo $PS1` (this will be different depending on the
+> original configuration) between the quotes in the following command:
+> `PS1=""`
+> 
+> For example, if the output of `echo $PS1` was `\u@\h:\w $ `, 
+> then type those characters between the quotes in the above command: `PS1="\u@\h:\w $ "`.
+> Alternatively, you can reset your original prompt by exiting the shell and opening a new session.
+> 
+> This isn't necessary to follow along (in fact, your prompt may have other helpful information you want to know about).  This is up to you!  
 {: .callout}
 
 ~~~
