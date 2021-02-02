@@ -273,7 +273,7 @@ over and over again without needing to copy and paste it and allow the user to s
 file they want to examine for bad reads. 
 
 We can accomplish these goals by including the above command in a script that takes in user input
-via a command line argument. We can slightly modify our `bad-reads-script.sh` file to to do. Use
+via a command line argument. We can slightly modify our `bad-reads-script.sh` file to do so. Use
 `c` to copy your `bad-reads-script.sh` into a new script called `custom-bad-reads-script.sh`. Make
 the following modifications to `custom-bad-reads-script.sh`:
 
