@@ -258,3 +258,75 @@ $ grep PAIRED SraRunTable.txt > SraRunTable_only_paired_end.txt
 > {: .solution}
 {: .challenge}
 
+## Making code more customizeable using command line arguments ##
+
+In Lesson 05 (Writing Scripts) we used the `grep` command line tool to look for FASTQ records with 
+lots of Ns from all the .fastq files in our current folder using the following code: 
+
+~~~
+$ grep -B1 -A2 -h NNNNNNNNNN *.fastq | grep -v '^--' > scripted_bad_reads.txt
+~~~
+{: .bash}
+
+This is very useful, but could be more customizeable. We may want to be able to run this command 
+over and over again without needing to copy and paste it and allow the user to specify exactly which
+file they want to examine for bad reads. 
+
+We can accomplish these goals by including the above command in a script that takes in user input
+via a command line argument. We can slightly modify our `bad-reads-script.sh` file to do so. Use
+`c` to copy your `bad-reads-script.sh` into a new script called `custom-bad-reads-script.sh`. Make
+the following modifications to `custom-bad-reads-script.sh`:
+
+~~~
+filename=$1
+grep -B1 -A2 -h NNNNNNNNNN $filename | grep -v '^--' > scripted_bad_reads.txt
+~~~
+{: .bash}
+
+`$1` is our command line argument. The line `filename=$1` tells Bash to take the first thing you type
+after the name of the script itself and assign that value to a variable called filename.
+
+For example, this script can be run in the following way to output the bad reads just from one file: 
+
+~~~
+bash custom-bad-reads-script.sh SRR098026.fastq
+~~~
+{: .bash}
+
+We can then take a look at what the output file currently contains using `head scripted_bad_reads.txt`: 
+~~~
+@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
++SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
++SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@SRR098026.3 HWUSI-EAS1599_1:2:1:0:570 length=35
+NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
+~~~
+{: .output}
+
+This should be same output as using our original code and manually modifying the
+original standalone code on the command line to "SRR098026.fastq" on the command line,
+which should give us the same output as above:
+~~~
+$ grep -B1 -A2 -h NNNNNNNNNN SRR098026.fastq | grep -v '^--' > scripted_bad_reads.txt
+head scripted_bad_reads.txt
+~~~
+{: .bash}
+
+~~~
+@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
++SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
++SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
+!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
+@SRR098026.3 HWUSI-EAS1599_1:2:1:0:570 length=35
+NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
+~~~
+{: .output}
