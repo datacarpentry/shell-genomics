@@ -176,7 +176,7 @@ $ history | tail -n 7
 > > 
 > > ## Solution
 > > ~~~
-> > $ history | tail -n 8 >> dc_workshop_log_2017_10_27.sh
+> > $ history | tail -n 7 >> dc_workshop_log_2017_10_27.sh
 > > ~~~
 > > {: .bash}
 > > Note we used the last 7 lines as an example, the number of lines may vary.
