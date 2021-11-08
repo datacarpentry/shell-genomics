@@ -60,10 +60,10 @@ The text at the bottom of the screen shows the keyboard shortcuts for performing
 
 > ## Which Editor?
 >
-> When we say, "`nano` is a text editor," we really do mean "text": it can
+> When we say, "`nano` is a text editor," we really do mean "text": `nano` can
 > only work with plain character data, not tables, images, or any other
-> human-friendly media. We use it in examples because it is one of the 
-> least complex text editors. However, because of this trait, it may 
+> human-friendly media. We use `nano` in examples because it is one of the 
+> least complex text editors. However, because of this trait, `nano` may 
 > not be powerful enough or flexible enough for the work you need to do
 > after this workshop. On Unix systems (such as Linux and Mac OS X),
 > many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
@@ -74,10 +74,10 @@ The text at the bottom of the screen shows the keyboard shortcuts for performing
 > editor called `notepad` that can be run from the command line in the same
 > way as `nano` for the purposes of this lesson.  
 >
-> No matter what editor you use, you will need to know where it searches
-> for and saves files. If you start it from the shell, it will (probably)
+> No matter what editor you use, you will need to know the default location where it searches
+> for files and where files are saved. If you start an editor from the shell, it will (probably)
 > use your current working directory as its default location. If you use
-> your computer's start menu, it may want to save files in your desktop or
+> your computer's start menu, the editor may want to save files in your desktop or
 > documents directory instead. You can change this by navigating to
 > another directory the first time you "Save As..."
 {: .callout}
@@ -88,7 +88,7 @@ Once we're happy with our text, we can press <kbd>Ctrl</kbd>-<kbd>O</kbd> (press
 holding it down, press the <kbd>O</kbd> key) to write our data to disk. You'll be asked what file we want to save this to:
 press <kbd>Return</kbd> to accept the suggested default of `README.txt`.
 
-Once our file is saved, we can use <kbd>Ctrl</kbd>-<kbd>X</kbd> to quit the editor and
+Once our file is saved, we can use <kbd>Ctrl</kbd>-<kbd>X</kbd> to quit the `nano` editor and
 return to the shell.
 
 > ## Control, Ctrl, or ^ Key
@@ -182,7 +182,7 @@ It will look like nothing happened, but now if you look at `scripted_bad_reads.t
 
 ## Making the script into a program
 
-We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead, we can turn this script into its own program. We need to tell it that it's a program by making it executable. We can do this by changing the file permissions. We talked about permissions in [an earlier episode](http://www.datacarpentry.org/shell-genomics/03-working-with-files/).
+We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead, we can turn this script into its own program. We need to tell the computer that this script is a program by making the script file executable. We can do this by changing the file permissions. We talked about permissions in [an earlier episode](http://www.datacarpentry.org/shell-genomics/03-working-with-files/).
 
 First, let's look at the current permissions.
 
