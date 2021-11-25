@@ -24,24 +24,22 @@ keypoints:
 A *shell* is a computer program that presents a command line interface
 which allows you to control your computer using commands entered
 with a keyboard instead of controlling graphical user interfaces
-(GUIs) with a mouse/keyboard combination.
+(GUIs) with a mouse/keyboard/touchscreen combination.
 
 There are many reasons to learn about the shell:
 
-* Many bioinformatics tools can only be used through a command line interface, or 
-have extra capabilities in the command line version that are not available in the GUI.
-This is true, for example, of BLAST, which offers many advanced functions only accessible
+* Many bioinformatics tools can only be used through a command line interface. Many more 
+have features and parameter options which are not available in the GUI.
+BLAST is an example. Many of the advanced functions are only accessible
 to users who know how to use a shell.  
-* The shell makes your work less boring. In bioinformatics you often need to do
-the same set of tasks with a large number of files. Learning the shell will allow you to
-automate those repetitive tasks and leave you free to do more exciting things.  
+* The shell makes your work less boring. In bioinformatics you often need to repeat tasks with a large number of files. With the shell, you can automate those repetitive tasks and leave you free to do more exciting things.  
 * The shell makes your work less error-prone. When humans do the same thing a hundred different times
 (or even ten times), they're likely to make a mistake. Your computer can do the same thing a thousand times
 with no mistakes.  
 * The shell makes your work more reproducible. When you carry out your work in the command-line 
 (rather than a GUI), your computer keeps a record of every step that you've carried out, which you can use 
 to re-do your work when you need to. It also gives you a way to communicate unambiguously what you've done, 
-so that others can check your work or apply your process to new data.  
+so that others can inspect or apply your process to new data.  
 * Many bioinformatic tasks require large amounts of computing power and can't realistically be run on your
 own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed
 through a shell.
@@ -50,19 +48,19 @@ In this lesson you will learn how to use the command line interface to move arou
 
 ## How to access the shell
 
-On a Mac or Linux machine, you can access a shell through a program called Terminal, which is already available
-on your computer. If you're using Windows, you'll need to download a separate program to access the shell.
+On a Mac or Linux machine, you can access a shell through a program called "Terminal", which is already available
+on your computer. The Terminal is a window into which we will type commands. If you're using Windows, you'll need to download a separate program to access the shell.
 
-We will spend most of our time learning about the basics of the shell
-by manipulating some experimental data. Some of the data we're going to be working with is quite large, and
-we're also going to be using several bioinformatic packages in later
-lessons to work with this data. To avoid having to spend time 
-downloading the data and downloading and installing all of the software,
-we're going to be working with data on a remote server. 
+To save time, we are going to be working on a remote server where all the necessary data and software available. When we say a 'remote sever', we are talking about a computer that is not the one you are working on right now. You will access the Carpentries remote server where everything is prepared for the lesson.
+We will learn the basics of the shell by manipulating some data files. Some of these files are very large
+, and would take time to download to your computer.
+We will also be using several bioinformatic packages in later lessons and installing all of the software would take up time even more time. A 'ready-to-go' sever let's us focus on learning. 
+
+## How to access the remote server
 
 You can log-in to the remote server using the instructions 
 [here](http://www.datacarpentry.org/cloud-genomics/02-logging-onto-cloud/#logging-onto-a-cloud-instance). 
-Your instructor will supply the `ip_address` and password that you need to login.
+Your instructor will supply to you the `ip_address` and password that you need to login.
 
 Each of you will have a different `ip_address`. This will 
 prevent us from accidentally changing each other's files as we work through the
@@ -97,8 +95,10 @@ Last login: Fri Feb  1 22:34:53 2019 from c-73-116-43-163.hsd1.ca.comcast.net
 ~~~
 {: .output}
 
-This provides a lot of information about the remote server that you're logging in to. We're not going to use most of this information for
+This provides a lot of information about the remote server that you're logging into. We're not going to use most of this information for
 our workshop, so you can clear your screen using the `clear` command. 
+
+Type the word `clear` into the terminal and press the `Enter` key.
 
 ~~~
 $ clear
@@ -110,13 +110,13 @@ You haven't lost any of the information on your screen. If you scroll up, you ca
 up until this point.
 
 > ## Tip
->
-> If you like to use hot-key combinations you might be interested to know that clearing the console can also be achieved by pressing `Ctrl+L`. Feel free to try it and see for yourself.
+> Hot-key combinations are shortcuts for performing common commands.
+> The hot-key combination for clearing the console is `Ctrl+L`. Feel free to try it and see for yourself.
 {: .callout}
 
 ## Navigating your file system
 
-The part of the operating system responsible for managing files and directories
+The part of the operating system that manages files and directories
 is called the **file system**.
 It organizes our data into files,
 which hold information,
