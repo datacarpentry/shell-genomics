@@ -130,10 +130,11 @@ Several commands are frequently used to create, inspect, rename, and delete file
 > If you would like to change your prompt to match the example prompt, first type the command:
 > `echo $PS1`
 > into your shell, followed by pressing the <kbd>Enter</kbd> key.
->
+> PS1 stands for (Prompt String) 1, and is the primary prompt string provided as your terminal is waiting for you to type a command.
 > This will print the bash special characters that are currently defining your prompt.
 > To change the prompt to a `$` (followed by a space), enter the command:
 > `PS1='$ '`
+> PS1 stands for (Prompt String) 1, and is the prompt provided as your terminal is waiting for you to type a command.
 > Your window should look like our example in this lesson.  
 > 
 > To change back to your original prompt, type in the output of the previous command `echo $PS1` (this will be different depending on the
