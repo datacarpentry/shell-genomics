@@ -300,7 +300,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-802 bad_reads.txt
+537 bad_reads.txt
 ~~~
 {: .output}
 
@@ -311,7 +311,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-802 bad_reads.txt
+537 bad_reads.txt
 ~~~
 {: .output}
 
@@ -326,7 +326,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-802 bad_reads.txt
+537 bad_reads.txt
 ~~~
 {: .output}
 
