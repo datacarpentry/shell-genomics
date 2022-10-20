@@ -1,0 +1,65 @@
+---
+title: "Introduction to the Command Line for Genomics"
+author: "Guri Giaever"
+date: "`r Sys.Date()`"
+link-citations: yes
+github-repo: gurinina/shell-genomics
+url: https\://bookdown.org/ggiaever/shell-genomics/
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+---
+# Welcome to Shell-Genomics!
+
+Command line interface (CLI) and graphic user interface (GUI) are different ways of interacting with a computer’s operating system. They have different pros and cons. Most people are familiar with the GUI as it is the default interface for most software, particularly on Windows and Mac OS. When using the GUI, you see visual representations of files, folders, applications etc. When using the CLI, you work largely with text representations of files, folders, input and output etc. The shell is a program that presents a command line interface that allows you to control your computer by typing instructions with a keyboard.
+
+There are several reasons to learn how to use the CLI:
+
+For most bioinformatics tools, there are no graphical interfaces. If you want to work in metagenomics or genomics 
+you’re going to need to use the CLI/ shell.
+
+The shell gives you power. The command line allows you to work more efficiently. Tasks that are repetative (e.g. renaming hundreds of files) can be automated. Tasks that are tedius (e.g. testing a range of input parameters) can be simplified.
+
+To use remote computers or cloud computing, you need to use the shell.
+
+Getting Started
+
+This lesson assumes no prior experience with the tools covered in the workshop. However, learners are expected to have some familiarity with biological concepts, including the concept of genomic variation within a population. Participants should bring their laptops and plan to participate actively.
+
+**Schedule**
+
+00:00	1. Introducing the Shell	What is a command shell and why would I use one?
+
+         How can I move around on my computer?
+         
+         How can I see what files and directories I have?
+         
+         How can I specify the location of a file or directory on my computer?
+         
+00:30	2. Navigating Files and Directories	How can I perform operations on files outside of my working directory?
+
+         What are some navigational shortcuts I can use to make my work more efficient?
+         
+01:20	3. Working with Files and Directories	How can I view and search file contents?
+
+         How can I create, copy and delete files and directories?
+         
+         How can I control who has permission to modify a file?
+         
+         How can I repeat recently used commands?
+         
+02:05	4. Redirection	How can I search within files?
+
+         How can I combine existing commands to do new things?
+         
+02:50	5. Writing Scripts and Working with Data	How can we automate a commonly used set of commands?
+
+03:30	6. Project Organization	How can I organize my file system for a new bioinformatics project?
+
+         How can I document my work?
+         
+04:00	   Finish	
+
+**References**
+Erin Alison Becker, Anita Schürch, Tracy Teal, Sheldon John McKay, Jessica Elizabeth Mizzi, 
+François Michonneau, et al. (2019, June). datacarpentry/shell-genomics: Data Carpentry: Introduction to the shell for genomics data, [June 2019 (Version v2019.06.1). Zenodo.](http://doi.org/10.5281/zenodo.3260560)
