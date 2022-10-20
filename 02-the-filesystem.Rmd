@@ -1,6 +1,6 @@
 # Navigating Files and Directories
 
-```{r setup, include = FALSE}
+```{r include = FALSE}
 
 knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
 ```
@@ -108,15 +108,15 @@ The name of the hidden directory is `.hidden`. We can navigate to that directory
 using `cd`. 
 
 ```{bash}
-cd ~/dc_workshop/.hidden
+cd ~/shell_data//.hidden
 ```
 
 And then list the contents of the directory using `ls`. 
 
 
 ```{bash}
-cd ~/dc_workshop/.hidden
-ls
+cd ~/cd ~/shell_data/.hidden
+ls -a
 ```
 
 
@@ -219,7 +219,7 @@ directory in `home` which is a directory in `/`. More on `root` and
 Now enter the following command:
 
 ```{bash, eval=FALSE, engine="sh"}
-cd /home/dcuser/dc_workshop/.hidden
+cd /home/dcuser/shell_data/.hidden
 ```
 
 This jumps forward multiple levels to the `.hidden` directory. 
@@ -232,7 +232,7 @@ cd ~
 You can also navigate to the `.hidden` directory using:
 
 ```{bash}
-cd ~/dc_workshop/.hidden
+cd ~/shell_data/.hidden
 ```
 These two commands have the same effect, they both take us to the `.hidden` directory.
 The first uses the absolute path, giving the full address from the home directory. The

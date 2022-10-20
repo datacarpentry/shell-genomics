@@ -1,6 +1,6 @@
 # Working with Files and Directories
 
-```{r setup, include = FALSE}
+```{r include = FALSE}
 
 knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
 ```
@@ -38,7 +38,7 @@ This command:
 
 ```{bash}
 cd ~/shell_data/untrimmed_fastq
-ls *.fastq.gz | grep SRR098026  
+ls *.fastq| grep SRR098026  
 ```
 
 lists only the file that starts with SRR098026    
@@ -373,7 +373,7 @@ The `mkdir` command is used to make a directory. Enter `mkdir`
 followed by a space, then the directory name you want to create:
 
 ```{bash, eval=FALSE, engine="sh"}
-cd ~/dc_workshop/data/untrimmed_fast
+cd ~/shell_data/untrimmed_fast
 mkdir backup
 ```
 

@@ -28,37 +28,21 @@ This lesson assumes no prior experience with the tools covered in the workshop. 
 
 **Schedule**
 
-00:00	1. Introducing the Shell	What is a command shell and why would I use one?
+Setup: Download files required for the lesson
 
-         How can I move around on my computer?
-         
-         How can I see what files and directories I have?
-         
-         How can I specify the location of a file or directory on my computer?
-         
-00:30	2. Navigating Files and Directories	How can I perform operations on files outside of my working directory?
+1. Introducing the Shell	
 
-         What are some navigational shortcuts I can use to make my work more efficient?
-         
-01:20	3. Working with Files and Directories	How can I view and search file contents?
+2. Navigating Files and Directories	
 
-         How can I create, copy and delete files and directories?
-         
-         How can I control who has permission to modify a file?
-         
-         How can I repeat recently used commands?
-         
-02:05	4. Redirection	How can I search within files?
+3. Working with Files and Directories
 
-         How can I combine existing commands to do new things?
-         
-02:50	5. Writing Scripts and Working with Data	How can we automate a commonly used set of commands?
+4. Redirection	
 
-03:30	6. Project Organization	How can I organize my file system for a new bioinformatics project?
+5. Writing Scripts and Working with Data
 
-         How can I document my work?
-         
-04:00	   Finish	
+6. Project Organization	
+
+Finish	
 
 **References**
 Erin Alison Becker, Anita Schürch, Tracy Teal, Sheldon John McKay, Jessica Elizabeth Mizzi, 

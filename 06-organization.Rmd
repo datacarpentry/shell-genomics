@@ -1,6 +1,6 @@
 
 # Project Organization
-```{r setup, include = FALSE}
+```{r include = FALSE}
 
 knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
 ```
