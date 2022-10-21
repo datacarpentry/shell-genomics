@@ -1,20 +1,13 @@
----
-title: "Project Organization"
-teaching: 15
-exercises: 15
-questions:
-- "How can I organize my file system for a new bioinformatics project?"
-- "How can I document my work?"
-objectives:
-- "Create a file system for a bioinformatics project."
-- "Explain what types of files should go in your `docs`, `data`, and `results` directories."
-- "Use the `history` command and a text editor like `nano` to document your work on your project."
-keypoints:
-- "Spend the time to organize your file system when you start a new project. Your future self will thank you!"
-- "Always save a write-protected copy of your raw data."
----
 
-# Getting your project started
+# Project Organization
+
+```{r include = FALSE}
+
+knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
+
+```
+
+Getting your project started
 
 Project organization is one of the most important parts of a sequencing project, and yet is often overlooked amidst the
 excitement of getting a first look at new data. Of course, while it's best to get yourself organized before you even begin your analyses,
@@ -50,59 +43,58 @@ feel indebted to you!
 With this in mind, let's have a look at the best practices for 
 documenting your genomics project. Your future self will thank you.  
 
-In this exercise we will setup a file system for the project we will be working on during this workshop.  
+In this exercise we will setup a file system for the project we will be working on for the variant section. 
 
-We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
+We will start by creating a directory that we can use for the variant section. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
 
-~~~
-$ cd
-$ pwd
-~~~
-{: .bash}
+```{bash}
+
+cd
+
+pwd
+
+```
 
 You should see the output: 
 
-~~~
-/home/dcuser  
-~~~
-{: .output}
+/Users/dcuser  
 
-> ## Tip  
-> If you aren't in your home directory, the easiest way to get there is to enter the command `cd`, which
-> always returns you to home.  
-{: .callout}
+## Tip  
 
-> ## Exercise  
-> Use the `mkdir` command to make the following directories:   
-> - `dc_workshop`
-> - `dc_workshop/docs`
-> - `dc_workshop/data`
-> - `dc_workshop/results`
-> 
-> > ## Solution
-> > 
-> > ~~~
-> > $ mkdir dc_workshop
-> > $ mkdir dc_workshop/docs
-> > $ mkdir dc_workshop/data
-> > $ mkdir dc_workshop/results
-> > ~~~
-> > {: .bash}
-> {: .solution}
-{: .challenge}
+If you aren't in your home directory, the easiest way to get there is to enter the command `cd ~`, which
+always returns you to home.  
+
+## Exercise  
+
+Use the `mkdir` command to make the following directories: 
+
+- `dc_workshop`
+- `dc_workshop/docs`
+- `dc_workshop/data`
+- `dc_workshop/results`
+
+```{bash, eval=FALSE, engine="sh"}
+
+cd ~/dc_workshop/data/untrimmed_fastq`
+nano README.txt
+
+```
+
+## Solution
 
 Use `ls -R` to verify that you have created these directories. The `-R` option for `ls` stands for recursive. This option causes
 `ls` to return the contents of each subdirectory within the directory
 iteratively. 
 
-~~~
-$ ls -R dc_workshop
-~~~
-{: .bash}
+```{bash, eval=FALSE, engine="sh"}
+
+cd ~
+ls -R dc_workshop
+
+```
 
 You should see the following output:
 
-~~~
 dc_workshop/:
 data  docs  results
 
@@ -111,10 +103,8 @@ dc_workshop/data:
 dc_workshop/docs:
 
 dc_workshop/results: 
-~~~
-{: .output}
 
-# Organizing your files
+## Organizing your files
 
 Before beginning any analysis, it's important to save a copy of your
 raw data. The raw data should never be changed. Regardless of how
@@ -138,7 +128,7 @@ The `docs` folder is the place to store any written analysis of your
 results, notes about how your analyses were carried out, and 
 documents related to your eventual publication.
 
-# Documenting your activity on the project
+## Documenting your activity on the project
 
 When carrying out wet-lab analyses, most scientists work from a 
 written protocol and keep a hard copy of written notes in their lab
@@ -154,117 +144,110 @@ files. Let's document the work we have done on our project so far.
 
 View the commands that you have used so far during this session using `history`:
 
-~~~
-$ history
-~~~
-{: .bash}
+```{bash}
+
+history
+
+```
 
 The history likely contains many more commands than you have used for the current project. Let's view the last
 several commands that focus on just what we need for this project.   
 
 View the last n lines of your history (where n = approximately the last few lines you think relevant). For our example, we will use the last 7:
 
-~~~   
-$ history | tail -n 7
-~~~
-{: .bash}
+```{bash}
 
-> ## Exercise
-> Using your knowledge of the shell, use the append redirect `>>` to create a file called
-> `dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g.
-> `dc_workshop_log_2017_10_27.sh`)  
-> > 
-> > ## Solution
-> > ~~~
-> > $ history | tail -n 7 >> dc_workshop_log_2017_10_27.sh
-> > ~~~
-> > {: .bash}
-> > Note we used the last 7 lines as an example, the number of lines may vary.
-> {: .solution}
-{: .challenge}
+history | tail -n 7
+
+```
+
+## Exercise
+Using your knowledge of the shell, use the append redirect `>>` to create a file called
+`dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g.
+`dc_workshop_log_2022_11_.XX.sh`)  
+
+## Solution
+
+```{bash}
+
+history | tail -n 7 > dc_workshop_log_2022_11_27.sh
+
+```
+
+Note we used the last 7 lines as an example, the number of lines may vary.
 
 You may have noticed that your history contains the `history` command itself. To remove this redundancy
 from our log, let's use the `nano` text editor to fix the file:  
 
-~~~
-$ nano dc_workshop_log_2017_10_27.sh
-~~~
-{: .bash}
+```{bash, eval=FALSE, engine="sh"}
 
-(Remember to replace the `2017_10_27` with your workshop date.)
+nano dc_workshop_log_2022_11_27.sh
+```
+
+(Remember to replace the `2022_11_27` with your workshop date.)
 
 From the `nano` screen, you can use your cursor to navigate, type, and delete any redundant lines.   
 
-> ## Navigating in Nano
-> 
-> Although `nano` is useful, it can be frustrating to edit documents, as you 
-> can't use your mouse to navigate to the part of the document you would like to edit.
-> Here are some useful keyboard shortcuts for moving around within a text document in 
-> `nano`. You can find more information by typing <kbd>Ctrl</kbd>-<kbd>G</kbd> within `nano`.
-> 
-> | key     | action |
-> | ------- | ---------- |
-> | <kbd>Ctrl</kbd>-<kbd>Space</kbd> OR <kbd>Ctrl</kbd>-<kbd>→</kbd> | to move forward one word |
-> | <kbd>Alt</kbd>-<kbd>Space</kbd> OR <kbd>Esc</kbd>-<kbd>Space</kbd> OR <kbd>Ctrl</kbd>-<kbd>←</kbd> | to move back one word |
-> | <kbd>Ctrl</kbd>-<kbd>A</kbd> | to move to the beginning of the current line |
-> | <kbd>Ctrl</kbd>-<kbd>E</kbd> | to move to the end of the current line |
-> | <kbd>Ctrl</kbd>-<kbd>W</kbd> | to search |
-> 
-{: .callout}
+## Navigating in Nano
+
+Although `nano` is useful, it can be frustrating to edit documents, as you 
+can't use your mouse to navigate to the part of the document you would like to edit.
+Here are some useful keyboard shortcuts for moving around within a text document in 
+`nano`. You can find more information by typing <kbd>Ctrl</kbd>-<kbd>G</kbdwithin `nano`.
+
+| key     | action |
+| ------- | ---------- |
+| <kbd>Ctrl</kbd>-<kbd>Space</kbdOR <kbd>Ctrl</kbd>-<kbd>→</kbd| to move forward one word |
+| <kbd>Alt</kbd>-<kbd>Space</kbdOR <kbd>Esc</kbd>-<kbd>Space</kbdOR <kbd>Ctrl</kbd>-<kbd>←</kbd| to move back one word |
+| <kbd>Ctrl</kbd>-<kbd>A</kbd| to move to the beginning of the current line |
+| <kbd>Ctrl</kbd>-<kbd>E</kbd| to move to the end of the current line |
+| <kbd>Ctrl</kbd>-<kbd>W</kbd| to search |
 
 Add a date line and comment to the line where you have created the directory. Recall that any
 text on a line after a `#` is ignored by bash when evaluating the text as code. For example:   
 
-~~~
-# 2017_10_27   
-# Created sample directories for the Data Carpentry workshop  
-~~~
-{: .bash}
+2022_11_27  
+Created sample directories for the Data Carpentry workshop  
 
 Next, remove any lines of the history that are not relevant by navigating to those lines and using your 
 delete key. Save your file and close `nano`.
 
 Your file should look something like this: 
 
-~~~
-# 2017_10_27
-# Created sample directories for the Data Carpentry workshop
+2022_11_27.sh
+Created sample directories for the Data Carpentry workshop
+
+cd ~
 
 mkdir dc_workshop
 mkdir dc_workshop/docs
 mkdir dc_workshop/data
 mkdir dc_workshop/results
-~~~
-{: .output}
 
 If you keep this file up to date, you can use it to re-do your work on your project if something happens to your results files. To demonstrate how this works, first delete
 your `dc_workshop` directory and all of its subdirectories. Look at your directory 
 contents to verify the directory is gone. 
 
-~~~
-$ rm -r dc_workshop
-$ ls
-~~~
-{: .bash}
+```{bash, eval=FALSE, engine="sh"}
 
-~~~
-shell_data	dc_workshop_log_2017_10_27.sh
-~~~
-{: .output}
+rm -r dc_workshop
+ls
+
+```
+
+shell_data	dc_workshop_log_2022_11_27.sh
 
 Then run your workshop log file as a bash script. You should see the `dc_workshop`
 directory and all of its subdirectories reappear. 
 
-~~~
-$ bash dc_workshop_log_2017_10_27.sh
-$ ls
-~~~
-{: .bash}
+```{bash, eval=FALSE, engine="sh"}
 
-~~~
-shell_data	dc_workshop dc_workshop_log_2017_10_27.sh
-~~~
-{: .output}
+bash dc_workshop_log_2017_10_27.sh
+ls
+
+```
+
+shell_data	dc_workshop dc_workshop_log_2022_11_27.sh
 
 It's important that we keep our workshop log file outside of our `dc_workshop` directory
 if we want to use it to recreate our work. It's also important for us to keep it up to

@@ -1,23 +1,10 @@
----
-title: "Working with Files and Directories"
-teaching: 30
-exercises: 15
-questions:
-- "How can I view and search file contents?"
-- "How can I create, copy and delete files and directories?"
-- "How can I control who has permission to modify a file?"
-- "How can I repeat recently used commands?"
-objectives:
-- View, search within, copy, move, and rename files. Create new directories.
-- Use wildcards (`*`) to perform operations on multiple files.
-- Make a file read only.
-- Use the `history` command to view and repeat recently used commands.
-keypoints:
-- "You can view file contents using `less`, `cat`, `head` or `tail`."
-- "The commands `cp`, `mv`, and `mkdir` are useful for manipulating existing files and creating new directories."
-- "You can view file permissions using `ls -l` and change permissions using `chmod`."
-- "The `history` command and the up arrow on your keyboard can be used to repeat recently used commands."
----
+# Working with Files and Directories
+
+```{r include = FALSE}
+
+knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
+
+```
 
 ## Working with Files
 
@@ -31,125 +18,89 @@ have two results files, which are stored in our `untrimmed_fastq` directory.
 
 Navigate to your `untrimmed_fastq` directory:
 
-~~~
-$ cd ~/shell_data/untrimmed_fastq
-~~~
-{: .bash}
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq
+
+```
 
 We are interested in looking at the FASTQ files in this directory. We can list
 all files with the .fastq extension using the command:
 
-~~~
-$ ls *.fastq
-~~~
-{: .bash}
+```{bash}
 
-~~~
-SRR097977.fastq  SRR098026.fastq
-~~~
-{: .output}
+cd ~/shell_data/untrimmed_fastq
+ls *.fastq
+
+```
+
 
 The `*` character is a special type of character called a wildcard, which can be used to represent any number of any type of character. 
 Thus, `*.fastq` matches every file that ends with `.fastq`. 
 
 This command: 
 
-~~~
-$ ls *977.fastq
-~~~
-{: .bash}
 
-~~~
-SRR097977.fastq
-~~~
-{: .output}
+```{bash}
 
-lists only the file that ends with `977.fastq`.
+cd ~/shell_data/untrimmed_fastq
+ ls *977.fastq 
+
+```
+
+lists only the file that ends with `977.fastq`.   
 
 This command:
 
-~~~
-$ ls /usr/bin/*.sh
-~~~
-{: .bash}
+```{bash}
 
-~~~
-/usr/bin/amuFormat.sh  /usr/bin/gettext.sh  /usr/bin/gvmap.sh
-~~~
-{: .output}
+ls /usr/bin/*.sh
+
+```
 
 Lists every file in `/usr/bin` that ends in the characters `.sh`.
 Note that the output displays __full__ paths to files, since
 each result starts with `/`.
 
-> ## Exercise
-> Do each of the following tasks from your current directory using a single
-> `ls` command for each:
-> 
-> 1.  List all of the files in `/usr/bin` that start with the letter 'c'.
-> 2.  List all of the files in `/usr/bin` that contain the letter 'a'. 
-> 3.  List all of the files in `/usr/bin` that end with the letter 'o'.
->
-> Bonus: List all of the files in `/usr/bin` that contain the letter 'a' or the
-> letter 'c'.
-> 
-> Hint: The bonus question requires a Unix wildcard that we haven't talked about
-> yet. Try searching the internet for information about Unix wildcards to find
-> what you need to solve the bonus problem.
-> 
-> > ## Solution
-> > 1. `ls /usr/bin/c*`
-> > 2. `ls /usr/bin/*a*`
-> > 3. `ls /usr/bin/*o`  
-> > Bonus: `ls /usr/bin/*[ac]*`
-> > 
-> {: .solution}
-{: .challenge}
+## Exercise
 
-> ## Exercise
-> `echo` is a built-in shell command that writes its arguments, like a line of text to standard output. 
-> The `echo` command can also be used with pattern matching characters, such as wildcard characters. 
-> Here we will use the `echo` command to see how the wildcard character is interpreted by the shell.
-> 
-> ~~~
-> $ echo *.fastq
-> ~~~
-> {: .bash}
-> 
-> ~~~
-> SRR097977.fastq SRR098026.fastq
-> ~~~
-> {: .output}
-> 
-> The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
-> `echo *.fastq` is the same as that of `ls *.fastq`.
-> 
-> What would the output look like if the wildcard could *not* be matched? Compare the outputs of
-> `echo *.missing` and `ls *.missing`.
-> 
-> > ## Solution
-> > ~~~
-> > $ echo *.missing
-> > ~~~
-> > {: .bash}
-> > 
-> > ~~~
-> > *.missing
-> > ~~~
-> > {: .output}
-> > 
-> > ~~~
-> > $ ls *.missing
-> > ~~~
-> > {: .bash}
-> > 
-> > ~~~
-> > ls: cannot access '*.missing': No such file or directory
-> > ~~~
-> > {: .output}
-> > 
-> {: .solution}
-{: .challenge}
+Do each of the following tasks from your current directory using a single
+`ls` command for each:
+
+1.  List all of the files in `/usr/bin` that start with the letter 'c'.
+2.  List all of the files in `/usr/bin` that contain the letter 'a'. 
+3.  List all of the files in `/usr/bin` that end with the letter 'o'.
+
+Bonus: List all of the files in `/usr/bin` that contain the letter 'a' or the
+letter 'c'.
+
+Hint: The bonus question requires a Unix wildcard that we haven't talked about
+yet. Try searching the internet for information about Unix wildcards to find
+what you need to solve the bonus problem.
+
+## Solution
+
+
+## Exercise
+
+`echo` is a built-in shell command that writes its arguments, like a line of text to standard output. 
+The `echo` command can also be used with pattern matching characters, such as wildcard characters. 
+Here we will use the `echo` command to see how the wildcard character is interpreted by the shell.
+
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq
+echo *.fastq
+
+```
+
+The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
+`echo *.fastq` is the same as that of `ls *.fastq`.
+
+What would the output look like if the wildcard could *not* be matched? Compare the outputs of
+`echo *.missing` and `ls *.missing`.
+
+## Solution
 
 
 ## Command History
@@ -160,54 +111,54 @@ command. Likewise, the down arrow takes you forward in the command history.
 
 A few more useful shortcuts: 
 
-- <kbd>Ctrl</kbd>+<kbd>C</kbd> will cancel the command you are writing, and give you a 
+- <kbdCtrl</kbd+<kbdC</kbdwill cancel the command you are writing, and give you a 
 fresh prompt.
-- <kbd>Ctrl</kbd>+<kbd>R</kbd> will do a reverse-search through your command history.  This
+- <kbdCtrl</kbd+<kbdR</kbdwill do a reverse-search through your command history.  This
 is very useful.
-- <kbd>Ctrl</kbd>+<kbd>L</kbd> or the `clear` command will clear your screen.
+- <kbdCtrl</kbd+<kbdL</kbdor the `clear` command will clear your screen.
 
 You can also review your recent commands with the `history` command, by entering:
 
-~~~
-$ history
-~~~
-{: .bash}
+
+```{bash}
+
+history
+
+```
 
 to see a numbered list of recent commands. You can reuse one of these commands
 directly by referring to the number of that command.
 
 For example, if your history looked like this:
 
-~~~
+
 259  ls *
 260  ls /usr/bin/*.sh
 261  ls *R1*fastq
-~~~
-{: .output}
 
 then you could repeat command #260 by entering:
 
-~~~
-$ !260
-~~~
-{: .bash}
+```{bash, eval=FALSE, engine="sh"}
+
+!260
+
+```
+
 
 Type `!` (exclamation point) and then the number of the command from your history.
 You will be glad you learned this when you need to re-run very complicated commands.
 For more information on advanced usage of `history`, read section 9.3 of
 [Bash manual](https://www.gnu.org/software/bash/manual/html_node/index.html).
 
-> ## Exercise
-> Find the line number in your history for the command that listed all the .sh
-> files in `/usr/bin`. Rerun that command.
->
-> > ## Solution
-> > First type `history`. Then use `!` followed by the line number to rerun that command.
-> {: .solution}
-{: .challenge}
+## Exercise
+
+Find the line number in your history for the command that listed all the .sh
+files in `/usr/bin`. Rerun that command.
+
+## Solution
 
 
-## Examining Files
+Examining Files
 
 We now know how to switch directories, run programs, and look at the
 contents of directories, but how do we look at the contents of files?
@@ -217,26 +168,15 @@ contents using the program `cat`.
 
 Enter the following command from within the `untrimmed_fastq` directory: 
 
-~~~
-$ cat SRR098026.fastq
-~~~
-{: .bash}
+```{bash, eval=FALSE, engine="sh"}
 
-This will print out all of the contents of the `SRR098026.fastq` to the screen.
+cd ~/shell_data/untrimmed_fastq
+cat SRR098026.fastq 
 
+```
 
-> ## Exercise
-> 
-> 1. Print out the contents of the `~/shell_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file? 
-> 2.  From your home directory, and without changing directories,
-> use one short command to print the contents of all of the files in
-> the `~/shell_data/untrimmed_fastq` directory.
-> 
-> > ## Solution
-> > 1. The last line of the file is `C:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
-> > 2. `cat ~/shell_data/untrimmed_fastq/*`
-> {: .solution}
-{: .challenge}
+This will print out all of the contents of the `SRR098026.fastq ` to the screen.
+
 
 `cat` is a terrific program, but when the file is really big, it can
 be annoying to use. The program, `less`, is useful for this
@@ -245,27 +185,34 @@ are identical to the `man` program.
 
 Enter the following command:
 
-~~~
-$ less SRR097977.fastq
-~~~
-{: .bash}
+
+```{bash, eval=FALSE, engine="sh"}
+
+cd ~/shell_data/untrimmed_fastq
+less --window=1 SRR098026.fastq 
+q
+
+```
+
 
 Some navigation commands in `less`:
 
 | key     | action |
 | ------- | ---------- |
-| <kbd>Space</kbd> | to go forward |
-|  <kbd>b</kbd>    | to go backward |
-|  <kbd>g</kbd>    | to go to the beginning |
-|  <kbd>G</kbd>    | to go to the end |
-|  <kbd>q</kbd>    | to quit |
+| <kbdSpace</kbd| to go forward |
+|  <kbdb</kbd   | to go backward |
+|  <kbdg</kbd   | to go to the beginning |
+|  <kbdG</kbd   | to go to the end |
+|  <kbdq</kbd   | to quit |
 
 `less` also gives you a way of searching through files. Use the
 "/" key to begin a search. Enter the word you would like
 to search for and press `enter`. The screen will jump to the next location where
 that word is found. 
 
-**Shortcut:** If you hit "/" then "enter", `less` will  repeat
+**Shortcut:** 
+
+If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
 works its way forward. Scroll up a couple lines on your terminal to verify
 you are at the beginning of the file. Note, if you are at the end of the file and search
@@ -279,14 +226,12 @@ and where it is in the file. If you continue to type `/` and hit return, you wil
 forward to the next instance of this sequence motif. If you instead type `?` and hit 
 return, you will search backwards and move up the file to previous examples of this motif.
 
-> ## Exercise
->
-> What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
-> 
-> > ## Solution
-> > `CAC`
-> {: .solution}
-{: .challenge}
+## Exercise
+
+What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
+
+## Solution
+
 
 Remember, the `man` program actually uses `less` internally and
 therefore uses the same commands, so you can search documentation
@@ -299,67 +244,44 @@ to see the beginning or end of the file, or see how it's formatted.
 The commands are `head` and `tail` and they let you look at
 the beginning and end of a file, respectively.
 
-~~~
-$ head SRR098026.fastq
-~~~
-{: .bash}
 
-~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-@SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
-NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
-+SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-@SRR098026.3 HWUSI-EAS1599_1:2:1:0:570 length=35
-NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
-~~~
-{: .output}
+```{bash}
 
-~~~
-$ tail SRR098026.fastq
-~~~
-{: .bash}
+cd ~/shell_data/untrimmed_fastq
+head -n 4 SRR098026.fastq 
 
-~~~
-+SRR098026.247 HWUSI-EAS1599_1:2:1:2:1311 length=35
-#!##!#################!!!!!!!######
-@SRR098026.248 HWUSI-EAS1599_1:2:1:2:118 length=35
-GNTGNGGTCATCATACGCGCCCNNNNNNNGGCATG
-+SRR098026.248 HWUSI-EAS1599_1:2:1:2:118 length=35
-B!;?!A=5922:##########!!!!!!!######
-@SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
-CNCTNTATGCGTACGGCAGTGANNNNNNNGGAGAT
-+SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
-A!@B!BBB@ABAB#########!!!!!!!######
-~~~
-{: .output}
+```
+
+
+
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq
+tail -n 1 SRR098026.fastq 
+
+```
+
+
 
 The `-n` option to either of these commands can be used to print the
 first or last `n` lines of a file. 
 
-~~~
-$ head -n 1 SRR098026.fastq
-~~~
-{: .bash}
 
-~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-~~~
-{: .output}
+```{bash}
 
-~~~
-$ tail -n 1 SRR098026.fastq
-~~~
-{: .bash}
+cd ~/shell_data/untrimmed_fastq
+head -n 1 SRR098026.fastq 
 
-~~~
-A!@B!BBB@ABAB#########!!!!!!!######
-~~~
-{: .output}
+```
 
+
+
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq
+tail -n 1 SRR098026.fastq 
+
+```
 
 ## Details on the FASTQ format
 
@@ -377,32 +299,21 @@ include...
 We can view the first complete read in one of the files in our dataset by using `head` to look at
 the first four lines.
 
-~~~
-$ head -n 4 SRR098026.fastq
-~~~
-{: .bash}
 
-~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-~~~
-{: .output}
+```{bash}
 
-All but one of the nucleotides in this read are unknown (`N`). This is a pretty bad read!
+cd ~/shell_data/untrimmed_fastq
+head -n 4 SRR098026.fastq 
+
+```
+
 
 Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the 
 probability of an incorrect base call (e.g. 1 in 10) or, equivalently, the base call 
 accuracy (e.g. 90%). To make it possible to line up each individual nucleotide with its quality
 score, the numerical score is converted into a code where each individual character 
-represents the numerical quality score for an individual nucleotide. For example, in the line
-above, the quality score line is: 
+represents the numerical quality score for an individual nucleotide. 
 
-~~~
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-~~~
-{: .output}
 
 The `#` character and each of the `!` characters represent the encoded quality for an 
 individual nucleotide. The numerical value assigned to each of these characters depends on the 
@@ -410,12 +321,12 @@ sequencing platform that generated the reads. The sequencing machine used to gen
 uses the standard Sanger quality PHRED score encoding, Illumina version 1.8 onwards.
 Each character is assigned a quality score between 0 and 42 as shown in the chart below.
 
-~~~
-Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJK
+
+Quality encoding: !"#$%&'()*+,-./0123456789:;<=?@ABCDEFGHIJK
                   |         |         |         |         |
 Quality score:    0........10........20........30........40..                          
-~~~
-{: .output}
+
+
 
 Each quality score represents the probability that the corresponding nucleotide call is
 incorrect. This quality score is logarithmically based, so a quality score of 10 reflects a
@@ -423,19 +334,14 @@ base call accuracy of 90%, but a quality score of 20 reflects a base call accura
 These probability values are the results from the base calling algorithm and dependent on how 
 much signal was captured for the base incorporation. 
 
-Looking back at our read: 
+## Exercise
 
-~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-~~~
-{: .output}
+1. What is the last line of the `~/shell_data/untrimmed_fastq/SRR098026.fastq ` file?
+2.  From your home directory, and without changing directories,
+use one short command to print the contents of all of the files in
+the `~/shell_data/untrimmed_fastq` directory into one file.
 
-we can now see that the quality of each of the `N`s is 0 and the quality of the only
-nucleotide call (`C`) is also very poor (`#` = a quality score of 2). This is indeed a very
-bad read. 
+## Solution
 
 
 ## Creating, moving, copying, and removing
@@ -456,18 +362,19 @@ First, let's make a copy of one of our FASTQ files using the `cp` command.
 
 Navigate to the `shell_data/untrimmed_fastq` directory and enter:
 
-~~~
-$ cp SRR098026.fastq SRR098026-copy.fastq
-$ ls -F
-~~~
-{: .bash}
 
-~~~
-SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
-~~~
-{: .output}
+cp SRR098026.fastq  SRR098026-copy.fastq .fastq
 
-We now have two copies of the `SRR098026.fastq` file, one of them named `SRR098026-copy.fastq`. We'll move this file to a new directory
+
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq
+cp SRR098026.fastq  SRR098026-copy.fastq
+
+```
+
+
+We now have two copies of the `SRR098026.fastq ` file, one of them named `SRR098026-copy.fastq .fastq`. We'll move this file to a new directory
 called `backup` where we'll store our backup data files.
 
 ### Creating Directories
@@ -475,40 +382,42 @@ called `backup` where we'll store our backup data files.
 The `mkdir` command is used to make a directory. Enter `mkdir`
 followed by a space, then the directory name you want to create:
 
-~~~
-$ mkdir backup
-~~~
-{: .bash}
+```{bash, eval=FALSE, engine="sh"}
+
+cd ~/shell_data/untrimmed_fast
+mkdir backup
+
+```
 
 ### Moving / Renaming 
 
 We can now move our backup file to this directory. We can
 move files around using the command `mv`: 
 
-~~~
-$ mv SRR098026-copy.fastq backup
-$ ls backup
-~~~
-{: .bash}
- 
-~~~
-SRR098026-copy.fastq
-~~~
-{: .output}
+
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq
+cp SRR098026.fastq  SRR098026-copy.fastq
+mkdir backup
+mv SRR098026-copy.fastq backup
+ls backup
+
+```
+
 
 The `mv` command is also how you rename files. Let's rename this file to make it clear that this is a backup:
 
-~~~
-$ cd backup
-$ mv SRR098026-copy.fastq SRR098026-backup.fastq
-$ ls
-~~~
-{: .bash}
 
-~~~
-SRR098026-backup.fastq
-~~~
-{: .output}
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq/backup
+
+mv SRR098026-copy.fastq SRR098026-backup.fastq 
+ls
+
+```
+
 
 ### File Permissions
 
@@ -517,16 +426,12 @@ overwrite both copies. To make sure we can't accidentally mess up this backup fi
 that we're only allowed to read (i.e. view) the file, not write to it (i.e. make new changes).
 
 View the current permissions on a file using the `-l` (long) flag for the `ls` command: 
+```{bash}
 
-~~~
-$ ls -l
-~~~
-{: .bash}
+cd ~/shell_data/untrimmed_fastq
+ls -l
 
-~~~
--rw-r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
-~~~
-{: .output}
+```
 
 The first part of the output for the `-l` flag gives you information about the file's current permissions. There are ten slots in the
 permissions list. The first character in this list is related to file type, not permissions, so we'll ignore it for now. The next three
@@ -534,7 +439,7 @@ characters relate to the permissions that the file owner has, the next three rel
 three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
 that deal with your permissions (as the file owner). 
 
-![Permissions breakdown](../fig/rwx_figure.svg)
+![Permissions breakdown](fig/rwx_figure.svg)
 
 Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w` 
 indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you 
@@ -543,32 +448,31 @@ talk more about this in [a later lesson](http://www.datacarpentry.org/shell-geno
 
 Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`. 
 
-~~~
-$ chmod -w SRR098026-backup.fastq
-$ ls -l 
-~~~
-{: .bash}
+```{bash}
 
-~~~
--r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:02 SRR098026-backup.fastq
-~~~
-{: .output}
+cd ~/shell_data/untrimmed_fastq/backup
+chmod -w SRR098026-backup.fastq 
+ls -l 
+
+```
 
 ### Removing
 
 To prove to ourselves that you no longer have the ability to modify this file, try deleting it with the `rm` command:
 
-~~~
-$ rm SRR098026-backup.fastq
-~~~
-{: .bash}
+
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq/backup
+rm SRR098026-backup.fastq 
+
+```
+
 
 You'll be asked if you want to override your file permissions:
 
-~~~
-rm: remove write-protected regular file ‘SRR098026-backup.fastq’? 
-~~~
-{: .output}
+rm: remove write-protected regular file ‘SRR098026-backup.fastq ’? 
+
 
 You should enter `n` for no. If you enter `n` (for no), the file will not be deleted. If you enter `y`, you will delete the file. This gives us an extra 
 measure of security, as there is one more step between us and deleting our data files.
@@ -582,37 +486,28 @@ we just made.
 
 Enter the following command:
 
-~~~
-$ cd ..
-$ rm -r backup
-~~~
-{: .bash}
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq/
+rm -r backup
+
+```
 
 This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory, 
 you will be asked whether you want to override your permission settings. 
 
-> ## Exercise
->
-> Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
-> 1. Make sure that you have deleted your backup directory and all files it contains.  
-> 2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
-> learned yet how to do this
-> with a wildcard.)  
-> 3. Use a wildcard to move all of your backup files to a new backup directory.   
-> 4. Change the permissions on all of your backup files to be write-protected.  
->
-> > ## Solution
-> >
-> > 1. `rm -r backup`  
-> > 2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`  
-> > 3. `mkdir backup` and `mv *-backup.fastq backup`
-> > 4. `chmod -w backup/*-backup.fastq`   
-> > It's always a good idea to check your work with `ls -l backup`. You should see something like: 
-> > 
-> > ~~~
-> > -r--r--r-- 1 dcuser dcuser 47552 Nov 15 23:06 SRR097977-backup.fastq
-> > -r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:06 SRR098026-backup.fastq
-> > ~~~
-> > {: .output}
-> {: .solution}
-{: .challenge}
+## Exercise
+
+Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
+1. Make sure that you have deleted your backup directory and all files it contains.  
+2. Create a backup of SRR098026.fastq  and SRR097977.fastq  using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't 
+learned yet how to do this
+with a wildcard.)  
+3. Use a wildcard to move all of your backup files to a new backup directory.   
+4. Change the permissions on all of your backup files to be write-protected.  
+
+## Solution
+
+
+
+
