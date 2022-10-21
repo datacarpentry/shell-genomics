@@ -3,6 +3,7 @@
 ```{r include = FALSE}
 
 knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
+
 ```
 
 ## Working with Files
@@ -18,15 +19,19 @@ have two results files, which are stored in our `untrimmed_fastq` directory.
 Navigate to your `untrimmed_fastq` directory:
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
+
 ```
 
 We are interested in looking at the FASTQ files in this directory. We can list
 all files with the .fastq extension using the command:
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 ls *.fastq
+
 ```
 
 
@@ -37,17 +42,20 @@ This command:
 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
-ls *.fastq| grep SRR098026  
+ ls *977.fastq 
+
 ```
 
-lists only the file that starts with SRR098026    
+lists only the file that ends with `977.fastq`.   
 
 This command:
 
 ```{bash}
 
 ls /usr/bin/*.sh
+
 ```
 
 Lists every file in `/usr/bin` that ends in the characters `.sh`.
@@ -55,6 +63,7 @@ Note that the output displays __full__ paths to files, since
 each result starts with `/`.
 
 ## Exercise
+
 Do each of the following tasks from your current directory using a single
 `ls` command for each:
 
@@ -73,13 +82,16 @@ what you need to solve the bonus problem.
 
 
 ## Exercise
+
 `echo` is a built-in shell command that writes its arguments, like a line of text to standard output. 
 The `echo` command can also be used with pattern matching characters, such as wildcard characters. 
 Here we will use the `echo` command to see how the wildcard character is interpreted by the shell.
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 echo *.fastq
+
 ```
 
 The `*` is expanded to include any file that ends with `.fastq`. We can see that the output of
@@ -90,16 +102,6 @@ What would the output look like if the wildcard could *not* be matched? Compare 
 
 ## Solution
 
-
-```{bash, eval=FALSE, engine="sh"}
-echo *.missing
-```
-
-
-
-```{bash, eval=FALSE, engine="sh"}
-ls *.missing
-```
 
 ## Command History
 
@@ -118,9 +120,10 @@ is very useful.
 You can also review your recent commands with the `history` command, by entering:
 
 
-
 ```{bash}
+
 history
+
 ```
 
 to see a numbered list of recent commands. You can reuse one of these commands
@@ -136,7 +139,9 @@ For example, if your history looked like this:
 then you could repeat command #260 by entering:
 
 ```{bash, eval=FALSE, engine="sh"}
-!584
+
+!260
+
 ```
 
 
@@ -146,11 +151,12 @@ For more information on advanced usage of `history`, read section 9.3 of
 [Bash manual](https://www.gnu.org/software/bash/manual/html_node/index.html).
 
 ## Exercise
+
 Find the line number in your history for the command that listed all the .sh
 files in `/usr/bin`. Rerun that command.
 
 ## Solution
-First type `history`. Then use `!` followed by the line number to rerun that command.
+
 
 Examining Files
 
@@ -163,8 +169,10 @@ contents using the program `cat`.
 Enter the following command from within the `untrimmed_fastq` directory: 
 
 ```{bash, eval=FALSE, engine="sh"}
+
 cd ~/shell_data/untrimmed_fastq
 cat SRR098026.fastq 
+
 ```
 
 This will print out all of the contents of the `SRR098026.fastq ` to the screen.
@@ -179,9 +187,11 @@ Enter the following command:
 
 
 ```{bash, eval=FALSE, engine="sh"}
+
 cd ~/shell_data/untrimmed_fastq
 less --window=1 SRR098026.fastq 
 q
+
 ```
 
 
@@ -200,7 +210,9 @@ Some navigation commands in `less`:
 to search for and press `enter`. The screen will jump to the next location where
 that word is found. 
 
-**Shortcut:** If you hit "/" then "enter", `less` will  repeat
+**Shortcut:** 
+
+If you hit "/" then "enter", `less` will  repeat
 the previous search. `less` searches from the current location and
 works its way forward. Scroll up a couple lines on your terminal to verify
 you are at the beginning of the file. Note, if you are at the end of the file and search
@@ -233,8 +245,8 @@ The commands are `head` and `tail` and they let you look at
 the beginning and end of a file, respectively.
 
 
-
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 head -n 4 SRR098026.fastq 
 
@@ -243,8 +255,10 @@ head -n 4 SRR098026.fastq
 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 tail -n 1 SRR098026.fastq 
+
 ```
 
 
@@ -253,18 +267,20 @@ The `-n` option to either of these commands can be used to print the
 first or last `n` lines of a file. 
 
 
-
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 head -n 1 SRR098026.fastq 
+
 ```
 
 
 
-
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 tail -n 1 SRR098026.fastq 
+
 ```
 
 ## Details on the FASTQ format
@@ -285,8 +301,10 @@ the first four lines.
 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 head -n 4 SRR098026.fastq 
+
 ```
 
 
@@ -324,7 +342,7 @@ use one short command to print the contents of all of the files in
 the `~/shell_data/untrimmed_fastq` directory into one file.
 
 ## Solution
-1
+
 
 ## Creating, moving, copying, and removing
 
@@ -349,8 +367,10 @@ cp SRR098026.fastq  SRR098026-copy.fastq .fastq
 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 cp SRR098026.fastq  SRR098026-copy.fastq
+
 ```
 
 
@@ -363,8 +383,10 @@ The `mkdir` command is used to make a directory. Enter `mkdir`
 followed by a space, then the directory name you want to create:
 
 ```{bash, eval=FALSE, engine="sh"}
+
 cd ~/shell_data/untrimmed_fast
 mkdir backup
+
 ```
 
 ### Moving / Renaming 
@@ -374,11 +396,13 @@ move files around using the command `mv`:
 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 cp SRR098026.fastq  SRR098026-copy.fastq
 mkdir backup
 mv SRR098026-copy.fastq backup
 ls backup
+
 ```
 
 
@@ -386,10 +410,12 @@ The `mv` command is also how you rename files. Let's rename this file to make it
 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq/backup
 
 mv SRR098026-copy.fastq SRR098026-backup.fastq 
 ls
+
 ```
 
 
@@ -401,6 +427,7 @@ that we're only allowed to read (i.e. view) the file, not write to it (i.e. make
 
 View the current permissions on a file using the `-l` (long) flag for the `ls` command: 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
 ls -l
 
@@ -412,7 +439,7 @@ characters relate to the permissions that the file owner has, the next three rel
 three characters specify what other users outside of your group can do with the file. We're going to concentrate on the three positions
 that deal with your permissions (as the file owner). 
 
-![Permissions breakdown](../fig/rwx_figure.svg)
+![Permissions breakdown](fig/rwx_figure.svg)
 
 Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w` 
 indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you 
@@ -422,9 +449,11 @@ talk more about this in [a later lesson](http://www.datacarpentry.org/shell-geno
 Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`. 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq/backup
 chmod -w SRR098026-backup.fastq 
 ls -l 
+
 ```
 
 ### Removing
@@ -433,8 +462,10 @@ To prove to ourselves that you no longer have the ability to modify this file, t
 
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq/backup
 rm SRR098026-backup.fastq 
+
 ```
 
 
@@ -456,8 +487,10 @@ we just made.
 Enter the following command:
 
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq/
 rm -r backup
+
 ```
 
 This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory, 

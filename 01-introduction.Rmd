@@ -180,8 +180,10 @@ as needed.
 
 Let's go into the `untrimmed_fastq` directory and see what is in there.
 ```{bash}
+
 cd ~/shell_data/untrimmed_fastq
  ls -F
+ 
 ```
 
 This directory contains two files with `.fastq` extensions. FASTQ is a format
@@ -207,11 +209,12 @@ Return to your home directory:
 then enter:
 
 ```{bash, eval=FALSE, engine="sh"}
- cd dc<tab
+
+ cd sh<tab
+ 
 ```
 
-The shell will fill in the rest of the directory name for
-`shell_data`.
+The shell will fill in the rest of the directory name for `shell_data`.
 
 Now change directories to `untrimmed_fastq` in `shell_data`
 
@@ -219,6 +222,7 @@ Now change directories to `untrimmed_fastq` in `shell_data`
 
  cd ~/shell_data
  cd untrimmed_fastq
+ 
 ```
 
 Using tab complete can be very helpful. However, it will only autocomplete
@@ -229,15 +233,19 @@ For example, if we now try to list the files which names start with `SR`
 by using tab complete:  
 
 ```{bash, eval=FALSE, engine="sh"}
+
  ls SR<tab
+ 
 ```
 
 The shell auto-completes your command to `SRR09`, because all file names in 
 the directory begin with this prefix. When you hit
-<kbdTab</kbdagain, the shell will list the possible choices.
+<kbdTab</kbd again, the shell will list the possible choices.
 
 ```{bash, eval=FALSE, engine="sh"}
+
  ls SRR258<tab<tab
+ 
 ```
 
 Tab completion can also fill in the names of programs, which can be useful if you

@@ -3,6 +3,7 @@
 ```{r include = FALSE}
 
 knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
+
 ```
 
 ## Moving around the file system
@@ -37,7 +38,6 @@ directory? Can we type `cd data`? Try it and see what happens.
 
 cd shell_data
 
-
 ```
 
 Your computer looked for a directory or file called `shell_data` within the 
@@ -48,9 +48,11 @@ We have a special command to tell the computer to move us back or up one directo
 
 
 ```{bash}
+
 cd ~/shell_data
 cd untrimmed_fastq
 cd ..
+
 ```
 
 
@@ -61,12 +63,16 @@ to, and `ls` to check that the contents of the directory are correct.
 
 
 ```{bash}
+
  pwd
+ 
 ```
 
 
 
 ```{bash}
+
+
 ls
 ```
 
@@ -76,7 +82,9 @@ From this output, we can see that `..` did indeed take us back one level in our 
 You can chain these together like so:
 
 ```{bash}
+
 ls ../../
+
 ```
 
 prints the contents of `/home`.
@@ -93,59 +101,15 @@ Hint: hidden files and folders in Unix start with `.`, for example `.my_hidden_d
 
 ## Solution
 
-First use the `man` command to look at the options for `ls`. 
-
-```{bash}
-man ls
-```
-
-The `-a` option is short for `all` and says that it causes `ls` to "not ignore
-entries starting with ." This is the option we want. 
-
-
-```{bash}
-cd ~/shell_data
-ls -a
-
-```
-
-The name of the hidden directory is `.hidden`. We can navigate to that directory
-using `cd`. 
-
-
-```{bash}
-<<<<<<< HEAD
-cd ~/shell_data//.hidden
-=======
-cd ~/shell_data
-cd .hidden
->>>>>>> 63d3bc2 (first commit)
-```
-
-And then list the contents of the directory using `ls`. 
-
-
-```{bash}
-<<<<<<< HEAD
-cd ~/cd ~/shell_data/.hidden
-ls -a
-=======
-
-cd ~/shell_data/.hidden
-ls
-
->>>>>>> 63d3bc2 (first commit)
-```
-
-
-The name of the text file is `youfoundit.txt`.
 
 
 In most commands the flags can be combined together in no particular order to obtain the desired results/output.
 
 ```{bash}
+
 ls -Fa
 ls -laF
+
 ```
 
 
@@ -159,14 +123,18 @@ home directory if you are not already there.
 
 
 ```{bash}
+
 cd
+
 ```
 
 Then enter the command:
 
 
 ```{bash}
+
 ls 
+
 ```
 
 
@@ -174,7 +142,6 @@ ls
 The `cd` command works in a similar way.
 
 Try entering:
-
 
 
 ```{bash}
@@ -196,10 +163,11 @@ directory.
 
 
 ```{bash}
+
 cd ~
 ls shell_data/untrimmed_fastq
-```
 
+```
 
 
 ## Full vs. Relative Paths
@@ -210,8 +178,6 @@ full *absolute* path. The directories on the computer are arranged into a
 hierarchy. The full path tells you where a directory is in that
 hierarchy. Navigate to the home directory, then enter the `pwd`
 command.
-
-
 
 
 ```{bash}
@@ -238,26 +204,27 @@ directory in `home` which is a directory in `/`. More on `root` and
 Now enter the following command:
 
 ```{bash, eval=FALSE, engine="sh"}
-<<<<<<< HEAD
+
 cd /home/dcuser/shell_data/.hidden
-=======
 
-cd /Users/dcuser/shell_data/.hidden
-
->>>>>>> 63d3bc2 (first commit)
 ```
 
 This jumps forward multiple levels to the `.hidden` directory. 
 Now go back to the home directory. 
 
 ```{bash}
+
 cd ~
+
 ```
 
 You can also navigate to the `.hidden` directory using:
 
+
 ```{bash}
+
 cd ~/shell_data/.hidden
+
 ```
 
 These two commands have the same effect, they both take us to the `.hidden` directory.
@@ -316,14 +283,18 @@ In our case, the `root` directory is __two__ levels above our
 
 
 ```{bash}
+
 cd ~
+
 ```
 
 Then enter the command:
 
 
 ```{bash}
+
 ls 
+
 ```
 
 This prints the contents of your home directory, without you needing to 

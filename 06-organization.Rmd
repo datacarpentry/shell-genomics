@@ -1,9 +1,6 @@
 
 # Project Organization
-<<<<<<< HEAD
-=======
 
->>>>>>> 63d3bc2 (first commit)
 ```{r include = FALSE}
 
 knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
@@ -93,6 +90,7 @@ iteratively.
 
 cd ~
 ls -R dc_workshop
+
 ```
 
 You should see the following output:
@@ -147,7 +145,9 @@ files. Let's document the work we have done on our project so far.
 View the commands that you have used so far during this session using `history`:
 
 ```{bash}
+
 history
+
 ```
 
 The history likely contains many more commands than you have used for the current project. Let's view the last
@@ -156,7 +156,9 @@ several commands that focus on just what we need for this project.
 View the last n lines of your history (where n = approximately the last few lines you think relevant). For our example, we will use the last 7:
 
 ```{bash}
+
 history | tail -n 7
+
 ```
 
 ## Exercise
@@ -178,6 +180,7 @@ You may have noticed that your history contains the `history` command itself. To
 from our log, let's use the `nano` text editor to fix the file:  
 
 ```{bash, eval=FALSE, engine="sh"}
+
 nano dc_workshop_log_2022_11_27.sh
 ```
 
