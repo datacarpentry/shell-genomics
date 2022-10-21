@@ -1,8 +1,13 @@
 
 # Project Organization
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63d3bc2 (first commit)
 ```{r include = FALSE}
 
 knitr::opts_chunk$set(engine.opts = list(bash = "-l"))
+
 ```
 
 Getting your project started
@@ -41,48 +46,51 @@ feel indebted to you!
 With this in mind, let's have a look at the best practices for 
 documenting your genomics project. Your future self will thank you.  
 
-In this exercise we will setup a file system for the project we will be working on during this workshop.  
+In this exercise we will setup a file system for the project we will be working on for the variant section. 
 
-We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
+We will start by creating a directory that we can use for the variant section. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
 
 ```{bash}
+
 cd
+
 pwd
+
 ```
 
 You should see the output: 
 
-/home/dcuser  
+/Users/dcuser  
 
 ## Tip  
+
 If you aren't in your home directory, the easiest way to get there is to enter the command `cd ~`, which
 always returns you to home.  
 
 ## Exercise  
-Use the `mkdir` command to make the following directories:   
 
+Use the `mkdir` command to make the following directories: 
+
+- `dc_workshop`
 - `dc_workshop/docs`
-
+- `dc_workshop/data`
+- `dc_workshop/results`
 
 ```{bash, eval=FALSE, engine="sh"}
+
 cd ~/dc_workshop/data/untrimmed_fastq`
 nano README.txt
+
 ```
 
 ## Solution
-You should make these directories:
-```{bash, eval=FALSE, engine="sh"}
-cd ~/dc_workshop
-mkdir dc_workshop/docs
-mkdir dc_workshop/results
-
-```
 
 Use `ls -R` to verify that you have created these directories. The `-R` option for `ls` stands for recursive. This option causes
 `ls` to return the contents of each subdirectory within the directory
 iteratively. 
 
-```{bash}
+```{bash, eval=FALSE, engine="sh"}
+
 cd ~
 ls -R dc_workshop
 ```
@@ -154,12 +162,14 @@ history | tail -n 7
 ## Exercise
 Using your knowledge of the shell, use the append redirect `>>` to create a file called
 `dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g.
-`dc_workshop_log_2017_10_27.sh`)  
+`dc_workshop_log_2022_11_.XX.sh`)  
 
 ## Solution
 
 ```{bash}
-history | tail -n 7 >dc_workshop_log_2017_10_27.sh
+
+history | tail -n 7 > dc_workshop_log_2022_11_27.sh
+
 ```
 
 Note we used the last 7 lines as an example, the number of lines may vary.
@@ -168,10 +178,10 @@ You may have noticed that your history contains the `history` command itself. To
 from our log, let's use the `nano` text editor to fix the file:  
 
 ```{bash, eval=FALSE, engine="sh"}
-nano dc_workshop_log_2017_10_27.sh
+nano dc_workshop_log_2022_11_27.sh
 ```
 
-(Remember to replace the `2017_10_27` with your workshop date.)
+(Remember to replace the `2022_11_27` with your workshop date.)
 
 From the `nano` screen, you can use your cursor to navigate, type, and delete any redundant lines.   
 
@@ -193,7 +203,7 @@ Here are some useful keyboard shortcuts for moving around within a text document
 Add a date line and comment to the line where you have created the directory. Recall that any
 text on a line after a `#` is ignored by bash when evaluating the text as code. For example:   
 
-2017_10_27   
+2022_11_27  
 Created sample directories for the Data Carpentry workshop  
 
 Next, remove any lines of the history that are not relevant by navigating to those lines and using your 
@@ -201,10 +211,14 @@ delete key. Save your file and close `nano`.
 
 Your file should look something like this: 
 
-2017_10_27
+2022_11_27.sh
 Created sample directories for the Data Carpentry workshop
 
+cd ~
+
+mkdir dc_workshop
 mkdir dc_workshop/docs
+mkdir dc_workshop/data
 mkdir dc_workshop/results
 
 If you keep this file up to date, you can use it to re-do your work on your project if something happens to your results files. To demonstrate how this works, first delete
@@ -212,11 +226,13 @@ your `dc_workshop` directory and all of its subdirectories. Look at your directo
 contents to verify the directory is gone. 
 
 ```{bash, eval=FALSE, engine="sh"}
+
 rm -r dc_workshop
 ls
+
 ```
 
-shell_data	dc_workshop_log_2017_10_27.sh
+shell_data	dc_workshop_log_2022_11_27.sh
 
 Then run your workshop log file as a bash script. You should see the `dc_workshop`
 directory and all of its subdirectories reappear. 
@@ -225,9 +241,10 @@ directory and all of its subdirectories reappear.
 
 bash dc_workshop_log_2017_10_27.sh
 ls
+
 ```
 
-shell_data	dc_workshop dc_workshop_log_2017_10_27.sh
+shell_data	dc_workshop dc_workshop_log_2022_11_27.sh
 
 It's important that we keep our workshop log file outside of our `dc_workshop` directory
 if we want to use it to recreate our work. It's also important for us to keep it up to

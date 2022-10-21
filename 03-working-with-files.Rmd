@@ -70,10 +70,7 @@ yet. Try searching the internet for information about Unix wildcards to find
 what you need to solve the bonus problem.
 
 ## Solution
-1. `ls /usr/bin/c*`
-2. `ls /usr/bin/*a*`
-3. `ls /usr/bin/*o`  
-Bonus: `ls /usr/bin/*[ac]*`
+
 
 ## Exercise
 `echo` is a built-in shell command that writes its arguments, like a line of text to standard output. 
@@ -222,7 +219,7 @@ return, you will search backwards and move up the file to previous examples of t
 What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
 
 ## Solution
-`CAC`
+
 
 Remember, the `man` program actually uses `less` internally and
 therefore uses the same commands, so you can search documentation
@@ -287,14 +284,10 @@ We can view the first complete read in one of the files in our dataset by using 
 the first four lines.
 
 
-
-
 ```{bash}
 cd ~/shell_data/untrimmed_fastq
 head -n 4 SRR098026.fastq 
 ```
-
-
 
 
 Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the 
@@ -302,8 +295,6 @@ probability of an incorrect base call (e.g. 1 in 10) or, equivalently, the base 
 accuracy (e.g. 90%). To make it possible to line up each individual nucleotide with its quality
 score, the numerical score is converted into a code where each individual character 
 represents the numerical quality score for an individual nucleotide. 
-
-
 
 
 The `#` character and each of the `!` characters represent the encoded quality for an 
@@ -333,8 +324,7 @@ use one short command to print the contents of all of the files in
 the `~/shell_data/untrimmed_fastq` directory into one file.
 
 ## Solution
-1. The last line of the file is `C:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
-2. cat ~/shell_data/untrimmed_fastq/* > fastq.txt
+1
 
 ## Creating, moving, copying, and removing
 
@@ -484,16 +474,6 @@ with a wildcard.)
 4. Change the permissions on all of your backup files to be write-protected.  
 
 ## Solution
-
-1. `rm -r backup`  
-2. `cp SRR098026.fastq  SRR098026-backup.fastq ` and `cp SRR097977.fastq  SRR097977-backup.fastq .fastq`  
-3. `mkdir backup` and `mv *-backup.fastq backup`
-4. `chmod -w backup/*-backup.fastq`   
-It's always a good idea to check your work with `ls -l backup`. You should see something like: 
-
-
--r--r--r-- 1 dcuser dcuser 47552 Nov 15 23:06 SRR097977-backup.fastq
--r--r--r-- 1 dcuser dcuser 43332 Nov 15 23:06 SRR098026-backup.fastq 
 
 
 

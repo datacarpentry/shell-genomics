@@ -111,7 +111,7 @@ which stands for "listing":
 `ls` prints the names of the files and directories in the current directory in
 alphabetical order,
 arranged neatly into columns. 
-We'll be working within the `~/dc_workshop/data` subdirectory, and creating new subdirectories, throughout this workshop.  
+We'll be working within the `~/shell_data` subdirectory, and creating new subdirectories, throughout this workshop.  
 
 The command to change locations in our file system is `cd`, followed by a
 directory name to change our working directory.
@@ -123,7 +123,8 @@ use the following command to get there:
 
 ```{bash}
 
-cd ~/dc_workshop/data
+cd ~/shell_data
+
 ```
 
 
@@ -179,7 +180,7 @@ as needed.
 
 Let's go into the `untrimmed_fastq` directory and see what is in there.
 ```{bash}
-cd ~/dc_workshop/data/untrimmed_fastq
+cd ~/shell_data/untrimmed_fastq
  ls -F
 ```
 
@@ -216,7 +217,7 @@ Now change directories to `untrimmed_fastq` in `shell_data`
 
 ```{bash}
 
- cd ~/dc_workshop/data
+ cd ~/shell_data
  cd untrimmed_fastq
 ```
 

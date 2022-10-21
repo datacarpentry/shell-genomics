@@ -28,10 +28,13 @@ nucleotide at that position in the DNA sequence.
 We'll search for strings inside of our fastq files. Let's first make sure we are in the correct 
 directory:
 
-
 ```{bash}
 
 cd ~/shell_data/untrimmed_fastq/
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).
@@ -45,14 +48,21 @@ research you will most likely use a bioinformatics tool that has a built-in prog
 filtering out low-quality reads. You'll learn how to use one such tool in 
 [a later lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control/index.html).
 
-Let's search for the string NNNNNNNNNN in the SRR098026 file:
+Let's search for the string NNNNNNNNNN in the SRR097977 file:
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
 grep NNNNNNNNNN  SRR098026.fastq
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep NNNNNNNNNN SRR098026.fastq
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
-This command returns a lot of output to the terminal. Every single line in the SRR098026 
+This command returns a lot of output to the terminal. Every single line in the SRR097977 
 file that contains at least 10 consecutive Ns is printed to the terminal, regardless of how long or short the file is. 
 
 We may be interested not only in the actual sequence which contains this string, but 
@@ -67,8 +77,15 @@ each match. The `-A` argument returns a specific number of lines after each matc
 matching line, so we add `-B1 -A2` to our grep command:
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 One of the sets of lines returned by this command is: 
@@ -80,7 +97,11 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
 ## Exercise
 
+<<<<<<< HEAD
 1. Search for the sequence `GNATNACCACTTCC` in the ` SRR098026.fastq` file.
+=======
+1. Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
+>>>>>>> 63d3bc2 (first commit)
 Have your search return all matching lines and the name (or identifier) for each sequence
 that contains a match.
 
@@ -89,9 +110,11 @@ Have your search return all matching lines and the name (or identifier) for each
 that contains a match.
 
 ## Solution  
+<<<<<<< HEAD
 1. `grep -B1 GNATNACCACTTCC  SRR098026.fastq` 
+=======
+>>>>>>> 63d3bc2 (first commit)
 
-2. `grep -B1 AAGTT *.fastq`
 
 ## Redirecting output
 
@@ -113,8 +136,15 @@ in our FASTQ files that contain
 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq > bad_reads.txt
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 ## File extensions
@@ -137,20 +167,31 @@ make sure your file matches your instructor's output.
 As of Sept. 2020, wc gives the following output:  
 
 ```{bash}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63d3bc2 (first commit)
 cd ~/shell_data/untrimmed_fastq/
 wc bad_reads.txt
+
 ```
 
 This will tell us the number of lines, words and characters in the file. If we
 want only the number of lines, we can use the `-l` flag for `lines`.
 
 ```{bash}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63d3bc2 (first commit)
 cd ~/shell_data/untrimmed_fastq/
 wc -l bad_reads.txt
+
 ```
 
 ## Exercise
 
+<<<<<<< HEAD
 How many sequences are there in ` SRR098026.fastq`? Remember that every sequence is formed by four lines.
 
 ## Solution
@@ -174,6 +215,18 @@ grep NNN  SRR098026.fastq > bad_reads.txt
 wc -l bad_reads.txt
 ```
 
+=======
+How many sequences are there in `SRR098026.fastq`? Remember that every sequence is formed by four lines.
+
+## Solution
+
+## Exercise
+
+How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
+
+## Solution
+
+>>>>>>> 63d3bc2 (first commit)
 We might want to search multiple FASTQ files for sequences that match our search pattern.
 However, we need to be careful, because each time we use the `` command to redirect output
 to a file, the new output will replace the output that was already present in the file. 
@@ -181,35 +234,60 @@ This is called "overwriting" and, just like you don't want to overwrite your vid
 of your kid's first birthday party, you also want to avoid overwriting your data files.
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq > bad_reads.txt
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+>>>>>>> 63d3bc2 (first commit)
 wc -l bad_reads.txt
+
 ```
 
 ```{bash}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63d3bc2 (first commit)
 cd ~/shell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
 wc -l bad_reads.txt
+
 ```
+
 Here, the output of our second  call to `wc` shows that we no longer have any lines in our `bad_reads.txt` file. This is 
 because the second file we searched (`SRR097977.fastq`) does not contain any lines that match our
 search sequence. So our file was overwritten and is now empty.
 
-We can avoid overwriting our files by using the command ``. `` is known as the "append redirect" and will 
+We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will 
 append new output to the end of a file, rather than overwriting it.
 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq > bad_reads.txt
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+>>>>>>> 63d3bc2 (first commit)
 wc -l bad_reads.txt
 
 ```
 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+>>>>>>> 63d3bc2 (first commit)
 wc -l bad_reads.txt
 
 ```
@@ -219,9 +297,15 @@ The output of our second call to `wc` shows that we have not overwritten our ori
 We can also do this with a single line of code by using a wildcard: 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+>>>>>>> 63d3bc2 (first commit)
 grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
 wc -l bad_reads.txt
+
 ```
 
 ## File extensions - part 2
@@ -232,8 +316,15 @@ and then ran the command above using a `.fastq` extension instead of a `.txt` ex
 would give us a warning. 
 
 ```{bash, eval=FALSE, engine="sh"}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN *.fastq bad_reads.fastq
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 grep: input file ‘bad_reads.fastq’ is also the output
@@ -262,8 +353,15 @@ from our `grep` call through the `less` command.
 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq | less
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows 
@@ -274,8 +372,15 @@ the output of the grep search to the command `wc -l`. This can be helpful for in
 you would like to save it to a file. 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq | wc -l 
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l 
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
@@ -285,21 +390,36 @@ If we explore `> bad_reads.txt` using `less`, we might be able to notice what is
 number of lines. Luckily, this issue happens by the end of the file so we can also spot it with `tail`.
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq > bad_reads.txt
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+>>>>>>> 63d3bc2 (first commit)
 tail bad_reads.txt
+
 ```
 
-The fifth and six lines in the output display "--" which is the default action for `grep` to separate groups of 
+The sixth line in the output displays "--" which is the default action for `grep` to separate groups of 
 lines matching the pattern, and indicate groups of lines which did not match the pattern so are not displayed. 
 To fix this issue, we can redirect the output of grep to a second instance of `grep` as follows.
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/sbell_data/untrimmed_fastq/
 grep -B1 -A2 NNNNNNNNNN  SRR098026.fastq | grep -v '^--' bad_reads.txt
 tail bad_reads.txt
 ```
+=======
+>>>>>>> 63d3bc2 (first commit)
 
+cd ~/shell_data/untrimmed_fastq/
+grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | grep -v '^--' > bad_reads.txt
+tail bad_reads.txt
+
+```
 
 The `-v` option in the second `grep` search stands for `--invert-match` meaning `grep` will now only display the 
 lines which do not match the searched pattern, in this case `'^--'`. The caret (`^`) is an **anchoring** 
@@ -342,11 +462,13 @@ Suppose we have a variable named `foo` that contains the text `abc`, and would
 like to expand `foo` to create the text `abcEFG`.
 
 ```{bash, eval=FALSE, engine="sh"}
+
 foo=abc
+
 echo foo is $foo
-foo is abc
+
 echo foo is $fooEFG      # doesn't work
-foo is
+
 ```
 
 The interpreter is trying to expand a variable named `fooEFG`, which (probably)
@@ -356,17 +478,24 @@ character as a comment character. Any text on a line after a `#` is ignored by
 bash when evaluating the text as code.
 
 ```{bash}
+
 foo=abc
+
 echo foo is $foo
 
-echo foo is ${foo}EFG     
+echo foo is ${foo}EFG 
+
 ```
 
 now it works!
 
-Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice the shell prompt changes from `$` to `` and back again as we were typing in our loop. The second prompt, ``, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
+Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice the shell prompt changes from `$` to `` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
 
 ```{bash}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63d3bc2 (first commit)
 cd ~/shell_data/untrimmed_fastq/
 
 for filename in *.fastq
@@ -377,7 +506,11 @@ done
 ```
 
 The for loop begins with the formula `for <variablein <group to iterate over`. In this case, the word `filename` is designated 
+<<<<<<< HEAD
 as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename` 
+=======
+as the variable to be used over each iteration. In our case `SRR098026.fastq` and `SRR097977.fastq` will be substituted for `filename` 
+>>>>>>> 63d3bc2 (first commit)
 because they fit the pattern of ending with .fastq in the directory we've specified. The next line of the for loop is `do`. The next line is 
 the code that we want to execute. We are telling the loop to print the first two lines of each variable we iterate over. Finally, the
 word `done` ends the loop.
@@ -386,11 +519,18 @@ After executing the loop, you should see the first two lines of both fastq files
 will save this information to a file.
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+
+>>>>>>> 63d3bc2 (first commit)
 for filename in *.fastq
 do
 head -n 2 ${filename} > seq_info.txt
 done
+
 ```
 
 When writing a loop, you will not be able to return to previous lines once you have pressed Enter. Remember that we can cancel the current command using
@@ -399,19 +539,27 @@ When writing a loop, you will not be able to return to previous lines once you h
 
 If you notice a mistake that is going to prevent your loop for executing correctly.
 
-Note that we are using `` to append the text to our `seq_info.txt` file. If we used ``, the `seq_info.txt` file would be rewritten
-every time the loop iterates, so it would only have text from the last variable used. Instead, `` adds to the end of the file.
+Note that we are using `>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
+every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
 
 ## Using Basename in for loops
 Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the `.fastq` extension from the files that we’ve been working with. 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
 basename SRR097977.fastq .fastq
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+basename SRR097977.fastq .fastq
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 We see that this returns just the SRR accession, and no longer has the .fastq file extension on it.
 
+<<<<<<< HEAD
 
 SRR097977
 
@@ -420,6 +568,15 @@ If we try the same thing but use `.fasta` as the file extension instead, nothing
 ```{bash}
 cd ~/shell_data/untrimmed_fastq/
 basename SRR097977.fastq .fasta
+=======
+If we try the same thing but use `.fasta` as the file extension instead, nothing happens. This is because basename only works when it exactly matches a string in the file.
+
+```{bash}
+
+cd ~/shell_data/untrimmed_fastq/
+basename SRR097977.fastq .fasta
+
+>>>>>>> 63d3bc2 (first commit)
 ```
 
 Basename is really powerful when used in a for loop. It allows to access just the file prefix, which you can use to name things. Let's try this.
@@ -427,12 +584,19 @@ Basename is really powerful when used in a for loop. It allows to access just th
 Inside our for loop, we create a new name variable. We call the basename function inside the parenthesis, then give our variable name from the for loop, in this case `${filename}`, and finally state that `.fastq` should be removed from the file name. It’s important to note that we’re not changing the actual files, we’re creating a new variable called name. The line echo $name will print to the terminal the variable name each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+
+>>>>>>> 63d3bc2 (first commit)
 for filename in *.fastq
 do
 name=$(basename ${filename} .fastq)
 echo ${name}
 done
+
 ```
 
 ## Exercise
@@ -440,6 +604,7 @@ done
 Print the file prefix of all of the `.txt` files in our current directory.
 
 ## Solution
+<<<<<<< HEAD
  
 ```{bash}
 cd ~/shell_data/untrimmed_fastq/
@@ -449,24 +614,35 @@ name=$(basename ${filename} .txt)
 echo ${name}
 done
 ```
+=======
+
+>>>>>>> 63d3bc2 (first commit)
 
 One way this is really useful is to move files. Let's rename all of our .txt files using `mv` so that they have the years on them, which will document when we created them. 
 
 ```{bash}
+<<<<<<< HEAD
 cd ~/shell_data/untrimmed_fastq/
+=======
+
+cd ~/shell_data/untrimmed_fastq/
+
+>>>>>>> 63d3bc2 (first commit)
 for filename in *.txt
 do
 name=$(basename ${filename} .txt)
-mv ${filename}  ${name}_2019.txt
+mv ${filename}  ${name}_2022.txt
 done
 
 ```
 
+
 ## Exercise
 
-Remove `_2019` from all of the `.txt` files. 
+Remove `_2022` from all of the `.txt` files. 
 
 ## Solution
+<<<<<<< HEAD
  
 ```{bash}
 cd ~/shell_data/untrimmed_fastq/
@@ -477,6 +653,8 @@ mv ${filename} ${name}.txt
 done
 ```
 
+=======
+>>>>>>> 63d3bc2 (first commit)
 
 
 
