@@ -232,8 +232,9 @@ $ wc -l bad_reads.txt
 >> ~~~
 >> {: .output}
 >>
+>> Now you can divide this number by four to get the number of sequences in your fastq file.
+>>
 > {: .solution}
-> Now you can divide this number by four to get the number of sequences in your fastq file
 {: .challenge}
 
 
