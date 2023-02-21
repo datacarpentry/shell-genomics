@@ -495,7 +495,7 @@ foo is
 
 The interpreter is trying to expand a variable named `fooEFG`, which (probably)
 doesn't exist. We can avoid this problem by enclosing the variable name in 
-braces (`{` and `}`, sometimes called "squiggle braces"). `bash` treats the `#`
+braces (`{` and `}`, also called "curly brackets"). `bash` treats the `#`
 character as a comment character. Any text on a line after a `#` is ignored by
 bash when evaluating the text as code.
 
