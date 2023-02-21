@@ -362,10 +362,10 @@ the file to see how many reads matched our criteria. There's a way to do this, h
 doesn't require us to create these intermediate files - the pipe command (`|`).
 
 This is probably not a key on
-your keyboard you use very much, so let's all take a minute to find that key. For the standard QWERTY keyboard
-layout, the `|` character can be found using the key combination
-
-- <kbd>Shift</kbd>+<kbd>\</kbd>
+your keyboard you use very much, so let's all take a minute to find that key.
+In the UK and US keyboard layouts, and several others,
+the `|` character can be found using the key combination <kbd>Shift</kbd>+<kbd>\</kbd>.
+This may be different for other language-specific layouts.
 
 What `|` does is take the output that is scrolling by on the terminal and uses that output as input to another command. 
 When our output was scrolling by, we might have wished we could slow it down and
