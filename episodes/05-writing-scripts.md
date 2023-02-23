@@ -326,11 +326,11 @@ using a transfer program, it needs to be installed on your local machine, not yo
 
 ## Transferring Data Between your Local Machine and the Cloud
 
-These directions are platform specific, so please follow the instructions for your system:
-
-**Please select the platform you wish to use for the exercises: <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"><option value="unix" id="id_unix" selected> UNIX </option><option value="win" id="id_win" selected> Windows </option></select>**
-
-
+If you're using Windows with PuTTY instead of Git Bash, please select the alternative option here:
+<select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;">
+    <option value="unix" id="id_unix" selected> Linux, Mac OS, Git Bash </option>
+    <option value="win" id="id_win"> PuTTY </option>
+</select>
 
 <div id="div_unix" style="display:block" markdown="1">
 
@@ -396,8 +396,8 @@ Remember that in both instances, the command is run from your local machine, we'
 
 ### Uploading Data to your Virtual Machine with PSCP
 
-If you're using a PC, we recommend you use the *PSCP* program. This program is from the same suite of
-tools as the PuTTY program we have been using to connect.
+If you're using a Windows PC without Git Bash, we recommend you use the *PSCP* program.
+This program is from the same suite of tools as the PuTTY program we have been using to connect.
 
 1. If you haven't done so, download pscp from [http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe](http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe)
 2. Make sure the *PSCP* program is somewhere you know on your computer. In this case,
