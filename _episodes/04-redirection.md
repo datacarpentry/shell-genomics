@@ -232,8 +232,9 @@ $ wc -l bad_reads.txt
 >> ~~~
 >> {: .output}
 >>
+>> Now you can divide this number by four to get the number of sequences in your fastq file.
+>>
 > {: .solution}
-> Now you can divide this number by four to get the number of sequences in your fastq file
 {: .challenge}
 
 
@@ -361,10 +362,10 @@ the file to see how many reads matched our criteria. There's a way to do this, h
 doesn't require us to create these intermediate files - the pipe command (`|`).
 
 This is probably not a key on
-your keyboard you use very much, so let's all take a minute to find that key. For the standard QWERTY keyboard
-layout, the `|` character can be found using the key combination
-
-- <kbd>Shift</kbd>+<kbd>\</kbd>
+your keyboard you use very much, so let's all take a minute to find that key.
+In the UK and US keyboard layouts, and several others,
+the `|` character can be found using the key combination <kbd>Shift</kbd>+<kbd>\</kbd>.
+This may be different for other language-specific layouts.
 
 What `|` does is take the output that is scrolling by on the terminal and uses that output as input to another command. 
 When our output was scrolling by, we might have wished we could slow it down and
@@ -494,7 +495,7 @@ foo is
 
 The interpreter is trying to expand a variable named `fooEFG`, which (probably)
 doesn't exist. We can avoid this problem by enclosing the variable name in 
-braces (`{` and `}`, sometimes called "squiggle braces"). `bash` treats the `#`
+braces (`{` and `}`, also called "curly brackets"). `bash` treats the `#`
 character as a comment character. Any text on a line after a `#` is ignored by
 bash when evaluating the text as code.
 
