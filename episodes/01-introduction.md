@@ -73,29 +73,28 @@ exercises. The password will be the same for everyone.
 After logging in, you will see a screen showing something like this: 
 
 ~~~
-Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-48-generic x86_64)
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-137-generic x86_64)
 
- * Documentation:  https://help.ubuntu.com/
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
 
-  System information as of Sat Feb  2 00:08:17 UTC 2019
+  System information as of Mon 13 Mar 2023 03:57:46 AM UTC
 
-  System load: 0.0                Memory usage: 5%   Processes:       82
-  Usage of /:  29.9% of 98.30GB   Swap usage:   0%   Users logged in: 0
-
-  Graph this data and manage this system at:
-    https://landscape.canonical.com/
+  System load:  0.0                Processes:             192
+  Usage of /:   20.3% of 98.27GB   Users logged in:       0
+  Memory usage: 25%                IPv4 address for eth0: 172.31.12.214
+  Swap usage:   0%
 
   Get cloud support with Ubuntu Advantage Cloud Guest:
     http://www.ubuntu.com/business/services/cloud
 
-597 packages can be updated.
-444 updates are security updates.
-
-New release '16.04.5 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
+178 updates can be applied immediately.
+108 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
 
 
-Last login: Fri Feb  1 22:34:53 2019 from c-73-116-43-163.hsd1.ca.comcast.net
+Last login: Fri Mar 10 03:14:44 2023 from 72.83.168.14
 ~~~
 {: .output}
 

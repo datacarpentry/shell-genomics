@@ -421,7 +421,7 @@ To fix this issue, we can redirect the output of grep to a second instance of `g
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | grep -v '^--' > bad_reads.fastq
-tail bad_reads.fastq
+$ tail bad_reads.fastq
 ~~~
 {: .bash}
 
@@ -460,7 +460,7 @@ do anything all that impressive on their own, but when you start chaining
 them together, you can do some really powerful things very
 efficiently. 
 
-> # File manipulation and more practices with pipes
+> ## File manipulation and more practices with pipes
 > 
 > To practice a bit more with the tools we’ve added to our tool kit so far and learn a few extra ones you can follow [this extra lesson](https://datacarpentry.org/shell-genomics/Extra_lesson/index.html) which uses the SRA metadata file. 
 > 
