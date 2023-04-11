@@ -420,7 +420,7 @@ To fix this issue, we can redirect the output of grep to a second instance of `g
 
 ~~~
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | grep -v '^--' > bad_reads.fastq
-tail bad_reads.fastq
+$ tail bad_reads.fastq
 ~~~
 {: .bash}
 
