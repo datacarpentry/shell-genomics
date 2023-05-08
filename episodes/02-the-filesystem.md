@@ -137,8 +137,6 @@ youfoundit.txt
 
 The name of the text file is `youfoundit.txt`.
 
-
-
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -302,8 +300,6 @@ what will `ls ../backup` display?
 3. No: see previous explanation.
   Also, we did not specify `-F` to display `/` at the end of the directory names.
 4. Yes: `../backup` refers to `/Users/backup`.
-  
-  
 
 :::::::::::::::::::::::::
 

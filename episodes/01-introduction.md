@@ -66,7 +66,7 @@ would take up time even more time. A 'ready-to-go' server lets us focus on learn
 ## How to access the remote server
 
 You can log-in to the remote server using the instructions
-[here](https://www.datacarpentry.org/cloud-genomics/02-logging-onto-cloud/#logging-onto-a-cloud-instance).
+[here](https://datacarpentry.org/cloud-genomics/02-logging-onto-cloud#logging-onto-a-cloud-instance).
 Your instructor will supply to you the `ip_address` and password that you need to login.
 
 Each of you will have a different `ip_address`. This will
@@ -120,7 +120,6 @@ up until this point.
 Hot-key combinations are shortcuts for performing common commands.
 The hot-key combination for clearing the console is `Ctrl+L`. Feel free to try it and see for yourself.
 
-
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Navigating your file system
@@ -156,8 +155,7 @@ For example, if the output of `echo $PS1` was `\u@\h:\w $ `,
 then type those characters between the quotes in the above command: `PS1="\u@\h:\w $ "`.
 Alternatively, you can reset your original prompt by exiting the shell and opening a new session.
 
-This isn't necessary to follow along (in fact, your prompt may have other helpful information you want to know about).  This is up to you!  
-
+This isn't necessary to follow along (in fact, your prompt may have other helpful information you want to know about).  This is up to you!
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

@@ -86,7 +86,6 @@ your computer's start menu, the editor may want to save files in your desktop or
 documents directory instead. You can change this by navigating to
 another directory the first time you "Save As..."
 
-
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Let's type in a few lines of text. Describe what the files in this
@@ -118,7 +117,6 @@ In `nano`, along the bottom of the screen you'll see `^G Get Help ^O WriteOut`.
 This means that you can use <kbd>Ctrl</kbd>\-<kbd>G</kbd> to get help and <kbd>Ctrl</kbd>\-<kbd>O</kbd> to save your
 file.
 
-
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Now you've written a file. You can take a look at it with `less` or `cat`, or open it up again and edit it with `nano`.
@@ -129,10 +127,14 @@ Now you've written a file. You can take a look at it with `less` or `cat`, or op
 
 Open `README.txt` and add the date to the top of the file and save the file.
 
-> ## Solution
-> 
-> Use `nano README.txt` to open the file.  
-> Add today's date and then use <kbd>Ctrl</kbd>\-<kbd>X</kbd> followed by `y` and <kbd>Enter</kbd> to save.
+:::::::::::::::  solution
+
+## Solution
+
+Use `nano README.txt` to open the file.  
+Add today's date and then use <kbd>Ctrl</kbd>\-<kbd>X</kbd> followed by `y` and <kbd>Enter</kbd> to save.
+
+:::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -158,7 +160,7 @@ grep -B1 -A2 -h NNNNNNNNNN *.fastq | grep -v '^--' > scripted_bad_reads.txt
 
 ## Custom `grep` control
 
-We introduced the `-v` option in [the previous episode](https://www.datacarpentry.org/shell-genomics/04-redirection/), now we
+We introduced the `-v` option in [the previous episode](04-redirection.md), now we
 are using `-h` to "Suppress the prefixing of file names on output" according to the documentation shown by `man grep`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -197,7 +199,7 @@ Script finished!
 
 ## Making the script into a program
 
-We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead, we can turn this script into its own program. We need to tell the computer that this script is a program by making the script file executable. We can do this by changing the file permissions. We talked about permissions in [an earlier episode](https://www.datacarpentry.org/shell-genomics/03-working-with-files/).
+We had to type `bash` because we needed to tell the computer what program to use to run this script. Instead, we can turn this script into its own program. We need to tell the computer that this script is a program by making the script file executable. We can do this by changing the file permissions. We talked about permissions in [an earlier episode](03-working-with-files.md).
 
 First, let's look at the current permissions.
 
@@ -233,7 +235,7 @@ $ ./bad-reads-script.sh
 
 The script should run the same way as before, but now we've created our very own computer program!
 
-You will learn more about writing scripts in [a later lesson](https://datacarpentry.org/wrangling-genomics/05-automation/index.html).
+You will learn more about writing scripts in [a later lesson](https://datacarpentry.org/wrangling-genomics/05-automation).
 
 ## Moving and Downloading Data
 
@@ -330,6 +332,7 @@ using a transfer program, it needs to be installed on your local machine, not yo
 
 If you're using Windows with PuTTY instead of Git Bash, please select the alternative option here:
 <select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;">
+
 <option value="unix" id="id_unix" selected> Linux, Mac OS, Git Bash </option>
 <option value="win" id="id_win"> PuTTY </option>
 </select>

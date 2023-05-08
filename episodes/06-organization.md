@@ -76,8 +76,7 @@ You should see the output:
 ### Tip
 
 If you aren't in your home directory, the easiest way to get there is to enter the command `cd`, which
-always returns you to home.  
-
+always returns you to home.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -140,7 +139,7 @@ your data that you never modify guarantees that you will always be
 able to start over if something goes wrong with your analysis. When
 starting any analysis, you can make a copy of your raw data file and
 do your manipulations on that file, rather than the raw version. We
-learned in [a previous episode](https://www.datacarpentry.org/shell-genomics/03-working-with-files/#file-permissions) how to prevent overwriting our raw data
+learned in [a previous episode](https://datacarpentry.org/shell-genomics/03-working-with-files#file-permissions) how to prevent overwriting our raw data
 files by setting restrictive file permissions.
 
 You can store any results that are generated from your analysis in
@@ -198,8 +197,6 @@ $ history | tail -n 7 >> dc_workshop_log_2017_10_27.sh
 ```
 
 Note we used the last 7 lines as an example, the number of lines may vary.
-
-
 
 :::::::::::::::::::::::::
 

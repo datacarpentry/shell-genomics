@@ -210,8 +210,6 @@ files in `/usr/bin`. Rerun that command.
 
 First type `history`. Then use `!` followed by the line number to rerun that command.
 
-
-
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -247,8 +245,6 @@ This will print out all of the contents of the `SRR098026.fastq` to the screen.
 
 1. The last line of the file is `C:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
 2. `cat ~/shell_data/untrimmed_fastq/*`
-  
-  
 
 :::::::::::::::::::::::::
 
@@ -305,8 +301,6 @@ What are the next three nucleotides (characters) after the first instance of the
 ## Solution
 
 `CAC`
-
-
 
 :::::::::::::::::::::::::
 
@@ -539,7 +533,7 @@ that deal with your permissions (as the file owner).
 Here the three positions that relate to the file owner are `rw-`. The `r` means that you have permission to read the file, the `w`
 indicates that you have permission to write to (i.e. make changes to) the file, and the third position is a `-`, indicating that you
 don't have permission to carry out the ability encoded by that space (this is the space where `x` or executable ability is stored, we'll
-talk more about this in [a later lesson](https://www.datacarpentry.org/shell-genomics/05-writing-scripts/)).
+talk more about this in [a later lesson](05-writing-scripts.md)).
 
 Our goal for now is to change permissions on this file so that you no longer have `w` or write permissions. We can do this using the `chmod` (change mode) command and subtracting (`-`) the write permission `-w`.
 
