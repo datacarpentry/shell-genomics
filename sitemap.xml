@@ -31,7 +31,13 @@
     <loc>https://datacarpentry.github.io/shell-genomics/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/aio.html</loc>
+  </url>
+  <url>
     <loc>https://datacarpentry.github.io/shell-genomics/discuss.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/images.html</loc>
   </url>
   <url>
     <loc>https://datacarpentry.github.io/shell-genomics/index.html</loc>
@@ -67,16 +73,34 @@
     <loc>https://datacarpentry.github.io/shell-genomics/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/instructor/aio.html</loc>
+  </url>
+  <url>
     <loc>https://datacarpentry.github.io/shell-genomics/instructor/discuss.html</loc>
   </url>
   <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://datacarpentry.github.io/shell-genomics/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://datacarpentry.github.io/shell-genomics/instructor/profiles.html</loc>
   </url>
   <url>
     <loc>https://datacarpentry.github.io/shell-genomics/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/key-points.html</loc>
   </url>
   <url>
     <loc>https://datacarpentry.github.io/shell-genomics/profiles.html</loc>
