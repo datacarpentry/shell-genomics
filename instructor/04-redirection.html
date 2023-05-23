@@ -305,12 +305,12 @@ can be specified using something called regular expressions). We’re not
 going to work with regular expressions in this lesson, and are instead
 going to specify the strings we are searching for. Let’s give it a
 try!</p>
-<div id="callout1" class="callout callout">
+<div id="nucleotide-abbreviations" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="nucleotide-abbreviations" class="callout-inner">
-<h3 class="callout-title">Nucleotide abbreviations<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Nucleotide abbreviations<a class="anchor" aria-label="anchor" href="#nucleotide-abbreviations"></a>
 </h3>
 <div class="callout-content">
 <p>The four nucleotides that appear in DNA are abbreviated
@@ -332,12 +332,12 @@ sure we are in the correct directory:</p>
 </div>
 <p>Suppose we want to see how many reads in our file have really bad
 segments containing 10 consecutive unknown nucleotides (Ns).</p>
-<div id="callout2" class="callout callout">
+<div id="determining-quality" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="determining-quality" class="callout-inner">
-<h3 class="callout-title">Determining quality<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Determining quality<a class="anchor" aria-label="anchor" href="#determining-quality"></a>
 </h3>
 <div class="callout-content">
 <p>In this lesson, we’re going to be manually searching for strings of
@@ -386,12 +386,12 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 +SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</code></pre>
 </div>
-<div id="challenge1" class="callout challenge">
+<div id="exercise" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
 </h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li><p>Search for the sequence <code>GNATNACCACTTCC</code> in the
@@ -466,12 +466,12 @@ to another file called <code>bad_reads.txt</code>.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span></code></pre>
 </div>
-<div id="callout3" class="callout callout">
+<div id="file-extensions" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="file-extensions" class="callout-inner">
-<h3 class="callout-title">File extensions<a class="anchor" aria-label="anchor" href="#callout3"></a>
+<h3 class="callout-title">File extensions<a class="anchor" aria-label="anchor" href="#file-extensions"></a>
 </h3>
 <div class="callout-content">
 <p>You might be confused about why we’re naming our output file with a
@@ -519,12 +519,12 @@ file. If we want only the number of lines, we can use the
 </h3>
 <pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
 </div>
-<div id="challenge2" class="callout challenge">
+<div id="exercise-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-1" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-1"></a>
 </h3>
 <div class="callout-content">
 <p>How many sequences are there in <code>SRR098026.fastq</code>?
@@ -557,12 +557,12 @@ in your fastq file.</p>
 </div>
 </div>
 </div>
-<div id="challenge3" class="callout challenge">
+<div id="exercise-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-2" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-2"></a>
 </h3>
 <div class="callout-content">
 <p>How many sequences in <code>SRR098026.fastq</code> contain at least 3
@@ -669,12 +669,12 @@ wildcard:</p>
 </h3>
 <pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
 </div>
-<div id="callout4" class="callout callout">
+<div id="file-extensions---part-2" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="file-extensions---part-2" class="callout-inner">
-<h3 class="callout-title">File extensions - part 2<a class="anchor" aria-label="anchor" href="#callout4"></a>
+<h3 class="callout-title">File extensions - part 2<a class="anchor" aria-label="anchor" href="#file-extensions---part-2"></a>
 </h3>
 <div class="callout-content">
 <p>This is where we would have trouble if we were naming our output file
@@ -799,12 +799,12 @@ this case <code>'^--'</code>. The caret (<code>^</code>) is an
 and the pattern has to be enclose by single quotes so <code>grep</code>
 does not interpret the pattern as an extended option (starting with
 –).</p>
-<div id="callout5" class="callout callout">
+<div id="custom-grep-control" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="custom-grep-control" class="callout-inner">
-<h3 class="callout-title">Custom <code>grep</code> control<a class="anchor" aria-label="anchor" href="#callout5"></a>
+<h3 class="callout-title">Custom <code>grep</code> control<a class="anchor" aria-label="anchor" href="#custom-grep-control"></a>
 </h3>
 <div class="callout-content">
 <p>Use <code>man grep</code> to read more about other options to
@@ -820,13 +820,13 @@ things with your data!</p>
 <p>None of the command line programs we’ve been learning do anything all
 that impressive on their own, but when you start chaining them together,
 you can do some really powerful things very efficiently.</p>
-<div id="callout6" class="callout callout">
+<div id="file-manipulation-and-more-practices-with-pipes" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="file-manipulation-and-more-practices-with-pipes" class="callout-inner">
 <h3 class="callout-title">File manipulation and more practices with
-pipes<a class="anchor" aria-label="anchor" href="#callout6"></a>
+pipes<a class="anchor" aria-label="anchor" href="#file-manipulation-and-more-practices-with-pipes"></a>
 </h3>
 <div class="callout-content">
 <p>To practice a bit more with the tools we’ve added to our tool kit so
@@ -989,12 +989,12 @@ output.</p>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="va">${name}</span></span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
-<div id="challenge4" class="callout challenge">
+<div id="exercise-3" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-3" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge4"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-3"></a>
 </h3>
 <div class="callout-content">
 <p>Print the file prefix of all of the <code>.txt</code> files in our
@@ -1036,12 +1036,12 @@ them, which will document when we created them.</p>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="va">${filename}</span>  <span class="va">${name}</span>_2019.txt</span>
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
-<div id="challenge5" class="callout challenge">
+<div id="exercise-4" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-4" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge5"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-4"></a>
 </h3>
 <div class="callout-content">
 <p>Remove <code>_2019</code> from all of the <code>.txt</code>
@@ -1131,7 +1131,7 @@ command as input to the second command.</li>
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.0" class="external-link">sandpaper (0.12.0)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
 			</div>
@@ -1155,7 +1155,7 @@ command as input to the second command.</li>
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/04-redirection.html",
   "dateCreated": "2015-03-24",
   "dateModified": "2023-05-08",
-  "datePublished": "2023-05-16"
+  "datePublished": "2023-05-23"
 }
 
   </script><script>

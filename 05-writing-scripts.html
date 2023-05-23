@@ -336,12 +336,12 @@ run <code>nano</code> to create a file called
 <figure><img src="fig/nano201711.png" alt="nano201711.png" class="figure mx-auto d-block"></figure><p>The text at the bottom of the screen shows the keyboard shortcuts for
 performing various tasks in <code>nano</code>. We will talk more about
 how to interpret this information soon.</p>
-<div id="callout1" class="callout callout">
+<div id="which-editor" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="which-editor" class="callout-inner">
-<h3 class="callout-title">Which Editor?<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Which Editor?<a class="anchor" aria-label="anchor" href="#which-editor"></a>
 </h3>
 <div class="callout-content">
 <p>When we say, “<code>nano</code> is a text editor,” we really do mean
@@ -377,12 +377,12 @@ what file we want to save this to: press <kbd>Return</kbd> to accept the
 suggested default of <code>README.txt</code>.</p>
 <p>Once our file is saved, we can use <kbd>Ctrl</kbd>-<kbd>X</kbd> to
 quit the <code>nano</code> editor and return to the shell.</p>
-<div id="callout2" class="callout callout">
+<div id="control-ctrl-or-key" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="control-ctrl-or-key" class="callout-inner">
-<h3 class="callout-title">Control, Ctrl, or ^ Key<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Control, Ctrl, or ^ Key<a class="anchor" aria-label="anchor" href="#control-ctrl-or-key"></a>
 </h3>
 <div class="callout-content">
 <p>The Control key is also called the “Ctrl” key. There are various ways
@@ -405,12 +405,12 @@ it down, press the <kbd>X</kbd> key, described as any of:</p>
 <p>Now you’ve written a file. You can take a look at it with
 <code>less</code> or <code>cat</code>, or open it up again and edit it
 with <code>nano</code>.</p>
-<div id="challenge1" class="callout challenge">
+<div id="exercise" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
 </h3>
 <div class="callout-content">
 <p>Open <code>README.txt</code> and add the date to the top of the file
@@ -425,7 +425,7 @@ and save the file.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Use <code>nano README.txt</code> to open the file.<br>
 Add today’s date and then use <kbd>Ctrl</kbd>-<kbd>X</kbd> followed by
@@ -468,12 +468,12 @@ wildcard.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-B1</span> <span class="at">-A2</span> <span class="at">-h</span> NNNNNNNNNN <span class="pp">*</span>.fastq <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">'^--'</span> <span class="op">&gt;</span> scripted_bad_reads.txt</span></code></pre>
 </div>
-<div id="callout3" class="callout callout">
+<div id="custom-grep-control" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="custom-grep-control" class="callout-inner">
-<h3 class="callout-title">Custom <code>grep</code> control<a class="anchor" aria-label="anchor" href="#callout3"></a>
+<h3 class="callout-title">Custom <code>grep</code> control<a class="anchor" aria-label="anchor" href="#custom-grep-control"></a>
 </h3>
 <div class="callout-content">
 <p>We introduced the <code>-v</code> option in <a href="04-redirection.html">the previous episode</a>, now we are using
@@ -494,12 +494,12 @@ beginning of the line.</p>
 <p>It will look like nothing happened, but now if you look at
 <code>scripted_bad_reads.txt</code>, you can see that there are now
 reads in the file.</p>
-<div id="challenge2" class="callout challenge">
+<div id="exercise-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-1" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-1"></a>
 </h3>
 <div class="callout-content">
 <p>We want the script to tell us when it’s done.</p>
@@ -517,7 +517,7 @@ and save the file.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <pre><code>$ bash bad-reads-script.sh
 Script finished!</code></pre>
@@ -847,7 +847,7 @@ computers.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.0" class="external-link">sandpaper (0.12.0)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
 			</div>
@@ -871,7 +871,7 @@ computers.</li>
   "identifier": "https://datacarpentry.github.io/shell-genomics/05-writing-scripts.html",
   "dateCreated": "2015-03-24",
   "dateModified": "2023-05-08",
-  "datePublished": "2023-05-16"
+  "datePublished": "2023-05-23"
 }
 
   </script><script>
