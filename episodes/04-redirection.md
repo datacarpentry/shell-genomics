@@ -236,6 +236,23 @@ $ wc -l SRR098026.fastq
 
 Now you can divide this number by four to get the number of sequences in your fastq file.
 
+This can be done using [shell integer arithmetic](https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html)
+
+```bash
+$ echo $((996/4))
+```
+
+or [bc - an arbitrary precsion calculator](https://www.gnu.org/software/bc/manual/html_mono/bc.html)
+
+
+```bash
+$ echo "996/4" | bc
+```
+
+```output
+249
+```
+
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
