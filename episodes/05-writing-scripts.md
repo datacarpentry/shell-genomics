@@ -330,16 +330,9 @@ using a transfer program, it needs to be installed on your local machine, not yo
 
 ## Transferring Data Between your Local Machine and the Cloud
 
-If you're using Windows with PuTTY instead of Git Bash, please select the alternative option here:
-<select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;">
+::::::::::::::: solution
 
-<option value="unix" id="id_unix" selected> Linux, Mac OS, Git Bash </option>
-<option value="win" id="id_win"> PuTTY </option>
-</select>
-
-<div id="div_unix" style="display:block" markdown="1">
-
-### Uploading Data to your Virtual Machine with scp
+### Uploading Data to your Virtual Machine with scp on Linux, Mac OS and Windows with Git Bash
 
 `scp` stands for 'secure copy protocol', and is a widely used UNIX tool for moving files
 between computers. The simplest way to use `scp` is to run it in your local terminal,
@@ -387,12 +380,12 @@ $ scp dcuser@ip.address:/home/dcuser/shell_data/untrimmed_fastq/scripted_bad_rea
 ```
 
 Remember that in both instances, the command is run from your local machine, we've just flipped the order of the to and from parts of the command.
+:::::::::::::::::::::::::
 
-</div>
 
-<div id="div_win" style="display:block" markdown="1">
+::::::::::::::: solution
 
-### Uploading Data to your Virtual Machine with PSCP
+### Uploading Data to your Virtual Machine with PSCP on Windows with Putty
 
 If you're using a Windows PC without Git Bash, we recommend you use the *PSCP* program.
 This program is from the same suite of tools as the PuTTY program we have been using to connect.
@@ -425,8 +418,7 @@ C:\User\your-pc-username\Downloads> pscp.exe dcuser@ec2-54-88-126-85.compute-1.a
 
 C:\User\your-pc-username\Downloads
 ```
-
-</div>
+:::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
