@@ -65,7 +65,7 @@ would take up time even more time. A 'ready-to-go' server lets us focus on learn
 
 ## How to access the remote server
 
-You can log-in to the remote server using the [logging instructions from the Cloud Genomics lesson](https://datacarpentry.org/cloud-genomics/02-logging-onto-cloud#logging-onto-a-cloud-instance).
+You can log-in to the remote server using the [instructions from the Introduction to Cloud Computing for Genomics lesson](https://datacarpentry.org/cloud-genomics/02-logging-onto-cloud#logging-onto-a-cloud-instance).
 Your instructor will supply to you the `ip_address` and password that you need to login.
 
 Each of you will have a different `ip_address`. This will
