@@ -16,6 +16,7 @@ subtitle: Template text to paste in to collaborative document
 
 ## Timings - EDIT FOR YOUR WORKSHOP
 
+Here's a tentative schedule for the workshop
 
 - Introducing the Shell 09:30-10:00 (30 mins)
 - Navigating Files and Directories 10:00-10:50 (50 mins)
@@ -29,7 +30,7 @@ subtitle: Template text to paste in to collaborative document
 
 ## Attendees
 
-Please write your name below to confirm attendance, and one thing you're hoping to get out of this workshop:
+Please write your name below to confirm your attendance and mention one thing you hope to learn from this workshop.
 
 1. 2. 3. 4. 5. 
 ## Feedback
@@ -172,7 +173,7 @@ Remove `_2019` from all of the `.txt` files.
 
 ### EXERCISE
 
-Open `README.txt` and add the date to the top of the file and save the file.
+Open README.txt, add the date to the top of the file, and then save it.
 
 - - -
 
@@ -185,7 +186,7 @@ Run the updated script.
 
 - - -
 
-## [Project Organization[(https://datacarpentry.org/shell-genomics/06-organization.html)
+## [Project Organization](https://datacarpentry.org/shell-genomics/06-organization.html)
 
 ### EXERCISE
 Use the `mkdir` command to make the following directories:
@@ -206,8 +207,7 @@ Using your knowledge of the shell, use the append redirect >> to create a file c
 
 ## Evaluation and Feedback
 
-Instructors and lesson maintainers use these responses to improve the lesson.
-It's very helpful!
+Your feedback is valuable as it helps instructors and lesson maintainers enhance the content.
 
 #### Please list one thing you liked or found particularly useful
 
