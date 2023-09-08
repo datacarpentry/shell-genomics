@@ -32,7 +32,11 @@ Here's a tentative schedule for the workshop
 
 Please write your name below to confirm your attendance and mention one thing you hope to learn from this workshop.
 
-1. 2. 3. 4. 5. 
+1.
+2.
+3.
+4. 
+ 
 ## Feedback
 
 Link to feedback form if needed
