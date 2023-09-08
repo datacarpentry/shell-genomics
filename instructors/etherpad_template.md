@@ -202,6 +202,8 @@ dc_workshop/results
 
 Using your knowledge of the shell, use the append redirect >> to create a file called `dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g. `dc_workshop_log_2017_10_27.sh`)
 
+- - -
+
 ## Evaluation and Feedback
 
 Instructors and lesson maintainers use these responses to improve the lesson.
@@ -210,6 +212,7 @@ It's very helpful!
 #### Please list one thing you liked or found particularly useful
 
 - - - - - 
+
 #### Please list another thing you found less useful, or that could be improved
 
 - - - - - 
