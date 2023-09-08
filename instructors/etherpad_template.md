@@ -187,6 +187,21 @@ Run the updated script.
 
 ## [Project Organization[(https://datacarpentry.org/shell-genomics/06-organization.html)
 
+### EXERCISE
+Use the `mkdir` command to make the following directories:
+
+```
+dc_workshop
+dc_workshop/docs
+dc_workshop/data
+dc_workshop/results
+```
+- - -
+
+### EXERCISE
+
+Using your knowledge of the shell, use the append redirect >> to create a file called `dc_workshop_log_XXXX_XX_XX.sh` (Use the four-digit year, two-digit month, and two digit day, e.g. `dc_workshop_log_2017_10_27.sh`)
+
 ## Evaluation and Feedback
 
 Instructors and lesson maintainers use these responses to improve the lesson.
