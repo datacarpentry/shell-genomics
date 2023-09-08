@@ -64,7 +64,7 @@ Navigate to your home directory. From there, list the contents of the `untrimmed
 
 Using the filesystem diagram on the lesson page [below](https://datacarpentry.org/shell-genomics/02-the-filesystem.html), if pwd `displays` `/Users/thing`, what will ls .`./backup display`?
 
-Put a + next to the answer
+Put a `+` next to the answer you think is correct.
 
 1. ../backup: No such file or directory
 2. 2012-12-01 2013-01-08 2013-01-27
@@ -78,11 +78,11 @@ Put a + next to the answer
 
 Do each of the following tasks from your current directory using a single `ls` command for each:
 
-1.  List all of the files in /usr/bin that start with the letter ‘c’.
-2.  List all of the files in /usr/bin that contain the letter ‘a’.
-3.  List all of the files in /usr/bin that end with the letter ‘o’.
+1.  List all of the files in `/usr/bin` that start with the letter ‘c’.
+2.  List all of the files in `/usr/bin` that contain the letter ‘a’.
+3.  List all of the files in `/usr/bin` that end with the letter ‘o’.
 
-Bonus: List all of the files in /usr/bin that contain the letter ‘a’ or the letter ‘c’.
+Bonus: List all of the files in `/usr/bin` that contain the letter ‘a’ or the letter ‘c’.
 
 **Hint:** The bonus question requires a Unix wildcard that we haven’t talked about yet. Try searching the internet for information about Unix wildcards to find what you need to solve the bonus problem.
 - - -
