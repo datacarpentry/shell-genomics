@@ -12,7 +12,7 @@ subtitle: Template text to paste in to collaborative document
 **Helper**
 
 **Website**
-[https://datacarpentry.org/shell-genomics/instructor/index.html](https://datacarpentry.org/shell-genomics/instructor/index.html)
+[https://datacarpentry.org/shell-genomics](https://datacarpentry.org/shell-genomics)
 
 ## Timings - EDIT FOR YOUR WORKSHOP
 
