@@ -37,6 +37,9 @@
     <loc>https://datacarpentry.github.io/shell-genomics/discuss.html</loc>
   </url>
   <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/etherpad_template.html</loc>
+  </url>
+  <url>
     <loc>https://datacarpentry.github.io/shell-genomics/images.html</loc>
   </url>
   <url>
@@ -77,6 +80,9 @@
   </url>
   <url>
     <loc>https://datacarpentry.github.io/shell-genomics/instructor/discuss.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/shell-genomics/instructor/etherpad_template.html</loc>
   </url>
   <url>
     <loc>https://datacarpentry.github.io/shell-genomics/instructor/images.html</loc>
