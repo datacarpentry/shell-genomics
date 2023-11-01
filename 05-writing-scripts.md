@@ -330,16 +330,12 @@ using a transfer program, it needs to be installed on your local machine, not yo
 
 ## Transferring Data Between your Local Machine and the Cloud
 
-If you're using Windows with PuTTY instead of Git Bash, please select the alternative option here:
-<select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;">
+If you're using Linux, Mac OS, or Windows with Git Bash on your local machine, you can use
+`scp` to upload data to your virtual machine.
 
-<option value="unix" id="id_unix" selected> Linux, Mac OS, Git Bash </option>
-<option value="win" id="id_win"> PuTTY </option>
-</select>
+::::::::::::::: spoiler
 
-<div id="div_unix" style="display:block" markdown="1">
-
-### Uploading Data to your Virtual Machine with scp
+### SCP
 
 `scp` stands for 'secure copy protocol', and is a widely used UNIX tool for moving files
 between computers. The simplest way to use `scp` is to run it in your local terminal,
@@ -388,16 +384,19 @@ $ scp dcuser@ip.address:/home/dcuser/shell_data/untrimmed_fastq/scripted_bad_rea
 
 Remember that in both instances, the command is run from your local machine, we've just flipped the order of the to and from parts of the command.
 
-</div>
+:::::::::::::::::::::::
 
-<div id="div_win" style="display:block" markdown="1">
+If you are using Windows without Git Bash on your local machine, you can use `pscp.exe`
+to upload data to your virtual machine.
 
-### Uploading Data to your Virtual Machine with PSCP
+::::::::::::::: spoiler
+
+### PCSP
 
 If you're using a Windows PC without Git Bash, we recommend you use the *PSCP* program.
 This program is from the same suite of tools as the PuTTY program we have been using to connect.
 
-1. If you haven't done so, download pscp from [http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe](https://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe)
+1. If you haven't done so, download *PSCP* from [http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe](https://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe)
 2. Make sure the *PSCP* program is somewhere you know on your computer. In this case,
   your Downloads folder is appropriate.
 3. Open the windows [PowerShell](https://en.wikipedia.org/wiki/Windows_PowerShell);
@@ -426,7 +425,7 @@ C:\User\your-pc-username\Downloads> pscp.exe dcuser@ec2-54-88-126-85.compute-1.a
 C:\User\your-pc-username\Downloads
 ```
 
-</div>
+:::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
@@ -434,5 +433,3 @@ C:\User\your-pc-username\Downloads
 - Transferring information to and from virtual and local computers.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
