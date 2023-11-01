@@ -330,7 +330,7 @@ using a transfer program, it needs to be installed on your local machine, not yo
 
 ## Transferring Data Between your Local Machine and the Cloud
 
-If you are using Linux, Mac OS, or Windows with Git Bash on your local machine, you can use
+If you're using Linux, Mac OS, or Windows with Git Bash on your local machine, you can use
 `scp` to upload data to your virtual machine.
 
 ::::::::::::::: spoiler
