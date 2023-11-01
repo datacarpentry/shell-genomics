@@ -263,7 +263,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Writing Scripts and Working with Data</h1>
-        <p> Last updated on 2023-05-08 | 
+        <p> Last updated on 2023-11-01 | 
         
         <a href="https://github.com/datacarpentry/shell-genomics/edit/main/episodes/05-writing-scripts.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -436,7 +436,7 @@ and save the file.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Use <code>nano README.txt</code> to open the file.<br>
 Add today’s date and then use <kbd>Ctrl</kbd>-<kbd>X</kbd> followed by
@@ -528,7 +528,7 @@ and save the file.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <pre><code>$ bash bad-reads-script.sh
 Script finished!</code></pre>
@@ -690,14 +690,19 @@ on your local machine, not your instance.</strong></p>
 </div>
 </section><section id="transferring-data-between-your-local-machine-and-the-cloud"><h2 class="section-heading">Transferring Data Between your Local Machine and the Cloud<a class="anchor" aria-label="anchor" href="#transferring-data-between-your-local-machine-and-the-cloud"></a>
 </h2>
-<hr class="half-width"><p>If you’re using Windows with PuTTY instead of Git Bash, please select
-the alternative option here:
-<select id="id_platform" name="platformlist" onchange="change_content_by_platform('id_platform');return false;"></select></p>
-<p><option value="unix" id="id_unix" selected> Linux, Mac OS, Git Bash
-</option><option value="win" id="id_win"> PuTTY </option></p>
-<div id="div_unix" style="display:block" markdown="1">
-<div class="section level3">
-<h3 id="uploading-data-to-your-virtual-machine-with-scp">Uploading Data to your Virtual Machine with scp<a class="anchor" aria-label="anchor" href="#uploading-data-to-your-virtual-machine-with-scp"></a></h3>
+<hr class="half-width"><p>If you’re using Linux, Mac OS, or Windows with Git Bash on your local
+machine, you can use <code>scp</code> to upload data to your virtual
+machine.</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  SCP
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
 <p><code>scp</code> stands for ‘secure copy protocol’, and is a widely
 used UNIX tool for moving files between computers. The simplest way to
 use <code>scp</code> is to run it in your local terminal, and use it to
@@ -724,7 +729,7 @@ instance, the command would look like this:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> scp <span class="op">&lt;</span>AWS instance<span class="op">&gt;</span> <span class="op">&lt;</span>local file<span class="op">&gt;</span></span></code></pre>
 </div>
 <div class="section level4">
-<h4 id="uploading-data-to-your-virtual-machine-with-scp-1">Uploading Data to your Virtual Machine with scp<a class="anchor" aria-label="anchor" href="#uploading-data-to-your-virtual-machine-with-scp-1"></a></h4>
+<h4 id="uploading-data-to-your-virtual-machine-with-scp">Uploading Data to your Virtual Machine with scp<a class="anchor" aria-label="anchor" href="#uploading-data-to-your-virtual-machine-with-scp"></a></h4>
 <p>Open the terminal and use the <code>scp</code> command to upload a
 file (e.g. local_file.txt) to the dcuser home directory:</p>
 <div class="codewrapper sourceCode" id="cb22">
@@ -760,13 +765,25 @@ command.</p>
 </div>
 </div>
 </div>
-<div id="div_win" style="display:block" markdown="1">
-<div class="section level3">
-<h3 id="uploading-data-to-your-virtual-machine-with-pscp">Uploading Data to your Virtual Machine with PSCP<a class="anchor" aria-label="anchor" href="#uploading-data-to-your-virtual-machine-with-pscp"></a></h3>
+</div>
+</div>
+<p>If you are using Windows without Git Bash on your local machine, you
+can use <code>pscp.exe</code> to upload data to your virtual
+machine.</p>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  PCSP
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div class="accordion-body">
 <p>If you’re using a Windows PC without Git Bash, we recommend you use
 the <em>PSCP</em> program. This program is from the same suite of tools
 as the PuTTY program we have been using to connect.</p>
-<ol style="list-style-type: decimal"><li>If you haven’t done so, download pscp from <a href="https://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe" class="external-link">http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe</a>
+<ol style="list-style-type: decimal"><li>If you haven’t done so, download <em>PSCP</em> from <a href="https://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe" class="external-link">http://the.earth.li/~sgtatham/putty/latest/x86/pscp.exe</a>
 </li>
 <li>Make sure the <em>PSCP</em> program is somewhere you know on your
 computer. In this case, your Downloads folder is appropriate.</li>
@@ -794,7 +811,6 @@ address)</strong>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\User\your-pc-username\Downloads</span><span class="op">&gt;</span> pscp.exe local_file.txt dcuser@ec2-54-88-126-85.compute-1.amazonaws.com:/home/dcuser/</span></code></pre>
 </div>
-</div>
 <div class="section level3">
 <h3 id="downloading-data-from-your-virtual-machine-with-pscp">Downloading Data from your Virtual Machine with PSCP<a class="anchor" aria-label="anchor" href="#downloading-data-from-your-virtual-machine-with-pscp"></a></h3>
 <ol style="list-style-type: decimal"><li>Follow the instructions in the Upload section to download (if
@@ -811,6 +827,9 @@ address)</strong>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\User\your-pc-username\Downloads</span><span class="op">&gt;</span> pscp.exe dcuser@ec2-54-88-126-85.compute-1.amazonaws.com:/home/dcuser/shell_data/untrimmed_fastq/scripted_bad_reads.txt .</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">C:\User\your-pc-username\Downloads</span></span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -887,8 +906,8 @@ computers.</li>
   "url": "https://datacarpentry.github.io/shell-genomics/instructor/05-writing-scripts.html",
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/05-writing-scripts.html",
   "dateCreated": "2015-03-24",
-  "dateModified": "2023-05-08",
-  "datePublished": "2023-10-31"
+  "dateModified": "2023-11-01",
+  "datePublished": "2023-11-01"
 }
 
   </script><script>
