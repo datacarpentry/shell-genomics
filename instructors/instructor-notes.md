@@ -21,6 +21,12 @@ This lesson uses data hosted on an Amazon Machine Instance (AMI). Instructors wi
 
 ## Technical tips and tricks
 
+### Etherpad template
+
+There is a [template Etherpad](https://datacarpentry.org/shell-genomics/instructor/etherpad_template.html) to
+paste into a collaborative document, such as the [Carpentries Etherpad](https://pad.carpentries.org/). Etherpad
+supports synchronous document editing and is useful for collaborative work when teaching lessons.
+
 #### Command Prompt Editing
 
 Instructors might find it helpful to shorten their command prompt to allow better visibility of the commands they are typing, particularly if using the AMI.  This is because the prompt will contain additional information including the username and login for the instance, as well as filesystem location. This is especially useful when teaching the material online, as many learners may be splitting their screens and text wrapping may make the commands more difficult to identify if the prompt takes up a lot of space.
