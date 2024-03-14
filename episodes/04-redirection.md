@@ -242,7 +242,7 @@ This can be done using [shell integer arithmetic](https://www.gnu.org/software/b
 $ echo $((996/4))
 ```
 
-or [bc - an arbitrary precsion calculator](https://www.gnu.org/software/bc/manual/html_mono/bc.html)
+Note, this will do integer division - if you need floating point arithmetic you can use [bc - an arbitrary precision calculator](https://www.gnu.org/software/bc/manual/html_mono/bc.html)
 
 
 ```bash
