@@ -1,6 +1,7 @@
 ---
 title: Etherpad template
-subtitle: Template text to paste in to collaborative document
+subtitle: Template text to paste into a collaborative document, such as Etherpad.
+
 ---
 
 # Timings
