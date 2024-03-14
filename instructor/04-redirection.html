@@ -314,12 +314,13 @@ can be specified using something called regular expressions). We’re not
 going to work with regular expressions in this lesson, and are instead
 going to specify the strings we are searching for. Let’s give it a
 try!</p>
-<div id="callout1" class="callout">
+<div id="nucleotide-abbreviations" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="nucleotide-abbreviations">Nucleotide abbreviations<a class="anchor" aria-label="anchor" href="#nucleotide-abbreviations"></a></h3>
+<div id="nucleotide-abbreviations" class="callout-inner">
+<h3 class="callout-title">Nucleotide abbreviations<a class="anchor" aria-label="anchor" href="#nucleotide-abbreviations"></a>
+</h3>
 <div class="callout-content">
 <p>The four nucleotides that appear in DNA are abbreviated
 <code>A</code>, <code>C</code>, <code>T</code> and <code>G</code>.
@@ -340,12 +341,13 @@ sure we are in the correct directory:</p>
 </div>
 <p>Suppose we want to see how many reads in our file have really bad
 segments containing 10 consecutive unknown nucleotides (Ns).</p>
-<div id="callout2" class="callout">
+<div id="determining-quality" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="determining-quality">Determining quality<a class="anchor" aria-label="anchor" href="#determining-quality"></a></h3>
+<div id="determining-quality" class="callout-inner">
+<h3 class="callout-title">Determining quality<a class="anchor" aria-label="anchor" href="#determining-quality"></a>
+</h3>
 <div class="callout-content">
 <p>In this lesson, we’re going to be manually searching for strings of
 <code>N</code>s within our sequence results to illustrate some
@@ -416,7 +418,7 @@ for each sequence that contains a match.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li><code>grep -B1 GNATNACCACTTCC SRR098026.fastq</code></li>
 </ol><pre><code>@SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
@@ -471,12 +473,13 @@ to another file called <code>bad_reads.txt</code>.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span></code></pre>
 </div>
-<div id="callout3" class="callout">
+<div id="file-extensions" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="file-extensions">File extensions<a class="anchor" aria-label="anchor" href="#file-extensions"></a></h3>
+<div id="file-extensions" class="callout-inner">
+<h3 class="callout-title">File extensions<a class="anchor" aria-label="anchor" href="#file-extensions"></a>
+</h3>
 <div class="callout-content">
 <p>You might be confused about why we’re naming our output file with a
 <code>.txt</code> extension. After all, it will be holding FASTQ
@@ -541,7 +544,7 @@ Remember that every sequence is formed by four lines.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -577,7 +580,7 @@ consecutive Ns?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -669,12 +672,13 @@ wildcard:</p>
 </h3>
 <pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
 </div>
-<div id="callout4" class="callout">
+<div id="file-extensions---part-2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="file-extensions---part-2">File extensions - part 2<a class="anchor" aria-label="anchor" href="#file-extensions---part-2"></a></h3>
+<div id="file-extensions---part-2" class="callout-inner">
+<h3 class="callout-title">File extensions - part 2<a class="anchor" aria-label="anchor" href="#file-extensions---part-2"></a>
+</h3>
 <div class="callout-content">
 <p>This is where we would have trouble if we were naming our output file
 with a <code>.fastq</code> extension. If we already had a file called
@@ -798,12 +802,13 @@ this case <code>'^--'</code>. The caret (<code>^</code>) is an
 and the pattern has to be enclose by single quotes so <code>grep</code>
 does not interpret the pattern as an extended option (starting with
 –).</p>
-<div id="callout5" class="callout">
+<div id="custom-grep-control" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="custom-grep-control">Custom <code>grep</code> control<a class="anchor" aria-label="anchor" href="#custom-grep-control"></a></h3>
+<div id="custom-grep-control" class="callout-inner">
+<h3 class="callout-title">Custom<code>grep</code>control<a class="anchor" aria-label="anchor" href="#custom-grep-control"></a>
+</h3>
 <div class="callout-content">
 <p>Use <code>man grep</code> to read more about other options to
 customize the output of <code>grep</code> including extended options,
@@ -818,13 +823,14 @@ things with your data!</p>
 <p>None of the command line programs we’ve been learning do anything all
 that impressive on their own, but when you start chaining them together,
 you can do some really powerful things very efficiently.</p>
-<div id="callout6" class="callout">
+<div id="file-manipulation-and-more-practices-with-pipes" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="section level3 callout-title callout-inner">
-<h3 class="callout-title" id="file-manipulation-and-more-practices-with-pipes">File manipulation and more practices with
-pipes<a class="anchor" aria-label="anchor" href="#file-manipulation-and-more-practices-with-pipes"></a></h3>
+<div id="file-manipulation-and-more-practices-with-pipes" class="callout-inner">
+<h3 class="callout-title">File manipulation and more practices with
+pipes<a class="anchor" aria-label="anchor" href="#file-manipulation-and-more-practices-with-pipes"></a>
+</h3>
 <div class="callout-content">
 <p>To practice a bit more with the tools we’ve added to our tool kit so
 far and learn a few extra ones you can follow <a href="Extra_lesson.html">this extra lesson</a> which uses the SRA
@@ -1004,7 +1010,7 @@ current directory.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1049,7 +1055,7 @@ files.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1130,7 +1136,7 @@ command as input to the second command.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.2" class="external-link">sandpaper (0.16.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.4" class="external-link">pegboard (0.7.4)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.3" class="external-link">sandpaper (0.16.3)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.4" class="external-link">pegboard (0.7.4)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1153,7 +1159,7 @@ command as input to the second command.</li>
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/04-redirection.html",
   "dateCreated": "2015-03-24",
   "dateModified": "2023-05-08",
-  "datePublished": "2024-03-12"
+  "datePublished": "2024-03-14"
 }
 
   </script><script>
