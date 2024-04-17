@@ -208,7 +208,7 @@ $ ls -l bad-reads-script.sh
 ```
 
 ```output
--rw-rw-r-- 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh
+-rw-r--r-- 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh
 ```
 
 We see that it says `-rw-r--r--`. This shows that the file can be read by any user and written to by the file owner (you). We want to change these permissions so that the file can be executed as a program. We use the command `chmod` like we did earlier when we removed write permissions. Here we are adding (`+`) executable permissions (`+x`).
@@ -224,7 +224,7 @@ $ ls -l bad-reads-script.sh
 ```
 
 ```output
--rwxrwxr-x 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh
+-rwxr-xr-x 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh
 ```
 
 Now we see that it says `-rwxr-xr-x`. The `x`'s that are there now tell us we can run it as a program. So, let's try it! We'll need to put `./` at the beginning so the computer knows to look here in this directory for the program.
