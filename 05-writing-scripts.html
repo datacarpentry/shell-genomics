@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Writing Scripts and Working with Data</h1>
-        <p>Last updated on 2023-11-01 |
+        <p>Last updated on 2024-04-17 |
         
         <a href="https://github.com/datacarpentry/shell-genomics/edit/main/episodes/05-writing-scripts.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -438,7 +438,7 @@ and save the file.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Use <code>nano README.txt</code> to open the file.<br>
 Add today’s date and then use <kbd>Ctrl</kbd>-<kbd>X</kbd> followed by
@@ -528,7 +528,7 @@ and save the file.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <pre><code>$ bash bad-reads-script.sh
 Script finished!</code></pre>
@@ -552,7 +552,7 @@ by changing the file permissions. We talked about permissions in <a href="03-wor
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>-rw-rw-r-- 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh</code></pre>
+<pre class="output" tabindex="0"><code>-rw-r--r-- 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh</code></pre>
 </div>
 <p>We see that it says <code>-rw-r--r--</code>. This shows that the file
 can be read by any user and written to by the file owner (you). We want
@@ -574,7 +574,7 @@ executable permissions (<code>+x</code>).</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>-rwxrwxr-x 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh</code></pre>
+<pre class="output" tabindex="0"><code>-rwxr-xr-x 1 dcuser dcuser 0 Oct 25 21:46 bad-reads-script.sh</code></pre>
 </div>
 <p>Now we see that it says <code>-rwxr-xr-x</code>. The <code>x</code>’s
 that are there now tell us we can run it as a program. So, let’s try it!
@@ -699,7 +699,7 @@ machine.</p>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>SCP</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p><code>scp</code> stands for ‘secure copy protocol’, and is a widely
 used UNIX tool for moving files between computers. The simplest way to
@@ -774,7 +774,7 @@ machine.</p>
   <h3 class="accordion-header" id="headingSpoiler2">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>PCSP</h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>If you’re using a Windows PC without Git Bash, we recommend you use
 the <em>PSCP</em> program. This program is from the same suite of tools
@@ -901,8 +901,8 @@ computers.</li>
   "url": "https://datacarpentry.github.io/shell-genomics/05-writing-scripts.html",
   "identifier": "https://datacarpentry.github.io/shell-genomics/05-writing-scripts.html",
   "dateCreated": "2015-03-24",
-  "dateModified": "2023-11-01",
-  "datePublished": "2024-04-16"
+  "dateModified": "2024-04-17",
+  "datePublished": "2024-04-17"
 }
 
   </script><script>
