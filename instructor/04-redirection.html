@@ -46,7 +46,7 @@
             </li>
           </ul></li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View <i data-feather="chevron-down"></i>
@@ -170,7 +170,7 @@
                 </div><!--/div.accordion-flush-->
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
-      
+
             <hr></div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordionFlush11">
@@ -189,7 +189,7 @@
     <div class="accordion-header" id="flush-heading1">
         <a href="index.html">Summary and Schedule</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -198,7 +198,7 @@
     <div class="accordion-header" id="flush-heading2">
         <a href="01-introduction.html">1. Introducing the Shell</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -207,7 +207,7 @@
     <div class="accordion-header" id="flush-heading3">
         <a href="02-the-filesystem.html">2. Navigating Files and Directories</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -216,7 +216,7 @@
     <div class="accordion-header" id="flush-heading4">
         <a href="03-working-with-files.html">3. Working with Files and Directories</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -230,7 +230,7 @@
         </span>
       </button>
     </div><!--/div.accordion-header-->
-        
+
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#searching-files">Searching files</a></li>
@@ -239,7 +239,7 @@
 <li><a href="#using-basename-in-for-loops">Using Basename in for loops</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -248,7 +248,7 @@
     <div class="accordion-header" id="flush-heading6">
         <a href="05-writing-scripts.html">5. Writing Scripts and Working with Data</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -257,7 +257,7 @@
     <div class="accordion-header" id="flush-heading7">
         <a href="06-organization.html">6. Project Organization</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -289,10 +289,10 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="../instructor/aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
-            
+
             </div>
           </div><!-- /div.accordion -->
         </div><!-- /div.sidebar-inner -->
@@ -313,20 +313,20 @@
           Previous: Working with Files
         </a>
         <a class="chapter-link float-end" href="../instructor/05-writing-scripts.html" rel="next">
-          Next: Writing Scripts and... 
+          Next: Writing Scripts and...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Redirection</h1>
         <p>Last updated on 2024-03-14 |
-        
+
         <a href="https://github.com/datacarpentry/shell-genomics/edit/main/episodes/04-redirection.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-        
-        
-        
+
+
+
         <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
-        
+
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -360,8 +360,8 @@ files.</li>
 </div>
 </div>
 </div>
-<section id="searching-files"><h2 class="section-heading">Searching files<a class="anchor" aria-label="anchor" href="#searching-files"></a>
-</h2>
+<section><h2 class="section-heading" id="searching-files">Searching files<a class="anchor" aria-label="anchor" href="#searching-files"></a>
+<a class="anchor" aria-label="anchor" href="#searching-files"></a></h2>
 <hr class="half-width"><p>We discussed in a previous episode how to search within a file using
 <code>less</code>. We can also search within files without even opening
 them, using <code>grep</code>. <code>grep</code> is a command-line
@@ -508,8 +508,8 @@ SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG</code></pre>
 </div>
 </div>
 </div>
-</section><section id="redirecting-output"><h2 class="section-heading">Redirecting output<a class="anchor" aria-label="anchor" href="#redirecting-output"></a>
-</h2>
+</section><section><h2 class="section-heading" id="redirecting-output">Redirecting output<a class="anchor" aria-label="anchor" href="#redirecting-output"></a>
+<a class="anchor" aria-label="anchor" href="#redirecting-output"></a></h2>
 <hr class="half-width"><p><code>grep</code> allowed us to identify sequences in our FASTQ files
 that match a particular pattern. All of these sequences were printed to
 our terminal screen, but in order to work with these sequences and
@@ -914,8 +914,8 @@ metadata file.</p>
 </div>
 </div>
 </div>
-</section><section id="writing-for-loops"><h2 class="section-heading">Writing for loops<a class="anchor" aria-label="anchor" href="#writing-for-loops"></a>
-</h2>
+</section><section><h2 class="section-heading" id="writing-for-loops">Writing for loops<a class="anchor" aria-label="anchor" href="#writing-for-loops"></a>
+<a class="anchor" aria-label="anchor" href="#writing-for-loops"></a></h2>
 <hr class="half-width"><p>Loops are key to productivity improvements through automation as they
 allow us to execute commands repeatedly. Similar to wildcards and tab
 completion, using loops also reduces the amount of typing (and typing
@@ -1016,8 +1016,8 @@ our <code>seq_info.txt</code> file. If we used <code>&gt;</code>, the
 <code>seq_info.txt</code> file would be rewritten every time the loop
 iterates, so it would only have text from the last variable used.
 Instead, <code>&gt;&gt;</code> adds to the end of the file.</p>
-</section><section id="using-basename-in-for-loops"><h2 class="section-heading">Using Basename in for loops<a class="anchor" aria-label="anchor" href="#using-basename-in-for-loops"></a>
-</h2>
+</section><section><h2 class="section-heading" id="using-basename-in-for-loops">Using Basename in for loops<a class="anchor" aria-label="anchor" href="#using-basename-in-for-loops"></a>
+<a class="anchor" aria-label="anchor" href="#using-basename-in-for-loops"></a></h2>
 <hr class="half-width"><p>Basename is a function in UNIX that is helpful for removing a uniform
 part of a name from a list of files. In this case, we will use basename
 to remove the <code>.fastq</code> extension from the files that we’ve
@@ -1188,7 +1188,7 @@ command as input to the second command.</li>
           Previous: Working with Files
         </a>
         <a class="chapter-link float-end" href="../instructor/05-writing-scripts.html" rel="next">
-          Next: Writing Scripts and... 
+          Next: Writing Scripts and...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1199,18 +1199,18 @@ command as input to the second command.</li>
       		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
+
         <a href="https://github.com/datacarpentry/shell-genomics/edit/main/episodes/04-redirection.md" class="external-link">Edit on GitHub</a>
-        
+
 	
         | <a href="https://github.com/datacarpentry/shell-genomics/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/datacarpentry/shell-genomics/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/datacarpentry/shell-genomics/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -1235,7 +1235,7 @@ command as input to the second command.</li>
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/04-redirection.html",
   "dateCreated": "2015-03-24",
   "dateModified": "2024-03-14",
-  "datePublished": "2024-07-02"
+  "datePublished": "2024-07-09"
 }
 
   </script><script>
