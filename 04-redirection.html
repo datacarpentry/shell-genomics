@@ -265,10 +265,10 @@
               </div>
             </div>
 
-            <hr class="half-width"><div class="accordion accordion-flush resources" id="accordionFlush12">
+            <hr class="half-width"><div class="accordion accordion-flush lesson-resources" id="accordionFlush12">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwelve">
-                  <button class="accordion-button collapsed" id="resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
                     RESOURCES
                   </button>
                 </h2>
@@ -288,7 +288,7 @@
                 </div>
               </div>
             </div>
-            <hr class="half-width resources"><a href="aio.html">See all in one page</a>
+            <hr class="half-width lesson-resources"><a href="aio.html">See all in one page</a>
 
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
@@ -358,8 +358,7 @@ files.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="searching-files">Searching files<a class="anchor" aria-label="anchor" href="#searching-files"></a>
-<a class="anchor" aria-label="anchor" href="#searching-files"></a></h2>
+<section><h2 class="section-heading" id="searching-files">Searching files<a class="anchor" aria-label="anchor" href="#searching-files"></a></h2>
 <hr class="half-width"><p>We discussed in a previous episode how to search within a file using
 <code>less</code>. We can also search within files without even opening
 them, using <code>grep</code>. <code>grep</code> is a command-line
@@ -374,8 +373,7 @@ try!</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="nucleotide-abbreviations" class="callout-inner">
-<h3 class="callout-title">Nucleotide abbreviations<a class="anchor" aria-label="anchor" href="#nucleotide-abbreviations"></a>
-</h3>
+<h3 class="callout-title">Nucleotide abbreviations</h3>
 <div class="callout-content">
 <p>The four nucleotides that appear in DNA are abbreviated
 <code>A</code>, <code>C</code>, <code>T</code> and <code>G</code>.
@@ -401,8 +399,7 @@ segments containing 10 consecutive unknown nucleotides (Ns).</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="determining-quality" class="callout-inner">
-<h3 class="callout-title">Determining quality<a class="anchor" aria-label="anchor" href="#determining-quality"></a>
-</h3>
+<h3 class="callout-title">Determining quality</h3>
 <div class="callout-content">
 <p>In this lesson, we’re going to be manually searching for strings of
 <code>N</code>s within our sequence results to illustrate some
@@ -455,8 +452,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
-</h3>
+<h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li><p>Search for the sequence <code>GNATNACCACTTCC</code> in the
 <code>SRR098026.fastq</code> file. Have your search return all matching
@@ -473,7 +469,7 @@ for each sequence that contains a match.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li><code>grep -B1 GNATNACCACTTCC SRR098026.fastq</code></li>
 </ol><pre><code>@SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
@@ -506,8 +502,7 @@ SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG</code></pre>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="redirecting-output">Redirecting output<a class="anchor" aria-label="anchor" href="#redirecting-output"></a>
-<a class="anchor" aria-label="anchor" href="#redirecting-output"></a></h2>
+</section><section><h2 class="section-heading" id="redirecting-output">Redirecting output<a class="anchor" aria-label="anchor" href="#redirecting-output"></a></h2>
 <hr class="half-width"><p><code>grep</code> allowed us to identify sequences in our FASTQ files
 that match a particular pattern. All of these sequences were printed to
 our terminal screen, but in order to work with these sequences and
@@ -533,8 +528,7 @@ to another file called <code>bad_reads.txt</code>.</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="file-extensions" class="callout-inner">
-<h3 class="callout-title">File extensions<a class="anchor" aria-label="anchor" href="#file-extensions"></a>
-</h3>
+<h3 class="callout-title">File extensions</h3>
 <div class="callout-content">
 <p>You might be confused about why we’re naming our output file with a
 <code>.txt</code> extension. After all, it will be holding FASTQ
@@ -586,8 +580,7 @@ file. If we want only the number of lines, we can use the
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-1" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-1"></a>
-</h3>
+<h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
 <p>How many sequences are there in <code>SRR098026.fastq</code>?
 Remember that every sequence is formed by four lines.</p>
@@ -599,7 +592,7 @@ Remember that every sequence is formed by four lines.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -642,8 +635,7 @@ arbitrary precision calculator</a></p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-2" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-2"></a>
-</h3>
+<h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
 <p>How many sequences in <code>SRR098026.fastq</code> contain at least 3
 consecutive Ns?</p>
@@ -655,7 +647,7 @@ consecutive Ns?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -752,8 +744,7 @@ wildcard:</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="file-extensions---part-2" class="callout-inner">
-<h3 class="callout-title">File extensions - part 2<a class="anchor" aria-label="anchor" href="#file-extensions---part-2"></a>
-</h3>
+<h3 class="callout-title">File extensions - part 2</h3>
 <div class="callout-content">
 <p>This is where we would have trouble if we were naming our output file
 with a <code>.fastq</code> extension. If we already had a file called
@@ -882,8 +873,7 @@ does not interpret the pattern as an extended option (starting with
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="custom-grep-control" class="callout-inner">
-<h3 class="callout-title">Custom <code>grep</code> control<a class="anchor" aria-label="anchor" href="#custom-grep-control"></a>
-</h3>
+<h3 class="callout-title">Custom <code>grep</code> control</h3>
 <div class="callout-content">
 <p>Use <code>man grep</code> to read more about other options to
 customize the output of <code>grep</code> including extended options,
@@ -903,8 +893,7 @@ you can do some really powerful things very efficiently.</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="file-manipulation-and-more-practices-with-pipes" class="callout-inner">
-<h3 class="callout-title">File manipulation and more practices with pipes<a class="anchor" aria-label="anchor" href="#file-manipulation-and-more-practices-with-pipes"></a>
-</h3>
+<h3 class="callout-title">File manipulation and more practices with pipes</h3>
 <div class="callout-content">
 <p>To practice a bit more with the tools we’ve added to our tool kit so
 far and learn a few extra ones you can follow <a href="Extra_lesson.html">this extra lesson</a> which uses the SRA
@@ -912,8 +901,7 @@ metadata file.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="writing-for-loops">Writing for loops<a class="anchor" aria-label="anchor" href="#writing-for-loops"></a>
-<a class="anchor" aria-label="anchor" href="#writing-for-loops"></a></h2>
+</section><section><h2 class="section-heading" id="writing-for-loops">Writing for loops<a class="anchor" aria-label="anchor" href="#writing-for-loops"></a></h2>
 <hr class="half-width"><p>Loops are key to productivity improvements through automation as they
 allow us to execute commands repeatedly. Similar to wildcards and tab
 completion, using loops also reduces the amount of typing (and typing
@@ -1014,8 +1002,7 @@ our <code>seq_info.txt</code> file. If we used <code>&gt;</code>, the
 <code>seq_info.txt</code> file would be rewritten every time the loop
 iterates, so it would only have text from the last variable used.
 Instead, <code>&gt;&gt;</code> adds to the end of the file.</p>
-</section><section><h2 class="section-heading" id="using-basename-in-for-loops">Using Basename in for loops<a class="anchor" aria-label="anchor" href="#using-basename-in-for-loops"></a>
-<a class="anchor" aria-label="anchor" href="#using-basename-in-for-loops"></a></h2>
+</section><section><h2 class="section-heading" id="using-basename-in-for-loops">Using Basename in for loops<a class="anchor" aria-label="anchor" href="#using-basename-in-for-loops"></a></h2>
 <hr class="half-width"><p>Basename is a function in UNIX that is helpful for removing a uniform
 part of a name from a list of files. In this case, we will use basename
 to remove the <code>.fastq</code> extension from the files that we’ve
@@ -1071,8 +1058,7 @@ output.</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-3" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-3"></a>
-</h3>
+<h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
 <p>Print the file prefix of all of the <code>.txt</code> files in our
 current directory.</p>
@@ -1084,7 +1070,7 @@ current directory.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb47">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1116,8 +1102,7 @@ them, which will document when we created them.</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-4" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise-4"></a>
-</h3>
+<h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
 <p>Remove <code>_2019</code> from all of the <code>.txt</code>
 files.</p>
@@ -1129,7 +1114,7 @@ files.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1149,8 +1134,7 @@ files.</p>
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
-</h3>
+<h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul><li>
 <code>grep</code> is a powerful search tool with many options for
@@ -1210,7 +1194,7 @@ command as input to the second command.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.6" class="external-link">sandpaper (0.16.6)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1233,7 +1217,7 @@ command as input to the second command.</li>
   "identifier": "https://datacarpentry.github.io/shell-genomics/04-redirection.html",
   "dateCreated": "2015-03-24",
   "dateModified": "2024-03-14",
-  "datePublished": "2024-08-20"
+  "datePublished": "2024-08-27"
 }
 
   </script><script>
