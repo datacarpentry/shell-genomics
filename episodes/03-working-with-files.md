@@ -577,8 +577,20 @@ $ cd ..
 $ rm -r backup
 ```
 
-This will delete not only the directory, but all files within the directory. If you have write-protected files in the directory,
-you will be asked whether you want to override your permission settings.
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Risks of `rm`
+
+`rm -r` will delete not only the directory, but all files within the directory.
+If you have write-protected files in the directory, you will be asked whether you want to override your permission settings.
+
+**Important: This cannot be undone.**
+
+`rm -i` will prompt you to confirm that you want to delete every file regardless of permission settings.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
