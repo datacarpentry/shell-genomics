@@ -50,6 +50,19 @@ directory:
 $ cd ~/shell_data/untrimmed_fastq
 ```
 
+Let's look for lines that contain `ACGT`.
+
+```bash
+$ grep ACGT SRR098026.fastq
+```
+
+To get only the number of lines with `ACGT`, we can use the `-c` flag.
+This is useful if you are unsure about the number of lines that will be found.
+
+```bash
+$ grep -c ACGT SRR098026.fastq
+```
+
 Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).
 
 :::::::::::::::::::::::::::::::::::::::::  callout
