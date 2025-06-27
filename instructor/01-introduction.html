@@ -320,7 +320,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introducing the Shell</h1>
-        <p>Last updated on 2023-08-15 |
+        <p>Last updated on 2025-06-27 |
 
         <a href="https://github.com/datacarpentry/shell-genomics/edit/main/episodes/01-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -627,7 +627,7 @@ don’t see with the bare <code>ls</code> command?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -736,6 +736,41 @@ useful if you remember the beginning of a program name.</p>
 <p>Displays the name of every program that starts with
 <code>pw</code>.</p>
 </div>
+<div class="section level3">
+<h3 id="shortcut-moving-to-the-start-or-end-of-a-command">Shortcut: Moving to the start or end of a command<a class="anchor" aria-label="anchor" href="#shortcut-moving-to-the-start-or-end-of-a-command"></a></h3>
+<p>Editing a long command can be time consuming. The shell has shortcut
+keys for moving to the start or end of a command that you are
+typing.</p>
+<p>Try this command.</p>
+<div class="codewrapper sourceCode" id="cb26">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">ls</span> home/dcuser/shell_data</span></code></pre>
+</div>
+<p>You will get an error
+<code>ls: cannot access 'home/dcuser/shell_data': No such file or directory</code>.
+There should be a <code>/</code> at the start of the path.</p>
+<p>Use the up arrow to get the previous command again. Use CTRL+A (hold
+down the control (CTRL) key and press the A key) to move to the start of
+the command. Edit the command to add the missing <code>/</code> and hit
+enter.</p>
+<div class="codewrapper sourceCode" id="cb27">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">ls</span> /home/dcuser/shell_data</span></code></pre>
+</div>
+<p>Now you decide actually you wanted to see the contents one level down
+in <code>sra_metadata</code>.</p>
+<p>Use the up arrow to get the previous command again. Your cursor will
+be at the end of the command. Use CTRL+A to move to the beginning of the
+command, then CTRL+E to move to the end of the command. Edit the command
+to add <code>/sra_metadata</code> and now hit enter.</p>
+<div class="codewrapper sourceCode" id="cb28">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">ls</span> /home/dcuser/shell_data/sra_metadata</span></code></pre>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
 <hr class="half-width"><p>We now know how to move around our file system using the command
 line. This gives us an advantage over interacting with the file system
@@ -822,7 +857,7 @@ efficient in the shell.</li>
   "url": "https://datacarpentry.github.io/shell-genomics/instructor/01-introduction.html",
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/01-introduction.html",
   "dateCreated": "2015-03-24",
-  "dateModified": "2023-08-15",
+  "dateModified": "2025-06-27",
   "datePublished": "2025-06-27"
 }
 
