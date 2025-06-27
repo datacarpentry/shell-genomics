@@ -52,7 +52,7 @@ Your computer looked for a directory or file called `shell_data` within the
 directory you were already in. It didn't know you wanted to look at a directory level
 above the one you were located in.
 
-We have a special command to tell the computer to move us back or up one directory level.
+We have two special directory names `.` and `..`; `.` refers to the current directory you are in and `..` refers to the directory one level above the current directory. We can use `..` with `cd` to move up one directory level.
 
 ```bash
 $ cd ..
