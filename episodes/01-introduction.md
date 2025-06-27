@@ -370,17 +370,18 @@ Displays the name of every program that starts with `pw`.
 Editing a long command can be time consuming. The shell has shortcut keys for moving to the start
 or end of a command that you are typing.
 
-Try typing this command, but don't hit enter yet.
+Try this command.
 
 ```bash
 ls home/dcuser/shell_data
 ```
 
-Notice that there is an error: there should be a `/` at the start of the path.
+You will get an error `ls: cannot access 'home/dcuser/shell_data': No such file or directory`.
+There should be a `/` at the start of the path.
 
+Use the up arrow to get the previous command again.
 Use CTRL+A (hold down the control (CTRL) key and press the A key) to move to the start of the command.
-
-Edit the command to add the missing `/`, but don't hit enter yet.
+Edit the command to add the missing `/` and hit enter.
 
 ```bash
 ls /home/dcuser/shell_data
@@ -388,8 +389,9 @@ ls /home/dcuser/shell_data
 
 Now you decide actually you wanted to see the contents one level down in `sra_metadata`.
 
-Use CTRL+E to move to the end of the command.
-
+Use the up arrow to get the previous command again.
+Your cursor will be at the end of the command.
+Use CTRL+A to move to the beginning of the command, then CTRL+E to move to the end of the command.
 Edit the command to add `/sra_metadata` and now hit enter.
 
 ```bash
