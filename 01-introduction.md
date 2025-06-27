@@ -365,6 +365,40 @@ pwck      pwconv    pwd       pwdx      pwunconv
 
 Displays the name of every program that starts with `pw`.
 
+### Shortcut: Moving to the start or end of a command
+
+Editing a long command can be time consuming. The shell has shortcut keys for moving to the start
+or end of a command that you are typing.
+
+Try this command.
+
+```bash
+ls home/dcuser/shell_data
+```
+
+You will get an error `ls: cannot access 'home/dcuser/shell_data': No such file or directory`.
+There should be a `/` at the start of the path.
+
+Use the up arrow to get the previous command again.
+Use CTRL+A (hold down the control (CTRL) key and press the A key) to move to the start of the command.
+Edit the command to add the missing `/` and hit enter.
+
+```bash
+ls /home/dcuser/shell_data
+```
+
+Now you decide actually you wanted to see the contents one level down in `sra_metadata`.
+
+Use the up arrow to get the previous command again.
+Your cursor will be at the end of the command.
+Use CTRL+A to move to the beginning of the command, then CTRL+E to move to the end of the command.
+Edit the command to add `/sra_metadata` and now hit enter.
+
+```bash
+ls /home/dcuser/shell_data/sra_metadata
+```
+
+
 ## Summary
 
 We now know how to move around our file system using the command line.
