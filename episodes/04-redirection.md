@@ -1,670 +1,316 @@
 ---
-title: Redirection
-teaching: 30
-exercises: 15
+title:  Searching Files and Redirecting
+teaching: 15
+exercises: 5
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
+::: objectives
+-   Employ the `grep` command to search for information within files.
+-   Redirect the results of a command to a file.
+-   Construct command pipelines with two or more stages using the pipe operator.
+:::
 
-- Employ the `grep` command to search for information within files.
-- Print the results of a command to a file.
-- Construct command pipelines with two or more stages.
-- Use `for` loops to run the same command for several input files.
+::: questions
+-   How can I search for specific content within files?
+-   How can I save my command output to a file?
+-   How can I combine existing commands to do new things?
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+## Searching files with `grep`
 
-:::::::::::::::::::::::::::::::::::::::: questions
+In a previous episode, we learned how to search within a file using `less`. We can also search within files without opening them by using the `grep` command. `grep` is a command-line utility for searching plain-text files for lines that match a specific string of characters or a particular pattern. For this lesson, we will focus on searching for strings.
 
-- How can I search within files?
-- How can I combine existing commands to do new things?
+Let's search for strings inside our metadata file `SraRunTable.txt`. First, make sure you are in the correct directory:
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::: callout
+## SraRunTable
 
-## Searching files
+SraRunTable.txt is a tab-delimited text metadata file downloaded from the NCBI Sequence Read Archive (SRA). It contains crucial information about a set of sequencing "runs" (individual sequencing experiments) associated with a particular SRA project or experiment.
 
-We discussed in a previous episode how to search within a file using `less`. We can also
-search within files without even opening them, using `grep`. `grep` is a command-line
-utility for searching plain-text files for lines matching a specific set of
-characters (sometimes called a string) or a particular pattern
-(which can be specified using something called regular expressions). We're not going to work with
-regular expressions in this lesson, and are instead going to specify the strings
-we are searching for.
-Let's give it a try!
+Essential Identifiers:
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+-   **Run** (or Run_s or Run_ID): This is the most crucial header. It contains the SRR accession number (e.g., SRR097977), which is the unique identifier for a specific sequencing run. You'll use this to download the actual FASTQ or SRA files.
+-   **BioSample** (or BioSample_s or BioSample_ID): The SAMN accession number (e.g., [SAMN00205533](https://www.ebi.ac.uk/ena/browser/view/SAMN00205533?dataType=BIOSAMPLE)) refers to the ENA BioSample record, which provides a more detailed description of the biological source material.
+-   **Sample** (or SRA_Sample_s or Sample_ID): The SRS accession number (e.g., SRS167141) identifies the biological sample from which the sequencing data was derived. Multiple experiments and runs might originate from the same sample.
 
-## Nucleotide abbreviations
-
-The four nucleotides that appear in DNA are abbreviated `A`, `C`, `T` and `G`.
-Unknown nucleotides are represented with the letter `N`. An `N` appearing
-in a sequencing file represents a position where the sequencing machine was not able to
-confidently determine the nucleotide in that position. You can think of an `N` as being aNy
-nucleotide at that position in the DNA sequence.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-We'll search for strings inside of our fastq files. Let's first make sure we are in the correct
-directory:
+Information on how to download the SraRunTable.txt can be found in the lesson [Examining Data on the NCBI SRA Database](https://datacarpentry.github.io/organization-genomics/03-ncbi-sra.html).
+:::
 
 ```bash
-$ cd ~/shell_data/untrimmed_fastq
+$ cd ~/shell_data/sra_metadata
 ```
 
-Let's look for lines that contain `ACGT`.
+You can use `less` to quickly inspect the contents of `SraRunTable.txt`:
 
 ```bash
-$ grep ACGT SRR098026.fastq
+$ less SraRunTable.txt
 ```
-
-To get only the number of lines with `ACGT`, we can use the `-c` flag.
-This is useful if you are unsure about the number of lines that will be found.
-
-```bash
-$ grep -c ACGT SRR098026.fastq
-```
-
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Determining quality
-
-In this lesson, we're going to be manually searching for strings of `N`s within our sequence
-results to illustrate some principles of file searching. It can be really useful to do this
-type of searching to get a feel for the quality of your sequencing results, however, in your
-research you will most likely use a bioinformatics tool that has a built-in program for
-filtering out low-quality reads. You'll learn how to use one such tool in
-[a later lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control).
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-Let's search for the string NNNNNNNNNN in the SRR098026 file:
-
-```bash
-$ grep NNNNNNNNNN SRR098026.fastq
-```
-
-This command returns a lot of output to the terminal. Every single line in the SRR098026
-file that contains at least 10 consecutive Ns is printed to the terminal, regardless of how long or short the file is.
-We may be interested not only in the actual sequence which contains this string, but
-in the name (or identifier) of that sequence. We discussed in a previous lesson
-that the identifier line immediately precedes the nucleotide sequence for each read
-in a FASTQ file. We may also want to inspect the quality scores associated with
-each of these reads. To get all of this information, we will return the line
-immediately before each match and the two lines immediately after each match.
-
-We can use the `-B` argument for grep to return a specific number of lines before
-each match. The `-A` argument returns a specific number of lines after each matching line. Here we want the line *before* and the two lines *after* each
-matching line, so we add `-B1 -A2` to our grep command:
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
-```
-
-One of the sets of lines returned by this command is:
 
 ```output
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+BioSample_s     InsertSize_l    LibraryLayout_s Library_Name_s  LoadDate_s      MBases_l        MBytes_l        ReleaseDate_s   Run_s   SRA_Sample_s    Sample_Name_s   Assay_Type_s    AssemblyName_s  BioProject_s    Center_Name_s   Consent_s       Organism_s      Platform_s      SRA_Study_s     g1k_analysis_group_s    g1k_pop_code_s  source_s        strain_s
+SAMN00205533    0       SINGLE  CZB152  29-May-14       149     100     25-Mar-11       SRR097977       SRS167141       CZB152  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+SAMN00205558    0       SINGLE  CZB154  29-May-14       627     444     25-Mar-11       SRR098026       SRS167166       CZB154  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+SAMN00205559    0       SINGLE  CZB199  29-May-14       157     118     25-Mar-11       SRR098027       SRS167167       CZB199  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+SAMN00205560    0       SINGLE  REL1166A        29-May-14       627     440     25-Mar-11       SRR098028       SRS167168       REL1166A        WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+SAMN00205561    0       SINGLE  REL10979        29-May-14       140     94      25-Mar-11       SRR098029       SRS167169       REL10979        WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+..SraRunTable.txt
+```
+
+### Searching for exact and partial matches
+
+Let's find information about one of our samples using its SRR accession number, `SRR097977`.
+
+```bash
+$ grep SRR097977 SraRunTable.txt
+```
+
+This command prints any line in the file that contains the string `SRR097977`.
+
+```output
+SAMN00205533    0       SINGLE  CZB152  29-May-14       149     100     25-Mar-11       SRR097977       SRS167141     CZB152  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA      SRP004752       <not provided>  <not provided>  <not pro
+```
+
+`grep` can also match parts of a larger string. For example, we can search for `ZDB172`:
+
+```bash
+$ grep ZDB172 SraRunTable.txt
+```
+
+The output includes lines containing `ZDB172-SE` and `ZDB172-PE` because they both contain the string `ZDB172`.
+
+```output
+SAMN00205573    0       SINGLE  ZDB172-SE       29-May-14       59      48      25-Mar-11       SRR098042       SRS167181       ZDB172  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+SAMN00205573    2729    PAIRED  ZDB172-PE       29-May-14       1620    635     25-Mar-11       SRR098043       SRS167181       ZDB172  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+```
+
+If you want to match `ZDB16-SE` use this exact word
+
+```bash
+$ grep  ZDB172-SE SraRunTable.txt
+```
+
+```output
+SAMN00205573    0       SINGLE  ZDB172-SE       29-May-14       59      48      25-Mar-11       SRR098042       SRS167181       ZDB172  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+```
+
+In some cases the word you want to match `ZDB16` in a file is contained within the text of another word e.g. `ZDB165`
+
+```bash
+$ grep ZDB16 SraRunTable.txt
+```
+
+```output
+SAMN00205563    0       SINGLE  ZDB16   29-May-14       606     424     25-Mar-11       SRR098031       SRS167171       ZDB16   WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+SAMN01095547    0       SINGLE  ZDB165  25-Jul-12       155     106     26-Jul-12       SRR527254       SRS351861       ZDB165  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+```
+
+To match an exact word, you can use the -w flag (for "word").
+
+```bash
+$ grep -w ZDB16 SraRunTable.txt
+```
+
+```output
+SAMN00205563    0       SINGLE  ZDB16   29-May-14       606     424     25-Mar-11       SRR098031       SRS167171       ZDB16   WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA        SRP004752       <not provided>  <not provided>  <not provided>  REL606
+```
+
+
+### Case-insensitive matching
+
+By default, `grep` is case-sensitive. This means that `SINGLE` is different from `single`. Let's see:
+
+```bash
+$ grep SINGLE SraRunTable.txt
+```
+
+Now, try searching for Single:
+
+```bash
+$ grep Single SraRunTable.txt
+```
+
+```output
+# (No output, because "Single" doesn't appear with a capital 'S' in the file)
+```
+
+To perform a case-insensitive search, use the -i flag (for "ignore-case"):
+
+```bash
+$ grep -i Single SraRunTable.txt
+```
+
+```output
+SAMN00205533	0	SINGLE	CZB152	29-May-14	149	100	25-Mar-11	SRR097977	SRS167141	CZB152	WGS	<not provided>	PRJNA188723	MSU	public	Escherichia coli B str. REL606	ILLUMINA	SRP004752	<not provided>	<not provided>	<not provided>	REL606
+SAMN00205558	0	SINGLE	CZB154	29-May-14	627	444	25-Mar-11	SRR098026	SRS167166	CZB154	WGS	<not provided>	PRJNA188723	MSU	public	Escherichia coli B str. REL606	ILLUMINA	SRP004752	<not provided>	<not provided>	<not provided>	REL606
+... (same output as `grep SINGLE`, as it now matches regardless of case)
+```
+
+### Counting matches
+
+Sometimes, you don't need to see the matching lines, but just want to know how many there are. The `-c` flag (for "count") tells `grep` to output only the number of matching lines.
+
+```bash
+$ grep -c SINGLE SraRunTable.txt
+```
+
+```output
+35
+```
+
+
+### Inverting matches
+
+You can also find lines that **do not** match a pattern by using the `-v` flag (for "invert"). For example, we can find all records that are not `PAIRED` reads.
+
+```bash
+$ grep -v PAIRED SraRunTable.txt
+```
+
+This command will print the header line (which does not contain the word `PAIRED`) and all lines for `SINGLE` reads.
+
+```output
+BioSample_s     InsertSize_l    LibraryLayout_s Library_Name_s  LoadDate_s      MBases_l        MBytes_l        ReleaseDate_s   Run_s   SRA_Sample_s    Sample_Name_s   Assay_Type_s    AssemblyName_s    BioProject_s    Center_Name_s   Consent_s       Organism_s      Platform_s      SRA_Study_s     g1k_analysis_group_s    g1k_pop_code_s  source_s        strain_s
+SAMN00205533    0       SINGLE  CZB152  29-May-14       149     100     25-Mar-11       SRR097977       SRS167141     CZB152  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA      SRP004752       <not provided>  <not provided>  <not provided>  REL606
+SAMN00205534    0       SINGLE  CZB153  29-May-14       149     100     25-Mar-11       SRR097978       SRS167142       CZB153  WGS     <not provided>  PRJNA188723     MSU     public  Escherichia coli B str. REL606  ILLUMINA      SRP004752       <not provided>  <not provided>  <not provided>  REL606
+...
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
-
 ## Exercise
 
-1. Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
-  Have your search return all matching lines and the name (or identifier) for each sequence
-  that contains a match.
-
-2. Search for the sequence `AAGTT` in both FASTQ files.
-  Have your search return all matching lines and the name (or identifier) for each sequence
-  that contains a match.
+Let's search for the string `PAIRED` in the `SraRunTable.txt` file.
 
 :::::::::::::::  solution
-
 ## Solution
 
-1. `grep -B1 GNATNACCACTTCC SRR098026.fastq`
-
-```
-@SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
-GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG
+```bash
+$ grep PAIRED SraRunTable.txt
 ```
 
-2. `grep -B1 AAGTT *.fastq`
+This command returns a lot of output to the terminal. Every single line in the `SraRunTable.txt` file that contains "PAIRED" is printed to the terminal.
+:::::::::::::::  
+:::::::::::::::::::::::::::::::::::::::  
 
-```
-SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
-SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
---
-SRR097977.fastq-@SRR097977.67 209DTAAXX_Lenski2_1_7:8:3:544:566 length=36
-SRR097977.fastq:TTGTCCACGCTTTTCTATGTAAAGTTTATTTGCTTT
---
-SRR097977.fastq-@SRR097977.68 209DTAAXX_Lenski2_1_7:8:3:724:110 length=36
-SRR097977.fastq:TGAAGCCTGCTTTTTTATACTAAGTTTGCATTATAA
---
-SRR097977.fastq-@SRR097977.80 209DTAAXX_Lenski2_1_7:8:3:258:281 length=36
-SRR097977.fastq:GTGGCGCTGCTGCATAAGTTGGGTTATCAGGTCGTT
---
-SRR097977.fastq-@SRR097977.92 209DTAAXX_Lenski2_1_7:8:3:353:318 length=36
-SRR097977.fastq:GGCAAAATGGTCCTCCAGCCAGGCCAGAAGCAAGTT
---
-SRR097977.fastq-@SRR097977.139 209DTAAXX_Lenski2_1_7:8:3:703:655 length=36
-SRR097977.fastq:TTTATTTGTAAAGTTTTGTTGAAATAAGGGTTGTAA
---
-SRR097977.fastq-@SRR097977.238 209DTAAXX_Lenski2_1_7:8:3:592:919 length=36
-SRR097977.fastq:TTCTTACCATCCTGAAGTTTTTTCATCTTCCCTGAT
---
-SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
-SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG
-```
+## Redirecting Output
 
-:::::::::::::::::::::::::
+`grep` is useful for finding matching lines, but often we want to save those results to work with them further. We can do this with **output redirection**. Instead of printing to the terminal, we can redirect the output to a file.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+The `>` operator redirects output to a file, creating the file if it doesn't exist and **overwriting** it if it does.
 
-## Redirecting output
-
-`grep` allowed us to identify sequences in our FASTQ files that match a particular pattern.
-All of these sequences were printed to our terminal screen, but in order to work with these
-sequences and perform other operations on them, we will need to capture that output in some
-way.
-
-We can do this with something called "redirection". The idea is that
-we are taking what would ordinarily be printed to the terminal screen and redirecting it to another location.
-In our case, we want to print this information to a file so that we can look at it later and
-use other commands to analyze this data.
-
-The command for redirecting output to a file is `>`.
-
-Let's try out this command and copy all the records (including all four lines of each record)
-in our FASTQ files that contain
-'NNNNNNNNNN' to another file called `bad_reads.txt`.
+Let's save  the `SRR097977` read record to a new file called `metadata.txt`.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep SRR097977 SraRunTable.txt > metadata.txt
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## File extensions
-
-You might be confused about why we're naming our output file with a `.txt` extension. After all,
-it will be holding FASTQ formatted data that we're extracting from our FASTQ files. Won't it
-also be a FASTQ file? The answer is, yes - it will be a FASTQ file and it would make sense to
-name it with a `.fastq` extension. However, using a `.fastq` extension will lead us to problems
-when we move to using wildcards later in this episode. We'll point out where this becomes
-important. For now, it's good that you're thinking about file extensions!
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-The prompt should sit there a little bit, and then it should look like nothing
-happened. But type `ls`. You should see a new file called `bad_reads.txt`.
-
-We can check the number of lines in our new file using a command called `wc`.
-`wc` stands for **word count**. This command counts the number of words, lines, and characters
-in a file. The FASTQ file may change over time, so given the potential for updates,
-make sure your file matches your instructor's output.
-
-As of Sept. 2020, wc gives the following output:
+The command produces no output to the terminal, but if you type `ls`, you will see the new file. We can check its contents with `wc -l`, which counts the number of lines in a file.
 
 ```bash
-$ wc bad_reads.txt
+$ wc -l metadata.txt
 ```
 
 ```output
-  802    1338   24012 bad_reads.txt
+1
 ```
 
-This will tell us the number of lines, words and characters in the file. If we
-want only the number of lines, we can use the `-l` flag for `lines`.
+Be careful: using `>` will overwrite the destination file. For example:
 
 ```bash
-$ wc -l bad_reads.txt
+$ grep SRR098026 SraRunTable.txt > metadata.txt
+$ wc -l metadata.txt
+1 metadata.txt
+
+$ grep SRR097977 SraRunTable.txt > metadata.txt
+$ wc -l metadata.txt
+1 metadata.txt
+```
+The second command overwrote the results of the first. To **append** to a file instead of overwriting it, use the `>>` operator.
+
+```bash
+$ grep SRR098026 SraRunTable.txt > metadata.txt
+$ grep SRR097977 SraRunTable.txt >> metadata.txt
+$ wc -l metadata.txt
+2 metadata.txt
+```
+Now, the file contains the results from both commands.
+
+## Constructing Command Pipelines
+
+Redirection is useful for saving command output, but what if we only need to process data on-the-fly without creating intermediate files? We can combine commands using a **pipeline**. The `|` operator (called the "pipe") takes the standard output of the command on its left and uses it as the standard input for the command on its right. This allows us to chain multiple commands together to perform complex tasks efficiently.
+
+For example, instead of saving the `grep` results to a file and then running `head` on it, we can do it in one step:
+
+```bash
+$ grep PAIRED SraRunTable.txt | head
+```
+
+This is a very common and powerful pattern. It lets you chain multiple commands together to perform complex tasks without creating temporary files. This is especially useful when dealing with large files, like `SraRunTable.txt`, where creating many intermediate files can consume significant disk space and time.
+
+### Combining `grep` with `cut`
+
+Another powerful command to use in pipelines is `cut`. The `cut` command extracts selected portions of each line from a file or standard input. It's particularly useful for working with tabular data, where you might want to select specific columns.
+
+The `SraRunTable.txt` file is tab-delimited, meaning its columns are separated by tab characters. We can use `cut` with the `-f` option to specify which fields (columns) to extract. For example, to extract the 1st, 9th, 10th, 11th, 14th, and 19th columns (which correspond to `BioSample_s`, `Run_s`, `SRA_Sample_s`, `Sample_Name_s`, `BioProject_s`, and `SRA_Study_s` respectively), we would use:
+
+```bash
+$ cut -f1,9-11,14,19 SraRunTable.txt
 ```
 
 ```output
-802 bad_reads.txt
+BioSample_s	Run_s	SRA_Sample_s	Sample_Name_s	BioProject_s	SRA_Study_s
+SAMN00205533	SRR097977	SRS167141	CZB152	PRJNA188723	SRP004752
+SAMN00205558	SRR098026	SRS167166	CZB154	PRJNA188723	SRP004752
+...
 ```
+
+Now, let's combine `grep` and `cut` using a pipe. Suppose we want to find all records for `SRR097977` and then extract only the `BioSample_s`, `Run_s`, `SRA_Sample_s`, `Sample_Name_s`, `BioProject_s`, and `SRA_Study_s` columns. We can do this in a single pipeline:
+
+```bash
+$ grep SRR097977 SraRunTable.txt | cut -f1,9-11,14,19
+```
+
+```output
+SAMN00205533	SRR097977	SRS167141	CZB152	PRJNA188723	SRP004752
+```
+
+This pipeline first filters the `SraRunTable.txt` file for lines containing `SRR097977` using `grep`, and then `cut` processes only those filtered lines, extracting the specified columns. This approach is highly efficient because `cut` doesn't need to read the entire `SraRunTable.txt` file; it only processes the data passed to it by `grep`. This saves time and resources, especially with very large datasets common in genomics.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
-
 ## Exercise
 
-How many sequences are there in `SRR098026.fastq`? Remember that every sequence is formed by four lines.
+Using a pipe `|`, select `PAIRED` reads sample present in the `SraRunTable.txt` file and then extract only the `Run_s` (column 9) and `LibraryLayout_s` (column 3) for those reads.
 
 :::::::::::::::  solution
-
 ## Solution
 
 ```bash
-$ wc -l SRR098026.fastq
+$ grep PAIRED SraRunTable.txt | cut -f9,3
 ```
-
 ```output
-996
+PAIRED	SRR098033
+PAIRED	SRR098043
 ```
 
-Now you can divide this number by four to get the number of sequences in your fastq file.
 
-This can be done using [shell integer arithmetic](https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html)
+This command first filters for `SINGLE` reads and passes the output using a pipe `|` to `cut` which then extracts the specified columns.
+:::::::::::::::
+:::::::::::::::::::::::::::::::::::::::  
 
-```bash
-$ echo $((996/4))
-```
+## Summary of `grep` Options
 
-Note, this will do integer division - if you need floating point arithmetic you can use [bc - an arbitrary precision calculator](https://www.gnu.org/software/bc/manual/html_mono/bc.html)
+Here's a summary of the `grep` options covered in this lesson:
 
-
-```bash
-$ echo "996/4" | bc
-```
-
-```output
-249
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Exercise
-
-How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
-
-:::::::::::::::  solution
-
-## Solution
-
-```bash
-$ grep NNN SRR098026.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-249
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-We might want to search multiple FASTQ files for sequences that match our search pattern.
-However, we need to be careful, because each time we use the `>` command to redirect output
-to a file, the new output will replace the output that was already present in the file.
-This is called "overwriting" and, just like you don't want to overwrite your video recording
-of your kid's first birthday party, you also want to avoid overwriting your data files.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-802 bad_reads.txt
-```
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-0 bad_reads.txt
-```
-
-Here, the output of our second  call to `wc` shows that we no longer have any lines in our `bad_reads.txt` file. This is
-because the second file we searched (`SRR097977.fastq`) does not contain any lines that match our
-search sequence. So our file was overwritten and is now empty.
-
-We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will
-append new output to the end of a file, rather than overwriting it.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-802 bad_reads.txt
-```
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-802 bad_reads.txt
-```
-
-The output of our second call to `wc` shows that we have not overwritten our original data.
-
-We can also do this with a single line of code by using a wildcard:
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-802 bad_reads.txt
-```
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## File extensions - part 2
-
-This is where we would have trouble if we were naming our output file with a `.fastq` extension.
-If we already had a file called `bad_reads.fastq` (from our previous `grep` practice)
-and then ran the command above using a `.fastq` extension instead of a `.txt` extension, `grep`
-would give us a warning.
-
-```bash
-grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
-```
-
-```output
-grep: input file ‘bad_reads.fastq' is also the output
-```
-
-`grep` is letting you know that the output file `bad_reads.fastq` is also included in your
-`grep` call because it matches the `*.fastq` pattern. Be careful with this as it can lead to
-some unintended results.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-Since we might have multiple different criteria we want to search for,
-creating a new output file each time has the potential to clutter up our workspace. We also
-thus far haven't been interested in the actual contents of those files, only in the number of
-reads that we've found. We created the files to store the reads and then counted the lines in
-the file to see how many reads matched our criteria. There's a way to do this, however, that
-doesn't require us to create these intermediate files - the pipe command (`|`).
-
-This is probably not a key on
-your keyboard you use very much, so let's all take a minute to find that key.
-In the UK and US keyboard layouts, and several others,
-the `|` character can be found using the key combination <kbd>Shift</kbd>\+<kbd>\</kbd>.
-This may be different for other language-specific layouts.
-
-What `|` does is take the output that is scrolling by on the terminal and uses that output as input to another command.
-When our output was scrolling by, we might have wished we could slow it down and
-look at it, like we can with `less`. Well it turns out that we can! We can redirect our output
-from our `grep` call through the `less` command.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
-```
-
-We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows
-to scroll through the output and use `q` to exit `less`.
-
-If we don't want to create a file before counting lines of output from our `grep` search, we could directly pipe
-the output of the grep search to the command `wc -l`. This can be helpful for investigating your output if you are not sure
-you would like to save it to a file.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l 
-```
-
-Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
-four to get the number of sequences that match our search pattern. Since 802 / 4 = 200.5 and we
-are expecting an integer number of records, there is something added or missing in `bad_reads.txt`.
-If we explore `bad_reads.txt` using `less`, we might be able to notice what is causing the uneven
-number of lines. Luckily, this issue happens by the end of the file so we can also spot it with `tail`.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ tail bad_reads.txt
-```
-
-```output
-@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
-+SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
---
---
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-```
-
-The fifth and six lines in the output display "--" which is the default action for `grep` to separate groups of
-lines matching the pattern, and indicate groups of lines which did not match the pattern so are not displayed.
-To fix this issue, we can redirect the output of grep to a second instance of `grep` as follows.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | grep -v '^--' > bad_reads.fastq
-$ tail bad_reads.fastq
-```
-
-```output
-+SRR098026.132 HWUSI-EAS1599_1:2:1:0:320 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
-@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
-+SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-```
-
-The `-v` option in the second `grep` search stands for `--invert-match` meaning `grep` will now only display the
-lines which do not match the searched pattern, in this case `'^--'`. The caret (`^`) is an **anchoring**
-character matching the beginning of the line, and the pattern has to be enclose by single quotes so `grep` does
-not interpret the pattern as an extended option (starting with --).
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Custom `grep` control
-
-Use `man grep` to read more about other options to customize the output of `grep` including extended options,
-anchoring characters, and much more.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-Redirecting output is often not intuitive, and can take some time to get used to. Once you're
-comfortable with redirection, however, you'll be able to combine any number of commands to
-do all sorts of exciting things with your data!
-
-None of the command line programs we've been learning
-do anything all that impressive on their own, but when you start chaining
-them together, you can do some really powerful things very
-efficiently.
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## File manipulation and more practices with pipes
-
-To practice a bit more with the tools we've added to our tool kit so far and learn a few extra ones you can follow [this extra lesson](Extra_lesson.md) which uses the SRA metadata file.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Writing for loops
-
-Loops are key to productivity improvements through automation as they allow us to execute commands repeatedly.
-Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes).
-Loops are helpful when performing operations on groups of sequencing files, such as unzipping or trimming multiple
-files. We will use loops for these purposes in subsequent analyses, but will cover the basics of them for now.
-
-When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list.
-Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the **variable**, and
-the commands inside the loop are executed, before moving on to the next item in the list. Inside the loop, we call for
-the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable**
-as a variable name and substitute its value in its place, rather than treat it as text or an external command. In shell programming, this is usually called "expanding" the variable.
-
-Sometimes, we want to expand a variable without any whitespace to its right.
-Suppose we have a variable named `foo` that contains the text `abc`, and would
-like to expand `foo` to create the text `abcEFG`.
-
-```bash
-$ foo=abc
-$ echo foo is $foo
-foo is abc
-$ echo foo is $fooEFG      # doesn't work
-foo is
-```
-
-The interpreter is trying to expand a variable named `fooEFG`, which (probably)
-doesn't exist. We can avoid this problem by enclosing the variable name in
-braces (`{` and `}`, also called "curly brackets"). `bash` treats the `#`
-character as a comment character. Any text on a line after a `#` is ignored by
-bash when evaluating the text as code.
-
-```bash
-$ foo=abc
-$ echo foo is $foo
-foo is abc
-$ echo foo is ${foo}EFG      # now it works!
-foo is abcEFG
-```
-
-Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice the shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven't finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
-
-```bash
-$ cd ../untrimmed_fastq/
-```
-
-```bash
-$ for filename in *.fastq
-> do
-> head -n 2 ${filename}
-> done
-```
-
-The for loop begins with the formula `for <variable> in <group to iterate over>`. In this case, the word `filename` is designated
-as the variable to be used over each iteration. In our case `SRR097977.fastq` and `SRR098026.fastq` will be substituted for `filename`
-because they fit the pattern of ending with .fastq in the directory we've specified. The next line of the for loop is `do`. The next line is
-the code that we want to execute. We are telling the loop to print the first two lines of each variable we iterate over. Finally, the
-word `done` ends the loop.
-
-After executing the loop, you should see the first two lines of both fastq files printed to the terminal. Let's create a loop that
-will save this information to a file.
-
-```bash
-$ for filename in *.fastq
-> do
-> head -n 2 ${filename} >> seq_info.txt
-> done
-```
-
-When writing a loop, you will not be able to return to previous lines once you have pressed Enter. Remember that we can cancel the current command using
-
-- <kbd>Ctrl</kbd>\+<kbd>C</kbd>
-
-If you notice a mistake that is going to prevent your loop for executing correctly.
-
-Note that we are using `>>` to append the text to our `seq_info.txt` file. If we used `>`, the `seq_info.txt` file would be rewritten
-every time the loop iterates, so it would only have text from the last variable used. Instead, `>>` adds to the end of the file.
-
-## Using Basename in for loops
-
-Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the `.fastq` extension from the files that we've been working with.
-
-```bash
-$ basename SRR097977.fastq .fastq
-```
-
-We see that this returns just the SRR accession, and no longer has the .fastq file extension on it.
-
-```output
-SRR097977
-```
-
-If we try the same thing but use `.fasta` as the file extension instead, nothing happens. This is because basename only works when it exactly matches a string in the file.
-
-```bash
-$ basename SRR097977.fastq .fasta
-```
-
-```output
-SRR097977.fastq
-```
-
-Basename is really powerful when used in a for loop. It allows to access just the file prefix, which you can use to name things. Let's try this.
-
-Inside our for loop, we create a new name variable. We call the basename function inside the parenthesis, then give our variable name from the for loop, in this case `${filename}`, and finally state that `.fastq` should be removed from the file name. It's important to note that we're not changing the actual files, we're creating a new variable called name. The line > echo $name will print to the terminal the variable name each time the for loop runs. Because we are iterating over two files, we expect to see two lines of output.
-
-```bash
-$ for filename in *.fastq
-> do
-> name=$(basename ${filename} .fastq)
-> echo ${name}
-> done
-```
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Exercise
-
-Print the file prefix of all of the `.txt` files in our current directory.
-
-:::::::::::::::  solution
-
-## Solution
-
-```bash
-$ for filename in *.txt
-> do
-> name=$(basename ${filename} .txt)
-> echo ${name}
-> done
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-One way this is really useful is to move files. Let's rename all of our .txt files using `mv` so that they have the years on them, which will document when we created them.
-
-```bash
-$ for filename in *.txt
-> do
-> name=$(basename ${filename} .txt)
-> mv ${filename}  ${name}_2019.txt
-> done
-```
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Exercise
-
-Remove `_2019` from all of the `.txt` files.
-
-:::::::::::::::  solution
-
-## Solution
-
-```bash
-$ for filename in *_2019.txt
-> do
-> name=$(basename ${filename} _2019.txt)
-> mv ${filename} ${name}.txt
-> done
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+| Option | Description                                     | Example Usage                     |
+| :----- | :---------------------------------------------- | :-------------------------------- |
+| (none) | Search for lines containing a specified string. | `grep PAIRED SraRunTable.txt`     |
+| `-c`   | Count the number of matching lines.             | `grep -c SINGLE SraRunTable.txt`  |
+| `-v`   | Invert the match; show lines that *do not* match. | `grep -v PAIRED SraRunTable.txt`  |
+| `-w`   | Match only whole words.                         | `grep -w ZDB16 SraRunTable.txt`   |
+| `-i`   | Perform a case-insensitive search.              | `grep -i single SraRunTable.txt`  |
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
-
-- `grep` is a powerful search tool with many options for customization.
-- `>`, `>>`, and `|` are different ways of redirecting output.
-- `command > file` redirects a command's output to a file.
-- `command >> file` redirects a command's output to a file without overwriting the existing contents of the file.
-- `command_1 | command_2` redirects the output of the first command as input to the second command.
-- `for` loops are used for iteration.
-- `basename` gets rid of repetitive parts of names.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
+- `grep` is a powerful search tool with many flags/options for customization.
+- `>` redirects output to a file, overwriting its previous content.
+- `>>` appends output to a file, preserving its existing content.
+- `|` creates a pipeline, sending the output of one command as input to another.
+:::::::::::::::::::::::::::::::::::::::: 
