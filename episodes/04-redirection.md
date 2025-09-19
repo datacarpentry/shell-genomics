@@ -179,91 +179,55 @@ use other commands to analyze this data.
 
 The command for redirecting output to a file is `>`.
 
-Let's try out this command and copy all the records (including all four lines of each record)
-in our FASTQ files that contain
-'NNNNNNNNNN' to another file called `bad_reads.txt`.
+Let's try out this command to look for particular samples in the SRA metadata file and copy the
+output to another file called `metadata.txt`.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ cd ~/shell_data/sra_metadata
+$ grep SRR097977 SraRunTable.txt > metadata.txt
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## File extensions
-
-You might be confused about why we're naming our output file with a `.txt` extension. After all,
-it will be holding FASTQ formatted data that we're extracting from our FASTQ files. Won't it
-also be a FASTQ file? The answer is, yes - it will be a FASTQ file and it would make sense to
-name it with a `.fastq` extension. However, using a `.fastq` extension will lead us to problems
-when we move to using wildcards later in this episode. We'll point out where this becomes
-important. For now, it's good that you're thinking about file extensions!
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-The prompt should sit there a little bit, and then it should look like nothing
-happened. But type `ls`. You should see a new file called `bad_reads.txt`.
+Type `ls`. You should see a new file called `metadata.txt`.
 
 We can check the number of lines in our new file using a command called `wc`.
 `wc` stands for **word count**. This command counts the number of words, lines, and characters
-in a file. The FASTQ file may change over time, so given the potential for updates,
-make sure your file matches your instructor's output.
-
-As of Sept. 2020, wc gives the following output:
+in a file.
 
 ```bash
-$ wc bad_reads.txt
+$ wc metadata.txt
 ```
 
 ```output
-  802    1338   24012 bad_reads.txt
+  1  31 228 metadata.txt
 ```
 
 This will tell us the number of lines, words and characters in the file. If we
 want only the number of lines, we can use the `-l` flag for `lines`.
 
 ```bash
-$ wc -l bad_reads.txt
+$ wc -l metadata.txt
 ```
 
 ```output
-802 bad_reads.txt
+1 metadata.txt
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Exercise
 
-How many sequences are there in `SRR098026.fastq`? Remember that every sequence is formed by four lines.
+How many sequences are there in `SraRunTable.txt`? Remember that every sequence is formed by four lines.
 
 :::::::::::::::  solution
 
 ## Solution
 
 ```bash
-$ wc -l SRR098026.fastq
+$ wc -l SraRunTable.txt
 ```
 
 ```output
-996
-```
-
-Now you can divide this number by four to get the number of sequences in your fastq file.
-
-This can be done using [shell integer arithmetic](https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html)
-
-```bash
-$ echo $((996/4))
-```
-
-Note, this will do integer division - if you need floating point arithmetic you can use [bc - an arbitrary precision calculator](https://www.gnu.org/software/bc/manual/html_mono/bc.html)
-
-
-```bash
-$ echo "996/4" | bc
-```
-
-```output
-249
+37 SraRunTable.txt
 ```
 
 :::::::::::::::::::::::::
@@ -274,98 +238,76 @@ $ echo "996/4" | bc
 
 ## Exercise
 
-How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
+How many paired-end read samples are there in `SraRunTable.txt`? These samples will have metadata that contains the keyword `PAIRED`.
 
 :::::::::::::::  solution
 
 ## Solution
 
 ```bash
-$ grep NNN SRR098026.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
+$ grep PAIRED SraRunTable.txt > metadata.txt
+$ wc -l metadata.txt
 ```
 
 ```output
-249
+2 metadata.txt
 ```
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We might want to search multiple FASTQ files for sequences that match our search pattern.
+We might want to search our file for multiple patterns, e.g. all single-end and all paired-end samples.
 However, we need to be careful, because each time we use the `>` command to redirect output
 to a file, the new output will replace the output that was already present in the file.
 This is called "overwriting" and, just like you don't want to overwrite your video recording
 of your kid's first birthday party, you also want to avoid overwriting your data files.
 
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-802 bad_reads.txt
-```
+Find the paired-end samples in the `SraRunTable.txt` file and take a look at the output with `less`.
+Remember you can exit `less` by pressing `q`.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
+$ grep PAIRED SraRunTable.txt > metadata.txt
+$ less metadata.txt
 ```
 
-```output
-0 bad_reads.txt
-```
-
-Here, the output of our second  call to `wc` shows that we no longer have any lines in our `bad_reads.txt` file. This is
-because the second file we searched (`SRR097977.fastq`) does not contain any lines that match our
-search sequence. So our file was overwritten and is now empty.
-
-We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will
-append new output to the end of a file, rather than overwriting it.
+Find the single-end samples in the `SraRunTable.txt` file.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
+$ grep SINGLE SraRunTable.txt > metadata.txt
+$ less metadata.txt
 ```
 
-```output
-802 bad_reads.txt
-```
+Notice that the paired-end samples are no longer present in the output `metadata.txt` file. This is
+because the our second search overwrote the results of the first search.
+
+We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will append new output to the end of a file, rather than overwriting it.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
-$ wc -l bad_reads.txt
+$ grep PAIRED SraRunTable.txt > metadata.txt
+$ grep SINGLE SraRunTable.txt >> metadata.txt
+$ less metadata.txt
 ```
 
-```output
-802 bad_reads.txt
-```
-
-The output of our second call to `wc` shows that we have not overwritten our original data.
-
-We can also do this with a single line of code by using a wildcard:
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-```
-
-```output
-802 bad_reads.txt
-```
+Note that the paired-end samples are the first two lines of the file and the single-end samples come after (appended).
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## File extensions - part 2
+## Using `grep` with wildcards
 
-This is where we would have trouble if we were naming our output file with a `.fastq` extension.
-If we already had a file called `bad_reads.fastq` (from our previous `grep` practice)
-and then ran the command above using a `.fastq` extension instead of a `.txt` extension, `grep`
-would give us a warning.
+If you want to search multiple files at the same time, you can use wildcards.
+Let's go back to the FASTQ files and look for runs of `N` bases in all the files.
 
 ```bash
-grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
+$ cd ~/shell_data/untrimmed_fastq
+$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
+```
+
+If we tried to run this command again, and we already have a file called `bad_reads.fastq` in this
+folder, `grep` would give us a warning.
+
+```bash
+$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
 ```
 
 ```output
@@ -397,7 +339,8 @@ look at it, like we can with `less`. Well it turns out that we can! We can redir
 from our `grep` call through the `less` command.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
+$ ~/shell_data/sra_metadata
+$ grep SINGLE SraRunTable.txt | less
 ```
 
 We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows
@@ -408,59 +351,18 @@ the output of the grep search to the command `wc -l`. This can be helpful for in
 you would like to save it to a file.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l 
+$ grep SINGLE SraRunTable.txt | wc -l 
 ```
 
-Because we asked `grep` for all four lines of each FASTQ record, we need to divide the output by
-four to get the number of sequences that match our search pattern. Since 802 / 4 = 200.5 and we
-are expecting an integer number of records, there is something added or missing in `bad_reads.txt`.
-If we explore `bad_reads.txt` using `less`, we might be able to notice what is causing the uneven
-number of lines. Luckily, this issue happens by the end of the file so we can also spot it with `tail`.
+The `-v` option for `grep` search stands for `--invert-match` meaning `grep` will now only display the
+lines which do not match the searched pattern.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
-$ tail bad_reads.txt
+$ grep -v SINGLE SraRunTable.txt | less
 ```
 
-```output
-@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
-+SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
---
---
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-```
-
-The fifth and six lines in the output display "--" which is the default action for `grep` to separate groups of
-lines matching the pattern, and indicate groups of lines which did not match the pattern so are not displayed.
-To fix this issue, we can redirect the output of grep to a second instance of `grep` as follows.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | grep -v '^--' > bad_reads.fastq
-$ tail bad_reads.fastq
-```
-
-```output
-+SRR098026.132 HWUSI-EAS1599_1:2:1:0:320 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
-@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
-+SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-```
-
-The `-v` option in the second `grep` search stands for `--invert-match` meaning `grep` will now only display the
-lines which do not match the searched pattern, in this case `'^--'`. The caret (`^`) is an **anchoring**
-character matching the beginning of the line, and the pattern has to be enclose by single quotes so `grep` does
-not interpret the pattern as an extended option (starting with --).
+Notice that you now get the header line and the paired-end samples, because these do not match the
+pattern `SINGLE`.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -530,7 +432,7 @@ foo is abcEFG
 Let's write a for loop to show us the first two lines of the fastq files we downloaded earlier. You will notice the shell prompt changes from `$` to `>` and back again as we were typing in our loop. The second prompt, `>`, is different to remind us that we haven't finished typing a complete command yet. A semicolon, `;`, can be used to separate two commands written on a single line.
 
 ```bash
-$ cd ../untrimmed_fastq/
+$ cd ~/shell_data/untrimmed_fastq/
 ```
 
 ```bash
