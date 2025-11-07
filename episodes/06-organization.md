@@ -212,6 +212,8 @@ $ nano dc_workshop_log_2017_10_27.sh
 (Remember to replace the `2017_10_27` with your workshop date.)
 
 From the `nano` screen, you can use your cursor to navigate, type, and delete any redundant lines.
+Remove any lines of the history that are not relevant by navigating to those lines and using your delete key.
+Also remove the line numbers preceding each command. Save your file and close nano.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
