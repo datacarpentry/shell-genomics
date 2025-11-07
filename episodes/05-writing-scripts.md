@@ -152,6 +152,8 @@ $ nano bad-reads-script.sh
 
 Bad reads have a lot of N's, so we're going to look for  `NNNNNNNNNN` with `grep`. We want the whole FASTQ record, so we're also going to get the one line above the sequence and the two lines below. We also want to look in all the files that end with `.fastq`, so we're going to use the `*` wildcard.
 
+`--` is the default action for `grep` to separate groups of lines matching the pattern. The caret (`^`) is an **anchoring** character matching the beginning of the line, and the pattern has to be enclosed by single quotes so `grep` does not interpret the pattern as an extended option (starting with --).
+
 ```bash
 grep -B1 -A2 -h NNNNNNNNNN *.fastq | grep -v '^--' > scripted_bad_reads.txt
 ```
