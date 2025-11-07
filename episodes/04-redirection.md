@@ -31,134 +31,66 @@ regular expressions in this lesson, and are instead going to specify the strings
 we are searching for.
 Let's give it a try!
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Nucleotide abbreviations
-
-The four nucleotides that appear in DNA are abbreviated `A`, `C`, `T` and `G`.
-Unknown nucleotides are represented with the letter `N`. An `N` appearing
-in a sequencing file represents a position where the sequencing machine was not able to
-confidently determine the nucleotide in that position. You can think of an `N` as being aNy
-nucleotide at that position in the DNA sequence.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-We'll search for strings inside of our fastq files. Let's first make sure we are in the correct
+We'll search for strings inside of a metadata file. Let's first make sure we are in the correct
 directory:
 
 ```bash
-$ cd ~/shell_data/untrimmed_fastq
+$ cd ~/shell_data/sra_metadata
 ```
 
-Let's look for lines that contain `ACGT`.
+Let's look for lines that contain `PAIRED`.
 
 ```bash
-$ grep ACGT SRR098026.fastq
+$ grep PAIRED SraRunTable.txt
 ```
 
-To get only the number of lines with `ACGT`, we can use the `-c` flag.
+To get only the number of lines with `PAIRED`, we can use the `-c` flag.
 This is useful if you are unsure about the number of lines that will be found.
 
 ```bash
-$ grep -c ACGT SRR098026.fastq
+$ grep -c PAIRED SraRunTable.txt
 ```
 
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Determining quality
-
-In this lesson, we're going to be manually searching for strings of `N`s within our sequence
-results to illustrate some principles of file searching. It can be really useful to do this
-type of searching to get a feel for the quality of your sequencing results, however, in your
-research you will most likely use a bioinformatics tool that has a built-in program for
-filtering out low-quality reads. You'll learn how to use one such tool in
-[a later lesson](https://datacarpentry.org/wrangling-genomics/02-quality-control).
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-Let's search for the string NNNNNNNNNN in the SRR098026 file:
+You can use case-insensitive searching with the `-i` flag.
+This is useful if you are unsure if what you are searching for is in upper- or lower-case or a mix.
 
 ```bash
-$ grep NNNNNNNNNN SRR098026.fastq
+$ grep -i paired SraRunTable.txt
 ```
 
-This command returns a lot of output to the terminal. Every single line in the SRR098026
-file that contains at least 10 consecutive Ns is printed to the terminal, regardless of how long or short the file is.
-We may be interested not only in the actual sequence which contains this string, but
-in the name (or identifier) of that sequence. We discussed in a previous lesson
-that the identifier line immediately precedes the nucleotide sequence for each read
-in a FASTQ file. We may also want to inspect the quality scores associated with
-each of these reads. To get all of this information, we will return the line
-immediately before each match and the two lines immediately after each match.
-
-We can use the `-B` argument for grep to return a specific number of lines before
-each match. The `-A` argument returns a specific number of lines after each matching line. Here we want the line *before* and the two lines *after* each
-matching line, so we add `-B1 -A2` to our grep command:
+The `-v` option for `grep` search stands for `--invert-match` meaning `grep` will now only display the
+lines which do not match the searched pattern.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
+$ grep -v SINGLE SraRunTable.txt
 ```
 
-One of the sets of lines returned by this command is:
+Notice that you now get the header line and the paired-end samples, because these do not match the
+pattern `SINGLE`.
 
-```output
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Exercise
 
-1. Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
-  Have your search return all matching lines and the name (or identifier) for each sequence
-  that contains a match.
+1. Count the number of single-end samples using a case-insensitive search.
 
-2. Search for the sequence `AAGTT` in both FASTQ files.
-  Have your search return all matching lines and the name (or identifier) for each sequence
-  that contains a match.
+2. Count the number of single-end samples and the header line.
 
 :::::::::::::::  solution
 
 ## Solution
 
-1. `grep -B1 GNATNACCACTTCC SRR098026.fastq`
+1. `grep -c -i Single SraRunTable.txt`
 
 ```
-@SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
-GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG
+35
 ```
 
-2. `grep -B1 AAGTT *.fastq`
+2. `grep -c -v PAIRED SraRunTable.txt`
 
 ```
-SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
-SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
---
-SRR097977.fastq-@SRR097977.67 209DTAAXX_Lenski2_1_7:8:3:544:566 length=36
-SRR097977.fastq:TTGTCCACGCTTTTCTATGTAAAGTTTATTTGCTTT
---
-SRR097977.fastq-@SRR097977.68 209DTAAXX_Lenski2_1_7:8:3:724:110 length=36
-SRR097977.fastq:TGAAGCCTGCTTTTTTATACTAAGTTTGCATTATAA
---
-SRR097977.fastq-@SRR097977.80 209DTAAXX_Lenski2_1_7:8:3:258:281 length=36
-SRR097977.fastq:GTGGCGCTGCTGCATAAGTTGGGTTATCAGGTCGTT
---
-SRR097977.fastq-@SRR097977.92 209DTAAXX_Lenski2_1_7:8:3:353:318 length=36
-SRR097977.fastq:GGCAAAATGGTCCTCCAGCCAGGCCAGAAGCAAGTT
---
-SRR097977.fastq-@SRR097977.139 209DTAAXX_Lenski2_1_7:8:3:703:655 length=36
-SRR097977.fastq:TTTATTTGTAAAGTTTTGTTGAAATAAGGGTTGTAA
---
-SRR097977.fastq-@SRR097977.238 209DTAAXX_Lenski2_1_7:8:3:592:919 length=36
-SRR097977.fastq:TTCTTACCATCCTGAAGTTTTTTCATCTTCCCTGAT
---
-SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
-SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG
+36
 ```
 
 :::::::::::::::::::::::::
@@ -179,11 +111,9 @@ use other commands to analyze this data.
 
 The command for redirecting output to a file is `>`.
 
-Let's try out this command to look for particular samples in the SRA metadata file and copy the
-output to another file called `metadata.txt`.
+Let's search for the metadata for sample `SRR097977` and redirect the output to a file.
 
 ```bash
-$ cd ~/shell_data/sra_metadata
 $ grep SRR097977 SraRunTable.txt > metadata.txt
 ```
 
@@ -216,7 +146,7 @@ $ wc -l metadata.txt
 
 ## Exercise
 
-How many sequences are there in `SraRunTable.txt`? Remember that every sequence is formed by four lines.
+How many entries are there in `SraRunTable.txt`?
 
 :::::::::::::::  solution
 
@@ -291,41 +221,10 @@ $ less metadata.txt
 
 Note that the paired-end samples are the first two lines of the file and the single-end samples come after (appended).
 
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Using `grep` with wildcards
-
-If you want to search multiple files at the same time, you can use wildcards.
-Let's go back to the FASTQ files and look for runs of `N` bases in all the files.
-
-```bash
-$ cd ~/shell_data/untrimmed_fastq
-$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
-```
-
-If we tried to run this command again, and we already have a file called `bad_reads.fastq` in this
-folder, `grep` would give us a warning.
-
-```bash
-$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.fastq
-```
-
-```output
-grep: input file ‘bad_reads.fastq' is also the output
-```
-
-`grep` is letting you know that the output file `bad_reads.fastq` is also included in your
-`grep` call because it matches the `*.fastq` pattern. Be careful with this as it can lead to
-some unintended results.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 Since we might have multiple different criteria we want to search for,
-creating a new output file each time has the potential to clutter up our workspace. We also
-thus far haven't been interested in the actual contents of those files, only in the number of
-reads that we've found. We created the files to store the reads and then counted the lines in
-the file to see how many reads matched our criteria. There's a way to do this, however, that
-doesn't require us to create these intermediate files - the pipe command (`|`).
+creating a new output file each time has the potential to clutter up our workspace.
+We've been redirecting output to a file and then using `less` to view the contents.
+There's a way to do this that doesn't require us to create these intermediate files - the pipe command (`|`).
 
 This is probably not a key on
 your keyboard you use very much, so let's all take a minute to find that key.
@@ -339,12 +238,21 @@ look at it, like we can with `less`. Well it turns out that we can! We can redir
 from our `grep` call through the `less` command.
 
 ```bash
-$ ~/shell_data/sra_metadata
 $ grep SINGLE SraRunTable.txt | less
 ```
 
 We can now see the output from our `grep` call within the `less` interface. We can use the up and down arrows
 to scroll through the output and use `q` to exit `less`.
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Viewing files that are too wide for the terminal
+
+`less` will wrap lines in your terminal if they are too long to be displayed.
+Use `less -S` to avoid line-wrapping.
+You can use the left and right arrows to scroll across the output similarly to up and down.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 If we don't want to create a file before counting lines of output from our `grep` search, we could directly pipe
 the output of the grep search to the command `wc -l`. This can be helpful for investigating your output if you are not sure
@@ -353,16 +261,6 @@ you would like to save it to a file.
 ```bash
 $ grep SINGLE SraRunTable.txt | wc -l 
 ```
-
-The `-v` option for `grep` search stands for `--invert-match` meaning `grep` will now only display the
-lines which do not match the searched pattern.
-
-```bash
-$ grep -v SINGLE SraRunTable.txt | less
-```
-
-Notice that you now get the header line and the paired-end samples, because these do not match the
-pattern `SINGLE`.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
