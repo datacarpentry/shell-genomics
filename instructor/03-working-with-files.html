@@ -452,7 +452,7 @@ wildcards to find what you need to solve the bonus problem.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li><code>ls /usr/bin/c*</code></li>
 <li><code>ls /usr/bin/*a*</code></li>
@@ -502,7 +502,7 @@ matched? Compare the outputs of <code>echo *.missing</code> and
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -590,7 +590,7 @@ the .sh files in <code>/usr/bin</code>. Rerun that command.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>First type <code>history</code>. Then use <code>!</code> followed by
 the line number to rerun that command.</p>
@@ -635,7 +635,7 @@ short command to print the contents of all of the files in the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>The last line of the file is
 <code>C:CCC::CCCCCCCC&lt;8?6A:C28C&lt;608'&amp;&amp;&amp;,'$</code>.</li>
@@ -656,17 +656,17 @@ the <code>man</code> program.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">$</span> less SRR097977.fastq</span></code></pre>
 </div>
 <p>Some navigation commands in <code>less</code>:</p>
-<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr class="header"><th>key</th>
+<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr><th>key</th>
 <th>action</th>
-</tr></thead><tbody><tr class="odd"><td><kbd>Space</kbd></td>
+</tr></thead><tbody><tr><td><kbd>Space</kbd></td>
 <td>to go forward</td>
-</tr><tr class="even"><td><kbd>b</kbd></td>
+</tr><tr><td><kbd>b</kbd></td>
 <td>to go backward</td>
-</tr><tr class="odd"><td><kbd>g</kbd></td>
+</tr><tr><td><kbd>g</kbd></td>
 <td>to go to the beginning</td>
-</tr><tr class="even"><td><kbd>G</kbd></td>
+</tr><tr><td><kbd>G</kbd></td>
 <td>to go to the end</td>
-</tr><tr class="odd"><td><kbd>q</kbd></td>
+</tr><tr><td><kbd>q</kbd></td>
 <td>to quit</td>
 </tr></tbody></table><p><code>less</code> also gives you a way of searching through files.
 Use the “/” key to begin a search. Enter the word you would like to
@@ -706,7 +706,7 @@ instance of the sequence quoted above?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p><code>CAC</code></p>
 </div>
@@ -785,15 +785,15 @@ print the first or last <code>n</code> lines of a file.</p>
 <hr class="half-width"><p>Although it looks complicated (and it is), it’s easy to understand
 the <a href="https://en.wikipedia.org/wiki/FASTQ_format" class="external-link">fastq</a>
 format with a little decoding. Some rules about the format include…</p>
-<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr class="header"><th>Line</th>
+<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr><th>Line</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td>1</td>
+</tr></thead><tbody><tr><td>1</td>
 <td>Always begins with ‘@’ and then information about the read</td>
-</tr><tr class="even"><td>2</td>
+</tr><tr><td>2</td>
 <td>The actual DNA sequence</td>
-</tr><tr class="odd"><td>3</td>
+</tr><tr><td>3</td>
 <td>Always begins with a ‘+’ and sometimes the same info in line 1</td>
-</tr><tr class="even"><td>4</td>
+</tr><tr><td>4</td>
 <td>Has a string of characters which represent the quality scores; must
 have same number of characters as line 2</td>
 </tr></tbody></table><p>We can view the first complete read in one of the files in our
@@ -1069,7 +1069,7 @@ write-protected.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li><code>rm -r backup</code></li>
 <li>
@@ -1152,7 +1152,7 @@ can be used to repeat recently used commands.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.4" class="external-link">sandpaper (0.18.4)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1175,7 +1175,7 @@ can be used to repeat recently used commands.</li>
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/03-working-with-files.html",
   "dateCreated": "2015-03-24",
   "dateModified": "2025-05-30",
-  "datePublished": "2026-01-27"
+  "datePublished": "2026-02-03"
 }
 
   </script><script>
