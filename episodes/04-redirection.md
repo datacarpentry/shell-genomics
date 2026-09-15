@@ -208,14 +208,14 @@ We can check the number of lines in our new file using a command called `wc`.
 in a file. The FASTQ file may change over time, so given the potential for updates,
 make sure your file matches your instructor's output.
 
-As of Sept. 2020, wc gives the following output:
+As of March. 2026, wc gives the following output:
 
 ```bash
 $ wc bad_reads.txt
 ```
 
 ```output
-  802    1338   24012 bad_reads.txt
+  537    1073   23217 bad_reads.txt
 ```
 
 This will tell us the number of lines, words and characters in the file. If we
@@ -226,7 +226,7 @@ $ wc -l bad_reads.txt
 ```
 
 ```output
-802 bad_reads.txt
+537 bad_reads.txt
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -305,7 +305,7 @@ $ wc -l bad_reads.txt
 ```
 
 ```output
-802 bad_reads.txt
+537 bad_reads.txt
 ```
 
 ```bash
@@ -324,14 +324,18 @@ search sequence. So our file was overwritten and is now empty.
 We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will
 append new output to the end of a file, rather than overwriting it.
 
+First, run the `grep` command for the (`SRR098026.fastq`) file.
+
 ```bash
 $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ```
 
 ```output
-802 bad_reads.txt
+537 bad_reads.txt
 ```
+
+Then, run the `grep` command for the (`SRR097977.fastq`) file, appending the output of this command to (`bad_reads.txt`) 
 
 ```bash
 $ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
@@ -339,12 +343,12 @@ $ wc -l bad_reads.txt
 ```
 
 ```output
-802 bad_reads.txt
+537 bad_reads.txt
 ```
 
 The output of our second call to `wc` shows that we have not overwritten our original data.
 
-We can also do this with a single line of code by using a wildcard:
+We can also do this with a single line of code by using a wildcard to match both `fastq` files in our directory:
 
 ```bash
 $ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
@@ -352,7 +356,7 @@ $ wc -l bad_reads.txt
 ```
 
 ```output
-802 bad_reads.txt
+537 bad_reads.txt
 ```
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -423,11 +427,11 @@ $ tail bad_reads.txt
 ```
 
 ```output
+#!!!!!!!!!##########!!!!!!!!!!##!#!
 @SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
 ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
 +SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
 #!!!!!!!!!##########!!!!!!!!!!##!#!
---
 --
 @SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
 CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
@@ -435,7 +439,7 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ```
 
-The fifth and six lines in the output display "--" which is the default action for `grep` to separate groups of
+The sixth line in the output displays "--" which is the default action for `grep` to separate groups of
 lines matching the pattern, and indicate groups of lines which did not match the pattern so are not displayed.
 To fix this issue, we can redirect the output of grep to a second instance of `grep` as follows.
 
