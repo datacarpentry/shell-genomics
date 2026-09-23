@@ -313,7 +313,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Writing Scripts and Working with Data</h1>
-        <p>Last updated on 2024-04-17 |
+        <p>Last updated on 2026-09-23 |
 
         <a href="https://github.com/datacarpentry/shell-genomics/edit/main/episodes/05-writing-scripts.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -520,6 +520,12 @@ record, so we’re also going to get the one line above the sequence and
 the two lines below. We also want to look in all the files that end with
 <code>.fastq</code>, so we’re going to use the <code>*</code>
 wildcard.</p>
+<p><code>--</code> is the default action for <code>grep</code> to
+separate groups of lines matching the pattern. The caret
+(<code>^</code>) is an <strong>anchoring</strong> character matching the
+beginning of the line, and the pattern has to be enclosed by single
+quotes so <code>grep</code> does not interpret the pattern as an
+extended option (starting with –).</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -941,8 +947,8 @@ computers.</li>
   "url": "https://datacarpentry.github.io/shell-genomics/instructor/05-writing-scripts.html",
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/05-writing-scripts.html",
   "dateCreated": "2015-03-24",
-  "dateModified": "2024-04-17",
-  "datePublished": "2026-09-22"
+  "dateModified": "2026-09-23",
+  "datePublished": "2026-09-23"
 }
 
   </script><script>

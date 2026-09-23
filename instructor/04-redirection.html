@@ -312,7 +312,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Redirection</h1>
-        <p>Last updated on 2025-05-30 |
+        <p>Last updated on 2026-09-23 |
 
         <a href="https://github.com/datacarpentry/shell-genomics/edit/main/episodes/04-redirection.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -363,101 +363,45 @@ can be specified using something called regular expressions). We’re not
 going to work with regular expressions in this lesson, and are instead
 going to specify the strings we are searching for. Let’s give it a
 try!</p>
-<div id="nucleotide-abbreviations" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="nucleotide-abbreviations" class="callout-inner">
-<h3 class="callout-title">Nucleotide abbreviations</h3>
-<div class="callout-content">
-<p>The four nucleotides that appear in DNA are abbreviated
-<code>A</code>, <code>C</code>, <code>T</code> and <code>G</code>.
-Unknown nucleotides are represented with the letter <code>N</code>. An
-<code>N</code> appearing in a sequencing file represents a position
-where the sequencing machine was not able to confidently determine the
-nucleotide in that position. You can think of an <code>N</code> as being
-aNy nucleotide at that position in the DNA sequence.</p>
-</div>
-</div>
-</div>
-<p>We’ll search for strings inside of our fastq files. Let’s first make
+<p>We’ll search for strings inside of a metadata file. Let’s first make
 sure we are in the correct directory:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">$</span> cd ~/shell_data/untrimmed_fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">$</span> cd ~/shell_data/sra_metadata</span></code></pre>
 </div>
-<p>Let’s look for lines that contain <code>ACGT</code>.</p>
+<p>Let’s look for lines that contain <code>PAIRED</code>.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">$</span> grep ACGT SRR098026.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">$</span> grep PAIRED SraRunTable.txt</span></code></pre>
 </div>
-<p>To get only the number of lines with <code>ACGT</code>, we can use
+<p>To get only the number of lines with <code>PAIRED</code>, we can use
 the <code>-c</code> flag. This is useful if you are unsure about the
 number of lines that will be found.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> grep <span class="at">-c</span> ACGT SRR098026.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> grep <span class="at">-c</span> PAIRED SraRunTable.txt</span></code></pre>
 </div>
-<p>Suppose we want to see how many reads in our file have really bad
-segments containing 10 consecutive unknown nucleotides (Ns).</p>
-<div id="determining-quality" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="determining-quality" class="callout-inner">
-<h3 class="callout-title">Determining quality</h3>
-<div class="callout-content">
-<p>In this lesson, we’re going to be manually searching for strings of
-<code>N</code>s within our sequence results to illustrate some
-principles of file searching. It can be really useful to do this type of
-searching to get a feel for the quality of your sequencing results,
-however, in your research you will most likely use a bioinformatics tool
-that has a built-in program for filtering out low-quality reads. You’ll
-learn how to use one such tool in <a href="https://datacarpentry.org/wrangling-genomics/02-quality-control" class="external-link">a
-later lesson</a>.</p>
-</div>
-</div>
-</div>
-<p>Let’s search for the string NNNNNNNNNN in the SRR098026 file:</p>
+<p>You can use case-insensitive searching with the <code>-i</code> flag.
+This is useful if you are unsure if what you are searching for is in
+upper- or lower-case or a mix.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">$</span> grep NNNNNNNNNN SRR098026.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">$</span> grep <span class="at">-i</span> paired SraRunTable.txt</span></code></pre>
 </div>
-<p>This command returns a lot of output to the terminal. Every single
-line in the SRR098026 file that contains at least 10 consecutive Ns is
-printed to the terminal, regardless of how long or short the file is. We
-may be interested not only in the actual sequence which contains this
-string, but in the name (or identifier) of that sequence. We discussed
-in a previous lesson that the identifier line immediately precedes the
-nucleotide sequence for each read in a FASTQ file. We may also want to
-inspect the quality scores associated with each of these reads. To get
-all of this information, we will return the line immediately before each
-match and the two lines immediately after each match.</p>
-<p>We can use the <code>-B</code> argument for grep to return a specific
-number of lines before each match. The <code>-A</code> argument returns
-a specific number of lines after each matching line. Here we want the
-line <em>before</em> and the two lines <em>after</em> each matching
-line, so we add <code>-B1 -A2</code> to our grep command:</p>
+<p>The <code>-v</code> option for <code>grep</code> search stands for
+<code>--invert-match</code> meaning <code>grep</code> will now only
+display the lines which do not match the searched pattern.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">$</span> grep <span class="at">-v</span> SINGLE SraRunTable.txt</span></code></pre>
 </div>
-<p>One of the sets of lines returned by this command is:</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</code></pre>
-</div>
+<p>Notice that you now get the header line and the paired-end samples,
+because these do not match the pattern <code>SINGLE</code>.</p>
 <div id="exercise" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -466,13 +410,10 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 <div id="exercise" class="callout-inner">
 <h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li><p>Search for the sequence <code>GNATNACCACTTCC</code> in the
-<code>SRR098026.fastq</code> file. Have your search return all matching
-lines and the name (or identifier) for each sequence that contains a
-match.</p></li>
-<li><p>Search for the sequence <code>AAGTT</code> in both FASTQ files.
-Have your search return all matching lines and the name (or identifier)
-for each sequence that contains a match.</p></li>
+<ol style="list-style-type: decimal"><li><p>Count the number of single-end samples using a case-insensitive
+search.</p></li>
+<li><p>Count the number of single-end samples and the header
+line.</p></li>
 </ol></div>
 </div>
 </div>
@@ -481,35 +422,12 @@ for each sequence that contains a match.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li><code>grep -B1 GNATNACCACTTCC SRR098026.fastq</code></li>
-</ol><pre><code>@SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
-GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG</code></pre>
-<ol start="2" style="list-style-type: decimal"><li><code>grep -B1 AAGTT *.fastq</code></li>
-</ol><pre><code>SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
-SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
---
-SRR097977.fastq-@SRR097977.67 209DTAAXX_Lenski2_1_7:8:3:544:566 length=36
-SRR097977.fastq:TTGTCCACGCTTTTCTATGTAAAGTTTATTTGCTTT
---
-SRR097977.fastq-@SRR097977.68 209DTAAXX_Lenski2_1_7:8:3:724:110 length=36
-SRR097977.fastq:TGAAGCCTGCTTTTTTATACTAAGTTTGCATTATAA
---
-SRR097977.fastq-@SRR097977.80 209DTAAXX_Lenski2_1_7:8:3:258:281 length=36
-SRR097977.fastq:GTGGCGCTGCTGCATAAGTTGGGTTATCAGGTCGTT
---
-SRR097977.fastq-@SRR097977.92 209DTAAXX_Lenski2_1_7:8:3:353:318 length=36
-SRR097977.fastq:GGCAAAATGGTCCTCCAGCCAGGCCAGAAGCAAGTT
---
-SRR097977.fastq-@SRR097977.139 209DTAAXX_Lenski2_1_7:8:3:703:655 length=36
-SRR097977.fastq:TTTATTTGTAAAGTTTTGTTGAAATAAGGGTTGTAA
---
-SRR097977.fastq-@SRR097977.238 209DTAAXX_Lenski2_1_7:8:3:592:919 length=36
-SRR097977.fastq:TTCTTACCATCCTGAAGTTTTTTCATCTTCCCTGAT
---
-SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
-SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG</code></pre>
+<ol style="list-style-type: decimal"><li><code>grep -c -i Single SraRunTable.txt</code></li>
+</ol><pre><code><span><span class="fl">35</span></span></code></pre>
+<ol start="2" style="list-style-type: decimal"><li><code>grep -c -v PAIRED SraRunTable.txt</code></li>
+</ol><pre><code><span><span class="fl">36</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -527,66 +445,41 @@ this information to a file so that we can look at it later and use other
 commands to analyze this data.</p>
 <p>The command for redirecting output to a file is
 <code>&gt;</code>.</p>
-<p>Let’s try out this command and copy all the records (including all
-four lines of each record) in our FASTQ files that contain ‘NNNNNNNNNN’
-to another file called <code>bad_reads.txt</code>.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<p>Let’s search for the metadata for sample <code>SRR097977</code> and
+redirect the output to a file.</p>
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">$</span> grep SRR097977 SraRunTable.txt <span class="op">&gt;</span> metadata.txt</span></code></pre>
 </div>
-<div id="file-extensions" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="file-extensions" class="callout-inner">
-<h3 class="callout-title">File extensions</h3>
-<div class="callout-content">
-<p>You might be confused about why we’re naming our output file with a
-<code>.txt</code> extension. After all, it will be holding FASTQ
-formatted data that we’re extracting from our FASTQ files. Won’t it also
-be a FASTQ file? The answer is, yes - it will be a FASTQ file and it
-would make sense to name it with a <code>.fastq</code> extension.
-However, using a <code>.fastq</code> extension will lead us to problems
-when we move to using wildcards later in this episode. We’ll point out
-where this becomes important. For now, it’s good that you’re thinking
-about file extensions!</p>
-</div>
-</div>
-</div>
-<p>The prompt should sit there a little bit, and then it should look
-like nothing happened. But type <code>ls</code>. You should see a new
-file called <code>bad_reads.txt</code>.</p>
+<p>Type <code>ls</code>. You should see a new file called
+<code>metadata.txt</code>.</p>
 <p>We can check the number of lines in our new file using a command
 called <code>wc</code>. <code>wc</code> stands for <strong>word
 count</strong>. This command counts the number of words, lines, and
-characters in a file. The FASTQ file may change over time, so given the
-potential for updates, make sure your file matches your instructor’s
-output.</p>
-<p>As of Sept. 2020, wc gives the following output:</p>
-<div class="codewrapper sourceCode" id="cb10">
+characters in a file.</p>
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">$</span> wc bad_reads.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">$</span> wc metadata.txt</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>  802    1338   24012 bad_reads.txt</code></pre>
+<pre class="output" tabindex="0"><code>  1  31 228 metadata.txt</code></pre>
 </div>
 <p>This will tell us the number of lines, words and characters in the
 file. If we want only the number of lines, we can use the
 <code>-l</code> flag for <code>lines</code>.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">$</span> wc <span class="at">-l</span> metadata.txt</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
+<pre class="output" tabindex="0"><code>1 metadata.txt</code></pre>
 </div>
 <div id="exercise-1" class="callout challenge">
 <div class="callout-square">
@@ -596,8 +489,7 @@ file. If we want only the number of lines, we can use the
 <div id="exercise-1" class="callout-inner">
 <h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
-<p>How many sequences are there in <code>SRR098026.fastq</code>?
-Remember that every sequence is formed by four lines.</p>
+<p>How many entries are there in <code>SraRunTable.txt</code>?</p>
 </div>
 </div>
 </div>
@@ -606,39 +498,17 @@ Remember that every sequence is formed by four lines.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">$</span> wc <span class="at">-l</span> SRR098026.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">$</span> wc <span class="at">-l</span> SraRunTable.txt</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="fl">996</span></span></code></pre>
-</div>
-<p>Now you can divide this number by four to get the number of sequences
-in your fastq file.</p>
-<p>This can be done using <a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html" class="external-link">shell
-integer arithmetic</a></p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">$</span> echo <span class="va">$((</span><span class="dv">996</span><span class="op">/</span><span class="dv">4</span><span class="va">))</span></span></code></pre>
-</div>
-<p>Note, this will do integer division - if you need floating point
-arithmetic you can use <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html" class="external-link">bc - an
-arbitrary precision calculator</a></p>
-<div class="codewrapper sourceCode" id="cb17">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">$</span> echo <span class="st">"996/4"</span> <span class="kw">|</span> <span class="fu">bc</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code><span><span class="fl">249</span></span></code></pre>
+<pre class="output" tabindex="0"><code>37 SraRunTable.txt</code></pre>
 </div>
 </div>
 </div>
@@ -652,8 +522,9 @@ arbitrary precision calculator</a></p>
 <div id="exercise-2" class="callout-inner">
 <h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
-<p>How many sequences in <code>SRR098026.fastq</code> contain at least 3
-consecutive Ns?</p>
+<p>How many paired-end read samples are there in
+<code>SraRunTable.txt</code>? These samples will have metadata that
+contains the keyword <code>PAIRED</code>.</p>
 </div>
 </div>
 </div>
@@ -662,137 +533,69 @@ consecutive Ns?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">$</span> grep NNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">$</span> grep PAIRED SraRunTable.txt <span class="op">&gt;</span> metadata.txt</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a><span class="ex">$</span> wc <span class="at">-l</span> metadata.txt</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="fl">249</span></span></code></pre>
+<pre class="output" tabindex="0"><code>2 metadata.txt</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<p>We might want to search multiple FASTQ files for sequences that match
-our search pattern. However, we need to be careful, because each time we
-use the <code>&gt;</code> command to redirect output to a file, the new
-output will replace the output that was already present in the file.
-This is called “overwriting” and, just like you don’t want to overwrite
-your video recording of your kid’s first birthday party, you also want
-to avoid overwriting your data files.</p>
-<div class="codewrapper sourceCode" id="cb21">
+<p>We might want to search our file for multiple patterns, e.g. all
+single-end and all paired-end samples. However, we need to be careful,
+because each time we use the <code>&gt;</code> command to redirect
+output to a file, the new output will replace the output that was
+already present in the file. This is called “overwriting” and, just like
+you don’t want to overwrite your video recording of your kid’s first
+birthday party, you also want to avoid overwriting your data files.</p>
+<p>Find the paired-end samples in the <code>SraRunTable.txt</code> file
+and take a look at the output with <code>less</code>. Remember you can
+exit <code>less</code> by pressing <code>q</code>.</p>
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1" aria-label="code-block-21-2"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">$</span> grep PAIRED SraRunTable.txt <span class="op">&gt;</span> metadata.txt</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="ex">$</span> less metadata.txt</span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb23">
+<p>Find the single-end samples in the <code>SraRunTable.txt</code>
+file.</p>
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR097977.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="ex">$</span> grep SINGLE SraRunTable.txt <span class="op">&gt;</span> metadata.txt</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="ex">$</span> less metadata.txt</span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>0 bad_reads.txt</code></pre>
-</div>
-<p>Here, the output of our second call to <code>wc</code> shows that we
-no longer have any lines in our <code>bad_reads.txt</code> file. This is
-because the second file we searched (<code>SRR097977.fastq</code>) does
-not contain any lines that match our search sequence. So our file was
-overwritten and is now empty.</p>
+<p>Notice that the paired-end samples are no longer present in the
+output <code>metadata.txt</code> file. This is because the our second
+search overwrote the results of the first search.</p>
 <p>We can avoid overwriting our files by using the command
 <code>&gt;&gt;</code>. <code>&gt;&gt;</code> is known as the “append
 redirect” and will append new output to the end of a file, rather than
 overwriting it.</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">$</span> grep PAIRED SraRunTable.txt <span class="op">&gt;</span> metadata.txt</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="ex">$</span> grep SINGLE SraRunTable.txt <span class="op">&gt;&gt;</span> metadata.txt</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1" aria-label="code-block-19-3"></a><span class="ex">$</span> less metadata.txt</span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb27">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR097977.fastq <span class="op">&gt;&gt;</span> bad_reads.txt</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
-</div>
-<p>The output of our second call to <code>wc</code> shows that we have
-not overwritten our original data.</p>
-<p>We can also do this with a single line of code by using a
-wildcard:</p>
-<div class="codewrapper sourceCode" id="cb29">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN <span class="pp">*</span>.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1" aria-label="code-block-29-2"></a><span class="ex">$</span> wc <span class="at">-l</span> bad_reads.txt</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>802 bad_reads.txt</code></pre>
-</div>
-<div id="file-extensions---part-2" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="file-extensions---part-2" class="callout-inner">
-<h3 class="callout-title">File extensions - part 2</h3>
-<div class="callout-content">
-<p>This is where we would have trouble if we were naming our output file
-with a <code>.fastq</code> extension. If we already had a file called
-<code>bad_reads.fastq</code> (from our previous <code>grep</code>
-practice) and then ran the command above using a <code>.fastq</code>
-extension instead of a <code>.txt</code> extension, <code>grep</code>
-would give us a warning.</p>
-<div class="codewrapper sourceCode" id="cb31">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a><span class="fu">grep</span> <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN <span class="pp">*</span>.fastq <span class="op">&gt;</span> bad_reads.fastq</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>grep: input file ‘bad_reads.fastq' is also the output</code></pre>
-</div>
-<p><code>grep</code> is letting you know that the output file
-<code>bad_reads.fastq</code> is also included in your <code>grep</code>
-call because it matches the <code>*.fastq</code> pattern. Be careful
-with this as it can lead to some unintended results.</p>
-</div>
-</div>
-</div>
+<p>Note that the paired-end samples are the first two lines of the file
+and the single-end samples come after (appended).</p>
 <p>Since we might have multiple different criteria we want to search
 for, creating a new output file each time has the potential to clutter
-up our workspace. We also thus far haven’t been interested in the actual
-contents of those files, only in the number of reads that we’ve found.
-We created the files to store the reads and then counted the lines in
-the file to see how many reads matched our criteria. There’s a way to do
-this, however, that doesn’t require us to create these intermediate
-files - the pipe command (<code>|</code>).</p>
+up our workspace. We’ve been redirecting output to a file and then using
+<code>less</code> to view the contents. There’s a way to do this that
+doesn’t require us to create these intermediate files - the pipe command
+(<code>|</code>).</p>
 <p>This is probably not a key on your keyboard you use very much, so
 let’s all take a minute to find that key. In the UK and US keyboard
 layouts, and several others, the <code>|</code> character can be found
@@ -804,86 +607,40 @@ output was scrolling by, we might have wished we could slow it down and
 look at it, like we can with <code>less</code>. Well it turns out that
 we can! We can redirect our output from our <code>grep</code> call
 through the <code>less</code> command.</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="kw">|</span> <span class="fu">less</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="ex">$</span> grep SINGLE SraRunTable.txt <span class="kw">|</span> <span class="fu">less</span></span></code></pre>
 </div>
 <p>We can now see the output from our <code>grep</code> call within the
 <code>less</code> interface. We can use the up and down arrows to scroll
 through the output and use <code>q</code> to exit <code>less</code>.</p>
+<div id="viewing-files-that-are-too-wide-for-the-terminal" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="viewing-files-that-are-too-wide-for-the-terminal" class="callout-inner">
+<h3 class="callout-title">Viewing files that are too wide for the
+terminal</h3>
+<div class="callout-content">
+<p><code>less</code> will wrap lines in your terminal if they are too
+long to be displayed. Use <code>less -S</code> to avoid line-wrapping.
+You can use the left and right arrows to scroll across the output
+similarly to up and down.</p>
+</div>
+</div>
+</div>
 <p>If we don’t want to create a file before counting lines of output
 from our <code>grep</code> search, we could directly pipe the output of
 the grep search to the command <code>wc -l</code>. This can be helpful
 for investigating your output if you are not sure you would like to save
 it to a file.</p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1" aria-label="code-block-34-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">$</span> grep SINGLE SraRunTable.txt <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> </span></code></pre>
 </div>
-<p>Because we asked <code>grep</code> for all four lines of each FASTQ
-record, we need to divide the output by four to get the number of
-sequences that match our search pattern. Since 802 / 4 = 200.5 and we
-are expecting an integer number of records, there is something added or
-missing in <code>bad_reads.txt</code>. If we explore
-<code>bad_reads.txt</code> using <code>less</code>, we might be able to
-notice what is causing the uneven number of lines. Luckily, this issue
-happens by the end of the file so we can also spot it with
-<code>tail</code>.</p>
-<div class="codewrapper sourceCode" id="cb35">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1" aria-label="code-block-35-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="op">&gt;</span> bad_reads.txt</span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1" aria-label="code-block-35-2"></a><span class="ex">$</span> tail bad_reads.txt</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
-+SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
---
---
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</code></pre>
-</div>
-<p>The fifth and six lines in the output display “–” which is the
-default action for <code>grep</code> to separate groups of lines
-matching the pattern, and indicate groups of lines which did not match
-the pattern so are not displayed. To fix this issue, we can redirect the
-output of grep to a second instance of <code>grep</code> as follows.</p>
-<div class="codewrapper sourceCode" id="cb37">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" tabindex="-1" aria-label="code-block-37-1"></a><span class="ex">$</span> grep <span class="at">-B1</span> <span class="at">-A2</span> NNNNNNNNNN SRR098026.fastq <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">'^--'</span> <span class="op">&gt;</span> bad_reads.fastq</span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1" aria-label="code-block-37-2"></a><span class="ex">$</span> tail bad_reads.fastq</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>+SRR098026.132 HWUSI-EAS1599_1:2:1:0:320 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
-@SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-ANNNNNNNNNTTCAGCGACTNNNNNNNNNNGTNGN
-+SRR098026.133 HWUSI-EAS1599_1:2:1:0:1978 length=35
-#!!!!!!!!!##########!!!!!!!!!!##!#!
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</code></pre>
-</div>
-<p>The <code>-v</code> option in the second <code>grep</code> search
-stands for <code>--invert-match</code> meaning <code>grep</code> will
-now only display the lines which do not match the searched pattern, in
-this case <code>'^--'</code>. The caret (<code>^</code>) is an
-<strong>anchoring</strong> character matching the beginning of the line,
-and the pattern has to be enclose by single quotes so <code>grep</code>
-does not interpret the pattern as an extended option (starting with
-–).</p>
 <div id="custom-grep-control" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -942,14 +699,14 @@ programming, this is usually called “expanding” the variable.</p>
 right. Suppose we have a variable named <code>foo</code> that contains
 the text <code>abc</code>, and would like to expand <code>foo</code> to
 create the text <code>abcEFG</code>.</p>
-<div class="codewrapper sourceCode" id="cb39">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" tabindex="-1" aria-label="code-block-39-1"></a><span class="ex">$</span> foo=abc</span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1" aria-label="code-block-39-2"></a><span class="ex">$</span> echo foo is <span class="va">$foo</span></span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1" aria-label="code-block-39-3"></a><span class="ex">foo</span> is abc</span>
-<span id="cb39-4"><a href="#cb39-4" tabindex="-1" aria-label="code-block-39-4"></a><span class="ex">$</span> echo foo is <span class="va">$fooEFG</span>      <span class="co"># doesn't work</span></span>
-<span id="cb39-5"><a href="#cb39-5" tabindex="-1" aria-label="code-block-39-5"></a><span class="ex">foo</span> is</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="ex">$</span> foo=abc</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1" aria-label="code-block-22-2"></a><span class="ex">$</span> echo foo is <span class="va">$foo</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1" aria-label="code-block-22-3"></a><span class="ex">foo</span> is abc</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1" aria-label="code-block-22-4"></a><span class="ex">$</span> echo foo is <span class="va">$fooEFG</span>      <span class="co"># doesn't work</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1" aria-label="code-block-22-5"></a><span class="ex">foo</span> is</span></code></pre>
 </div>
 <p>The interpreter is trying to expand a variable named
 <code>fooEFG</code>, which (probably) doesn’t exist. We can avoid this
@@ -958,14 +715,14 @@ problem by enclosing the variable name in braces (<code>{</code> and
 the <code>#</code> character as a comment character. Any text on a line
 after a <code>#</code> is ignored by bash when evaluating the text as
 code.</p>
-<div class="codewrapper sourceCode" id="cb40">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1" aria-label="code-block-40-1"></a><span class="ex">$</span> foo=abc</span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1" aria-label="code-block-40-2"></a><span class="ex">$</span> echo foo is <span class="va">$foo</span></span>
-<span id="cb40-3"><a href="#cb40-3" tabindex="-1" aria-label="code-block-40-3"></a><span class="ex">foo</span> is abc</span>
-<span id="cb40-4"><a href="#cb40-4" tabindex="-1" aria-label="code-block-40-4"></a><span class="ex">$</span> echo foo is <span class="va">${foo}</span>EFG      <span class="co"># now it works!</span></span>
-<span id="cb40-5"><a href="#cb40-5" tabindex="-1" aria-label="code-block-40-5"></a><span class="ex">foo</span> is abcEFG</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="ex">$</span> foo=abc</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="ex">$</span> echo foo is <span class="va">$foo</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="ex">foo</span> is abc</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1" aria-label="code-block-23-4"></a><span class="ex">$</span> echo foo is <span class="va">${foo}</span>EFG      <span class="co"># now it works!</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1" aria-label="code-block-23-5"></a><span class="ex">foo</span> is abcEFG</span></code></pre>
 </div>
 <p>Let’s write a for loop to show us the first two lines of the fastq
 files we downloaded earlier. You will notice the shell prompt changes
@@ -974,18 +731,18 @@ typing in our loop. The second prompt, <code>&gt;</code>, is different
 to remind us that we haven’t finished typing a complete command yet. A
 semicolon, <code>;</code>, can be used to separate two commands written
 on a single line.</p>
-<div class="codewrapper sourceCode" id="cb41">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" tabindex="-1" aria-label="code-block-41-1"></a><span class="ex">$</span> cd ../untrimmed_fastq/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">$</span> cd ~/shell_data/untrimmed_fastq/</span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb42">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1" aria-label="code-block-42-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1" aria-label="code-block-42-2"></a><span class="op">&gt;</span> do</span>
-<span id="cb42-3"><a href="#cb42-3" tabindex="-1" aria-label="code-block-42-3"></a><span class="op">&gt;</span> head <span class="ex">-n</span> 2 <span class="va">${filename}</span></span>
-<span id="cb42-4"><a href="#cb42-4" tabindex="-1" aria-label="code-block-42-4"></a><span class="op">&gt;</span> done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a><span class="op">&gt;</span> do</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a><span class="op">&gt;</span> head <span class="ex">-n</span> 2 <span class="va">${filename}</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1" aria-label="code-block-25-4"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
 <p>The for loop begins with the formula
 <code>for &lt;variable&gt; in &lt;group to iterate over&gt;</code>. In
@@ -1000,13 +757,13 @@ iterate over. Finally, the word <code>done</code> ends the loop.</p>
 <p>After executing the loop, you should see the first two lines of both
 fastq files printed to the terminal. Let’s create a loop that will save
 this information to a file.</p>
-<div class="codewrapper sourceCode" id="cb43">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" tabindex="-1" aria-label="code-block-43-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1" aria-label="code-block-43-2"></a><span class="op">&gt;</span> do</span>
-<span id="cb43-3"><a href="#cb43-3" tabindex="-1" aria-label="code-block-43-3"></a><span class="op">&gt;</span> head <span class="ex">-n</span> 2 <span class="va">${filename}</span> <span class="op">&gt;&gt;</span> seq_info.txt</span>
-<span id="cb43-4"><a href="#cb43-4" tabindex="-1" aria-label="code-block-43-4"></a><span class="op">&gt;</span> done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1" aria-label="code-block-26-2"></a><span class="op">&gt;</span> do</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1" aria-label="code-block-26-3"></a><span class="op">&gt;</span> head <span class="ex">-n</span> 2 <span class="va">${filename}</span> <span class="op">&gt;&gt;</span> seq_info.txt</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1" aria-label="code-block-26-4"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
 <p>When writing a loop, you will not be able to return to previous lines
 once you have pressed Enter. Remember that we can cancel the current
@@ -1026,10 +783,10 @@ Instead, <code>&gt;&gt;</code> adds to the end of the file.</p>
 part of a name from a list of files. In this case, we will use basename
 to remove the <code>.fastq</code> extension from the files that we’ve
 been working with.</p>
-<div class="codewrapper sourceCode" id="cb44">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" tabindex="-1" aria-label="code-block-44-1"></a><span class="ex">$</span> basename SRR097977.fastq .fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">$</span> basename SRR097977.fastq .fastq</span></code></pre>
 </div>
 <p>We see that this returns just the SRR accession, and no longer has
 the .fastq file extension on it.</p>
@@ -1041,10 +798,10 @@ the .fastq file extension on it.</p>
 <p>If we try the same thing but use <code>.fasta</code> as the file
 extension instead, nothing happens. This is because basename only works
 when it exactly matches a string in the file.</p>
-<div class="codewrapper sourceCode" id="cb46">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1" aria-label="code-block-46-1"></a><span class="ex">$</span> basename SRR097977.fastq .fasta</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="ex">$</span> basename SRR097977.fastq .fasta</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1063,14 +820,14 @@ creating a new variable called name. The line &gt; echo $name will print
 to the terminal the variable name each time the for loop runs. Because
 we are iterating over two files, we expect to see two lines of
 output.</p>
-<div class="codewrapper sourceCode" id="cb48">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1" aria-label="code-block-48-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1" aria-label="code-block-48-2"></a><span class="op">&gt;</span> do</span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1" aria-label="code-block-48-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .fastq<span class="va">)</span></span>
-<span id="cb48-4"><a href="#cb48-4" tabindex="-1" aria-label="code-block-48-4"></a><span class="op">&gt;</span> echo <span class="va">${name}</span></span>
-<span id="cb48-5"><a href="#cb48-5" tabindex="-1" aria-label="code-block-48-5"></a><span class="op">&gt;</span> done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.fastq</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1" aria-label="code-block-31-2"></a><span class="op">&gt;</span> do</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1" aria-label="code-block-31-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .fastq<span class="va">)</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1" aria-label="code-block-31-4"></a><span class="op">&gt;</span> echo <span class="va">${name}</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1" aria-label="code-block-31-5"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
 <div id="exercise-3" class="callout challenge">
 <div class="callout-square">
@@ -1090,16 +847,16 @@ current directory.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb49">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" tabindex="-1" aria-label="code-block-49-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.txt</span>
-<span id="cb49-2"><a href="#cb49-2" tabindex="-1" aria-label="code-block-49-2"></a><span class="op">&gt;</span> do</span>
-<span id="cb49-3"><a href="#cb49-3" tabindex="-1" aria-label="code-block-49-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .txt<span class="va">)</span></span>
-<span id="cb49-4"><a href="#cb49-4" tabindex="-1" aria-label="code-block-49-4"></a><span class="op">&gt;</span> echo <span class="va">${name}</span></span>
-<span id="cb49-5"><a href="#cb49-5" tabindex="-1" aria-label="code-block-49-5"></a><span class="op">&gt;</span> done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1" aria-label="code-block-32-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.txt</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1" aria-label="code-block-32-2"></a><span class="op">&gt;</span> do</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1" aria-label="code-block-32-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .txt<span class="va">)</span></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1" aria-label="code-block-32-4"></a><span class="op">&gt;</span> echo <span class="va">${name}</span></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1" aria-label="code-block-32-5"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
 </div>
 </div>
@@ -1108,14 +865,14 @@ current directory.</p>
 <p>One way this is really useful is to move files. Let’s rename all of
 our .txt files using <code>mv</code> so that they have the years on
 them, which will document when we created them.</p>
-<div class="codewrapper sourceCode" id="cb50">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" tabindex="-1" aria-label="code-block-50-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.txt</span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1" aria-label="code-block-50-2"></a><span class="op">&gt;</span> do</span>
-<span id="cb50-3"><a href="#cb50-3" tabindex="-1" aria-label="code-block-50-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .txt<span class="va">)</span></span>
-<span id="cb50-4"><a href="#cb50-4" tabindex="-1" aria-label="code-block-50-4"></a><span class="op">&gt;</span> mv <span class="va">${filename}</span>  <span class="va">${name}</span>_2019.txt</span>
-<span id="cb50-5"><a href="#cb50-5" tabindex="-1" aria-label="code-block-50-5"></a><span class="op">&gt;</span> done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>.txt</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1" aria-label="code-block-33-2"></a><span class="op">&gt;</span> do</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1" aria-label="code-block-33-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> .txt<span class="va">)</span></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1" aria-label="code-block-33-4"></a><span class="op">&gt;</span> mv <span class="va">${filename}</span>  <span class="va">${name}</span>_2019.txt</span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1" aria-label="code-block-33-5"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
 <div id="exercise-4" class="callout challenge">
 <div class="callout-square">
@@ -1135,16 +892,16 @@ files.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb51">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" tabindex="-1" aria-label="code-block-51-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>_2019.txt</span>
-<span id="cb51-2"><a href="#cb51-2" tabindex="-1" aria-label="code-block-51-2"></a><span class="op">&gt;</span> do</span>
-<span id="cb51-3"><a href="#cb51-3" tabindex="-1" aria-label="code-block-51-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> _2019.txt<span class="va">)</span></span>
-<span id="cb51-4"><a href="#cb51-4" tabindex="-1" aria-label="code-block-51-4"></a><span class="op">&gt;</span> mv <span class="va">${filename}</span> <span class="va">${name}</span>.txt</span>
-<span id="cb51-5"><a href="#cb51-5" tabindex="-1" aria-label="code-block-51-5"></a><span class="op">&gt;</span> done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1" aria-label="code-block-34-1"></a><span class="ex">$</span> for filename in <span class="pp">*</span>_2019.txt</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1" aria-label="code-block-34-2"></a><span class="op">&gt;</span> do</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1" aria-label="code-block-34-3"></a><span class="op">&gt;</span> name=<span class="va">$(</span><span class="fu">basename</span> <span class="va">${filename}</span> _2019.txt<span class="va">)</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1" aria-label="code-block-34-4"></a><span class="op">&gt;</span> mv <span class="va">${filename}</span> <span class="va">${name}</span>.txt</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1" aria-label="code-block-34-5"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
 </div>
 </div>
@@ -1239,8 +996,8 @@ command as input to the second command.</li>
   "url": "https://datacarpentry.github.io/shell-genomics/instructor/04-redirection.html",
   "identifier": "https://datacarpentry.github.io/shell-genomics/instructor/04-redirection.html",
   "dateCreated": "2015-03-24",
-  "dateModified": "2025-05-30",
-  "datePublished": "2026-09-22"
+  "dateModified": "2026-09-23",
+  "datePublished": "2026-09-23"
 }
 
   </script><script>
